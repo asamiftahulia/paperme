@@ -14,7 +14,8 @@ class TestController extends Controller
     public function index()
     {
         //
-        return view('test');
+        // return view('test');
+        return view('new-customer-new-dep');
     }
 
     /**
@@ -25,6 +26,7 @@ class TestController extends Controller
     public function create()
     {
         //
+           return view('summary');
     }
 
     /**
@@ -36,6 +38,7 @@ class TestController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**

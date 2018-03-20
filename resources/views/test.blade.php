@@ -12,7 +12,7 @@
                                         <div class="title">
                                             <h2>Typography</h2>
                                         </div>
-                                        <div class="row">
+                                      <div class="row">
                                             <div class="tim-typo">
                                                 <h1>
                                                     <span class="tim-note">Header 1</span>The Life of Material Dashboard </h1>

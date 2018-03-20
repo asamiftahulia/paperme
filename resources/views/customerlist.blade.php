@@ -1,6 +1,27 @@
 @extends('master')
 @section('page-title','Customer List')
 @section('content')
+@if(Session::has('flash_message'))
+<div class="alert alert-info">
+    <button type="button" aria-hidden="true" class="close">×</button>
+    <span><b> Info - </b><em> {!! session('flash_message') !!}</em></span>
+        </div>
+@php
+    $flash = Session::get('flash_message');
+@endphp
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.showNotification('top', 'right');
+
+    });
+    $notif = '<?php echo $flash; ?>';
+    //demo.showNotification('top', 'right');
+</script>
+
+   
+@endif
                     <div class="col-md-12">
                             <div class="card card-plain">
                                 <div class="card-header" data-background-color="purple">

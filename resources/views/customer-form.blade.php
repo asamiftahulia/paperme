@@ -9,35 +9,50 @@
                                     <p class="category">New Customer</p>
                                 </div>
                                 <div class="card-content">
-                                    <form>
+                                    <form action="{{route('customer.store')}}" method="post">
+                                             {{csrf_field()}}
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Fullname</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control" name="fullname">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">ID</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="control-label">email</label>
+                                                    <input type="email" class="form-control" name="email">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Phone Number</label>
+                                                    <input type="text" class="form-control" name="phone_number">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Address</label>
+                                                    <input type="text" class="form-control" name="address">
+                                                </div>
+                                            </div>
+                                        </div>
+                                       <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Type</label>
                                                         <div class="form-group">
-                                    <input type="radio" name="gender" id="male" class="with-gap">
-                                    <label for="new">NEW</label>
-
-                                    <input type="radio" name="gender" id="female" class="with-gap">
-                                    <label for="extension" class="m-l-20">EXTENSION</label>
-                                </div>
+                                                           
+                                                            <input type="radio" name="gender" id="new" class="with-gap" value="new">
+                                                              <label for="new">NEW</label>
+                                                            <input type="radio" name="gender" id="extension" class="with-gap" value="extension">
+                                                            <label for="extension" class="m-l-20">EXTENSION</label>
+                                                        </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> 
                                         <button type="submit" class="btn btn-primary pull-right">Proceed</button>
                                          <a href="{{URL::to('./')}}" class="btn btn-primary  waves-effect">Back</a>
                                         <div class="clearfix"></div>

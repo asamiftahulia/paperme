@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Customer;
+use Session;
 
 class CustomerController extends Controller
 {
@@ -41,9 +42,19 @@ class CustomerController extends Controller
         //
         $data = new Customer();
         $data->fullname = $request->fullname;
+        $data->email = $request->email;
+        $data->phone_number = $request->phone_number;
+        $data->address = $request->address;
         $data->save();
-        Session::flash('flash_messages','Successfully Saved');
-        return redirect()->route('customer.index')->with('alert-success','Yeay');
+        Session::flash('flash_message',$request->gender);
+        if($request->gender == 'Extension'){
+              
+                return redirect()->route('customer.index')->with('alert-success','Berhasil Menambahkan Data!');
+        }
+        else{
+              return redirect()->route('test.index')->with('alert-success','Yeay');
+        }
+
     }
 
     /**
