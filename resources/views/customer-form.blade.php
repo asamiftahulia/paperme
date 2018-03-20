@@ -2,7 +2,7 @@
 @section('page-title','Form Add Customer')
 @section('content')
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header" data-background-color="purple">
                                     <h4 class="title">Time Deposit Special Rate</h4>
@@ -45,9 +45,9 @@
                                                     <label class="control-label">Type</label>
                                                         <div class="form-group">
                                                            
-                                                            <input type="radio" name="gender" id="new" class="with-gap" value="new">
+                                                            <input type="radio" name="type" id="new" class="with-gap" value="new">
                                                               <label for="new">NEW</label>
-                                                            <input type="radio" name="gender" id="extension" class="with-gap" value="extension">
+                                                            <input type="radio" name="type" id="extension" class="with-gap" value="extension">
                                                             <label for="extension" class="m-l-20">EXTENSION</label>
                                                         </div>
                                                 </div>

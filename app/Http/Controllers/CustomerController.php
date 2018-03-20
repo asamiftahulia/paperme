@@ -46,8 +46,8 @@ class CustomerController extends Controller
         $data->phone_number = $request->phone_number;
         $data->address = $request->address;
         $data->save();
-        Session::flash('flash_message',$request->gender);
-        if($request->gender == 'Extension'){
+        Session::flash('flash_message',$request->type);
+        if($request->gender == 'extension'){
               
                 return redirect()->route('customer.index')->with('alert-success','Berhasil Menambahkan Data!');
         }
