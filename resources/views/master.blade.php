@@ -44,9 +44,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="./user.html">
+                        <a href="{{route('customer.create')}}">
                             <i class="material-icons">person</i>
-                            <p>Form Customer</p>
+                            <p>Form Deposan</p>
                         </a>
                     </li>
                     <li>

@@ -44,7 +44,6 @@
                                                             {{csrf_field()}}
                                                             {{method_field('DELETE')}}
                                                             <a href="{{route('customer.edit',$datas->id)}}" class="material-icons">mode_edit</a>
-                                                           <!--  <button class="material-icons" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">delete</button> -->
                                                         </form>
                                                          <a class="material-icons" data-toggle="modal" data-target="#defaultModal">pageview</a>
                                                            <!-- Default Size -->
