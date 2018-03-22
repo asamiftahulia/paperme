@@ -44,10 +44,9 @@
                                                             {{csrf_field()}}
                                                             {{method_field('DELETE')}}
                                                             <a href="{{route('customer.edit',$datas->id)}}" class="material-icons">mode_edit</a>
-                                                            <a href="{{route('customer.edit',$datas->id)}}" class="material-icons">delete</a>
                                                            <!--  <button class="material-icons" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">delete</button> -->
                                                         </form>
-                                                         <button type="button" class="btn btn-default waves-effect m-r-20" data-toggle="modal" data-target="#defaultModal">Time Deposit Special Rate</button>
+                                                         <a class="material-icons" data-toggle="modal" data-target="#defaultModal">pageview</a>
                                                            <!-- Default Size -->
             <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
@@ -61,8 +60,9 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                       <!--  <a href="{{URL::to('./timedeposit')}}" class="btn btn-primary btn-round">Back</a>
-                                    <a href="{{URL::to('timedeposit/list')}}" class="btn btn-primary btn-round">Finish</a> -->
+                                        <a href="{{URL::to('./timedeposit')}}" class="btn btn-primary btn-round">Back</a>
+                                    <a href="{{URL::to('timedeposit/list')}}" class="btn btn-primary btn-round">Finish</a> 
+
                                 </div>
                                 </div>
                             </div>
