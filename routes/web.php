@@ -18,4 +18,5 @@ Route::get('/', function () {
 Route::resource('dashboard','DashboardController');
 Route::resource('customer','CustomerController');
 Route::resource('/create','CustomerController');
+Route::resource('timedeposit','TimeDepositController');
 Route::resource('test','TestController');

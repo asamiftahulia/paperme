@@ -45,9 +45,9 @@
                                                     <label class="control-label">Type</label>
                                                         <div class="form-group">
                                                            
-                                                            <input type="radio" name="type" id="new" class="with-gap" value="new">
+                                                            <input type="radio" name="tipe" id="new" class="with-gap" value="new">
                                                               <label for="new">NEW</label>
-                                                            <input type="radio" name="type" id="extension" class="with-gap" value="extension">
+                                                            <input type="radio" name="tipe" id="extension" class="with-gap" value="extension">
                                                             <label for="extension" class="m-l-20">EXTENSION</label>
                                                         </div>
                                                 </div>

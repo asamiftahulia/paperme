@@ -9,18 +9,6 @@
 @php
     $flash = Session::get('flash_message');
 @endphp
-<script type="text/javascript">
-    $(document).ready(function() {
-
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.showNotification('top', 'right');
-
-    });
-    $notif = '<?php echo $flash; ?>';
-    //demo.showNotification('top', 'right');
-</script>
-
-   
 @endif
                     <div class="col-md-12">
                             <div class="card card-plain">
@@ -48,8 +36,13 @@
                                                 <td>{{$datas->phone_number}}</td>
                                                 <td>{{$datas->address}}</td>
                                                 <td>
-                                                    <form >
-                                                    </form>
+                                                     <form action="{{route('customer.destroy',$datas->id)}}" method="post">
+                                                            {{csrf_field()}}
+                                                            {{method_field('DELETE')}}
+                                                            <a href="{{route('customer.edit',$datas->id)}}" class="material-icons">mode_edit</a>
+                                                            <a href="{{route('customer.edit',$datas->id)}}" class="material-icons">delete</a>
+                                                           <!--  <button class="material-icons" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">delete</button> -->
+                                                        </form>
                                                 </td>
                                             </tr>
                                             @endforeach

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Customer;
+use App\TimeDeposit;
 use Session;
 
-class CustomerController extends Controller
+class TimeDepositController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,13 @@ class CustomerController extends Controller
     public function index()
     {
         //
-        $data = Customer::all();
-        return view('customerlist',compact('data'));
+        return view('new-customer-new-dep');
     }
+
+    public function list(){
+        return view('new-customer-new-dep');
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +32,11 @@ class CustomerController extends Controller
     public function create()
     {
         //
-        return view('customer-form');
+        
+        $id = session('id');
+        $data = TimeDeposit::where('id', $id)->get();
+        return view('summary',compact('data', $data));
+        echo $id;
     }
 
     /**
@@ -38,22 +46,19 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-        $data = new Customer();
-        $data->fullname = $request->fullname;
-        $data->email = $request->email;
-        $data->phone_number = $request->phone_number;
-        $data->address = $request->address;
+    {   
+        $data = new TimeDeposit();
+        $data->bank = $request->bank;
+        $data->tipe = $request->tipe;
+        $data->amount = $request->amount;
+        $data->rate = $request->rate;
+        $data->period = $request->period;
+        $data->td = $request->td;
+        $data->customer_id = $request->customer_id;
         $data->save();
-        if($request->tipe=='new'){
-            Session::flash('flash_message',$request->tipe);
-             return redirect()->route('timedeposit.index')->with('id_cus',$data->id)->with('tipe',$request->tipe);
-        }else{
-            Session::flash('flash_message',$request->tipe);
-            return redirect()->route('customer.index');
-        }
-
+        Session::flash('flash_message','yeay');
+        return redirect()->route('timedeposit.create')->with('id',$data->id);
+        
     }
 
     /**
@@ -65,6 +70,7 @@ class CustomerController extends Controller
     public function show($id)
     {
         //
+        return view('timedepositlist');
     }
 
     /**
