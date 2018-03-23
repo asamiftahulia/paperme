@@ -67,10 +67,11 @@ class TimeDepositController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
-        return view('timedepositlist');
+        $data = TimeDeposit::all();
+        return view('timedepositlist',compact('data'));
     }
 
     /**

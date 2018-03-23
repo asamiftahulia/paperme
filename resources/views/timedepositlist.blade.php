@@ -20,7 +20,7 @@
                                 <div class="card-content table-responsive">
                                     <table class="table table-hover">
                                         <thead>
-                                            <th>ID</th>
+                                            <th>No</th>
                                             <th>Bank</th>
                                             <th>Tipe </th>
                                             <th>Amount</th>
@@ -28,10 +28,18 @@
                                             <th>Period</th>
                                             <th>TD</th>
                                         </thead>
-                                        <tr>
-                                            
-                                            <td></td>
-                                        </tr>
+                                            @php $no = 1; @endphp
+                                            @foreach($data as $datas)
+                                            <tr>
+                                                <td>{{$no++}}</td>
+                                                <td>{{$datas->bank}}</td>
+                                                <td>{{$datas->tipe}}</td>
+                                                <td>{{$datas->amount}}</td>
+                                                <td>{{$datas->rate}}</td>
+                                                <td>{{$datas->period}}</td>
+                                                <td>{{$datas->td}}</td>
+                                            </tr>
+                                            @endforeach
                                         <tbody>
                                            
                                         </tbody>

@@ -14,8 +14,7 @@
                                     <p class="card-content" align="center">
                                         Kepada :Regional</br>
                                         Dari   : Asa </br>
-                                    Tanggal : Tanggal </br>
-
+                                        Tanggal : Tanggal </br>
                                     </p>
                                      @endforeach
                                 <div class="card-content table-responsive">
@@ -40,30 +39,25 @@
                                                 <td>{{$datas['rate']}} </td>
                                                 <td>{{$datas['td']}} </td>
                                                 <td>
-                                                     <form action="{{route('customer.destroy',$datas->id)}}" method="post">
-                                                            {{csrf_field()}}
-                                                            {{method_field('DELETE')}}
-                                                            <a href="{{route('customer.edit',$datas->id)}}" class="material-icons">mode_edit</a>
-                                                        </form>
-                                                         <a class="material-icons" data-toggle="modal" data-target="#defaultModal">pageview</a>
+                                                 <a class="material-icons" data-toggle="modal" data-target="#defaultModal">pageview</a>
                                                            <!-- Default Size -->
-            <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        {{$datas->bank}}
-                    </div>
-                </div>
-            </div>
+                                                    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                {{$datas->bank}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
-                                            @endforeach
+                                          
                                         </tbody>
                                     </table>
                                         <a href="{{URL::to('./timedeposit')}}" class="btn btn-primary btn-round">Back</a>
-                                    <a href="{{URL::to('timedeposit/list')}}" class="btn btn-primary btn-round">Finish</a> 
-
+                                        <a href="{{URL::to('timedeposit/show')}}" class="btn btn-primary btn-round">fin</a>   
                                 </div>
                                 </div>
+                                  @endforeach
                             </div>
                         </div>
                     </div>
