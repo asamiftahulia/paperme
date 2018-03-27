@@ -20,3 +20,7 @@ Route::resource('customer','CustomerController');
 Route::resource('/create','CustomerController');
 Route::resource('timedeposit','TimeDepositController');
 Route::resource('test','TestController');
+Route::resource('masterbank','MasterBankController');
+Route::resource('user','UserController');
+Route::resource('time-deposito','TimeDepositoController');
+Route::resource('trx-time-deposit','TransactionTimeDepositController');

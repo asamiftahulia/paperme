@@ -43,6 +43,12 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
+                     <li>
+                        <a href="{{route('masterbank.create')}}">
+                            <i class="material-icons">dashboard</i>
+                            <p>Master Bank</p>
+                        </a>
+                    </li>
                     <li>
                         <a href="{{route('customer.create')}}">
                             <i class="material-icons">person</i>
@@ -50,21 +56,39 @@
                         </a>
                     </li>
                     <li>
-                        <a href="./table.html">
+                        <a href="{{route('time-deposito.create')}}">
+                            <i class="material-icons">bubble_chart</i>
+                            <p>Time Deposit</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('user.create')}}">
+                            <i class="material-icons">person</i>
+                            <p>Master User</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('time-deposito.create')}}">
+                            <i class="material-icons">person</i>
+                            <p>Master Time Deposito</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('trx-time-deposit.create')}}">
+                            <i class="material-icons">person</i>
+                            <p>Transaction TD</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('customer.index')}}">
                             <i class="material-icons">content_paste</i>
                             <p>Customer List</p>
                         </a>
                     </li>
                     <li>
-                        <a href="./typography.html">
+                        <a href="{{route('customer.index')}}">
                             <i class="material-icons">library_books</i>
-                            <p>Typography</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./icons.html">
-                            <i class="material-icons">bubble_chart</i>
-                            <p>Icons</p>
+                            <p>Datatables</p>
                         </a>
                     </li>
                     <li>
@@ -82,7 +106,7 @@
                     <li class="active-pro">
                         <a href="upgrade.html">
                             <i class="material-icons">unarchive</i>
-                            <p>Upgrade to PRO</p>
+                            <p>Isi apaya</p>
                         </a>
                     </li>
                 </ul>
