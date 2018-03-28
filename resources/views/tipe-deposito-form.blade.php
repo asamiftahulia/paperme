@@ -1,15 +1,15 @@
 @extends('master')
-@section('page-title','Form Add Customer')
+@section('page-title','Form Master Tipe Deposito')
 @section('content')
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header" data-background-color="purple">
-                                    <h4 class="title">Time Deposito</h4>
-                                    <p class="category">New Time Deposito</p>
+                                    <h4 class="title">Tipe Deposito</h4>
+                                    <p class="category">New Tipe Deposito</p>
                                 </div>
                                 <div class="card-content">
-                                    <form action="{{route('time-deposito.store')}}" method="post">
+                                    <form action="{{route('tipe-deposito.store')}}" method="post">
                                              {{csrf_field()}}
                                         <div class="row">
                                              <div class="col-md-4">
@@ -20,7 +20,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Name Time Deposito</label>
+                                                    <label class="control-label">Name Time Deposit</label>
                                                     <input type="text" class="form-control" name="name_time_deposit">
                                                 </div>
                                             </div>

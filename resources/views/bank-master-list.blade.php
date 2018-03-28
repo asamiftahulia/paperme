@@ -1,5 +1,5 @@
 @extends('master')
-@section('page-title','Customer List')
+@section('page-title','Bank List')
 @section('content')
 @if(Session::has('flash_message'))
 <div class="alert alert-info">

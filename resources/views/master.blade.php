@@ -56,9 +56,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('time-deposito.create')}}">
+                        <a href="{{route('tipe-deposito.create')}}">
                             <i class="material-icons">bubble_chart</i>
-                            <p>Time Deposit</p>
+                            <p>Master Tipe Deposito</p>
                         </a>
                     </li>
                     <li>
@@ -68,9 +68,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('time-deposito.create')}}">
+                        <a href="{{route('time-deposit.create')}}">
                             <i class="material-icons">person</i>
-                            <p>Master Time Deposito</p>
+                            <p>Time Deposit (TD)</p>
                         </a>
                     </li>
                     <li>
@@ -158,6 +158,8 @@
     </div>
 </body>
 <!--   Core JS Files   -->
+
+<script src="{{asset('/assets/js/admin.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/js/jquery-3.2.1.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/js/bootstrap.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/js/material.min.js')}}" type="text/javascript"></script>
@@ -194,5 +196,14 @@
     <script src="{{asset('assets/plugins/jquery-datatable/extensions/export/vfs_fonts.js')}}"></script>
     <script src="{{asset('assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js')}}"></script>
     <script src="{{asset('assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
+    <script src="{{asset('assets/js/advanced-form-elements.js')}}"></script>
+    <script src="{{asset('assets/js/admin.js')}}"></script>
+    <script src="{{asset('/assets/plugins/jquery.masknumber.js')}}" type="text/javascript"></script>
+<script>       
 
+    $(function() {
+        $("#aing").keyup().maskNumber({integer: true});
+    });
+    
+</script>
 </html>

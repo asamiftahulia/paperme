@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\m_tipe_deposito;
 use Session;
 
-class TimeDepositoController extends Controller
+class TipeDepositoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class TimeDepositoController extends Controller
     {
         //
         $data = m_tipe_deposito::all();
-        return view('time-deposito-list',compact('data'));
+        return view('tipe-deposito-list',compact('data'));
     }
 
     /**
@@ -28,7 +28,7 @@ class TimeDepositoController extends Controller
     public function create()
     {
         //
-        return view('time-deposito-form');
+        return view('tipe-deposito-form');
     }
 
     /**
@@ -47,8 +47,8 @@ class TimeDepositoController extends Controller
         $data->created_by = 'harsyami@gmail.com';
         $data->updated_by = 'asami@gmail.com';
         $data->save();
-            Session::flash('flash_message',$request->tipe);
-            return redirect()->route('time-deposito.index');
+            Session::flash('flash_message',$request->id_deposito);
+            return redirect()->route('tipe-deposito.index');
         
     }
 

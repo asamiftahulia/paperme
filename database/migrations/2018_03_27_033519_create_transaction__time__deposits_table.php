@@ -15,7 +15,11 @@ class CreateTransactionTimeDepositsTable extends Migration
     {
         Schema::create('transaction__time__deposits', function (Blueprint $table) {
             $table->increments('id');
-            // $table->foreign('id_deposit')
+            $table->integer('id_td')->unsigned();
+            //$table->foreign('id_td')->references('id')->on('t_ds');
+            $table->string('created_by');
+            $table->boolean('approved');
+            $table->datetime('approved_at');
             $table->timestamps();
         });
     }

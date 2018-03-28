@@ -18,9 +18,10 @@ Route::get('/', function () {
 Route::resource('dashboard','DashboardController');
 Route::resource('customer','CustomerController');
 Route::resource('/create','CustomerController');
-Route::resource('timedeposit','TimeDepositController');
+// Route::resource('time-deposit','TimeDepositController');
+Route::resource('time-deposit','TDController');
 Route::resource('test','TestController');
 Route::resource('masterbank','MasterBankController');
 Route::resource('user','UserController');
-Route::resource('time-deposito','TimeDepositoController');
+Route::resource('tipe-deposito','TipeDepositoController');
 Route::resource('trx-time-deposit','TransactionTimeDepositController');
