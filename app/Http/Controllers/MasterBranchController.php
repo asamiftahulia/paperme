@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Customer;
-use Session;
+use App\M_branchs;
 
-class CustomerController extends Controller
+class MasterBranchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class CustomerController extends Controller
     public function index()
     {
         //
-        $data = Customer::all();
-        return view('customerlist',compact('data'));
+        $data = m_branchs::all();
+        return view('master-branch-list',compact('data'));
     }
 
     /**
@@ -28,7 +27,7 @@ class CustomerController extends Controller
     public function create()
     {
         //
-        return view('customer-form');
+        return view('master-branch-form');
     }
 
     /**
@@ -40,20 +39,6 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         //
-        $data = new Customer();
-        $data->fullname = $request->fullname;
-        $data->email = $request->email;
-        $data->phone_number = $request->phone_number;
-        $data->address = $request->address;
-        $data->save();
-        if($request->tipe=='new'){
-            Session::flash('flash_message',$request->tipe);
-             return redirect()->route('time-deposit.create')->with('id_cus',$data->id)->with('tipe',$request->tipe);
-        }else{
-            Session::flash('flash_message',$request->tipe);
-            return redirect()->route('time-deposit.create');
-        }
-
     }
 
     /**

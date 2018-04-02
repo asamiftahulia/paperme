@@ -1,5 +1,5 @@
 @extends('master')
-@section('page-title','Form Time Deposit (TD)')
+@section('page-title','Master Branch form')
 @section('content')
                     <div class="row">
                         <div class="col-md-12">

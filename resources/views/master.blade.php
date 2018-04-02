@@ -50,6 +50,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{route('master-branch.index')}}">
+                            <i class="material-icons">dashboard</i>
+                            <p>Master Branch</p>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{route('customer.create')}}">
                             <i class="material-icons">person</i>
                             <p>Form Deposan</p>
@@ -199,11 +205,24 @@
     <script src="{{asset('assets/js/advanced-form-elements.js')}}"></script>
     <script src="{{asset('assets/js/admin.js')}}"></script>
     <script src="{{asset('/assets/plugins/jquery.masknumber.js')}}" type="text/javascript"></script>
+    <script src="{{asset('/assets/plugins/jquery.maskedinput.js')}}" type="text/javascript"></script>
 <script>       
 
     $(function() {
         $("#aing").keyup().maskNumber({integer: true});
     });
-    
+
+    //date
+    $(function(){
+        $('#expired_date').mask('99/99/9999');
+        // $('#date_rollover').mask('99/99/9999');
+        // $('#money').mask('Rp 99,999');
+    });
+
+    $( function() {
+        $( "#date_rollover" ).datepicker();
+    } );
+
+
 </script>
 </html>

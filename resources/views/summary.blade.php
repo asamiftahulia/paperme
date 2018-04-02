@@ -9,57 +9,70 @@
                                     <p class="category">Time Deposit Special Rate </p>
                                 </div>
                                 <div class="content">
-                                    @foreach($data as $datas)
+                                      @foreach($data as $datas)
                                     <h6 class="category text-gray">Nomor Surat : {{$datas['id']}}/CCBI</h6>
                                     <p class="card-content" align="center">
                                         Kepada :Regional</br>
-                                        Dari   : Asa </br>
-                                        Tanggal : Tanggal </br>
+                                        Dari   : {{$datas['full_name']}} </br>
+                                        Tanggal : {{$datas['expired_date']}} </br>
                                     </p>
                                      @endforeach
                                 <div class="card-content table-responsive">
                                     <table class="table table-hover">
                                         <thead>
                                             <th>ID</th>
-                                            <th>Bank</th>
-                                            <th>Tipe</th>
+                                            <th>Fullname</th>
                                             <th>Amount</th>
-                                            <th>Rate</th>
-                                            <th>td</th>
-                                            <th>action</th>
+                                            <th>Status</th>
+                                            <th>Notes</th>
+                                            <th>Expired Date</th>
+                                            <th>Period</th>
+                                            <th>Type Of TD</th>
+                                            <th>Id Bank</th>
+                                            <th>Date Rollover</th>
+                                            <th>Special Rate</th>
+                                            <th>Normal Rate</th>
+                                            <th>Id Branch</th>
+                                            <th>Created By</th>
+                                            <th>Updated By</th>
                                         </thead>
                                         <tbody>
                                             @php $no = 1; @endphp
                                             <tr>
                                                 @foreach($data as $datas)
                                                 <td>{{$datas['id']}} </td>
-                                                <td>{{$datas['bank']}} </td>
-                                                <td>{{$datas['tipe']}} </td>
+                                                <td>{{$datas['full_name']}} </td>
                                                 <td>{{$datas['amount']}} </td>
-                                                <td>{{$datas['rate']}} </td>
-                                                <td>{{$datas['td']}} </td>
-                                                <td>
-                                                 <a class="material-icons" data-toggle="modal" data-target="#defaultModal">pageview</a>
-                                                           <!-- Default Size -->
-                                                    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+                                                <td>{{$datas['status']}} </td>
+                                                <td><a class="material-icons" data-toggle="modal" data-target="#defaultModal">pageview</a>
+                                                 <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
-                                                                {{$datas->bank}}
+                                                                {{$datas['notes']}} 
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </td>
+                                                <td>{{$datas['expired_date']}} </td>
+                                                <td>{{$datas['period']}} </td>
+                                                <td>{{$datas['type_of_td']}} </td>
+                                                <td>{{$datas['id_bank']}} </td>
+                                                <td>{{$datas['date_rollover']}} </td>
+                                                <td>{{$datas['special_rate']}} </td>
+                                                <td>{{$datas['normal_rate']}} </td>
+                                                <td>{{$datas['id_branch']}} </td>
+                                                <td>{{$datas['created_by']}} </td>
+                                                <td>{{$datas['updated_by']}} </td>
+                                                 @endforeach
                                             </tr>
-                                          
                                         </tbody>
                                     </table>
-                                        <a href="{{URL::to('./timedeposit')}}" class="btn btn-primary btn-round">Back</a>
-                                        <a href="{{URL::to('timedeposit/show')}}" class="btn btn-primary btn-round">fin</a>   
+                                        <a href="{{URL::to('./time-deposit')}}" class="btn btn-primary btn-round">back</a>
+                                        <a href="{{URL::to('time-deposit/create')}}" class="btn btn-primary btn-round">Finish</a>   
                                 </div>
                                 </div>
-                                  @endforeach
+                                
                             </div>
                         </div>
                     </div>
-                    <br><br><br><br><br><br><br>
 @endsection

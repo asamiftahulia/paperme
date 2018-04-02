@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\TimeDeposit;
+use App\TD;
 use Session;
 use Validator;
 
@@ -18,8 +19,8 @@ class TDController extends Controller
     public function index()
     {
         //
-        $data = TimeDeposit::All();
-        return view('timedepositlist', compact('data'));
+        $data = TD::All();
+        return view('time-deposit-list', compact('data'));
     }
 
     /**
@@ -31,6 +32,13 @@ class TDController extends Controller
     {
         //
         return view('time-deposit-form');
+
+    }
+
+      public function summary()
+    {
+        //
+        return view('dahboard');
 
     }
 
@@ -50,31 +58,36 @@ class TDController extends Controller
             'amount' =>  'regex:/^\d*(\.\d{3})?$/',
 
         ]);
-        $data = new TimeDeposit();
-        $data->full_name = $request->full_name;
-        $data->amount = $request->amount;
+        $data = new TD();
+        $data->full_name = $request->full_name; 
+        $strAmount = filter_var($request->amount, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $data->amount = $strAmount;
+        $str = ltrim($request->amount, ',');
+       $str = trim($request->amount);
+       
         $data->status = $request->status;
         $data->notes = $request->notes;
         $data->expired_date = $request->expired_date;
         $data->period = $request->period;
-        // $data->type_of_td = $request->type_of_td;
-        // $data->id_bank = $request->id_bank;
-        // $data->date_rollover = $request->date_rollover;
-        // $data->special_rate = $request->special_rate;
-        // $data->normal_rate = $request->normal_rate;
-        // $data->id_branch = $request->id_branch;
-        // $data->created_by = 'asami@gmail.com';
-        // $data->updated_by = 'asami@gmail.com';
+        $data->type_of_td = $request->type_of_td;
+        $data->id_bank = $request->id_bank;
+        $data->date_rollover = $request->date_rollover;
+        $data->special_rate = $request->special_rate;
+        $data->normal_rate = $request->normal_rate;
+        $data->id_branch = $request->id_branch;
+        $data->created_by = 'asami@gmail.com';
+        $data->updated_by = 'asami@gmail.com';
         $data->save();
        
-        // return redirect()->route('time-deposit.create')->with('id',$data->id);
-
-        if($validator->fails()){
-            return redirect('time-deposit/create')->withErrors($validator)->withInput();
-        }else{
-             Session::flash('flash_message','Yihha');
-        return redirect()->route('time-deposit.index');
-        }
+        return redirect('time-deposit/summary')->with('id',$data->id);
+      
+       
+        // if($validator->fails()){
+        //     return redirect('time-deposit/create')->withErrors($validator)->withInput();
+        // }else{
+        //      Session::flash('flash_message','Yihha');
+        // return redirect()->route('time-deposit.index');
+        // }
         
         
     }
@@ -88,6 +101,10 @@ class TDController extends Controller
     public function show($id)
     {
         //
+        $id = session('id');
+        $data = TD::where('id', $id)->get();
+        return view('summary',compact('data', $data));
+        //echo $id;
     }
 
     /**
