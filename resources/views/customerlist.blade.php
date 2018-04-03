@@ -17,6 +17,7 @@
                                     <p class="category">Here is a subtitle for this table</p>
                                 </div>
                                 <div class="card-content table-responsive">
+                                    <button name="btn-pdf">Export To PDF</button>
                                     <table class="table table-hover">
                                         <thead>
                                             <th>ID</th>

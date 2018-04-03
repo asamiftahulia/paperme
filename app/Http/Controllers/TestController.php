@@ -15,7 +15,8 @@ class TestController extends Controller
     {
         //
         // return view('test');
-        return view('new-customer-new-dep');
+        // return view('new-customer-new-dep');
+        return view('test-datatables');
     }
 
     /**

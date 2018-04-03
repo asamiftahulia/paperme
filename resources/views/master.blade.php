@@ -9,8 +9,7 @@
     <title>@yield('page-title')</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-     <!-- JQuery DataTable Css -->
-    <link href="{{asset('assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" rel="stylesheet">
+    
     <!-- Bootstrap core CSS     -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" />
     <!--  Material Dashboard CSS    -->
@@ -20,6 +19,8 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+     <!-- JQuery DataTable Css -->
+    <link href="{{asset('/assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" rel="stylesheet">
 </head>
 
 <body>
@@ -182,7 +183,7 @@
 <!-- Material Dashboard javascript methods -->
 <script src="{{asset('/assets/js/material-dashboard.js?v=1.2.0')}}"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="{{asset('assets/js/demo.js')}}"></script>
+<!-- <script src="{{asset('assets/js/demo.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
 
@@ -190,20 +191,18 @@
         demo.initDashboardPageCharts();
 
     });
-</script>
+</script> -->
 
   <!-- Jquery DataTable Plugin Js -->
-    <script src="{{asset('assets/plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
-    <script src="{{asset('assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>
-    <script src="{{asset('assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/jquery-datatable/extensions/export/jszip.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/jquery-datatable/extensions/export/pdfmake.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/jquery-datatable/extensions/export/vfs_fonts.js')}}"></script>
-    <script src="{{asset('assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
-    <script src="{{asset('assets/js/advanced-form-elements.js')}}"></script>
-    <script src="{{asset('assets/js/admin.js')}}"></script>
+    <script src="{{asset('/assets/plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
+    <script src="{{asset('/assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>
+    <script src="{{asset('/assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('/assets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js')}}"></script>
+    <script src="{{asset('/assets/plugins/jquery-datatable/extensions/export/jszip.min.js')}}"></script>
+    <script src="{{asset('/assets/plugins/jquery-datatable/extensions/export/pdfmake.min.js')}}"></script>
+    <script src="{{asset('/assets/plugins/jquery-datatable/extensions/export/vfs_fonts.js')}}"></script>
+    <script src="{{asset('/assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('/assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
     <script src="{{asset('/assets/plugins/jquery.masknumber.js')}}" type="text/javascript"></script>
     <script src="{{asset('/assets/plugins/jquery.maskedinput.js')}}" type="text/javascript"></script>
 <script>       
@@ -223,6 +222,19 @@
         $( "#date_rollover" ).datepicker();
     } );
 
+    $(function () {
+    $('.js-basic-example').DataTable({
+        responsive: true
+    });
 
+    //Exportable table
+    $('.js-exportable').DataTable({
+        dom: 'Bfrtip',
+        responsive: true,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+});
 </script>
 </html>
