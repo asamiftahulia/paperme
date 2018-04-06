@@ -16,11 +16,14 @@
     <link href="{{asset('assets/css/material-dashboard.css?v=1.2.0')}}" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="{{asset('assets/css/demo.css')}}" rel="stylesheet" />
+    
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
      <!-- JQuery DataTable Css -->
     <link href="{{asset('/assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" rel="stylesheet">
+    
+    
 </head>
 
 <body>
@@ -45,7 +48,7 @@
                         </a>
                     </li>
                      <li>
-                        <a href="{{route('masterbank.create')}}">
+                        <a href="{{route('master-bank.index')}}">
                             <i class="material-icons">dashboard</i>
                             <p>Master Bank</p>
                         </a>
@@ -227,14 +230,75 @@
         responsive: true
     });
 
-    //Exportable table
+        //Exportable table
     $('.js-exportable').DataTable({
-        dom: 'Bfrtip',
-        responsive: true,
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
+            dom: 'Bfrtip',
+            responsive: true,
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
     });
-});
+    });
+    //end exportable
+
+    //form validation 
+    $(function () {
+    $('#form_validation').validate({
+        rules: {
+            'checkbox': {
+                required: true
+            },
+            'gender': {
+                required: true
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+
+    //Advanced Form Validation
+    $('#form_advanced_validation').validate({
+        rules: {
+            'date': {
+                customdate: true
+            },
+            'creditcard': {
+                creditcard: true
+            }
+        },
+        highlight: function (input) {
+            $(input).parents('.form-line').addClass('error');
+        },
+        unhighlight: function (input) {
+            $(input).parents('.form-line').removeClass('error');
+        },
+        errorPlacement: function (error, element) {
+            $(element).parents('.form-group').append(error);
+        }
+    });
+
+    //Custom Validations ===============================================================================
+    //Date
+    $.validator.addMethod('customdate', function (value, element) {
+        return value.match(/^\d\d\d\d?-\d\d?-\d\d$/);
+    },
+        'Please enter a date in the format YYYY-MM-DD.'
+    );
+
+    //Credit card
+    $.validator.addMethod('creditcard', function (value, element) {
+        return value.match(/^\d\d\d\d?-\d\d\d\d?-\d\d\d\d?-\d\d\d\d$/);
+    },
+        'Please enter a credit card in the format XXXX-XXXX-XXXX-XXXX.'
+    );
+    //==================================================================================================
+        });     
 </script>
 </html>

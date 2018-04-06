@@ -1,5 +1,5 @@
 @extends('master')
-@section('page-title','Bank List')
+@section('page-title','Master Branch')
 @section('content')
 @if(Session::has('flash_message'))
 <div class="alert alert-info">
@@ -10,46 +10,57 @@
     $flash = Session::get('flash_message');
 @endphp
 @endif
-                    <div class="col-md-12">
-                            <div class="card card-plain">
-                                <div class="card-header" data-background-color="purple">
-                                    <h4 class="title">Master Branch</h4>
-                                    <p class="category">Master Branch List</p>
-                                </div>
-                                <div class="card-content table-responsive">
-                                    <table class="table table-hover">
-                                        <thead>
+                <div class="col-md-12">
+                <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h5>
+                                Master Branch
+                            </h5>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                    <thead>
+                                        <tr>
                                             <th>No</th>
-                                            <th>ID</th>
+                                            {{--<th>ID</th>--}}
                                             <th>Branch Name</th>
                                             <th>Address</th>
                                             <th>Parent ID</th>
                                             <th>Branch Type</th>
-                                        </thead>
-                                        <tbody>
-                                            @php $no = 1; @endphp
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>No</th>
+                                            {{--<th>ID</th>--}}
+                                            <th>Branch Name</th>
+                                            <th>Address</th>
+                                            <th>Parent ID</th>
+                                            <th>Branch Type</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        @php $no = 1; @endphp
                                             @foreach($data as $datas)
                                             <tr>
                                                 <td>{{$no++}}</td>
-                                                <td>{{$datas->id}}</td>
+                                                {{--<td>{{$datas->id}}</td>--}}
                                                 <td>{{$datas->nama}}</td>
                                                 <td>{{$datas->alamat}}</td>
                                                 <td>{{$datas->parent_id}}</td>
                                                 <td>{{$datas->jenis_cabang}}</td>
-                                                <td>
-                                                     <form action="{{route('customer.destroy',$datas->id)}}" method="post">
-                                                            {{csrf_field()}}
-                                                            {{method_field('DELETE')}}
-                                                            <a href="{{route('customer.edit',$datas->id)}}" class="material-icons">mode_edit</a>
-                                                            <a href="{{route('customer.edit',$datas->id)}}" class="material-icons">delete</a>
-                                                           <!--  <button class="material-icons" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">delete</button> -->
-                                                        </form>
-                                                </td>
                                             </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                                              @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Exportable Table -->       
+                    </div>
 @endsection

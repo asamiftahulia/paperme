@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\MasterBank;
 use Illuminate\Http\Request;
-use App\m_bank;
+
 use Session;
 
 class MasterBankController extends Controller
@@ -16,8 +17,8 @@ class MasterBankController extends Controller
     public function index()
     {
         //
-        $data = M_bank::all();
-        return view('bank-master-list',compact('data'));
+        $data = MasterBank::all();
+        return view('master-banks-list',compact('data'));
     }
 
     /**

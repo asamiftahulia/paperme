@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\TD;
 
 class TestController extends Controller
 {
@@ -16,7 +17,10 @@ class TestController extends Controller
         //
         // return view('test');
         // return view('new-customer-new-dep');
-        return view('test-datatables');
+         // return view('test-datatables');
+        // return view('test-form');
+        $data = TD::all();
+        return view('test-summary-pdf');
     }
 
     /**
@@ -39,6 +43,14 @@ class TestController extends Controller
     public function store(Request $request)
     {
         //
+
+    }
+
+    public function downloadPDF($id){
+      $td = TD::find($id);
+
+      $pdf = PDF::loadView('pdf', compact('td'));
+      return $pdf->download('summary-td.pdf');
 
     }
 
