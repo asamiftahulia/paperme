@@ -5,8 +5,8 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header" data-background-color="purple">
-                                    <h4 class="title">Time Deposit Special Rate</h4>
-                                    <p class="category">New Customer</p>
+                                    <h4 class="title">Form Registration Registration </h4>
+                                    <p class="category">Special Rate Time Deposit</p>
                                 </div>
                                 <div class="card-content">
                                     <form action="{{route('customer.store')}}" method="post">

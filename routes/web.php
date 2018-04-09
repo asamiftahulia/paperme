@@ -28,3 +28,5 @@ Route::resource('tipe-deposito','TipeDepositoController');
 Route::resource('trx-time-deposit','TransactionTimeDepositController');
 Route::resource('test','TestController');
 Route::get('/downloadPDF/{id}','TestController@downloadPDF');
+Route::get('/uploadFile','UploadFileController@index');
+Route::post('/uploadfile','UploadFileController@showUploadFile');
