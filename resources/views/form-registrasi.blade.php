@@ -41,7 +41,8 @@
                             <div class="col-md-6">
                                 <div class="form-group label-floating">
                                     <label class="control-label">Expired Date</label>
-                                    <input type="text" class="form-control" name="office">
+                                    <input class="date" type="text">
+
                                 </div>
                             </div>
 

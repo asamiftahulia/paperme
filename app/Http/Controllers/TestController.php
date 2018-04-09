@@ -20,8 +20,8 @@ class TestController extends Controller
         //  return view('test-datatables');
         //return view('test-form');
        // return view('test-summary-pdf');
-      //  return view('form-registrasi');
-        return view('test-datepicker');
+       return view('form-registrasi');
+      //  return view('test-datepicker');
     }
 
     /**
