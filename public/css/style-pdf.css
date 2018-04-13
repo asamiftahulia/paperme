@@ -95,7 +95,7 @@ table {
 table th,
 table td {
   padding: 20px;
-  background: #EEEEEE;
+  background: #e3e9e9;
   text-align: center;
   border-bottom: 1px solid #FFFFFF;
 }
@@ -110,16 +110,16 @@ table td {
 }
 
 table td h3{
-  color: #57B223;
+  color: #e3e9e9;
   font-size: 1.2em;
   font-weight: normal;
   margin: 0 0 0.2em 0;
 }
 
 table .no {
-  color: #FFFFFF;
+  color: #e3e9e9;
   font-size: 1.6em;
-  background: #57B223;
+  background: #4dcce0;
 }
 
 table .desc {
@@ -134,7 +134,7 @@ table .qty {
 }
 
 table .total {
-  background: #57B223;
+  background: #4dcce0;
   color: #FFFFFF;
 }
 
@@ -162,9 +162,9 @@ table tfoot tr:first-child td {
 }
 
 table tfoot tr:last-child td {
-  color: #57B223;
+  color: #4dcce0;
   font-size: 1.4em;
-  border-top: 1px solid #57B223; 
+  border-top: 1px solid #4dcce0; 
 
 }
 

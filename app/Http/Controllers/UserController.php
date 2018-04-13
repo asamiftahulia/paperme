@@ -71,9 +71,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($nik)
     {
         //
+        $data = User::where('nik',$nik)->get();
+
+        return view('user-master-form-edit',compact('data'));
     }
 
     /**
@@ -83,9 +86,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $nik)
     {
         //
+        $data = User::where('nik',$nik)->first();
+        $data->username = $request->username;
+        $data->role = $request->role;
+        $data->office = $request->office;
+        $data->updated_by = 'asami@gmail.com';
+        $data->save();
+        return redirect()->route('user.index')->with('alert-success','Data berhasil diubah!');
     }
 
     /**
@@ -94,8 +104,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($nik)
     {
         //
+        $data = User::where('nik',$nik)->first();
+        $data->delete();
+        return redirect()->route('user.index')->with('alert-success','Data berhasi dihapus!');
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\TimeDeposit;
 use App\TD;
+use PDF;
 use Session;
 use Validator;
 
@@ -31,7 +32,8 @@ class TDController extends Controller
     public function create()
     {
         //
-        return view('time-deposit-form');
+       // return view('time-deposit-form');
+        return view('registrasi-td-form');
 
     }
 
@@ -70,17 +72,17 @@ class TDController extends Controller
         $data->expired_date = $request->expired_date;
         $data->period = $request->period;
         $data->type_of_td = $request->type_of_td;
-        $data->id_bank = $request->id_bank;
+        $data->bank = '000002';
         $data->date_rollover = $request->date_rollover;
-        $data->special_rate = $request->special_rate;
-        $data->normal_rate = $request->normal_rate;
-        $data->id_branch = $request->id_branch;
+        $data->special_rate = '1';
+        $data->normal_rate = '1';
+        $data->id_branch = '1';
         $data->created_by = 'asami@gmail.com';
         $data->updated_by = 'asami@gmail.com';
         $data->save();
        
-        return redirect('time-deposit/summary')->with('id',$data->id);
-      
+       //return redirect('time-deposit/summary')->with('id',$data->id);
+        return redirect('td/summary')->with('id',$data->id);
        
         // if($validator->fails()){
         //     return redirect('time-deposit/create')->withErrors($validator)->withInput();
@@ -139,5 +141,13 @@ class TDController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function downloadSummary($id){
+        $td = TD::find($id);
+        $data = TD::where('id', $id)->get();
+        $pdf = PDF::loadView('pdf-summary', compact($data));
+        return $pdf->download('Summary_Time_Deposit.pdf');
     }
 }

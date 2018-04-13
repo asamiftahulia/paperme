@@ -46,6 +46,9 @@
                                                 <td>{{$datas->notes}}</td>
                                                 <td>{{$datas->expired_date}}</td>
                                                 <td>{{$datas->period}}</td>
+                                                <td>{{$datas->type_of_td}}</td>
+                                                <td>{{$datas->bank}}</td>
+                                                <td>{{$datas->date_rollover}}</td>
                                                 <!-- <td>{{$datas->td}}</td> -->
                                            </tr>
                                             @endforeach 

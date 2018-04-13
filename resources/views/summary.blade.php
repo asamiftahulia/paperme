@@ -63,12 +63,15 @@
                                                 <td>{{$datas['id_branch']}} </td>
                                                 <td>{{$datas['created_by']}} </td>
                                                 <td>{{$datas['updated_by']}} </td>
-                                                 @endforeach
+                                              
                                             </tr>
-                                        </tbody>
-                                    </table>
+                                       
                                         <a href="{{URL::to('./time-deposit')}}" class="btn btn-primary btn-round">back</a>
-                                        <a href="{{URL::to('time-deposit/create')}}" class="btn btn-primary btn-round">Finish</a>   
+                                        <a href="{{URL::to('time-deposit/create')}}" class="btn btn-primary btn-round">Finish</a>
+                                         <a href="{{action('TDController@downloadSummary',1)}}" class="btn btn-primary btn-round">Export To PDF</a>   
+                                         @endforeach
+                                          </tbody>
+                                    </table>
                                 </div>
                                 </div>
                                 

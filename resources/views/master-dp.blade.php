@@ -23,6 +23,14 @@
     <!-- JQuery DataTable Css -->
     <link href="{{asset('/assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" rel="stylesheet">
 
+    <!--Datepicker-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 
 </head>
 
@@ -47,12 +55,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('user.create')}}">
-                        <i class="material-icons">person</i>
-                        <p>Master User</p>
-                    </a>
-                </li>
-                <li>
                     <a href="{{route('master-bank.index')}}">
                         <i class="material-icons">dashboard</i>
                         <p>Master Bank</p>
@@ -65,25 +67,23 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('tipe-deposito.create')}}">
-                        <i class="material-icons">bubble_chart</i>
-                        <p>Master Tipe Deposito</p>
-                    </a>
-                </li>
-                 <li>
-                    <a href="{{route('td.create')}}">
-                        <i class="material-icons">person</i>
-                        <p>Registrasi TD</p>
-                    </a>
-                </li>
-                <li>
                     <a href="{{route('customer.create')}}">
                         <i class="material-icons">person</i>
                         <p>Form Deposan</p>
                     </a>
                 </li>
-             
-              
+                <li>
+                    <a href="{{route('tipe-deposito.create')}}">
+                        <i class="material-icons">bubble_chart</i>
+                        <p>Master Tipe Deposito</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('user.create')}}">
+                        <i class="material-icons">person</i>
+                        <p>Master User</p>
+                    </a>
+                </li>
                 <li>
                     <a href="{{route('time-deposit.create')}}">
                         <i class="material-icons">person</i>
@@ -209,6 +209,14 @@
 <script src="{{asset('/assets/plugins/jquery.masknumber.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/plugins/jquery.maskedinput.js')}}" type="text/javascript"></script>
 <script>
+    $(function(){
+       $('#date').datepicker({
+
+            format: 'mm-dd-yyyy'
+
+        });
+    });
+
     $(function() {
         $("#aing").keyup().maskNumber({integer: true});
     });

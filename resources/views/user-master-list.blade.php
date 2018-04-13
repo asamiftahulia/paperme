@@ -13,8 +13,8 @@
                     <div class="col-md-12">
                             <div class="card card-plain">
                                 <div class="card-header" data-background-color="purple">
-                                    <h4 class="title">Data Master Bank</h4>
-                                    <p class="category">Data master bank</p>
+                                    <h4 class="title">Data Master User</h4>
+                                    <p class="category">Data master User</p>
                                 </div>
                                 <div class="card-content table-responsive">
                                     <table class="table table-hover">
@@ -39,13 +39,15 @@
                                                 <td>{{$datas->created_by}}</td>
                                                 <td>{{$datas->updated_by}}</td>
                                                 <td>
-                                                     <form action="{{route('user.index',$datas->id)}}" method="post">
+                                                    <form action="{{route('user.destroy',$datas->nik)}}" method="post">
                                                             {{csrf_field()}}
                                                             {{method_field('DELETE')}}
-                                                            <a href="{{route('user.index',$datas->nik)}}" class="material-icons">mode_edit</a>
-                                                            <a href="{{route('user.index',$datas->nik)}}" class="material-icons">delete</a>
-                                                           <!--  <button class="material-icons" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">delete</button> -->
+                                                            <a href="{{route('user.edit',$datas->nik)}}" class="material-icons">mode_edit</a>
+                                                            <!-- <a href="{{route('user.index',$datas->nik)}}" class="material-icons">delete</a> -->
+                                                          <submit class="material-icons" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">delete</submit>
                                                         </form>
+                                                    
+                           
                                                 </td>
                                             </tr>
                                             @endforeach

@@ -23,8 +23,8 @@ class CreateTDsTable extends Migration
             $table->integer('period');
             $table->string('type_of_td')->unsigned();
             $table->foreign('type_of_td')->references('id_deposito')->on('m__tipe__depositos');
-            $table->integer('id_bank')->unsigned();
-            $table->foreign('id_bank')->references('id')->on('m_banks');
+            $table->string('bank',50)->unsigned();
+            $table->foreign('bank')->references('KODE_LJK')->on('master_banks');
             $table->date('date_rollover');
             $table->float('special_rate');
             $table->float('normal_rate');

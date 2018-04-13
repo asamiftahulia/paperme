@@ -35,6 +35,7 @@
                         </div>
                         <div class="modal-body">
                         <a href="{{URL::to('customer/create')}}" class="btn btn-primary  waves-effect">NEW</a>
+                        <a href="{{URL::to('td/create')}}" class="btn btn-primary waves-effect">Registration</a>
                     <button type="button" class="btn btn-link waves-effect">EXISTING</button>
                         </div>
                     </div>
