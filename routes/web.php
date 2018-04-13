@@ -35,4 +35,5 @@ Route::post('/uploadfile','UploadFileController@showUploadFile');
 Route::resource('td','TDController');
 Route::get('/summary','TDController@show')->name('summary');
 Route::get('downloadSummary/{id}','TDController@downloadSummary');
+Route::get('timeline/{id}','TDController@timeline');
 

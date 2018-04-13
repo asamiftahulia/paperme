@@ -21,7 +21,8 @@ class TDController extends Controller
     {
         //
         $data = TD::All();
-        return view('time-deposit-list', compact('data'));
+      //  return view('time-deposit-list', compact('data'));
+        return view('list-td',compact('data'));
     }
 
     /**
@@ -146,8 +147,12 @@ class TDController extends Controller
 
     public function downloadSummary($id){
         $td = TD::find($id);
-        $data = TD::where('id', $id)->get();
-        $pdf = PDF::loadView('pdf-summary', compact($data));
+        $data = TD::where('id', $id)->get();    
+        $pdf = PDF::loadView('pdf-summary');
         return $pdf->download('Summary_Time_Deposit.pdf');
+    }
+
+    public function timeline($id){
+        return view('timeline-td');
     }
 }

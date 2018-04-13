@@ -22,7 +22,7 @@
     <div id="details" class="clearfix">
         <div id="client">
             <div class="to">Time Deposit To :</div>
-            <h2 class="name">{{$data->full_name}}</h2>
+            <h2 class="name">John Doe</h2>
             <div class="address">796 Silver Harbour, TX 79273, US</div>
             <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
         </div>
