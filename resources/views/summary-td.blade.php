@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,10 +22,14 @@
 <main>
     <div id="details" class="clearfix">
         <div id="client">
+             @foreach($data as $datas)
+                                   
+                                    
             <div class="to">Time Deposit To :</div>
-            <h2 class="name">Silviana Natalia</h2>
+            <h2 class="name">{{$datas['full_name']}}</h2>
             <div class="address">New Deposan</div>
             <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
+           
         </div>
         <div id="invoice">
             <h1>Summary Time Deposit</h1>
@@ -35,8 +40,8 @@
     <table border="0" cellspacing="0" cellpadding="0">
         <thead>
         <tr>
-            <th class="no">#</th>
-            <th class="desc">DESCRIPTION</th>
+           
+            <td class="desc">DESCRIPTION</th>
             <th class="unit">AMOUNT</th>
             <th class="qty">SPECIAL RATE</th>
             <th class="total">TOTAL</th>
@@ -44,26 +49,36 @@
         </thead>
         <tbody>
         <tr>
-            <td class="no">01</td>
-            <td class="desc"><h3>Website Design</h3>Creating a summary time deposit Special Rate</td>
-            <td class="unit">500.000.000</td>
-            <td class="qty">3</td>
-            <td class="total">500.000.000</td>
+            
+            <td class="desc"><h3><font color='red'>New Deposan</font></h3>Creating a summary time deposit Special Rate</td>
+            <td class="unit">{{$datas['amount']}}</td>
+            <td class="qty">{{$datas['special_rate']}}</td>
+            <td class="total">{{$datas['amount']}}</td>
+        </tr>
+         <tr>
+            <th class="no" colspan="5" align="center">APPROVER</th>
+        </tr>
+        <tr>
+             <td class="desc">BRANCH MANAGER <input type="checkbox" checked="true" /></td>
+            <td class="desc">AREA <input type="checkbox" checked="true"/></td>
+            <td class="desc">REGIONAL <input type="checkbox" checked="true"/></td>
+            <td class="desc">DIRECTOR <input type="checkbox" checked="true"/></td>
         </tr>
         </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="2"></td>
-            <td colspan="2">SUBTOTAL</td>
-            <td>500.000.000</td>
-        </tr>
-
-        </tfoot>
     </table>
-    <div id="thanks">Thank you!</div>
+      @endforeach
+   <!--  <div id="thanks">Thank you!</div>
     <div id="notices">
         <div>NOTICE:</div>
         <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+    </div> -->
+    <div id="notices">
+        <a href="{{URL::to('./')}}" class="btn btn-primary waves-effect"> Back </a>|
+        <a href="{{route('td.edit',$datas->id)}}">Edit</a>|
+        <a href="{{route('td.create')}}">Add Customer</a>|
+        <a href="{{action('TDController@downloadSummary',1)}}">Export To PDF</a>|
+        <a href="{{action('TDController@timeline',1)}}">Submit</a>
+
     </div>
 </main>
 <footer>

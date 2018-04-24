@@ -71,7 +71,7 @@
                     </a>
                 </li>
                  <li>
-                    <a href="{{route('td.create')}}">
+                    <a href="{{route('td.index')}}">
                         <i class="material-icons">person</i>
                         <p>Registrasi TD</p>
                     </a>
@@ -209,9 +209,7 @@
 <script src="{{asset('/assets/plugins/jquery.masknumber.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/plugins/jquery.maskedinput.js')}}" type="text/javascript"></script>
 <script>
-    $(function() {
-        $("#aing").keyup().maskNumber({integer: true});
-    });
+    
     //date
     $(function(){
         $('#expired_date').mask('99/99/9999');

@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Customer;
-use Illuminate\Http\Request;
-use PDF;
 
-class TestController extends Controller
+use Illuminate\Http\Request;
+
+class FlowMappingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,16 +14,6 @@ class TestController extends Controller
     public function index()
     {
         //
-        // return view('test');
-        // return view('new-customer-new-dep');
-        //  return view('test-datatables');
-        //return view('test-form');
-       // return view('test-summary-pdf');
-      // return view('form-registrasi');
-     return view('test-datepicker');
-      //  return view('test-timeline');
-
-        
     }
 
     /**
@@ -35,7 +24,6 @@ class TestController extends Controller
     public function create()
     {
         //
-           return view('summary');
     }
 
     /**
@@ -47,14 +35,6 @@ class TestController extends Controller
     public function store(Request $request)
     {
         //
-
-    }
-
-    public function downloadPDF($id){
-        $customers = Customer::find($id);
-        $data = Customer::where('id', 1)->get();
-        $pdf = PDF::loadView('pdf',$data);
-        return $pdf->download('invoice.pdf');
     }
 
     /**
@@ -101,6 +81,4 @@ class TestController extends Controller
     {
         //
     }
-
-
 }

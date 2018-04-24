@@ -1,0 +1,676 @@
+From e3bc983c8f86db71b6d52647737ee26973dce89c Mon Sep 17 00:00:00 2001
+From: Harsya <harsyami@gmail.com>
+Date: Fri, 13 Apr 2018 18:11:51 +0700
+Subject: [PATCH] template timeline
+
+---
+ app/Http/Controllers/TDController.php              |  11 +-
+ app/Http/Controllers/TestController.php            |   3 +-
+ .../2018_03_26_023929_create_m_banks_table.php     |  34 +++
+ public/css/style-timeline.css                      | 318 +++++++++++++++++++++
+ resources/views/list-td.blade.php                  |  84 ++++++
+ resources/views/pdf-summary.blade.php              |   2 +-
+ resources/views/test-timeline.blade.php            |  59 ++++
+ resources/views/timeline-td.blade.php              |  56 ++++
+ routes/web.php                                     |   1 +
+ 9 files changed, 563 insertions(+), 5 deletions(-)
+ create mode 100644 database/migrations/2018_03_26_023929_create_m_banks_table.php
+ create mode 100644 public/css/style-timeline.css
+ create mode 100644 resources/views/list-td.blade.php
+ create mode 100644 resources/views/test-timeline.blade.php
+ create mode 100644 resources/views/timeline-td.blade.php
+
+diff --git a/app/Http/Controllers/TDController.php b/app/Http/Controllers/TDController.php
+index f315bd8..8a06e37 100644
+--- a/app/Http/Controllers/TDController.php
++++ b/app/Http/Controllers/TDController.php
+@@ -21,7 +21,8 @@ class TDController extends Controller
+     {
+         //
+         $data = TD::All();
+-        return view('time-deposit-list', compact('data'));
++      //  return view('time-deposit-list', compact('data'));
++        return view('list-td',compact('data'));
+     }
+ 
+     /**
+@@ -146,8 +147,12 @@ class TDController extends Controller
+ 
+     public function downloadSummary($id){
+         $td = TD::find($id);
+-        $data = TD::where('id', $id)->get();
+-        $pdf = PDF::loadView('pdf-summary', compact($data));
++        $data = TD::where('id', $id)->get();    
++        $pdf = PDF::loadView('pdf-summary');
+         return $pdf->download('Summary_Time_Deposit.pdf');
+     }
++
++    public function timeline($id){
++        return view('timeline-td');
++    }
+ }
+diff --git a/app/Http/Controllers/TestController.php b/app/Http/Controllers/TestController.php
+index 45ada35..daf00e5 100644
+--- a/app/Http/Controllers/TestController.php
++++ b/app/Http/Controllers/TestController.php
+@@ -19,9 +19,10 @@ class TestController extends Controller
+         // return view('new-customer-new-dep');
+         //  return view('test-datatables');
+         //return view('test-form');
+-        return view('test-summary-pdf');
++       // return view('test-summary-pdf');
+       // return view('form-registrasi');
+       // return view('test-datepicker');
++        return view('test-timeline');
+     }
+ 
+     /**
+diff --git a/database/migrations/2018_03_26_023929_create_m_banks_table.php b/database/migrations/2018_03_26_023929_create_m_banks_table.php
+new file mode 100644
+index 0000000..14f5981
+--- /dev/null
++++ b/database/migrations/2018_03_26_023929_create_m_banks_table.php
+@@ -0,0 +1,34 @@
++<?php
++
++use Illuminate\Support\Facades\Schema;
++use Illuminate\Database\Schema\Blueprint;
++use Illuminate\Database\Migrations\Migration;
++
++class CreateMBanksTable extends Migration
++{
++    /**
++     * Run the migrations.
++     *
++     * @return void
++     */
++    public function up()
++    {
++        Schema::create('m_banks', function (Blueprint $table) {
++            $table->increments('id');
++            $table->string('name_bank');
++            $table->string('created_by');
++            $table->string('updated_by');
++            $table->timestamps();
++        });
++    }
++
++    /**
++     * Reverse the migrations.
++     *
++     * @return void
++     */
++    public function down()
++    {
++        Schema::dropIfExists('m_banks');
++    }
++}
+diff --git a/public/css/style-timeline.css b/public/css/style-timeline.css
+new file mode 100644
+index 0000000..f78ec5c
+--- /dev/null
++++ b/public/css/style-timeline.css
+@@ -0,0 +1,318 @@
++@import url(http://fonts.googleapis.com/css?family=Raleway:400,900);
++
++body{
++  font-family: 'Raleway', sans-serif;
++  color: #333;
++}
++
++header h1{
++  text-align: center;
++  font-weight: bold;
++  margin-top: 0;
++}
++  
++ header p{
++   text-align: center;
++   margin-bottom: 0;
++ }
++
++.hexa{
++  border: 0px;
++  float: left;
++  text-align: center;
++  height: 35px;
++  width: 60px;
++  font-size: 22px;
++  background: #f0f0f0;
++  color: #3c3c3c;
++  position: relative;
++  margin-top: 15px;
++}
++
++.hexa:before{
++  content: ""; 
++  position: absolute; 
++  left: 0; 
++  width: 0; 
++  height: 0;
++  border-bottom: 15px solid #f0f0f0;
++  border-left: 30px solid transparent;
++  border-right: 30px solid transparent;
++  top: -15px;
++}
++
++.hexa:after{
++  content: ""; 
++  position: absolute; 
++  left: 0; 
++  width: 0; 
++  height: 0;
++  border-left: 30px solid transparent;
++  border-right: 30px solid transparent;
++  border-top: 15px solid #f0f0f0;
++  bottom: -15px;
++}
++
++.timeline {
++  position: relative;
++  padding: 0;
++  width: 100%;
++  margin-top: 20px;
++  list-style-type: none;
++}
++
++.timeline:before {
++  position: absolute;
++  left: 50%;
++  top: 0;
++  content: ' ';
++  display: block;
++  width: 2px;
++  height: 100%;
++  margin-left: -1px;
++  background: rgb(213,213,213);
++  background: -moz-linear-gradient(top, rgba(213,213,213,0) 0%, rgb(213,213,213) 8%, rgb(213,213,213) 92%, rgba(213,213,213,0) 100%);
++  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,87,153,1)), color-stop(100%,rgba(125,185,232,1)));
++  background: -webkit-linear-gradient(top, rgba(213,213,213,0) 0%, rgb(213,213,213) 8%, rgb(213,213,213) 92%, rgba(213,213,213,0) 100%);
++  background: -o-linear-gradient(top, rgba(213,213,213,0) 0%, rgb(213,213,213) 8%, rgb(213,213,213) 92%, rgba(213,213,213,0) 100%);
++  background: -ms-linear-gradient(top, rgba(213,213,213,0) 0%, rgb(213,213,213) 8%, rgb(213,213,213) 92%, rgba(213,213,213,0) 100%);
++  background: linear-gradient(to bottom, rgba(213,213,213,0) 0%, rgb(213,213,213) 8%, rgb(213,213,213) 92%, rgba(213,213,213,0) 100%);
++  z-index: 5;
++}
++
++.timeline li {
++  padding: 2em 0;
++}
++
++.timeline .hexa{
++  width: 16px;
++  height: 10px;
++  position: absolute;
++  background: #00c4f3;
++  z-index: 5;
++  left: 0;
++  right: 0;
++  margin-left:auto;
++  margin-right:auto;
++  top: -30px;
++  margin-top: 0;
++}
++
++.timeline .hexa:before {
++  border-bottom: 4px solid #00c4f3;
++  border-left-width: 8px;
++  border-right-width: 8px;
++  top: -4px;
++}
++
++.timeline .hexa:after {
++  border-left-width: 8px;
++  border-right-width: 8px;
++  border-top: 4px solid #00c4f3;
++  bottom: -4px;
++}
++
++.direction-l,
++.direction-r {
++  float: none;
++  width: 100%;
++  text-align: center;
++}
++
++.flag-wrapper {
++  text-align: center;
++  position: relative;
++}
++
++.flag {
++  position: relative;
++  display: inline;
++  background: rgb(255,255,255);
++  font-weight: 600;
++  z-index: 15;
++  padding: 6px 10px;
++  text-align: left;
++  border-radius: 5px;
++}
++
++.direction-l .flag:after,
++.direction-r .flag:after {
++  content: "";
++  position: absolute;
++  left: 50%;
++  top: -15px;
++  height: 0;
++  width: 0;
++  margin-left: -8px;
++  border: solid transparent;
++  border-bottom-color: rgb(255,255,255);
++  border-width: 8px;
++  pointer-events: none;
++}
++
++.direction-l .flag {
++  -webkit-box-shadow: -1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
++  -moz-box-shadow: -1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
++  box-shadow: -1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
++}
++
++.direction-r .flag {
++  -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
++  -moz-box-shadow: 1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
++  box-shadow: 1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
++}
++
++.time-wrapper {
++  display: block;
++  position: relative;
++  margin: 4px 0 0 0;
++  z-index: 14;
++  line-height: 1em;
++  vertical-align: middle;
++  color: #fff;
++}
++
++.direction-l .time-wrapper {
++  float: none;
++}
++
++.direction-r .time-wrapper {
++  float: none;
++}
++
++.time {
++  background: #00c4f3;
++  display: inline-block;
++  padding: 8px;
++}
++
++.desc {
++  position: relative;
++  margin: 1em 0 0 0;
++  padding: 1em;
++  background: rgb(254,254,254);
++  -webkit-box-shadow: 0 0 1px rgba(0,0,0,0.20);
++  -moz-box-shadow: 0 0 1px rgba(0,0,0,0.20);
++  box-shadow: 0 0 1px rgba(0,0,0,0.20);
++  z-index: 15;
++}
++
++.direction-l .desc,
++.direction-r .desc {
++  position: relative;
++  margin: 1em 1em 0 1em;
++  padding: 1em;
++  z-index: 15;
++}
++
++@media(min-width: 768px){
++  .timeline {
++    width: 660px;
++    margin: 0 auto;
++    margin-top: 20px;
++  }
++
++  .timeline li:after {
++    content: "";
++    display: block;
++    height: 0;
++    clear: both;
++    visibility: hidden;
++  }
++  
++  .timeline .hexa {
++    left: -28px;
++    right: auto;
++    top: 8px;
++  }
++
++  .timeline .direction-l .hexa {
++    left: auto;
++    right: -28px;
++  }
++
++  .direction-l {
++    position: relative;
++    width: 310px;
++    float: left;
++    text-align: right;
++  }
++
++  .direction-r {
++    position: relative;
++    width: 310px;
++    float: right;
++    text-align: left;
++  }
++
++  .flag-wrapper {
++    display: inline-block;
++  }
++  
++  .flag {
++    font-size: 18px;
++  }
++
++  .direction-l .flag:after {
++    left: auto;
++    right: -16px;
++    top: 50%;
++    margin-top: -8px;
++    border: solid transparent;
++    border-left-color: rgb(254,254,254);
++    border-width: 8px;
++  }
++
++  .direction-r .flag:after {
++    top: 50%;
++    margin-top: -8px;
++    border: solid transparent;
++    border-right-color: rgb(254,254,254);
++    border-width: 8px;
++    left: -8px;
++  }
++
++  .time-wrapper {
++    display: inline;
++    vertical-align: middle;
++    margin: 0;
++  }
++
++  .direction-l .time-wrapper {
++    float: left;
++  }
++
++  .direction-r .time-wrapper {
++    float: right;
++  }
++
++  .time {
++    padding: 5px 10px;
++  }
++
++  .direction-r .desc {
++    margin: 1em 0 0 0.75em;
++  }
++}
++
++@media(min-width: 992px){
++  .timeline {
++    width: 800px;
++    margin: 0 auto;
++    margin-top: 20px;
++  }
++
++  .direction-l {
++    position: relative;
++    width: 380px;
++    float: left;
++    text-align: right;
++  }
++
++  .direction-r {
++    position: relative;
++    width: 380px;
++    float: right;
++    text-align: left;
++  }
++}
+\ No newline at end of file
+diff --git a/resources/views/list-td.blade.php b/resources/views/list-td.blade.php
+new file mode 100644
+index 0000000..3d5d658
+--- /dev/null
++++ b/resources/views/list-td.blade.php
+@@ -0,0 +1,84 @@
++@extends('master')
++@section('page-title','Time Deposit Special Rate')
++@section('content')
++    @if(Session::has('flash_message'))
++        <div class="alert alert-info">
++            <button type="button" aria-hidden="true" class="close">×</button>
++            <span><b> Info - </b><em> {!! session('flash_message') !!}</em></span>
++        </div>
++        @php
++            $flash = Session::get('flash_message');
++        @endphp
++    @endif
++    <div class="col-md-12">
++        <div class="row clearfix">
++            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
++                <div class="card">
++                    <div class="header">
++                        <h5>
++                            Time Deposit Special Rate
++                        </h5>
++                    </div>
++                    <div class="body">
++                        <div class="table-responsive">
++                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
++                                <thead>
++                                <tr>
++                                    <th>No</th>
++                                    <th>Full Name</th>
++                                    <th>Amount </th>
++                                    <th>Status</th>
++                                    <th>Notes</th>
++                                    <th>Expired Date</th>
++                                    <th>Period</th>
++                                    <th>Type Of TD</th>
++                                    <th>Bank</th>
++                                    <th>Date Rollover</th>
++                                    <th>action</th>
++                                </tr>
++                                </thead>
++                                <tfoot>
++                                <tr>
++                                    <th>No</th>
++                                    <th>Full Name</th>
++                                    <th>Amount </th>
++                                    <th>Status</th>
++                                    <th>Notes</th>
++                                    <th>Expired Date</th>
++                                    <th>Period</th>
++                                    <th>Type Of TD</th>
++                                    <th>Bank</th>
++                                    <th>Date Rollover</th>
++                                    <th>action</th>
++                                </tr>
++                                </tfoot>
++                                <tbody>
++                                @php $no = 1; @endphp
++                                @foreach($data as $datas)
++                                    <tr>
++                                       <td>{{$no++}}</td>
++                                        <td>{{$datas->full_name}}</td>
++                                        <td>{{$datas->amount}}</td>
++                                        <td>{{$datas->status}}</td>
++                                        <td>{{$datas->notes}}</td>
++                                        <td>{{$datas->expired_date}}</td>
++                                        <td>{{$datas->period}}</td>
++                                        <td>{{$datas->type_of_td}}</td>
++                                        <td>{{$datas->bank}}</td>
++                                        <td>{{$datas->date_rollover}}</td>
++                                        <td>
++                                            <a href="{{action('TDController@downloadSummary',1)}}" class="material-icons">assignment_returned</a>
++                                             <a href="{{action('TDController@timeline',1)}}" class="material-icons">swap_vertical_circle</a>  
++                                        </td>
++                                    </tr>
++                                @endforeach
++                                </tbody>
++                            </table>
++                        </div>
++                    </div>
++                </div>
++            </div>
++        </div>
++        <!-- #END# Exportable Table -->
++    </div>
++@endsection
+\ No newline at end of file
+diff --git a/resources/views/pdf-summary.blade.php b/resources/views/pdf-summary.blade.php
+index 0690b4d..e5e3b38 100644
+--- a/resources/views/pdf-summary.blade.php
++++ b/resources/views/pdf-summary.blade.php
+@@ -22,7 +22,7 @@
+     <div id="details" class="clearfix">
+         <div id="client">
+             <div class="to">Time Deposit To :</div>
+-            <h2 class="name">{{$data->full_name}}</h2>
++            <h2 class="name">John Doe</h2>
+             <div class="address">796 Silver Harbour, TX 79273, US</div>
+             <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
+         </div>
+diff --git a/resources/views/test-timeline.blade.php b/resources/views/test-timeline.blade.php
+new file mode 100644
+index 0000000..4973412
+--- /dev/null
++++ b/resources/views/test-timeline.blade.php
+@@ -0,0 +1,59 @@
++<!DOCTYPE html>
++<html >
++<head>
++  <meta charset="UTF-8">
++  <title>CSS3 Timeline</title>
++  
++  <link rel="stylesheet" href="{{asset('css/style-timeline.css')}}" media="all" />
++  
++</head>
++
++<body>
++  <header>
++    <p>Worked on all modern browers</p>
++    <h1>CSS based responsive timeline</h1>
++</header>
++
++<ul class="timeline">
++  <!-- Item 1 -->
++  <li>
++    <div class="direction-r">
++      <div class="flag-wrapper">
++        <span class="hexa"></span>
++        <span class="flag">Lorem ipsum.</span>
++        <span class="time-wrapper"><span class="time">Feb 2015</span></span>
++      </div>
++      <div class="desc">Lorem ipsum Nisi labore aute do aute culpa magna nulla voluptate exercitation deserunt proident.</div>
++    </div>
++  </li>
++
++  <!-- Item 2 -->
++  <li>
++    <div class="direction-l">
++      <div class="flag-wrapper">
++        <span class="hexa"></span>
++        <span class="flag">Lorem ipsum Anim.</span>
++        <span class="time-wrapper"><span class="time">Dec 2014</span></span>
++      </div>
++      <div class="desc">Lorem ipsum In ut sit in dolor nisi ex magna eu anim anim tempor dolore aliquip enim cupidatat laborum dolore.</div>
++    </div>
++  </li>
++
++  <!-- Item 3 -->
++  <li>
++    <div class="direction-r">
++      <div class="flag-wrapper">
++        <span class="hexa"></span>
++        <span class="flag">Lorem Occaecat.</span>
++        <span class="time-wrapper"><span class="time">July 2014</span></span>
++      </div>
++      <div class="desc">Lorem ipsum Minim labore Ut cupidatat quis qui deserunt proident fugiat pariatur cillum cupidatat reprehenderit sit id dolor consectetur ut.</div>
++    </div>
++  </li>
++
++
++</ul>
++  
++  
++</body>
++</html>
+diff --git a/resources/views/timeline-td.blade.php b/resources/views/timeline-td.blade.php
+new file mode 100644
+index 0000000..22ef5e5
+--- /dev/null
++++ b/resources/views/timeline-td.blade.php
+@@ -0,0 +1,56 @@
++<!DOCTYPE html>
++<html >
++<head>
++  <meta charset="UTF-8">
++  <title>Time Deposit Timeline </title>
++  
++  <link rel="stylesheet" href="{{asset('css/style-timeline.css')}}" media="all" />
++  
++</head>
++
++<body>
++  <header>
++    <p>Timeline for lalalalala</p>
++    <h1>Time Deposit Special Rate</h1>
++</header>
++
++<ul class="timeline">
++  <!-- Item 1 -->
++  <li>
++    <div class="direction-r">
++      <div class="flag-wrapper">
++        <span class="hexa"></span>
++        <span class="flag">Lorem ipsum.</span>
++        <span class="time-wrapper"><span class="time">Feb 2015</span></span>
++      </div>
++      <div class="desc">Lorem ipsum Nisi labore aute do aute culpa magna nulla voluptate exercitation deserunt proident.</div>
++    </div>
++  </li>
++
++  <!-- Item 2 -->
++  <li>
++    <div class="direction-l">
++      <div class="flag-wrapper">
++        <span class="hexa"></span>
++        <span class="flag">Lorem ipsum Anim.</span>
++        <span class="time-wrapper"><span class="time">Dec 2014</span></span>
++      </div>
++      <div class="desc">Lorem ipsum In ut sit in dolor nisi ex magna eu anim anim tempor dolore aliquip enim cupidatat laborum dolore.</div>
++    </div>
++  </li>
++
++  <!-- Item 3 -->
++  <li>
++    <div class="direction-r">
++      <div class="flag-wrapper">
++        <span class="hexa"></span>
++        <span class="flag">Lorem Occaecat.</span>
++        <span class="time-wrapper"><span class="time">July 2014</span></span>
++      </div>
++      <div class="desc">Lorem ipsum Minim labore Ut cupidatat quis qui deserunt proident fugiat pariatur cillum cupidatat reprehenderit sit id dolor consectetur ut.</div>
++    </div>
++  </li>  
++</ul>
++  
++</body>
++</html>
+diff --git a/routes/web.php b/routes/web.php
+index b93affe..89f4d52 100644
+--- a/routes/web.php
++++ b/routes/web.php
+@@ -35,4 +35,5 @@ Route::post('/uploadfile','UploadFileController@showUploadFile');
+ Route::resource('td','TDController');
+ Route::get('/summary','TDController@show')->name('summary');
+ Route::get('downloadSummary/{id}','TDController@downloadSummary');
++Route::get('timeline/{id}','TDController@timeline');
+ 
+-- 
+2.15.1.windows.2
+

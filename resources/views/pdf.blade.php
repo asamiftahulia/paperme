@@ -10,11 +10,11 @@
     <div id="logo">
         <img src="{{asset('css/lo.png')}}">
     </div>
-    <div id="company">
-        <h2 class="name">Company Name</h2>
-        <div>455 Foggy Heights, AZ 85004, US</div>
-        <div>(602) 519-0450</div>
-        <div><a href="mailto:company@example.com">company@example.com</a></div>
+      <div id="company">
+        <h2 class="name">China Construction Bank Indonesia</h2>
+        <div>Equity Tower Lt. 9,Sudirman Central Business District (SCBD) Lot 9</div>
+        <div>(021)-51401707</div>
+        <div><a href="mailto:company@example.com">ccb@idn.com</a></div>
     </div>
     </div>
 </header>

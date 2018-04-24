@@ -31,11 +31,11 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
+                            <h4 class="modal-title" id="defaultModalLabel">Deposan Status ?</h4>
                         </div>
                         <div class="modal-body">
-                        <a href="{{URL::to('customer/create')}}" class="btn btn-primary  waves-effect">NEW</a>
-                        <a href="{{URL::to('td/create')}}" class="btn btn-primary waves-effect">Registration</a>
+                        <a href="{{URL::to('td/create')}}" class="btn btn-primary  waves-effect">NEW</a>
+                       <!--  <a href="{{URL::to('td/create')}}" class="btn btn-primary waves-effect">Registration</a> -->
                     <button type="button" class="btn btn-link waves-effect">EXISTING</button>
                         </div>
                     </div>
