@@ -1,5 +1,6 @@
 @extends('master-dp')
 @section('page-title','Form Add Customer')
+@section('aktif-muser','active')
 @section('content')
                     <div class="row">
                         <div class="col-md-12">

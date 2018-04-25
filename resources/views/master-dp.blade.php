@@ -42,7 +42,7 @@
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li class="@yield('aktif')">
+                <li class="@yield('aktif-dashboard')">
                     <a href="{{route('dashboard.index')}}">
                         <i class="material-icons">dashboard</i>
                         <p>Dashboard</p>

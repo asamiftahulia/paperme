@@ -1,5 +1,6 @@
 @extends('master-dp')
 @section('page-title','Form Master Tipe Deposito')
+@section('aktif-mtipedep','active')
 @section('content')
                     <div class="row">
                         <div class="col-md-12">

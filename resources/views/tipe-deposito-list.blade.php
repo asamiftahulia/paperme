@@ -1,5 +1,6 @@
 @extends('master-dp')
 @section('page-title','Tipe Deposito List')
+@section('aktif-mtipedep','active')
 @section('content')
 @if(Session::has('flash_message'))
 <div class="alert alert-info">

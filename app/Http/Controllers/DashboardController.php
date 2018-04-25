@@ -14,7 +14,7 @@ class DashboardController extends Controller
     public function index()
     {
         //
-        return view('exportable');
+        return view('dashboard');
     }
 
     /**

@@ -1,5 +1,6 @@
 @extends('master-dp')
 @section('page-title','Form Registrasi Time Deposit')
+@section('aktif-mtimedep','active')
 @section('content')
 
     <div class="row">
