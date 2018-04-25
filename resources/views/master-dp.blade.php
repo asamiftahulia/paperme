@@ -30,7 +30,7 @@
 
 <body>
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="blue" data-image="../assets/img/sidebar-1.jpg">
         <!--
     Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
     Tip 2: you can also add an image using data-image tag
@@ -42,84 +42,72 @@
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li class="active">
-                    <a href="dashboard.html">
+                <li class="@yield('aktif')">
+                    <a href="{{route('dashboard.index')}}">
                         <i class="material-icons">dashboard</i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li>
+                <li class="@yield('aktif-mbank')">
                     <a href="{{route('master-bank.index')}}">
-                        <i class="material-icons">dashboard</i>
+                        <i class="material-icons" class="@yield('aktif')">dashboard</i>
                         <p>Master Bank</p>
                     </a>
                 </li>
-                <li>
+                <li class="@yield('aktif-mbranch')">
                     <a href="{{route('master-branch.index')}}">
                         <i class="material-icons">dashboard</i>
                         <p>Master Branch</p>
                     </a>
                 </li>
-                <li>
+              <!--   <li>
                     <a href="{{route('customer.create')}}">
                         <i class="material-icons">person</i>
                         <p>Form Deposan</p>
                     </a>
-                </li>
-                <li>
+                </li> -->
+                <li class="@yield('aktif-mtipedep')">
                     <a href="{{route('tipe-deposito.create')}}">
                         <i class="material-icons">bubble_chart</i>
                         <p>Master Tipe Deposito</p>
                     </a>
                 </li>
-                <li>
+                <li class="@yield('aktif-muser')">
                     <a href="{{route('user.create')}}">
                         <i class="material-icons">person</i>
                         <p>Master User</p>
                     </a>
                 </li>
-                <li>
+                <li class="@yield('aktif-mtimedep')">
                     <a href="{{route('time-deposit.create')}}">
                         <i class="material-icons">person</i>
                         <p>Time Deposit (TD)</p>
                     </a>
                 </li>
-                <li>
+                <li class="@yield('aktif-timeline')">
+                    <a href="{{route('time-deposit.create')}}">
+                        <i class="material-icons">person</i>
+                        <p>Timeline</p>
+                    </a>
+                </li>
+               <!--  <li>
                     <a href="{{route('trx-time-deposit.create')}}">
                         <i class="material-icons">person</i>
                         <p>Transaction TD</p>
                     </a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <a href="{{route('customer.index')}}">
                         <i class="material-icons">content_paste</i>
                         <p>Customer List</p>
                     </a>
-                </li>
-                <li>
+                </li> -->
+              <!--   <li>
                     <a href="{{route('customer.index')}}">
                         <i class="material-icons">library_books</i>
                         <p>Datatables</p>
                     </a>
-                </li>
-                <li>
-                    <a href="./maps.html">
-                        <i class="material-icons">location_on</i>
-                        <p>Maps</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="./notifications.html">
-                        <i class="material-icons text-gray">notifications</i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-                <li class="active-pro">
-                    <a href="upgrade.html">
-                        <i class="material-icons">unarchive</i>
-                        <p>Isi apaya</p>
-                    </a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>

@@ -1,4 +1,4 @@
-@extends('master')
+@extends('master-dp')
 @section('page-title','Form Master Bank')
 @section('content')
                     <div class="row">

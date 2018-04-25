@@ -1,4 +1,4 @@
-@extends('master')
+@extends('master-dp')
 @section('page-title','Tipe Deposito List')
 @section('content')
 @if(Session::has('flash_message'))

@@ -8,6 +8,12 @@
                                     <h4 class="title">PERMOHONAN PERSETUJUAN SPECIAL RATE DEPOSITO</h4>
                                     <p class="category">Time Deposit Special Rate </p>
                                 </div>
+                            <ol class="breadcrumb breadcrumb-bg-cyan align-left">
+                                <li><i class="material-icons">home</i> Registration</a></li>
+                                <li class="active"><i class="material-icons">library_books</i> Summary</a></li>
+                                <li><a href="javascript:void(0);"><i class="material-icons">archive</i> Timeline</a></li>
+                                
+                            </ol>
                                
                                 <div class="content">
                                       @foreach($data as $datas)

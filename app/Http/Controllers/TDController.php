@@ -98,8 +98,6 @@ class TDController extends Controller
         //      Session::flash('flash_message','Yihha');
         // return redirect()->route('time-deposit.index');
         // }
-        
-        
     }
 
     /**
@@ -197,6 +195,18 @@ class TDController extends Controller
         $data->save();
 
         return redirect('td/summary')->with('id',$data->id);
+    }
+
+    public function revisi(Request $request, $id)
+    {
+        // $data = TD::where('id',$id)->first();
+        $data = TD::find($id);
+        
+        $data->special_rate = $request->special_rate;
+     
+        $data->save();
+
+        return redirect('timeline/{id}')->with('id',$data->id);
     }
 
     /**

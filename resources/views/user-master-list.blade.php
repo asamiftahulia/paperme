@@ -1,4 +1,4 @@
-@extends('master')
+@extends('master-dp')
 @section('page-title','Customer List')
 @section('content')
 @if(Session::has('flash_message'))
@@ -12,7 +12,7 @@
 @endif
                     <div class="col-md-12">
                             <div class="card card-plain">
-                                <div class="card-header" data-background-color="purple">
+                                <div class="card-header" data-background-color="blue">
                                     <h4 class="title">Data Master User</h4>
                                     <p class="category">Data master User</p>
                                 </div>

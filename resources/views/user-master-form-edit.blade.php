@@ -1,10 +1,10 @@
-@extends('master')
+@extends('master-dp')
 @section('page-title','Form Add Customer')
 @section('content')
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <div class="card-header" data-background-color="purple">
+                                <div class="card-header" data-background-color="blue">
                                     <h4 class="title">Edit Data Master User</h4>
                                     <p class="category">Edit Data User</p>
                                 </div>
@@ -41,8 +41,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                                         <a href="{{URL::to('./')}}" class="btn btn-primary  waves-effect">Back</a>
+                                        <button type="submit" class="btn btn-info pull-right">Submit</button>
+                                         <a href="{{URL::to('./')}}" class="btn btn-info  waves-effect">Back</a>
                                         <div class="clearfix"></div>
                                     </form>
                                     @endforeach

@@ -1,28 +1,28 @@
 @extends('master-dp')
 @section('page-title','Form Registrasi Time Deposit')
 @section('content')
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script> 
-    
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header" data-background-color="blue">
                     <h4 class="title">Registration Time Deposit</h4>
                     <p class="category"><font color="red">New</font> Time Deposit</p>
+                 
                 </div>
+                 <ol class="breadcrumb breadcrumb-bg-cyan align-right">
+                                <li class="active"><i class="material-icons">home</i> Registration</a></li>
+                                <li><a href="javascript:void(0);"><i class="material-icons">library_books</i> Summary</a></li>
+                                <li><a href="javascript:void(0);"><i class="material-icons">archive</i> Timeline</a></li>
+                                
+                            </ol>
                 <div class="card-content">
                     <form action="{{route('td.store')}}" method="post">
                         {{csrf_field()}}
                         <div class="row">
                             <div class="col-md-6">
                                 <b>Fullname</b>
-                                <input type="text" class="form-control" placeholder="Ex: John Doe" name="full_name">
+                                <input type="text" class="form-control" placeholder="e.g : John Doe" name="full_name">
                             </div>
                             <div class="col-md-6">
                                 <b>Status Deposan</b>
@@ -65,13 +65,13 @@
                              <div class="col-md-4">
                                 <div class="form-group label-floating">
                                       <b>Special Rate</b>
-                                    <input type="text" class="form-control" id="special_rate" name="special_rate">
+                                    <input type="text" class="form-control" id="special_rate" placeholder="e.g: 5.00" name="special_rate">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group label-floating">
                                       <b>Normal Rate</b>
-                                    <input type="text" class="form-control" id="normal_rate" name="normal_rate">
+                                    <input type="text" class="form-control" id="normal_rate" placeholder="e.g : 5.00" name="normal_rate">
                                 </div>
                             </div> 
                         </div>

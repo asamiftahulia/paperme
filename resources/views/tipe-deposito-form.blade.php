@@ -1,10 +1,10 @@
-@extends('master')
+@extends('master-dp')
 @section('page-title','Form Master Tipe Deposito')
 @section('content')
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <div class="card-header" data-background-color="purple">
+                                <div class="card-header" data-background-color="blue">
                                     <h4 class="title">Tipe Deposito</h4>
                                     <p class="category">New Tipe Deposito</p>
                                 </div>
@@ -31,8 +31,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary pull-right">Save</button>
-                                         <a href="{{URL::to('./')}}" class="btn btn-primary  waves-effect">Back</a>
+                                        <button type="submit" class="btn btn-info pull-right">Save</button>
+                                         <a href="{{URL::to('./')}}" class="btn btn-info  waves-effect">Back</a>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>

@@ -1,4 +1,4 @@
-@extends('master')
+@extends('master-dp')
 @section('page-title','Bank List')
 @section('content')
 @if(Session::has('flash_message'))

@@ -34,7 +34,10 @@ Route::post('/uploadfile','UploadFileController@showUploadFile');
 // time deposit
 
 Route::resource('td','TDController');
+Route::resource('trx','TransactionTimeDepositController');
 Route::get('/summary','TDController@show')->name('summary');
 Route::get('downloadSummary/{id}','TDController@downloadSummary');
 Route::get('timeline/{id}','TDController@timeline');
+Route::post('td/revisi/{id}','TDController@revisi');
+
 
