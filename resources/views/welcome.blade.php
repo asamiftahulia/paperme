@@ -21,10 +21,15 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Paperless System 
-                </div>
-                <div class="links">
+                    Paperless System </br></br></br></br>
+                
+                
                      <button type="button" class="btn btn-info waves-effect m-r-20" data-toggle="modal" data-target="#defaultModal">Time Deposit Special Rate</button>
+                
+                
+                     <button type="button" disable="true" class="btn btn-grey waves-effect m-r-20">PPJS</button>
+               
+                     <button type="button" class="btn btn-grey waves-effect m-r-20">Credit Rate</button>
                 </div>
              <!-- Default Size -->
             <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">

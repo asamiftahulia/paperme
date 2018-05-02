@@ -1,6 +1,11 @@
 @extends('master-dp')
 @section('page-title','Summary')
 @section('content')
+                <ol class="breadcrumb breadcrumb-bg-cyan align-left">
+                    <li><i class="material-icons">home</i> Registration</a></li>
+                    <li class="active"><i class="material-icons">library_books</i> Summary</a></li>
+                    <li><a href="javascript:void(0);"><i class="material-icons">archive</i> Timeline</a></li>
+                </ol>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-profile">
@@ -8,12 +13,7 @@
                                     <h4 class="title">PERMOHONAN PERSETUJUAN SPECIAL RATE DEPOSITO</h4>
                                     <p class="category">Time Deposit Special Rate </p>
                                 </div>
-                            <ol class="breadcrumb breadcrumb-bg-cyan align-left">
-                                <li><i class="material-icons">home</i> Registration</a></li>
-                                <li class="active"><i class="material-icons">library_books</i> Summary</a></li>
-                                <li><a href="javascript:void(0);"><i class="material-icons">archive</i> Timeline</a></li>
-                                
-                            </ol>
+                         
                                
                                 <div class="content">
                                       @foreach($data as $datas)
@@ -36,8 +36,8 @@
                                             <th>Tgl Jatuh Tempo</th>
                                             <th>Period</th>
                                             <th>Type Of TD</th>
-                                            <th>Normal Rate</th>
-                                            <th>Special Rate</th>
+                                            <th>Normal Rate (%)</th>
+                                            <th>Special Rate (%)</th>
                                             <th>Bank Asal</th>
                                             <th>Keterangan</th>
                                         </thead>
@@ -58,20 +58,33 @@
                                                  <td>{{$datas['date_rollover']}} </td>
                                                 <td>{{$datas['expired_date']}} </td>
                                                 <td>{{$datas['period']}} </td>
-                                                <td>{{$datas['type_of_td']}} </td>
-                                                 <td>{{$datas['normal_rate']}}</td>
-                                                <td>{{$datas['special_rate']}}</td>
+                                                <td>@php 
+                                                        if($datas['type_of_td']==1)
+                                                            echo 'Breakable';
+                                                        else
+                                                            echo 'Unbreakable';
+                                                    @endphp
+                                                         </td>
+                                                 <td>{{$datas['normal_rate']}} %</td>
+                                                <td>{{$datas['special_rate']}} %</td>
                                                
                                                  <td>{{$datas['bank']}} </td>
-                                              <td><a class="material-icons" data-toggle="modal" data-target="#defaultModal">pageview</a>
-                                                 <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                {{$datas['notes']}} 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
+                                              <td><a class="material-icons" data-toggle="modal" data-target="#defaultModal">pageview</a></td>
+                                              <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h4 class="modal-title" id="defaultModalLabel">Keterangan</h4>
+                          </div>
+                          <div class="modal-body">
+                          
+                            {{csrf_field()}}
+                            <p>{{$datas['notes']}} <br>
+                         
+                          </div>
+                      </div>
+                  </div>
+                </div>
 
                                             </tr>
                                             <tr bgcolor="#21daf9">

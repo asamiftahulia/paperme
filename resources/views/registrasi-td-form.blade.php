@@ -1,8 +1,21 @@
 @extends('master-dp')
 @section('page-title','Form Registrasi Time Deposit')
 @section('aktif-mtimedep','active')
-@section('content')
 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+
+@section('content')
+    <ol class="breadcrumb breadcrumb-bg-cyan align-right">
+        <li class="active"><i class="material-icons">home</i> Registration</a></li>
+        <li><a href="javascript:void(0);"><i class="material-icons">library_books</i> Summary</a></li>
+        <li><a href="javascript:void(0);"><i class="material-icons">archive</i> Timeline</a></li>
+    </ol>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -11,23 +24,14 @@
                     <p class="category"><font color="red">New</font> Time Deposit</p>
                  
                 </div>
-                 <ol class="breadcrumb breadcrumb-bg-cyan align-right">
-                                <li class="active"><i class="material-icons">home</i> Registration</a></li>
-                                <li><a href="javascript:void(0);"><i class="material-icons">library_books</i> Summary</a></li>
-                                <li><a href="javascript:void(0);"><i class="material-icons">archive</i> Timeline</a></li>
-                                
-                            </ol>
+                
                 <div class="card-content">
                     <form action="{{route('td.store')}}" method="post">
                         {{csrf_field()}}
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <b>Fullname</b>
                                 <input type="text" class="form-control" placeholder="e.g : John Doe" name="full_name">
-                            </div>
-                            <div class="col-md-6">
-                                <b>Status Deposan</b>
-                                <input type="text" class="form-control" name="status" value="NEW" disabled="true">
                             </div>
                          </div>
                          <div class="row">
@@ -46,6 +50,7 @@
                             <div class="col-md-4">
                                 <b>Bank</b>
                                 <select name="bank" class="form-control">
+                                        <option value="0">--Select--</option>
                                     @foreach($banks as $b)
                                         <option value="{{$b->KODE_LJK}}">{{$b->NAMA_BANK}}</option>
                                     @endforeach
@@ -91,13 +96,7 @@
                               <div class="col-md-4">
                                 <div class="form-group label-floating">
                                     <b>Date Rollover</b>
-                                    <input type="text" class="form-control" name="date_rollover">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group label-floating">
-                                    <b>Expired Date</b>
-                                     <input class="date form-control" type="text" name="expired_date">
+                                    <input class="form-control" type="date" name="date_rollover">
                                 </div>
                             </div>
                           
@@ -120,13 +119,16 @@
             </div>
         </div>
     </div>
+
+
 <script type="text/javascript">
-   $(function(){
-       $('.date').datepicker({
 
-            format: 'mm-dd-yyyy'
+    $('#exp').datepicker({
 
-        });
+        format: 'mm-dd-yyyy'
+
     });
+
 </script>
+
 @endsection

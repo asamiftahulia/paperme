@@ -1,5 +1,6 @@
-@extends('master')
+@extends('master-dp')
 @section('page-title','Time Deposit Special Rate')
+@section('aktif-mtimedep','active')
 @section('content')
     @if(Session::has('flash_message'))
         <div class="alert alert-info">
@@ -76,7 +77,7 @@
                                         </td>
                                         <td>
                                             <a href="{{action('TDController@downloadSummary',1)}}" class="material-icons">assignment_returned</a>
-                                             <a href="{{action('TDController@timeline',1)}}" class="material-icons">swap_vertical_circle</a>  
+                                            <a href="{{action('TDController@timeline',1)}}" class="material-icons">swap_vertical_circle</a>  
                                         </td>
                                     </tr>
                                 @endforeach

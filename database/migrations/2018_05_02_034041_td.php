@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTDsTable extends Migration
+class Td extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTDsTable extends Migration
      */
     public function up()
     {
-        Schema::create('t_ds', function (Blueprint $table) {
+        Schema::create('td', function (Blueprint $table) {
             $table->increments('id');
             $table->string('full_name');
             $table->float('amount');

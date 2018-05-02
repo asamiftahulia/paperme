@@ -11,6 +11,8 @@ use App\M_branchs;
 use PDF;
 use Session;
 use Validator;
+use App\Mail\PostSubscribtion;
+use Mail;
 
 class TDController extends Controller
 {
@@ -73,10 +75,21 @@ class TDController extends Controller
         $data->amount = $strAmount;
         $str = ltrim($request->amount, ',');
         $str = trim($request->amount);
-       
+    
+        $dt = strtotime($request->date_rollover);
+
+        if($request->period==1)
+            $expired = date("Y-m-d", strtotime("+1 month", $dt));
+        else if($request->period==3)
+            $expired = date("Y-m-d", strtotime("+3 month", $dt));
+        else if($request->period==6)
+            $expired = date("Y-m-d", strtotime("+6 month", $dt));
+        else 
+            $expired = date("Y-m-d", strtotime("+12 month", $dt));
+        
         $data->status = '1';
         $data->notes = $request->notes;
-        $data->expired_date = $request->expired_date;
+        $data->expired_date = $expired;
         $data->period = $request->period;
         $data->type_of_td = $request->type_of_td;
         $data->bank = $request->bank;
@@ -89,15 +102,10 @@ class TDController extends Controller
         $data->save();
        
        //return redirect('time-deposit/summary')->with('id',$data->id);
+        Mail::to('harsyami@gmail.com')->send(new PostSubscribtion($data));
         return redirect('td/summary')->with('id',$data->id);
-       // return redirect('td/summary')->with('id',$data->id);
+        
        
-        // if($validator->fails()){
-        //     return redirect('time-deposit/create')->withErrors($validator)->withInput();
-        // }else{
-        //      Session::flash('flash_message','Yihha');
-        // return redirect()->route('time-deposit.index');
-        // }
     }
 
     /**
@@ -199,14 +207,15 @@ class TDController extends Controller
 
     public function revisi(Request $request, $id)
     {
-        // $data = TD::where('id',$id)->first();
+       // $data = TD::where('id',$id)->first();
         $data = TD::find($id);
         
         $data->special_rate = $request->special_rate;
      
         $data->save();
 
-        return redirect('timeline/{id}')->with('id',$data->id);
+        return redirect('timeline/'.$data->id)->with('id',$data->id);
+        
     }
 
     /**

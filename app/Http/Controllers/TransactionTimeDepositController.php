@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\transaction_td;
+
 
 class TransactionTimeDepositController extends Controller
 {
@@ -46,8 +48,29 @@ class TransactionTimeDepositController extends Controller
         $data->approved_at = '2018-02-02';
         $data->save();
        
-       //return redirect('time-deposit/summary')->with('id',$data->id);
-        return redirect('timeline/224')->with('id',$data->id_td);
+        //return redirect('time-deposit/summary')->with('id',$data->id);
+         return redirect()->back()->with('message','Operation Successful !');
+        // return redirect()->back()with('alert-success', 'The data was saved successfully');
+        // return redirect()->url('timeline/1')->with('id',$data->id_td);
+
+    }
+
+     public function storeArea(Request $request)
+    {
+        
+        $data = new transaction_td();
+        
+        $data->id_td = $request->id_td;
+        $data->approved = 1;
+        $data->created_by = 'asami@gmail.com';
+        $data->approved_by = 'BranchManager@ccb.com';
+        $data->approved_at = '2018-02-02';
+        $data->save();
+       
+        //return redirect('time-deposit/summary')->with('id',$data->id);
+        return redirect()->back()->with('message','Operation Successful !');
+        // return redirect()->url('timeline/1')->with('id',$data->id_td);
+
     }
 
     /**
