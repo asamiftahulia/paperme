@@ -2,13 +2,7 @@
 @section('page-title','Form Registrasi Time Deposit')
 @section('aktif-mtimedep','active')
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 
 @section('content')
     <ol class="breadcrumb breadcrumb-bg-cyan align-right">
@@ -22,9 +16,8 @@
                 <div class="card-header" data-background-color="blue">
                     <h4 class="title">Registration Time Deposit</h4>
                     <p class="category"><font color="red">New</font> Time Deposit</p>
-                 
                 </div>
-                
+
                 <div class="card-content">
                     <form action="{{route('td.store')}}" method="post">
                         {{csrf_field()}}
@@ -41,7 +34,7 @@
                             </div>
                              <div class="col-md-4">
                                 <b>Branch</b>
-                                <select name="branch" class="selectpicker form-control" data-live-search="true">
+                                <select name="branch" id="branch" class="selectpicker form-control" data-live-search="true">
                                     <option value="0">--Select--</option>
                                     @foreach($branch as $cabang)
                                         <option value="{{$cabang->id}}" data-tokens="{{$cabang->nama}}">{{$cabang->nama}}</option>
@@ -97,20 +90,24 @@
                                 </div>
                             </div>
                               <div class="col-md-4">
-                                <div class="form-group label-floating">
+                                <div class="form-group label-floating"> 
                                     <b>Date Rollover</b>
                                     <input class="form-control" type="date" name="date_rollover">
                                 </div>
                             </div>
                           
-                        
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group label-floating">
                                     <b>Notes</b>
                                     <textarea class="form-control" name="notes" rows="5"></textarea>
-                                    
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+                                <input class="span2" size="16" type="text" value="12-02-2012">
+                                <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -125,13 +122,44 @@
 
 
 <script type="text/javascript">
+$('.datepicker').datepicker()
 
-    $('#exp').datepicker({
+$('.selectpicker').selectpicker({
+  style: 'btn-info',
+  size: 4   
+});
 
-        format: 'mm-dd-yyyy'
+ $('.selectpicker').selectpicker({
+    style: 'btn-info',
+    size: 4
+  });
+  $('#branch').on('keydown', function (e) {
+    if (e.keyCode == 38) { // Up
+      var previousEle = $(this).prev();
+      if (previousEle.length == 0) {
+        previousEle = $(this).nextAll().last();
+      }
+      var selVal = $('.selectpicker option').filter(function () {
+        return $(this).text() == previousEle.text();
+      }).val();
+      $('.selectpicker').selectpicker('val', selVal);
 
-    });
+      return;
+    }
+    if (e.keyCode == 40) { // Down
+      var nextEle = $(this).next();
+      if (nextEle.length == 0) {
+        nextEle = $(this).prevAll().last();
+      }
+      var selVal = $('.selectpicker option').filter(function () {
+        return $(this).text() == nextEle.text();
+      }).val();
+      $('.selectpicker').selectpicker('val', selVal);
+
+      return;
+    }
+  });
+});
 
 </script>
-
 @endsection

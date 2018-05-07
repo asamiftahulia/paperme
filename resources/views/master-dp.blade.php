@@ -26,8 +26,18 @@
     <link rel="stylesheet" href="{{asset('css/style-timeline.css')}}" media="all" />
 
     <!-- selectpicker -->
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+
+    <!-- datepicker -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
@@ -35,12 +45,6 @@
 <!-- (Optional) Latest compiled and minified JavaScript translation files -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
 
-<style>
- {
-    background-color: #ffffff !important;
-    color: black;
-}
-    </style>
 
 </head>
 
@@ -58,7 +62,7 @@
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li class="@yield('aktif-dashboard')">
+                <!-- <li class="@yield('aktif-dashboard')">
                     <a href="{{route('dashboard.index')}}">
                         <i class="material-icons">dashboard</i>
                         <p>Dashboard</p>
@@ -76,12 +80,6 @@
                         <p>Master Branch</p>
                     </a>
                 </li>
-              <!--   <li>
-                    <a href="{{route('customer.create')}}">
-                        <i class="material-icons">person</i>
-                        <p>Form Deposan</p>
-                    </a>
-                </li> -->
                 <li class="@yield('aktif-mtipedep')">
                     <a href="{{route('tipe-deposito.create')}}">
                         <i class="material-icons">bubble_chart</i>
@@ -93,19 +91,19 @@
                         <i class="material-icons">person</i>
                         <p>Master User</p>
                     </a>
-                </li>
+                </li> -->
                 <li class="@yield('aktif-mtimedep')">
                     <a href="{{route('time-deposit.create')}}">
                         <i class="material-icons">person</i>
                         <p>Time Deposit (TD)</p>
                     </a>
-                </li>
-                <li class="@yield('aktif-timeline')">
+                 </li>
+              <!--<li class="@yield('aktif-timeline')">
                     <a href="{{route('time-deposit.create')}}">
                         <i class="material-icons">person</i>
                         <p>Timeline</p>
                     </a>
-                </li>
+                </li> -->
                <!--  <li>
                     <a href="{{route('trx-time-deposit.create')}}">
                         <i class="material-icons">person</i>
@@ -211,6 +209,8 @@
 <script src="{{asset('/assets/plugins/jquery.masknumber.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/plugins/jquery.maskedinput.js')}}" type="text/javascript"></script>
 <script src="js/dataTables.bootstrap.min.js"></script>
+<script src="{{asset('/assets/js/bootstrap-datepicker.js')}}" type="text/javascript"></script>
+
 <script>
         @if(Session::has('message'))    
         var type = "{{Session::get('alert-type','info')}}"
@@ -320,6 +320,8 @@
         );
         //==================================================================================================
     });
+
+
 </script>
 
 
