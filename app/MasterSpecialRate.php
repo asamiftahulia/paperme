@@ -4,9 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class transaction_td extends Model
+class MasterSpecialRate extends Model
 {
     //
-    protected $table = 'trx_tds';
-   
 }

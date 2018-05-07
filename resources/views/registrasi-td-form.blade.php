@@ -41,19 +41,21 @@
                             </div>
                              <div class="col-md-4">
                                 <b>Branch</b>
-                                <select name="branch" class="form-control">
+                                <select name="branch" class="selectpicker form-control" data-live-search="true">
+                                    <option value="0">--Select--</option>
                                     @foreach($branch as $cabang)
-                                        <option value="{{$cabang->id}}">{{$cabang->nama}}</option>
+                                        <option value="{{$cabang->id}}" data-tokens="{{$cabang->nama}}">{{$cabang->nama}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <b>Bank</b>
-                                <select name="bank" class="form-control">
-                                        <option value="0">--Select--</option>
+                                <select class="selectpicker form-control" data-live-search="true">
+                                <option value="0">--Select--</option>
                                     @foreach($banks as $b)
-                                        <option value="{{$b->KODE_LJK}}">{{$b->NAMA_BANK}}</option>
-                                    @endforeach
+                                <option value="{{$b->KODE_LJK}}" data-tokens="{{$b->NAMA_BANK}}">{{$b->NAMA_BANK}}</option>
+
+                                @endforeach
                                 </select>
                             </div>
                         </div>
@@ -71,13 +73,13 @@
                              <div class="col-md-4">
                                 <div class="form-group label-floating">
                                       <b>Special Rate</b>
-                                    <input type="text" class="form-control" id="special_rate" placeholder="e.g: 5.00" name="special_rate">
+                                    <input type="number" step="0.01" class="form-control" id="special_rate" placeholder="e.g: 5.00" name="special_rate">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group label-floating">
                                       <b>Normal Rate</b>
-                                    <input type="text" class="form-control" id="normal_rate" placeholder="e.g : 5.00" name="normal_rate">
+                                    <input type="number" step="0.01" class="form-control" id="normal_rate" placeholder="e.g : 5.00" name="normal_rate">
                                 </div>
                             </div> 
                         </div>
@@ -86,11 +88,12 @@
                                 <div class="form-group label-floating">
                                     <b>Period</b>
                                     <select name="period" class="form-control">
-                                      <option value="1">1</option>
-                                      <option value="3">3</option>
-                                      <option value="6">6</option>
-                                      <option value="12">12</option>
+                                      <option value="1">1 bln</option>
+                                      <option value="3">3 bln</option>
+                                      <option value="6">6 bln</option>
+                                      <option value="12">12 bln</option>
                                     </select>
+                               
                                 </div>
                             </div>
                               <div class="col-md-4">

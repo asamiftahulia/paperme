@@ -1,11 +1,20 @@
 @extends('master-dp')
 @section('page-title','Summary')
 @section('content')
-                <ol class="breadcrumb breadcrumb-bg-cyan align-left">
-                    <li><i class="material-icons">home</i> Registration</a></li>
-                    <li class="active"><i class="material-icons">library_books</i> Summary</a></li>
-                    <li><a href="javascript:void(0);"><i class="material-icons">archive</i> Timeline</a></li>
-                </ol>
+@foreach($data as $datas)
+    <!-- <div id="logo">
+        <img src="{{asset('css/lo.png')}}">
+    </div> -->
+    @php
+    $month = date('m', strtotime($datas->date_rollover));
+    $year = date('y', strtotime($datas->date_rollover));
+    @endphp
+
+    <H3 align='center'><b>PERMOHONAN PERSETUJUAN SPECIAL RATE DEPOSITO</b></H3>
+    <H4 align='center'>Nomor Surat : 0{{$datas->id}}/CCBI/SR/{{$month}}/{{$year}}</H4>
+    <h5>Kepada : REGIONAL</h5>
+    <h5>Dari : BRANCH</h5>
+    <h5>Tanggal : {{$datas->date_rollover}}</h5>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-profile">
@@ -85,7 +94,8 @@
                       </div>
                   </div>
                 </div>
-            </tr>
+
+                                            </tr>
                                             <tr bgcolor="#21daf9">
                                                 <td colspan="12">
                                                     Approver
@@ -107,6 +117,7 @@
                                     <a href="{{URL::to('./td')}}" class="btn btn-info btn-round">back</a>
                                      <a href="{{route('td.edit',$datas->id)}}" class="btn btn-info btn-round">Edit</a>
                                      <a href="{{URL::to('td/create')}}" class="btn btn-info btn-round">Add Customer</a>
+                                    <a href="{{action('TDController@downloadSummary',1)}}" class="btn btn-info btn-round">Export To PDF</a>
                                     <a href="{{url('timeline',$datas->id)}}" class="btn btn-info btn-round">Submit</a>
 
                                      

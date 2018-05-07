@@ -13,6 +13,7 @@ use Session;
 use Validator;
 use App\Mail\PostSubscribtion;
 use Mail;
+use App\transaction_td;
 
 class TDController extends Controller
 {
@@ -87,7 +88,7 @@ class TDController extends Controller
         else 
             $expired = date("Y-m-d", strtotime("+12 month", $dt));
         
-        $data->status = '1';
+        $data->status = '0';
         $data->notes = $request->notes;
         $data->expired_date = $expired;
         $data->period = $request->period;
@@ -205,6 +206,8 @@ class TDController extends Controller
         return redirect('td/summary')->with('id',$data->id);
     }
 
+    
+
     public function revisi(Request $request, $id)
     {
        // $data = TD::where('id',$id)->first();
@@ -212,9 +215,33 @@ class TDController extends Controller
         
         $data->special_rate = $request->special_rate;
      
+        $result = $data->save();
+
+        if($result==1){
+            echo "success";
+            $notification = array(
+                'message' => 'The Data Has Been Revised',
+                'alert-type' => 'success'
+            );
+        }else if($result==0){
+            echo "error";
+            $notification = array(
+                'message' => 'Error ! Can not Save Data',
+                'alert-type' => 'error'
+            );
+        }
+        return redirect('timeline/'.$data->id)->with($notification);
+        
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $data = TD::where('id',$id)->first();
+        $data->status = 1;
         $data->save();
 
-        return redirect('timeline/'.$data->id)->with('id',$data->id);
+        echo $id;
+        // return redirect('timeline/'.$data->id)->with('id',$data->id);
         
     }
 
@@ -233,8 +260,9 @@ class TDController extends Controller
     public function downloadSummary($id){
         $td = TD::find($id);
         $data = TD::where('id', $id)->get();    
-        $pdf = PDF::loadView('pdf-summary',$data);
-        return $pdf->download('Summary_Time_Deposit.pdf');
+        $pdf = PDF::loadView('pdf-summary',compact('data',$data));
+        $pdf->setPaper('A4','landscape');
+        return $pdf->download('Summary_Time_Deposit_'.$data[0]->full_name.'.pdf');
     }
 
     public function timeline($id){
@@ -243,38 +271,52 @@ class TDController extends Controller
           foreach($data as $datas){
             if($datas['period'] == 1 || $datas['period'] == 3){
                 if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
-                    // echo'AM';
                     $dataApprover = array('approver'=>'AM');
+                    $apr = 2;
                 }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.25'){
                     $dataApprover = array('approver'=>'AM','RH');
+                    $apr = 3;
                 }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] > '6.25'){
                     $dataApprover = array('approver'=>'AM','RH','Director');
+                    $apr = 4;
                 }else{
                     echo 'Approver Not Found';
                 }
             }else if($datas['period'] == 6){
                 if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '5.75'){
                     $dataApprover = array('approver'=>'AM');
+                    $apr = 2;
                 }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '6.00'){
                     $dataApprover = array('approver'=>'AM','RH');
+                    $apr = 3;
                 }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
                     $dataApprover = array('approver'=>'AM','RH','Director');
+                    $apr = 4;
                 }else{
                     echo 'Approver Not Found';
                 }
             }else if($datas['period'] == 12){
                 if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '5.75'){
                     $dataApprover = array('approver'=>'AM');
+                    $apr = 2;
                 }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '60.00'){
                     $dataApprover = array('approver'=>'AM','RH');
+                    $apr = 3;
                 }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
                     $dataApprover = array('approver'=>'AM','RH','Director');
+                    $apr = 4;
                 }else{
                     echo 'Approver Not Found';
                 }
             }
         }
 
-        return view('timeline-td',compact('data',$data))->with('apr',$dataApprover);
+        $trx = transaction_td::where('id_td',$id)->count();
+        
+        if($trx == $apr)
+            $valButton = 0;
+        else 
+            $valButton = 1;
+        return view('timeline-td',compact('data',$data))->with('apr',$dataApprover)->with('valButton',$valButton)->with('trx',$trx);
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\transaction_td;
+use App\TD;
+use Illuminate\Support\Facades\Input;
 
 
 class TransactionTimeDepositController extends Controller
@@ -36,41 +38,153 @@ class TransactionTimeDepositController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //approve
     public function store(Request $request)
     {
         
         $data = new transaction_td();
-        
+        $count = 0;
         $data->id_td = $request->id_td;
         $data->approved = 1;
+        $data->role=$request->role;
         $data->created_by = 'asami@gmail.com';
         $data->approved_by = 'BranchManager@ccb.com';
         $data->approved_at = '2018-02-02';
-        $data->save();
-       
-        //return redirect('time-deposit/summary')->with('id',$data->id);
-         return redirect()->back()->with('message','Operation Successful !');
-        // return redirect()->back()with('alert-success', 'The data was saved successfully');
-        // return redirect()->url('timeline/1')->with('id',$data->id_td);
+        $result = $data->save();
+        
+        if($result==1){
+            echo "success";
+            $act = 0;
+            $notification = array(
+                'message' => 'Approved Successfull',
+                'alert-type' => 'success',
+                'act' => 0
+            );
+            
+        }else if($result==0){
+            echo "error";
+            $notification = array(
+                'message' => 'Error ! Can not Save Data ',
+                'alert-type' => 'error'
+            );
+        }
+       return redirect()->back()->with($notification);
+    }
 
+    public function reject(Request $request){
+        $data = new transaction_td();
+        $data->id_td = $request->id_td;
+        $data->approved = 0;
+        $data->role=$request->role;
+        $data->created_by = 'asami@gmail.com';
+        $data->approved_by = 'asa@ccb.com';
+        $data->approved_at = '2018-02-02';
+        $result = $data->save();
+
+        if($result==1){
+            echo "success";
+            $notification = array(
+                'message' => 'Rejected Successfull',
+                'alert-type' => 'success'
+            );
+        }else if($result==0){
+            echo "error";
+            $notification = array(
+                'message' => 'Error ! Can not Save Data',
+                'alert-type' => 'error'
+            );
+        }
+       return redirect()->back()->with($notification);
+    }
+
+    public function special_rate($period, $special_rate){
+        $approver = 0.00;
+        
+        if($period == 1 || $period == 3){
+            if($special_rate >= 5.25 && $special_rate <=6.00)
+            {
+                $approver = 2;
+            }
+            else if($special_rate > 6.00 && $special_rate <= 6.25)
+            {
+                $approver = 3;
+            }
+            else if($special_rate > 6.25)
+            {
+                $approver = 4;
+            }
+        }else if($period == 6){
+            if($special_rate >= 5.50 || $special_rate <=5.75)
+            {
+                $approver = 2;
+            }
+            else if($special_rate >= 5.50 || $special_rate <= 6.00)
+            {
+                $approver = 3;
+            }
+            else if($special_rate >= 5.50 || $special_rate > 6.00)
+            {
+                $approver = 4;
+            }
+        }else if($period == 12){
+            if($special_rate >= 5.50 || $special_rate <=5.75)
+            {
+                $approver = 2;
+            }
+            else if($special_rate >= 5.50 || $special_rate <= 6.00)
+            {
+                $approver = 3;
+            }
+            else if($special_rate >= 5.50 || $special_rate > 6.00)
+            {
+                $approver = 4;
+            }
+        }else{
+            echo "approver not found";
+        }
+          return $approver;
+    }
+    public function validasiApprover(Request $request, $id){
+        // $data = transaction_td::find($id);
+       
+        $count = transaction_td::where('id_td',$id)->count();
+        $td = TD::where('id', $id)->get();
+        $data = TD::find($id);
+        $data->status = 1;
+        $data->save();
+
+        foreach($td as $data){
+            $special_rate = $data->special_rate;  
+            $period = $data->period;  
+            $periods = $data->status;
+        
+        }
+        
+        $approver = self::special_rate($period,$special_rate);
+        if($count == $approver)
+            return redirect(route('td.index'))->with('message','Operation Successful !');
+        else 
+            return redirect()->back()->with('message','Not Finish Yet !');
+        
+        // echo "period = ".$period;
+        // echo "special = ".$special_rate;
+        // echo "count = ".$count;
+        // echo "approver ".$approver;
+       
+        
     }
 
      public function storeArea(Request $request)
     {
-        
         $data = new transaction_td();
-        
         $data->id_td = $request->id_td;
         $data->approved = 1;
         $data->created_by = 'asami@gmail.com';
         $data->approved_by = 'BranchManager@ccb.com';
         $data->approved_at = '2018-02-02';
-        $data->save();
-       
-        //return redirect('time-deposit/summary')->with('id',$data->id);
-        return redirect()->back()->with('message','Operation Successful !');
-        // return redirect()->url('timeline/1')->with('id',$data->id_td);
-
+        $result = $data->save();
+        return redirect()->back()->with($notification);
+     
     }
 
     /**

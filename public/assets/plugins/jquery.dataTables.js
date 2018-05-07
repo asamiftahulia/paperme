@@ -14349,9 +14349,9 @@
 		"sSortAsc": "sorting_asc",
 		"sSortDesc": "sorting_desc",
 		"sSortable": "sorting", /* Sortable in both directions */
-		"sSortableAsc": "sorting_asc_disabled",
-		"sSortableDesc": "sorting_desc_disabled",
-		"sSortableNone": "sorting_disabled",
+		"sSortableAsc": "sorting_asc_enabled",
+		"sSortableDesc": "sorting_desc_enabled",
+		"sSortableNone": "sorting_enabled",
 		"sSortColumn": "sorting_", /* Note that an int is postfixed for the sorting order */
 	
 		/* Filtering */

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Customer;
 use Illuminate\Http\Request;
 use PDF;
+use App\TD;
+use Illuminate\Support\Facades\Input;
 
 class TestController extends Controller
 {
@@ -21,10 +23,45 @@ class TestController extends Controller
         //return view('test-form');
        // return view('test-summary-pdf');
       // return view('form-registrasi');
-     return view('test-datepicker');
+    // return view('test-datepicker');
       //  return view('test-timeline');
-
+      $td = TD::find(53);
+      $data = TD::where('id', 53)->get(); 
+    //   $pdf = PDF::loadView('pdf-summary',compact('data',$data));
+     return view('pdf-summary',compact('data',$data));
+    
         
+    }
+
+    public function toastrFunction(){
+        $name = Input::get('testname');
+
+        if($name=='laravel'){
+            echo "success";
+            $notification = array(
+                'message' => 'Successfully Get Laravel Data !',
+                'alert-type' => 'success'
+            );
+        }else if($name=='found'){
+            echo "info";
+            $notification = array(
+                'message' => 'Info Get Laravel Data !',
+                'alert-type' => 'info'
+            );
+        }else if($name=='notfound'){
+            echo "warning";
+            $notification = array(
+                'message' => 'Warning Get not found Laravel Data !',
+                'alert-type' => 'warning'
+            );
+        }else{
+            echo "error";
+            $notification = array(
+                'message' => 'error Get Laravel Data !',
+                'alert-type' => 'error'
+            );
+        }
+        return back()->with($notification);
     }
 
     /**

@@ -9,6 +9,7 @@
     <title>@yield('page-title')</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 
     <!-- Bootstrap core CSS     -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" />
@@ -22,9 +23,24 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
     <!-- JQuery DataTable Css -->
     <link href="{{asset('/assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" rel="stylesheet">
-
     <link rel="stylesheet" href="{{asset('css/style-timeline.css')}}" media="all" />
 
+    <!-- selectpicker -->
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
+
+<style>
+ {
+    background-color: #ffffff !important;
+    color: black;
+}
+    </style>
 
 </head>
 
@@ -158,6 +174,10 @@
 </body>
 <!--   Core JS Files   -->
 
+<!-- toastr -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<!-- end toastr -->
 <script src="{{asset('/assets/js/admin.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/js/jquery-3.2.1.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/js/bootstrap.min.js')}}" type="text/javascript"></script>
@@ -181,7 +201,7 @@
 <!-- Jquery DataTable Plugin Js -->
 <script src="{{asset('/assets/plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
 <script src="{{asset('/assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>
-<script src="{{asset('/assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js')}}"></script>
+<!-- <script src="{{asset('/assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js')}}"></script> -->
 <script src="{{asset('/assets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js')}}"></script>
 <script src="{{asset('/assets/plugins/jquery-datatable/extensions/export/jszip.min.js')}}"></script>
 <script src="{{asset('/assets/plugins/jquery-datatable/extensions/export/pdfmake.min.js')}}"></script>
@@ -190,9 +210,25 @@
 <script src="{{asset('/assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
 <script src="{{asset('/assets/plugins/jquery.masknumber.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/plugins/jquery.maskedinput.js')}}" type="text/javascript"></script>
-
+<script src="js/dataTables.bootstrap.min.js"></script>
 <script>
- 
+        @if(Session::has('message'))    
+        var type = "{{Session::get('alert-type','info')}}"
+        switch(type){
+            case 'success':
+                toastr.success("{{Session::get('message')}}");
+                break;
+            case 'info':
+                toastr.info("{{Session::get('message')}}");
+                break;
+            case 'warning':
+                toastr.warning("{{Session::get('message')}}");
+                break;
+            case 'error':
+                toastr.error("{{Session::get('message')}}");
+                break;
+        }
+    @endif
 
     $(function() {
         $("#amount").keyup().maskNumber({integer: true});
@@ -285,4 +321,6 @@
         //==================================================================================================
     });
 </script>
+
+
 </html>

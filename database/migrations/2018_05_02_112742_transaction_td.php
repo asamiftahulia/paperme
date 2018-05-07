@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTransactionTdsTable extends Migration
+class TransactionTd extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTransactionTdsTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaction_tds', function (Blueprint $table) {
+        Schema::create('transaction_td', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_td')->unsigned();
             $table->foreign('id_td')->references('id')->on('td');
@@ -32,6 +32,6 @@ class CreateTransactionTdsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaction_tds');
+        Schema::dropIfExists('transaction_td');
     }
 }
