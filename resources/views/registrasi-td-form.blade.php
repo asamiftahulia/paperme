@@ -28,10 +28,6 @@
                             </div>
                          </div>
                          <div class="row">
-                            <div class="col-md-4">
-                                <b>Amount (Rp)</b>
-                                <input type="text" class="form-control" placeholder="Ex: Rp. 99,000" id="amount" name="amount">
-                            </div>
                              <div class="col-md-4">
                                 <b>Branch</b>
                                 <select name="branch" id="branch" class="selectpicker form-control" data-live-search="true">
@@ -52,7 +48,6 @@
                                 </select>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group label-floating">
@@ -77,6 +72,10 @@
                             </div> 
                         </div>
                         <div class="row">
+                        <div class="col-md-4">
+                                <b>Amount (Rp)</b>
+                                <input type="text" class="form-control" placeholder="Ex: Rp. 99,000" id="amount" name="amount">
+                            </div>
                             <div class="col-md-4">
                                 <div class="form-group label-floating">
                                     <b>Period</b>

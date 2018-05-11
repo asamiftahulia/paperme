@@ -15,6 +15,8 @@ class MasterSpecialRateController extends Controller
     public function index()
     {
         //
+        $data = MasterSpecialRate::All();
+        return view('master-special-rate-list',compact('data'));
     }
 
     /**

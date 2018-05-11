@@ -41,7 +41,7 @@ Route::get('timeline/{id}','TDController@timeline');
 Route::post('td/revisi/{id}','TDController@revisi');
 Route::post('trx/reject/{id}','TransactionTimeDepositController@reject');
 Route::get('td/updateStatus/{id}','TransactionTimeDepositController@validasiApprover');
-
+Route::resource('special-rate','MasterSpecialRateController');
 //toastr
 Route::get('/tost', function(){
     return view('test-toastr');

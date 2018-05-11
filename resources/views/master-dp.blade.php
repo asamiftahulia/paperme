@@ -92,6 +92,12 @@
                         <p>Master User</p>
                     </a>
                 </li> -->
+                <li class="@yield('aktif-m-sr')">
+                    <a href="{{route('special-rate.index')}}">
+                        <i class="material-icons">person</i>
+                        <p>Master Special Rate</p>
+                    </a>
+                 </li>
                 <li class="@yield('aktif-mtimedep')">
                     <a href="{{route('time-deposit.create')}}">
                         <i class="material-icons">person</i>
