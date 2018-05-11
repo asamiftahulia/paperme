@@ -104,12 +104,6 @@
                                     <textarea class="form-control" name="notes" rows="5"></textarea>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                            <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-                                <input class="span2" size="16" type="text" value="12-02-2012">
-                                <span class="add-on"><i class="icon-th"></i></span>
-                                </div>
-                            </div>
                         </div>
                         <button type="submit" class="btn btn-info pull-right">Submit</button>
                         <a href="{{URL::to('./')}}" class="btn btn-info waves-effect ">Back</a>
