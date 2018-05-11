@@ -1,5 +1,6 @@
 @extends('master-dp')
 @section('page-title','Summary')
+@section('aktif-mtimedep','active')
 @section('content')
                 <ol class="breadcrumb breadcrumb-bg-cyan align-left">
                     <li><i class="material-icons">home</i> Registration</a></li>
@@ -49,15 +50,15 @@
                                                 <td>{{$datas['full_name']}} </td>
                                                 <td>
                                                     @if($datas['status'] == 1)
-                                                        {{'NEW'}}
-                                                    @else
                                                         {{'EXISTING'}}
+                                                    @else
+                                                        {{'NEW'}}
                                                     @endif 
                                                 </td>
                                                 <td>{{$datas['amount']}} </td>
                                                  <td>{{$datas['date_rollover']}} </td>
                                                 <td>{{$datas['expired_date']}} </td>
-                                                <td>{{$datas['period']}} </td>
+                                                <td>{{$datas['period']}} Bulan</td>
                                                 <td>@php 
                                                         if($datas['type_of_td']==1)
                                                             echo 'Breakable';

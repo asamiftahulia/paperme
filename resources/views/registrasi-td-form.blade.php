@@ -1,9 +1,6 @@
 @extends('master-dp')
 @section('page-title','Form Registrasi Time Deposit')
 @section('aktif-mtimedep','active')
-
-
-
 @section('content')
     <ol class="breadcrumb breadcrumb-bg-cyan align-right">
         <li class="active"><i class="material-icons">home</i> Registration</a></li>
@@ -27,27 +24,6 @@
                                 <input type="text" class="form-control" placeholder="e.g : John Doe" name="full_name">
                             </div>
                          </div>
-                         <div class="row">
-                             <div class="col-md-4">
-                                <b>Branch</b>
-                                <select name="branch" id="branch" class="selectpicker form-control" data-live-search="true">
-                                    <option value="0">--Select--</option>
-                                    @foreach($branch as $cabang)
-                                        <option value="{{$cabang->id}}" data-tokens="{{$cabang->nama}}">{{$cabang->nama}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <b>Bank</b>
-                                <select class="selectpicker form-control" data-live-search="true">
-                                <option value="0">--Select--</option>
-                                    @foreach($banks as $b)
-                                <option value="{{$b->KODE_LJK}}" data-tokens="{{$b->NAMA_BANK}}">{{$b->NAMA_BANK}}</option>
-
-                                @endforeach
-                                </select>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group label-floating">
@@ -94,7 +70,27 @@
                                     <input class="form-control" type="date" name="date_rollover">
                                 </div>
                             </div>
-                          
+                        </div>
+                        
+                        <div class="row">
+                             <div class="col-md-4">
+                                <b>Branch</b>
+                                <select name="branch" id="branch" class="selectpicker form-control" data-live-search="true">
+                                    <option value="0">--Select--</option>
+                                    @foreach($branch as $cabang)
+                                        <option value="{{$cabang->id}}" data-tokens="{{$cabang->nama}}">{{$cabang->nama}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <b>Bank</b>
+                                <select class="selectpicker form-control" data-live-search="true">
+                                <option value="0">--Select--</option>
+                                    @foreach($banks as $b)
+                                <option value="{{$b->KODE_LJK}}" data-tokens="{{$b->NAMA_BANK}}">{{$b->NAMA_BANK}}</option>
+                                @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
