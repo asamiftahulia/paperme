@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\transaction_td;
 use App\TD;
+use App\Mail\PostSubscribtion;
+use Mail;
 use Illuminate\Support\Facades\Input;
 
 
@@ -68,6 +70,8 @@ class TransactionTimeDepositController extends Controller
                 'alert-type' => 'error'
             );
         }
+
+       Mail::to('AreaManager@gmail.com')->send(new PostSubscribtion($data));
        return redirect()->back()->with($notification);
     }
 

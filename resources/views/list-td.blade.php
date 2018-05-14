@@ -56,9 +56,10 @@
                                             @endif
                                         </td>
                                         <td>
+                                        
                                             <a href="{{action('TDController@downloadSummary',$datas->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
                                             <a href="{{action('TDController@timeline',$datas->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
-                                            <a href="{{action('TDController@timeline',$datas->id)}}" class="material-icons" rel="tooltip" title="Edit Data">swap_vertical_circle</a>  
+                                            <a href="{{route('td.edit',$datas->id)}}" class="material-icons" rel="tooltip" title="Edit Data">mode_edit</a>  
                                         </td>
                                     </tr>
                                 @endforeach

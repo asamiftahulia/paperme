@@ -125,36 +125,36 @@ class TDController extends Controller
         $am = 0;
         $rm = 0;
         $director = 0;
-        $dataApprover = array(['AM','RH','Director']);
+        $dataApprover = array(['Area Manager','Regional Head','Director']);
         foreach($data as $datas){
             if($datas['period'] == 1 || $datas['period'] == 3){
                 if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
                     // echo'AM';
-                    $dataApprover = array('approver'=>'AM');
+                    $dataApprover = array('approver'=>'Area Manager');
                 }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.25'){
-                    $dataApprover = array('approver'=>'AM','RH');
+                    $dataApprover = array('approver'=>'Area Manager','RH');
                 }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] > '6.25'){
-                    $dataApprover = array('approver'=>'AM','RH','Director');
+                    $dataApprover = array('approver'=>'Area Manager','RH','Director');
                 }else{
                     echo 'Approver Not Found';
                 }
             }else if($datas['period'] == 6){
                 if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '5.75'){
-                    $dataApprover = array('approver'=>'AM');
+                    $dataApprover = array('approver'=>'Area Manager');
                 }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '6.00'){
-                    $dataApprover = array('approver'=>'AM','RH');
+                    $dataApprover = array('approver'=>'Area Manager','RH');
                 }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
-                    $dataApprover = array('approver'=>'AM','RH','Director');
+                    $dataApprover = array('approver'=>'Area Manager','RH','Director');
                 }else{
                     echo 'Approver Not Found';
                 }
             }else if($datas['period'] == 12){
                 if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '5.75'){
-                    $dataApprover = array('approver'=>'AM');
+                    $dataApprover = array('approver'=>'Area Manager');
                 }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '60.00'){
-                    $dataApprover = array('approver'=>'AM','RH');
+                    $dataApprover = array('approver'=>'Area Manager','RH');
                 }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
-                    $dataApprover = array('approver'=>'AM','RH','Director');
+                    $dataApprover = array('approver'=>'Area Manager','RH','Director');
                 }else{
                     echo 'Approver Not Found';
                 }

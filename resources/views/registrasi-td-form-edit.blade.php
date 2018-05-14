@@ -100,7 +100,7 @@
         </div>
     </div>
 
-<script type="text/javascript"></script>
+<script type="text/javascript">
    $(function(){
        $('#date').datepicker({
 
@@ -108,5 +108,5 @@
 
         });
     });
-
+    </script>
 @endsection
