@@ -24,8 +24,9 @@
                                 <div class="form-group label-floating">
                                      <b>Type Of TD</b>
                                     <select name="type_of_td" class="form-control">
-                                      <option value="1">Breakable</op  tion>
-                                      <option value="2">Unbreakable</option>
+                                    @foreach($tipeTd as $tipe)
+                                      <option value="{{$datas->type_of_td}}">{{$datas->type_of_td}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                             </div>

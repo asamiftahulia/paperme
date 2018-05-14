@@ -32,7 +32,6 @@
                                             <th>Area Manager</th>
                                             <th>Regional Head</th>
                                             <th>Director</th>
-                                            <th>Created At</th>
                                         </tr>    
                                         </tr>
                                     </thead>
@@ -47,7 +46,6 @@
                                                 <td>{{$datas->area_manager}}</td>
                                                 <td>{{$datas->regional_head}}</td>
                                                 <td>{{$datas->director}}</td>
-                                                <td>{{$datas->created_at}}</td>
                                             </tr>
                                               @endforeach
                                     </tbody>
