@@ -78,7 +78,7 @@
                                 <select name="branch" id="branch" class="selectpicker form-control" data-live-search="true">
                                     <option value="0">--Select--</option>
                                     @foreach($branch as $cabang)
-                                        <option value="{{$cabang->id}}" data-tokens="{{$cabang->nama}}">{{$cabang->nama}}</option>
+                                        <option value="{{$cabang->id_branch}}" data-tokens="{{$cabang->nama}}">{{$cabang->nama}}</option>
                                     @endforeach
                                 </select>
                             </div>

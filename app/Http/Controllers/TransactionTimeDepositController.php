@@ -58,7 +58,7 @@ class TransactionTimeDepositController extends Controller
             echo "success";
             $act = 0;
             $notification = array(
-                'message' => 'Approved Successfull',
+                'message' => 'Approved Successfull & Email Has Been Sent',
                 'alert-type' => 'success',
                 'act' => 0
             );

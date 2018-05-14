@@ -61,7 +61,7 @@
                             <div class="col-md-4">
                                 <div class="form-group label-floating"> 
                                     <b>Date Rollover</b>
-                                    <input class="form-control" type="date" name="date_rollover">
+                                    <input class="form-control" type="date" value="date_rollover" name="date_rollover">
                                 </div>
                             </div>
                         </div>
@@ -70,14 +70,14 @@
                              <div class="col-md-4">
                                 <b>Branch</b>
                                 <select name="branch" id="branch" class="selectpicker form-control" data-live-search="true">
-                                    <option value="0">--Select--</option>
+                                    <option value="{{$datas->id_branch}}">{{$datas->nama}}</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <b>Bank</b>
                                 <select class="selectpicker form-control" data-live-search="true">
-                                <option value="0">--Select--</option>
-                                  
+                                <option value="0"></option>
+                                
                                 </select>
                             </div>
                             </div>
@@ -90,8 +90,8 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                        <a href="{{URL::to('./')}}" class="btn btn-primary waves-effect ">Back</a>
+                        <button type="submit" class="btn btn-info pull-right">Submit</button>
+                        <a href="{{URL::to('./')}}" class="btn btn-info waves-effect ">Back</a>
                         <div class="clearfix"></div>
                     </form>
                      @endforeach

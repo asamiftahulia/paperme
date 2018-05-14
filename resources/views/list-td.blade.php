@@ -45,7 +45,13 @@
                                         <td>{{$datas->amount}}</td>
                                         <td>{{$datas->expired_date}}</td>
                                         <td>{{$datas->period}} Bulan</td>
-                                        <td>{{$datas->type_of_td}}</td>
+                                        <td>
+                                            @if($datas->type_of_td == 1)
+                                                {{$datas->type_of_td = 'BREAKABLE'}}
+                                            @else
+                                                 {{$datas->type_of_td = 'UNBREAKABLE'}}
+                                            @endif
+                                        </td>
                                         <td>{{$datas->date_rollover}}</td>
                                         <td>{{$datas->expired_date}}</td>
                                          <td>

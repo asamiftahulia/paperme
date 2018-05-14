@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class M_branchs extends Model
 {
     //
-    protected $table = 'm_branchs';
+    protected $table = 'master_branch';
 }
