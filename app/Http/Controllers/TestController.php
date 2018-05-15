@@ -25,10 +25,12 @@ class TestController extends Controller
       // return view('form-registrasi');
     // return view('test-datepicker');
       //  return view('test-timeline');
-      $td = TD::find(53);
-      $data = TD::where('id', 53)->get(); 
-    //   $pdf = PDF::loadView('pdf-summary',compact('data',$data));
-     return view('pdf-summary',compact('data',$data));
+    //   $td = TD::find(53);
+    //   $data = TD::where('id', 53)->get(); 
+    // //   $pdf = PDF::loadView('pdf-summary',compact('data',$data));
+    //  return view('pdf-summary',compact('data',$data));
+
+     return view('login');
     
         
     }
