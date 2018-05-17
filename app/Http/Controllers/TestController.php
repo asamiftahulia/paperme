@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 use App\Customer;
 use Illuminate\Http\Request;
 use PDF;
+use View;
 use App\TD;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
+
+
 
 class TestController extends Controller
 {
@@ -25,12 +30,12 @@ class TestController extends Controller
       // return view('form-registrasi');
     // return view('test-datepicker');
       //  return view('test-timeline');
-    //   $td = TD::find(53);
-    //   $data = TD::where('id', 53)->get(); 
-    // //   $pdf = PDF::loadView('pdf-summary',compact('data',$data));
-    //  return view('pdf-summary',compact('data',$data));
+      $td = TD::find(53);
+      $data = TD::where('id', 53)->get(); 
+    //   $pdf = PDF::loadView('pdf-summary',compact('data',$data));
+     return view('pdf-summary',compact('data',$data));
 
-     return view('login');
+        
     
         
     }
@@ -64,6 +69,46 @@ class TestController extends Controller
             );
         }
         return back()->with($notification);
+    }
+
+    public function showLogin(){
+        return View::make('login');
+    }
+
+
+    public function doLogin(){
+        //validate the info, create rules for the inputs
+
+        $rules = array(
+            'username' => 'required|email', //make sure the email in an actual email
+            'password' => 'required|alphaNum|min:3' //password can only be alphanumeric and has to be greater than 3 characters
+        );
+
+        //run the validation rules on the inputs from the form
+        $validator = Validator::make(Input::all(), $rules);
+
+        //if the validator fails, redirect back to the form
+        if($validator->fails()){
+            return Redirect::to('login')
+            ->withErrors($validator) //send back all errors to the login form
+            ->withInput(Input::except('password')); //send back the input (not the password)
+        }else{
+            //create our user data for the authentication
+
+            $userdata = array(
+                'username' => Input::get('harsyami@gmail.com'),
+                'password' => Input::get('admin')
+            );
+
+            //attempt to do the login
+            if(Auth::attempt($userdata)){
+                //validation success
+                echo 'SUCCESS';
+            }else{
+                echo 'Error!';
+               // return Redirect::to('login');
+            }
+        }
     }
 
     /**

@@ -49,3 +49,17 @@ Route::get('/tost', function(){
 
 Route::post('/submitdata','TestController@toastrFunction');
 
+//route to show the login form
+ Route::get('login',array('uses'=>"LoginApiController@showLogin"));
+
+//route to process the form
+Route::post('login', array('uses'=>'LoginApiController@doLogin'));
+
+//Route::post('login','LoginApiController@showLogin')->name('login');
+
+
+Route::post('verify',function(){
+    
+    var_dump($_POST);
+});
+
