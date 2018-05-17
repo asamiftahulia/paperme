@@ -3,9 +3,9 @@
 @section('aktif-mtimedep','active')
 @section('content')
     <ol class="breadcrumb breadcrumb-bg-cyan align-right">
-        <li class="active"><i class="material-icons">home</i> Registration</a></li>
-        <li><a href="javascript:void(0);"><i class="material-icons">library_books</i> Summary</a></li>
-        <li><a href="javascript:void(0);"><i class="material-icons">archive</i> Timeline</a></li>
+        <li><font color='blue'><i class="material-icons">home</i> Registration</font></li>
+        <li><i class="material-icons">library_books</i> Summary</li>
+        <li><i class="material-icons">archive</i> Timeline</li>
     </ol>
     <div class="row">
         <div class="col-md-12">
@@ -73,7 +73,7 @@
                         </div>
                         
                         <div class="row">
-                             <div class="col-md-4">
+                             <!-- <div class="col-md-4">
                                 <b>Branch</b>
                                 <select name="branch" id="branch" class="selectpicker form-control" data-live-search="true">
                                     <option value="0">--Select--</option>
@@ -81,9 +81,9 @@
                                         <option value="{{$cabang->id_branch}}" data-tokens="{{$cabang->nama}}">{{$cabang->nama}}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> -->
                             <div class="col-md-4">
-                                <b>Bank</b>
+                                <b>Sources Of Funds Bank</b>
                                 <select class="selectpicker form-control" data-live-search="true">
                                 <option value="0">--Select--</option>
                                     @foreach($banks as $b)
@@ -104,51 +104,51 @@
                         <a href="{{URL::to('./')}}" class="btn btn-info waves-effect ">Back</a>
                         <div class="clearfix"></div>
                     </form>
+                    
                 </div>
             </div>
         </div>
     </div>
 
-
 <script type="text/javascript">
-$('.datepicker').datepicker()
+        $('.datepicker').datepicker()
 
-$('.selectpicker').selectpicker({
-  style: 'btn-info',
-  size: 4   
-});
+        $('.selectpicker').selectpicker({
+            style: 'btn-info',
+            size: 4   
+        });
 
- $('.selectpicker').selectpicker({
-    style: 'btn-info',
-    size: 4
-  });
-  $('#branch').on('keydown', function (e) {
-    if (e.keyCode == 38) { // Up
-      var previousEle = $(this).prev();
-      if (previousEle.length == 0) {
-        previousEle = $(this).nextAll().last();
-      }
-      var selVal = $('.selectpicker option').filter(function () {
-        return $(this).text() == previousEle.text();
-      }).val();
-      $('.selectpicker').selectpicker('val', selVal);
+        $('.selectpicker').selectpicker({
+            style: 'btn-info',
+            size: 4
+        });
+        $('#branch').on('keydown', function (e) {
+            if (e.keyCode == 38) { // Up
+            var previousEle = $(this).prev();
+            if (previousEle.length == 0) {
+                previousEle = $(this).nextAll().last();
+            }
+            var selVal = $('.selectpicker option').filter(function () {
+                return $(this).text() == previousEle.text();
+            }).val();
+            $('.selectpicker').selectpicker('val', selVal);
 
-      return;
-    }
-    if (e.keyCode == 40) { // Down
-      var nextEle = $(this).next();
-      if (nextEle.length == 0) {
-        nextEle = $(this).prevAll().last();
-      }
-      var selVal = $('.selectpicker option').filter(function () {
-        return $(this).text() == nextEle.text();
-      }).val();
-      $('.selectpicker').selectpicker('val', selVal);
+            return;
+            }
+            if (e.keyCode == 40) { // Down
+            var nextEle = $(this).next();
+            if (nextEle.length == 0) {
+                nextEle = $(this).prevAll().last();
+            }
+            var selVal = $('.selectpicker option').filter(function () {
+                return $(this).text() == nextEle.text();
+            }).val();
+            $('.selectpicker').selectpicker('val', selVal);
 
-      return;
-    }
-  });
-});
+            return;
+            }
+        });
 
 </script>
+
 @endsection

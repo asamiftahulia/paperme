@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use PDF;
 use View;
 use App\TD;
+use App\MasterSpecialRate;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
@@ -30,11 +31,14 @@ class TestController extends Controller
       // return view('form-registrasi');
     // return view('test-datepicker');
       //  return view('test-timeline');
-      $td = TD::find(53);
-      $data = TD::where('id', 53)->get(); 
-    //   $pdf = PDF::loadView('pdf-summary',compact('data',$data));
-     return view('pdf-summary',compact('data',$data));
-
+    //   $td = TD::find(53);
+    //   $data = TD::where('id', 53)->get(); 
+    // //   $pdf = PDF::loadView('pdf-summary',compact('data',$data));
+    //  return view('pdf-summary',compact('data',$data));
+        
+        $data = MasterSpecialRate::all();
+    
+        return view('autofill-form',compact('data'));
         
     
         

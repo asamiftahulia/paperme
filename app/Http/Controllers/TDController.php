@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\TimeDeposit;
 use App\TD;
 use App\MasterBank;
@@ -97,7 +96,7 @@ class TDController extends Controller
         $data->date_rollover = $request->date_rollover;
         $data->special_rate = $request->special_rate;
         $data->normal_rate = $request->normal_rate;
-        $data->id_branch = $request->branch;
+        $data->id_branch = '0';
         $data->created_by = 'asami@gmail.com';
         $data->updated_by = 'asami@gmail.com';
         $data->save();

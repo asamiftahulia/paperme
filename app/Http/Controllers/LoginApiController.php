@@ -24,7 +24,13 @@ class LoginApiController extends Controller
         
     }
     public function doLogin(){
-    //    $client = new Client([
+        $result = $this->client->post('http://192.168.1.57:8015/login', array(
+            'json' => array(
+                'username' => 'harsya.mifta@idn.ccb.com',
+                'password' => '18 3772'
+            )
+            ));
+        //    $client = new Client([
     //        'headers'=>['content-type'=>'application/json','Accept'=>'application/json'],
     //    ]);
     //    $response = $client->request('POST','http://192.168.1.57:8015/login',
@@ -34,14 +40,6 @@ class LoginApiController extends Controller
     //     $data = $response->getBody();
     //     $data = json_decode($data);
     //     dd($data);
-
-        $result = $this->client->post('http://192.168.1.57:8015/login', array(
-            'json' => array(
-                'username' => 'harsya.mifta@idn.ccb.com',
-                'password' => '18 3772'
-            )
-            ));
-        
         
     }
 
