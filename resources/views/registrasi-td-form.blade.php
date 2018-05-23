@@ -37,7 +37,7 @@
                              <div class="col-md-4">
                                 <div class="form-group label-floating">
                                       <b>Special Rate</b>
-                                    <input type="number" step="0.01" class="form-control" id="special_rate" placeholder="e.g: 5.00" name="special_rate">
+                                    <input type="number" step="0.01" class="form-control" id="special_rate" placeholder="e.g: 5.00" name="special_rate" onChange="autoFill(); return false;">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -82,6 +82,12 @@
                                     @endforeach
                                 </select>
                             </div> -->
+                            <div class="col-md-6">
+                                <div class="form-group label-floating">
+                                    <b>Notes</b>
+                                    <textarea class="form-control" name="notes" rows="5"></textarea>
+                                </div>
+                            </div>
                             <div class="col-md-4">
                                 <b>Sources Of Funds Bank</b>
                                 <select class="selectpicker form-control" data-live-search="true">
@@ -91,14 +97,7 @@
                                 @endforeach
                                 </select>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group label-floating">
-                                    <b>Notes</b>
-                                    <textarea class="form-control" name="notes" rows="5"></textarea>
-                                </div>
-                            </div>
+                           
                         </div>
                         <button type="submit" class="btn btn-info pull-right">Submit</button>
                         <a href="{{URL::to('./')}}" class="btn btn-info waves-effect ">Back</a>
