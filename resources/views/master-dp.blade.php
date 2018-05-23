@@ -326,45 +326,6 @@
     });
 </script>
 
-<script type="text/javascript">
-  function autoFill() {
-    var specialRate = document.getElementById('special_rate').value;
-    if(specialRate!='' ){    
-    var period = document.getElementById('period').value;
-    var pausecontent = new Array();
-    <?php foreach($data as $datas){ ?>
-        pausecontent.push('<?php echo $datas; ?>');
-        alert(pausecontent);
-    <?php } ?> 
-    var data ;
-    for(var i = 0; i<pausecontent.length;i++){
-            pausecontent[i] = JSON.parse(pausecontent[i]);
-           if(period == pausecontent[i].term){
-               data = pausecontent[i];
-               break;
-           }
-    }
-    //  document.getElementById("demo").innerHTML = data.term;
-     document.getElementById("demo").innerHTML = data.term + ", " + data.counter_rate + ", " + data.area_manager + ", " + data.regional_head + ", " + data.director;
-    
-     if(specialRate >= data.counter_rate && specialRate <= data.area_manager){
-        document.getElementById('normal_rate').innerHTML = 'asa';
-        document.getElementById("apr").innerHTML = 'BRANCH MANAGER';
-     }else if(specialRate >= data.area_manager && specialRate <= data.regional_head){
-        document.getElementById('normal_ratenr').value = data.area_manager;
-        document.getElementById("apr").innerHTML = 'AREA MANAGER';
-     }else if(specialRate >= data.regional_head && specialRate <= data.director){
-        document.getElementById('normal_rate').value = data.regional_head;
-        document.getElementById("apr").innerHTML = 'REGIONAL HEAD';
-     }else if(specialRate > data.director){
-         document.getElementById('normal_rate').value = data.director;
-        document.getElementById("apr").innerHTML = 'DIRECTOR';
-         
-     }
-    }
-  }
-
-</script>
 
 
 </html>

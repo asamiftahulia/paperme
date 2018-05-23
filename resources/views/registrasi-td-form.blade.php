@@ -40,13 +40,13 @@
                              <div class="col-md-4">
                                 <div class="form-group label-floating">
                                       <b>Special Rate</b>
-                                    <input type="number" step="0.01" class="form-control" id="special_rate" placeholder="e.g: 5.00" name="special_rate" onChange="autoFill(); return false;">
+                                    <input type="number" step="0.01" class="form-control" id="sr" placeholder="e.g: 5.00" name="special_rate" onChange="autoFill(); return false;">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group label-floating">
                                       <b>Normal Rate</b>
-                                    <input type="number" step="0.01" class="form-control" id="normal_rate" placeholder="e.g : 5.00" name="normal_rate">
+                                    <input type="number" step="0.01" class="form-control" id="nr" placeholder="e.g : 5.00" name="normal_rate">
                                 </div>
                             </div> 
                         </div>
@@ -120,45 +120,48 @@
             </div>
         </div>
     </div>
+    <form>
+     
+<p id="demo"></p>
+  <p id="apr"></p>
+    </form>
 
 <script type="text/javascript">
-        $('.datepicker').datepicker()
-
-        $('.selectpicker').selectpicker({
-            style: 'btn-info',
-            size: 4   
-        });
-
-        $('.selectpicker').selectpicker({
-            style: 'btn-info',
-            size: 4
-        });
-        $('#branch').on('keydown', function (e) {
-            if (e.keyCode == 38) { // Up
-            var previousEle = $(this).prev();
-            if (previousEle.length == 0) {
-                previousEle = $(this).nextAll().last();
-            }
-            var selVal = $('.selectpicker option').filter(function () {
-                return $(this).text() == previousEle.text();
-            }).val();
-            $('.selectpicker').selectpicker('val', selVal);
-
-            return;
-            }
-            if (e.keyCode == 40) { // Down
-            var nextEle = $(this).next();
-            if (nextEle.length == 0) {
-                nextEle = $(this).prevAll().last();
-            }
-            var selVal = $('.selectpicker option').filter(function () {
-                return $(this).text() == nextEle.text();
-            }).val();
-            $('.selectpicker').selectpicker('val', selVal);
-
-            return;
-            }
-        });
+  function autoFill() {
+    var specialRate = document.getElementById('sr').value;
+    if(specialRate!='' ){    
+        
+    var period = document.getElementById('period').value;
+    var pausecontent = new Array();
+    <?php foreach($data as $datas){ ?>
+        pausecontent.push('<?php echo $datas; ?>');
+    <?php } ?> 
+    var data ;
+    for(var i = 0; i<pausecontent.length;i++){
+            pausecontent[i] = JSON.parse(pausecontent[i]);
+           if(period == pausecontent[i].term){
+               data = pausecontent[i];
+               break;
+           }
+    }
+    //  document.getElementById("demo").innerHTML = data.term;
+     document.getElementById("demo").innerHTML = data.term + ", " + data.counter_rate + ", " + data.area_manager + ", " + data.regional_head + ", " + data.director;
+    
+     if(specialRate >= data.counter_rate && specialRate <= data.area_manager){
+        document.getElementById('nr').value = data.counter_rate;
+        document.getElementById("apr").innerHTML = 'BRANCH MANAGER';
+     }else if(specialRate >= data.area_manager && specialRate <= data.regional_head){
+        document.getElementById('nr').value = data.area_manager;
+        document.getElementById("apr").innerHTML = 'AREA MANAGER';
+     }else if(specialRate >= data.regional_head && specialRate <= data.director){
+        document.getElementById('nr').value = data.regional_head;
+        document.getElementById("apr").innerHTML = 'REGIONAL HEAD';
+     }else if(specialRate > data.director){
+         document.getElementById('nr').value = data.director;
+        document.getElementById("apr").innerHTML = 'DIRECTOR';
+     }
+    }
+  }
 
 </script>
 
