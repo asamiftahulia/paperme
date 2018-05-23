@@ -25,13 +25,16 @@
                             </div>
                          </div>
                         <div class="row">
-                            <div class="col-md-4">
+                        <div class="col-md-4">
                                 <div class="form-group label-floating">
-                                     <b>Type Of TD</b>
-                                    <select name="type_of_td" class="form-control">
-                                      <option value="1">Breakable</op  tion>
-                                      <option value="2">Unbreakable</option>
+                                    <b>Period</b>
+                                    <select name="period" id="period" class="form-control" onChange="autoFill(); return false;">
+                                      <option value="1">1 bln</option>
+                                      <option value="3">3 bln</option>
+                                      <option value="6">6 bln</option>
+                                      <option value="12">12 bln</option>
                                     </select>
+                               
                                 </div>
                             </div>
                              <div class="col-md-4">
@@ -52,58 +55,67 @@
                                 <b>Amount (Rp)</b>
                                 <input type="text" class="form-control" placeholder="Ex: Rp. 99,000" id="amount" name="amount">
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group label-floating">
-                                    <b>Period</b>
-                                    <select name="period" class="form-control">
-                                      <option value="1">1 bln</option>
-                                      <option value="3">3 bln</option>
-                                      <option value="6">6 bln</option>
-                                      <option value="12">12 bln</option>
-                                    </select>
-                               
-                                </div>
-                            </div>
+                          
                               <div class="col-md-4">
                                 <div class="form-group label-floating"> 
                                     <b>Date Rollover</b>
                                     <input class="form-control" type="date" name="date_rollover">
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group label-floating">
+                                     <b>Type Of TD</b>
+                                    <select name="type_of_td" class="form-control">
+                                      <option value="1">Breakable</op  tion>
+                                      <option value="2">Unbreakable</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         
                         <div class="row">
-                             <!-- <div class="col-md-4">
-                                <b>Branch</b>
-                                <select name="branch" id="branch" class="selectpicker form-control" data-live-search="true">
+                            <div class="col-md-4">
+                                <b>Sources Of Funds Bank</b>
+                                <select class="selectpicker form-control" data-live-search="true">
                                     <option value="0">--Select--</option>
-                                    @foreach($branch as $cabang)
-                                        <option value="{{$cabang->id_branch}}" data-tokens="{{$cabang->nama}}">{{$cabang->nama}}</option>
-                                    @endforeach
+                                        @foreach($banks as $b)
+                                    <option value="{{$b->KODE_LJK}}" data-tokens="{{$b->NAMA_BANK}}">{{$b->NAMA_BANK}}</option>
+                                @endforeach
                                 </select>
-                            </div> -->
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group label-floating">
                                     <b>Notes</b>
                                     <textarea class="form-control" name="notes" rows="5"></textarea>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <b>Sources Of Funds Bank</b>
-                                <select class="selectpicker form-control" data-live-search="true">
-                                <option value="0">--Select--</option>
-                                    @foreach($banks as $b)
-                                <option value="{{$b->KODE_LJK}}" data-tokens="{{$b->NAMA_BANK}}">{{$b->NAMA_BANK}}</option>
-                                @endforeach
-                                </select>
-                            </div>
-                           
+                            
                         </div>
+                        
                         <button type="submit" class="btn btn-info pull-right">Submit</button>
                         <a href="{{URL::to('./')}}" class="btn btn-info waves-effect ">Back</a>
                         <div class="clearfix"></div>
                     </form>
-                    
+<!-- <table border='1'>
+    <tr>
+        <th>Term</th>
+        <th>Counter Rate</th>
+        <th>Area Manager</th>
+        <th>Regional Head</th>
+        <th>Director</th>
+    </tr>
+    @foreach($data as $datas)
+        <tr>
+            <td>{{$datas->term}}</td>
+            <td>{{$datas->counter_rate}}</td>
+            <td>{{$datas->area_manager}}</td>
+            <td>{{$datas->regional_head}}</td>
+            <td>{{$datas->director}}</td>
+        </tr>
+    @endforeach
+    </table> -->
                 </div>
             </div>
         </div>

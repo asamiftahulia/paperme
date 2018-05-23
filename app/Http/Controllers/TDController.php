@@ -13,6 +13,7 @@ use Validator;
 use App\Mail\PostSubscribtion;
 use Mail;
 use App\transaction_td;
+use App\MasterSpecialRate;
 
 class TDController extends Controller
 {
@@ -41,7 +42,8 @@ class TDController extends Controller
        //$banks= MasterBank::pluck('NAMA_BANK', 'KODE_LJK');
         $banks = MasterBank::all();
         $branch = m_branchs::all();
-        return view('registrasi-td-form', compact('banks','branch'));
+        $data = MasterSpecialRate::all();
+        return view('registrasi-td-form', compact('banks','branch','data'));
         // return view('registrasi-td-form');
 
     }
