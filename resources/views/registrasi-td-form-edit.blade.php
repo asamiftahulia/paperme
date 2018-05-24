@@ -34,13 +34,13 @@
                              <div class="col-md-4">
                                 <div class="form-group label-floating">
                                       <b>Special Rate</b>
-                                      <input type="text" class="form-control" name="special_rate" id="sr" value="{{ $datas->special_rate}}" onChange="autoFill(); return false;">
+                                      <input type="text" class="form-control" name="special_rate" id="special_rate" value="{{ $datas->special_rate}}" onChange="autoFill(); return false;">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group label-floating">
                                       <b>Normal Rate</b>
-                                      <input type="text" class="form-control" name="normal_rate" id="nr"enable="disable">
+                                      <input type="text" class="form-control" name="normal_rate" id="normal_rate" value="{{$datas->normal_rate}}">
                                 </div>
                             </div> 
                         </div>
@@ -104,16 +104,16 @@
 <script type="text/javascript">
   function autoFill() {
       
-    var specialRate = document.getElementById('sr').value;
+    var specialRate = document.getElementById('special_rate').value;
+    var normalRate = document.getElementById('normal_rate').value;
     var period = document.getElementById('period').value;
     if(specialRate!='' ){ 
+        
         if(period == 1 || period == 3)
-            document.getElementById('nr').value = 5.25;
+            document.getElementById('normal_rate').value = 5.25;
         else if(period == 6 || period == 12)
-        document.getElementById('nr').value = 5.5;
+        document.getElementById('normal_rate').value = 5.5;
     
-    }else{
-        alert('Special Rate Cannot Be Empty!');
     }
   }
 

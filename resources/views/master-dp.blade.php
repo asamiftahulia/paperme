@@ -246,9 +246,9 @@
         $("#amount").keyup().maskNumber({integer: true});
     });
 
-    // $(function() {
-    //     $('#special_rate').keyup().maskNumber("#,##0.00", {reverse: true});
-    // });
+    $(function() {
+        $('#special_rate').keyup().maskNumber("#,##0.00", {reverse: true});
+    });
 
    
     //date
