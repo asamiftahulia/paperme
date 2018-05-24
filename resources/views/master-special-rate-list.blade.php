@@ -50,6 +50,9 @@
                                               @endforeach
                                     </tbody>
                                 </table>
+                                <p> Note : logika implementasi terkait pengajuan special rate <= ”lebih kecil sama dengan”</br>
+                                    untuk jenjang Direktur Bisnis > "lebih besar dari" 
+                                </p>
                             </div>
                         </div>
                     </div>

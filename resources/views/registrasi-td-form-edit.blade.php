@@ -74,7 +74,7 @@
                             <div class="col-md-4">
                                 <div class="form-group label-floating"> 
                                     <b>Date Rollover</b>
-                                    <input class="form-control" type="date" value="date_rollover" name="date_rollover">
+                                    <input class="form-control" type="date" value="{{ $datas->date_rollover}}" name="date_rollover" >
                                 </div>
                             </div>
                         </div>
