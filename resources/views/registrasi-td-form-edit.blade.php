@@ -24,21 +24,9 @@
                                 <div class="form-group label-floating">
                                      <b>Type Of TD</b>
                                     <select name="type_of_td" class="form-control">
-                                        
-                                        <?php
-                                            for($i=1;$i<=2;$i++){ ?>
-                                                <option value="{{$i == $datas->type_of_td ? 'selected':'' }}">
-                                                <?php
-                                                    if($i == 1)
-                                                        echo 'BREAKABLE';
-                                                    else    
-                                                        echo 'UNBREAKABLE';
-                                                ?>
-                                               
-                                                </option>
-                                           <?php
-                                            }
-                                       ?>
+                                    @foreach ($tipeDeps as $tipe)
+                                        <option @if($tipe->id_deposito == $datas->type_of_td) @endif value="{{$tipe->id_deposito}}">{{$tipe->name_time_deposit}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                             </div>

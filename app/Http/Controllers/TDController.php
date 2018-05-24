@@ -14,6 +14,7 @@ use App\Mail\PostSubscribtion;
 use Mail;
 use App\transaction_td;
 use App\MasterSpecialRate;
+use App\M_Tipe_Deposito;
 
 class TDController extends Controller
 {
@@ -176,8 +177,9 @@ class TDController extends Controller
     {
         $data = TD::where('id',$id)->get();
         $banks = MasterBank::all();
+        $tipeDeps = M_Tipe_Deposito::all();
 
-        return view('registrasi-td-form-edit',compact('data','banks'));
+        return view('registrasi-td-form-edit',compact('data','banks','tipeDeps'));
     }
 
     /**
@@ -190,6 +192,8 @@ class TDController extends Controller
     public function update(Request $request, $id)
     {
         $data = TD::where('id',$id)->first();
+        
+
         $data->full_name = $request->full_name;
 
         $strAmount = filter_var($request->amount, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
@@ -199,7 +203,19 @@ class TDController extends Controller
         $data->type_of_td = $request->type_of_td;
         $data->special_rate = $request->special_rate;
         $data->normal_rate = $request->normal_rate;
-        $data->expired_date = $request->expired_date;
+
+        $dt = strtotime($request->date_rollover);
+
+        if($request->period==1)
+            $expired = date("Y-m-d", strtotime("+1 month", $dt));
+        else if($request->period==3)
+            $expired = date("Y-m-d", strtotime("+3 month", $dt));
+        else if($request->period==6)
+            $expired = date("Y-m-d", strtotime("+6 month", $dt));
+        else 
+            $expired = date("Y-m-d", strtotime("+12 month", $dt));
+
+        $data->expired_date = $expired;
         $data->date_rollover = $request->date_rollover;
         $data->period = $request->period;
         $data->notes = $request->notes;
