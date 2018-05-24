@@ -74,7 +74,7 @@
                         </div>
                         
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <b>Sources Of Funds Bank</b>
                                 <select class="selectpicker form-control" data-live-search="true" name="bank">
                                     <option value="0">--Select--</option>
@@ -83,15 +83,15 @@
                                 @endforeach
                                 </select>
                             </div>
+                            
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                        <div class="col-md-12">
                                 <div class="form-group label-floating">
                                     <b>Notes</b>
                                     <textarea class="form-control" name="notes" rows="5"></textarea>
                                 </div>
                             </div>
-                            
                         </div>
                         
                         <button type="submit" class="btn btn-info pull-right">Submit</button>
