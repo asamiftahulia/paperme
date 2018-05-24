@@ -175,9 +175,9 @@ class TDController extends Controller
     public function edit($id)
     {
         $data = TD::where('id',$id)->get();
-        
+        $banks = MasterBank::all();
 
-        return view('registrasi-td-form-edit',compact('data'));
+        return view('registrasi-td-form-edit',compact('data','banks'));
     }
 
     /**
