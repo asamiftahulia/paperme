@@ -24,9 +24,21 @@
                                 <div class="form-group label-floating">
                                      <b>Type Of TD</b>
                                     <select name="type_of_td" class="form-control">
-                                    @foreach($tipeTd as $tipe)
-                                      <option value="{{$datas->type_of_td}}">{{$datas->type_of_td}}</option>
-                                    @endforeach
+                                        
+                                        <?php
+                                            for($i=1;$i<=2;$i++){ ?>
+                                                <option value="{{$i == $datas->type_of_td ? 'selected':'' }}">
+                                                <?php
+                                                    if($i == 1)
+                                                        echo 'BREAKABLE';
+                                                    else    
+                                                        echo 'UNBREAKABLE';
+                                                ?>
+                                               
+                                                </option>
+                                           <?php
+                                            }
+                                       ?>
                                     </select>
                                 </div>
                             </div>
@@ -68,14 +80,8 @@
                         </div>
 
                         <div class="row">
-                             <div class="col-md-4">
-                                <b>Branch</b>
-                                <select name="branch" id="branch" class="selectpicker form-control" data-live-search="true">
-                                    <option value="{{$datas->id_branch}}">{{$datas->nama}}</option>
-                                </select>
-                            </div>
                             <div class="col-md-4">
-                                <b>Bank</b>
+                                <b>Sources Of Funds Bank</b>
                                 <select class="selectpicker form-control" data-live-search="true">
                                 <option value="0"></option>
                                 

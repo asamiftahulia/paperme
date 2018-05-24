@@ -122,15 +122,17 @@
     </div>
     <form>
      
-<p id="demo"></p>
-  <p id="apr"></p>
+<p id="demo" hidden></p>
+  <p id="apr" hidden></p>
     </form>
 
 <script type="text/javascript">
   function autoFill() {
+      
+   
     var specialRate = document.getElementById('sr').value;
     if(specialRate!='' ){    
-        
+       
     var period = document.getElementById('period').value;
     var pausecontent = new Array();
     <?php foreach($data as $datas){ ?>
@@ -151,13 +153,13 @@
         document.getElementById('nr').value = data.counter_rate;
         document.getElementById("apr").innerHTML = 'BRANCH MANAGER';
      }else if(specialRate >= data.area_manager && specialRate <= data.regional_head){
-        document.getElementById('nr').value = data.area_manager;
+        document.getElementById('nr').value = data.counter_rate;
         document.getElementById("apr").innerHTML = 'AREA MANAGER';
      }else if(specialRate >= data.regional_head && specialRate <= data.director){
-        document.getElementById('nr').value = data.regional_head;
+        document.getElementById('nr').value = data.counter_rate;
         document.getElementById("apr").innerHTML = 'REGIONAL HEAD';
      }else if(specialRate > data.director){
-         document.getElementById('nr').value = data.director;
+         document.getElementById('nr').value = data.counter_rate;
         document.getElementById("apr").innerHTML = 'DIRECTOR';
      }
     }

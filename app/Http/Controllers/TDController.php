@@ -175,6 +175,7 @@ class TDController extends Controller
     public function edit($id)
     {
         $data = TD::where('id',$id)->get();
+        
 
         return view('registrasi-td-form-edit',compact('data'));
     }
