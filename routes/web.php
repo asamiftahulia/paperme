@@ -55,9 +55,7 @@ Route::post('/submitdata','TestController@toastrFunction');
 //route to process the form
 Route::post('login', array('uses'=>'LoginApiController@doLogin'));
 
-//Route::post('login','LoginApiController@showLogin')->name('login');
-
-
+Route::get('logout',array('uses'=>'LoginApiController@logout'));
 Route::post('verify',function(){
     
     var_dump($_POST);
