@@ -94,14 +94,20 @@
                 </li> -->
                 <li class="@yield('aktif-m-sr')">
                     <a href="{{route('special-rate.index')}}">
-                        <i class="material-icons">person</i>
+                        <i class="material-icons">dns</i>
                         <p>Master Special Rate</p>
                     </a>
                  </li>
                 <li class="@yield('aktif-mtimedep')">
                     <a href="{{route('time-deposit.create')}}">
-                        <i class="material-icons">person</i>
+                        <i class="material-icons">assignment</i>
                         <p>Time Deposit (TD)</p>
+                    </a>
+                 </li>
+                 <li class="@yield('aktif-mtimedeplist')">
+                    <a href="{{route('td.index')}}">
+                        <i class="material-icons">view_list</i>
+                        <p>Time Deposit List</p>
                     </a>
                  </li>
               <!--<li class="@yield('aktif-timeline')">

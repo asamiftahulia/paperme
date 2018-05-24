@@ -1,6 +1,6 @@
 @extends('master-dp')
 @section('page-title','Time Deposit Special Rate')
-@section('aktif-mtimedep','active')
+@section('aktif-mtimedeplist','active')
 @section('content')
     @if(Session::has('flash_message'))
         <div class="alert alert-info">
