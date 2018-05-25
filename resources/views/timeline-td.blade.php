@@ -258,7 +258,7 @@
                       <button type="button" data-toggle="modal" data-target="#modal2BMApr"class="btn btn-success btn-sm">Approve</button>
                       <button type="button" data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm">Reject</button>
                     </div>
-                    @else if($valButton == 1)
+                    @elseif($valButton == 0)
                     <div class="desc">Already Have An Action From Branch Manager<br>
                       <button type="button" disabled = "true" data-toggle="modal" data-target="#modal2BMDet"class="btn btn-info btn-sm">Detail</button>
                       <button type="button" disabled = "true" data-toggle="modal" data-target="#modal2BMApr"class="btn btn-success btn-sm">Approve</button>
@@ -357,7 +357,7 @@
                       <button type="button" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm">Approve</button>
                       <button type="button" data-toggle="modal" data-target="#modal2AMRej"class="btn btn-danger btn-sm">Reject</button>
                     </div>
-                    @else if($valButton == 0)
+                    @elseif($valButton == 0)
                     <div class="desc">Already Have An Action From Area Manager<br>
                       <button type="button" disabled = "true" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm">Detail</button>
                       <button type="button" disabled = "true" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm">Approve</button>
@@ -457,7 +457,7 @@
                       <button type="button" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm">Approve</button>
                       <button type="button" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm">Reject</button>
                     </div>
-                    @else if($valButton == 0)
+                    @elseif($valButton == 0)
                     <div class="desc">Already Have An Action From Regional Head<br>
                       <button type="button" disabled="true" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm">Detail</button>
                       <button type="button" disabled="true" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm">Approve</button>
