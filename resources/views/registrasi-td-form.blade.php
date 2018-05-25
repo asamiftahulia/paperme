@@ -69,7 +69,6 @@
                                     <select name="type_of_td" class="form-control">
                                       <option value="2">Unbreakable</option>
                                       <option value="1">Breakable</op  tion>
-                                     
                                     </select>
                                 </div>
                             </div>

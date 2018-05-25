@@ -38,10 +38,15 @@ class LoginApiController extends Controller
        // dd($data->username,$data->token);
        // $token = $data->token;
        
-        // session(['token' => $data->token, 'username'=> $data->username, 'nik' => $data->employee->nik, 'nama'=>$data->employee->nama]);
-        // dd(session('username'),session('token'), session('nik'), session('nama'));
-        
-        dd($data);
+        session(['token' => $data->token,
+         'username'=> $data->username,
+         'nik' => $data->employee->nik,
+         'nama'=> $data->employee->nama,
+         'branch'=> $data->userJobs[0]->userJobPK->idBranch,
+         'job'=> $data->userJobs[0]->userJobPK->idJobs]);
+        // dd(session('username'),session('token'), session('nik'), session('nama'), session('branch'));
+        dd(session('job'));
+       // dd($data);
        return View::make('yeay',compact('token','username'));
     }
 
