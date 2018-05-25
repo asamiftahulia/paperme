@@ -76,7 +76,7 @@
                         
                         <div class="row">
                             <div class="col-md-6">
-                                <b>Sources Of Funds Bank</b>
+                                <b>Sources Of Funds</b>
                                 <select class="selectpicker form-control" data-live-search="true" name="bank">
                                     <option value="0">--Select--</option>
                                         @foreach($banks as $b)

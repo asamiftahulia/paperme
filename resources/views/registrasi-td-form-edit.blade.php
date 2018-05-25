@@ -70,7 +70,7 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                                <b>Sources Of Funds Bank</b>
+                                <b>Sources Of Funds</b>
                                 <select class="selectpicker form-control" data-live-search="true">
                                 @foreach ($banks as $bank)
                                     <option @if($bank->KODE_LJK == $datas->bank) selected @endif value="{{$bank->KODE_LJK}}">{{$bank->NAMA_BANK}}</option>
