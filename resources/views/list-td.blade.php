@@ -17,7 +17,7 @@
                     
                     <div class="card">
                                 <div class="card-header" data-background-color="blue">
-                                    <h4 class="title">Time Deposit Special Rate</h4>
+                                    <h4 class="title">Time Deposit{{session('token')}} Special Rate</h4>
                                     <p class="category">Data Pengajuan Special Rate</p>
                                 </div>
                                 <div class="card-content table-responsive">
@@ -62,7 +62,6 @@
                                             @endif
                                         </td>
                                         <td>
-                                        
                                             <a href="{{action('TDController@downloadSummary',$datas->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
                                             <a href="{{action('TDController@timeline',$datas->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
                                             <a href="{{route('td.edit',$datas->id)}}" class="material-icons" rel="tooltip" title="Edit Data">mode_edit</a>  

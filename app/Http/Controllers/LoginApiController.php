@@ -44,10 +44,10 @@ class LoginApiController extends Controller
          'nama'=> $data->employee->nama,
          'branch'=> $data->userJobs[0]->userJobPK->idBranch,
          'job'=> $data->userJobs[0]->userJobPK->idJobs]);
-        // dd(session('username'),session('token'), session('nik'), session('nama'), session('branch'));
-        dd(session('job'));
+       // dd(session('username'),session('token'), session('nik'), session('nama'), session('branch'), session('job'));
+       // dd(session('job'));
        // dd($data);
-       return View::make('yeay',compact('token','username'));
+       return View('yeay',compact('token','username'));
     }
 
     public function logout(){
