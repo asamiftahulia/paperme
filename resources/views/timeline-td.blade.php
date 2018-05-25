@@ -535,7 +535,7 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
                              <button type="button" class="btn btn-info">Cancel</button>
-                             <button type="submit" class="btn btn-info">Approve</button>
+                             <button type="submit" class="btn btn-info">Reject</button>
                           </form>
                           </div>
                       </div>
@@ -575,6 +575,7 @@
                           </div>
                           <div class="modal-body">
                             <form action="{{url('td/revisi', $datas->id) }}" method="post">
+                            {{csrf_field()}}
                             <table class="table">
                               <tr>
                                 <th>Fullname</th>
@@ -608,7 +609,7 @@
                           </div>
                           <div class="modal-body">
                            <form action="{{route('trx.store')}}" method="post">
-                            {{csrf_field()}}
+                           {{csrf_field()}}
                             <p>Apakah Benar Anda Akan <font color="green"><b>Menyetujui</b></font> Pengajuan Special Rate <br>
                               Atas Nama <b>{{$datas->full_name}}</b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
@@ -629,13 +630,13 @@
                           </div>
                           <div class="modal-body">
                            <form action="{{url('trx/reject',$datas->id)}}" method="post">
-                            {{csrf_field()}}
+                           {{csrf_field()}}
                             <p>Apakah Benar Anda Akan <font color='red'><b>Menolak</b></font> Pengajuan Special Rate <br>
                               Atas Nama <b> {{$datas->full_name}}</b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
                              <button type="button" class="btn btn-info">Cancel</button>
-                             <button type="submit" class="btn btn-success">Approve</button>
+                             <button type="submit" class="btn btn-success">Reject</button>
                           </form>
                           </div>
                       </div>
@@ -673,6 +674,7 @@
                           </div>
                           <div class="modal-body">
                             <form action="{{url('td/revisi', $datas->id) }}" method="post">
+                            {{csrf_field()}}
                             <table class="table">
                               <tr>
                                 <th>Fullname</th>
@@ -706,7 +708,7 @@
                           </div>
                           <div class="modal-body">
                            <form action="{{route('trx.store')}}" method="post">
-                            {{csrf_field()}}
+                           {{csrf_field()}}
                             <p>Apakah Benar Anda Akan <font color="green"><b>Menyetujui</b></font> Pengajuan Special Rate <br>
                               Atas Nama <b> {{$datas->full_name}}</b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
@@ -727,13 +729,13 @@
                           </div>
                           <div class="modal-body">
                            <form action="{{url('trx/reject',$datas->id)}}" method="post">
-                            {{csrf_field()}}
+                           {{csrf_field()}}
                             <p>Apakah Benar Anda Akan <font color='red'><b>Menolak</b></font> Pengajuan Special Rate <br>
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
                              <button type="button" class="btn btn-info">Cancel</button>
-                             <button type="submit" class="btn btn-success">Approve</button>
+                             <button type="submit" class="btn btn-success">Reject</button>
                           </form>
                           </div>
                       </div>
@@ -770,6 +772,7 @@
                           </div>
                           <div class="modal-body">
                             <form action="{{url('td/revisi', $datas->id) }}" method="post">
+                            {{csrf_field()}}
                             <table class="table">
                               <tr>
                                 <th>Fullname</th>
@@ -803,7 +806,7 @@
                           </div>
                           <div class="modal-body">
                            <form action="{{route('trx.store')}}" method="post">
-                            {{csrf_field()}}
+                           {{csrf_field()}}
                             <p>Apakah Benar Anda Akan <font color="green"><b>Menyetujui</b></font> Pengajuan Special Rate <br>
                               Atas Nama <b>{{$datas->full_name}} </b>? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
@@ -824,13 +827,13 @@
                           </div>
                           <div class="modal-body">
                            <form action="{{url('trx/reject',$datas->id)}}" method="post">
-                            {{csrf_field()}}
+                           {{csrf_field()}}
                             <p>Apakah Benar Anda Akan <font color='red'><b>Menolak</b></font> Pengajuan Special Rate <br>
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                              <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                              <input type="hidden" enable="false" name="role" value="Regional Head">
                              <button type="button" class="btn btn-info">Cancel</button>
-                             <button type="submit" class="btn btn-success">Approve</button>
+                             <button type="submit" class="btn btn-success">Reject</button>
                           </form>
                           </div>
                       </div>
@@ -901,7 +904,7 @@
                           </div>
                           <div class="modal-body">
                            <form action="{{route('trx.store')}}" method="post">
-                            {{csrf_field()}}
+                           {{csrf_field()}}
                             <p>Apakah Benar Anda Akan <font color="green"><b>Menyetujui</b></font> Pengajuan Special Rate <br>
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
@@ -928,7 +931,7 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Director">
                              <button type="button" class="btn btn-info">Cancel</button>
-                             <button type="submit" class="btn btn-success">Approve</button>
+                             <button type="submit" class="btn btn-success">Reject</button>
                           </form>
                           </div>
                       </div>

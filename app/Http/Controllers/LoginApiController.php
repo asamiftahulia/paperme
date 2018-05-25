@@ -36,21 +36,25 @@ class LoginApiController extends Controller
         $data = json_decode($data);
         // dd($data->token);
        // dd($data->username,$data->token);
-        $token = $data->token;
+       // $token = $data->token;
+       
+        session(['token' => $data->token]);
+        dd(session('token'));
+
        return View::make('yeay',compact('token'));
     }
 
     public function logout(){
         $client = new Client([
-            'headers'=>['content-type'=>'application/json','X-Auth-Token'=>'fa6dce03-de34-4534-9c51-06eafa50f23e'],
+            'headers'=>['content-type'=>'application/json','X-Auth-Token'=>session('token')],
          ]);
       
          
-        $response = $client->DELETE('http://192.168.1.57:8015/login', ['json'=>['username'=>'harsya.mifta@idn.ccb.com','token'=>token]]);
+        $response = $client->DELETE('http://192.168.1.57:8015/login', ['json'=>['username'=>'harsya.mifta@idn.ccb.com','password'=>'asaasaasa']]);
  
          $data = $response->getBody();
- 
          $data = json_decode($data);
+         dd($data);
     }
 
 }
