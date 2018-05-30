@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class transaction_td extends Model
 {
     //
-    protected $table = 'trx_tds';
+    // protected $table = 'trx_tds';
+    protected $table = 'transaksi_td';
    
 }

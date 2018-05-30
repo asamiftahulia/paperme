@@ -20,16 +20,23 @@
                       <h3 align="center">
                             Timeline Time Deposit Special Rate
                         </h3>
-                        <h5 align="center">
+                        <h5>
                         @foreach($data as $datas)
                           <table align="center">
                             <tr>
-                              <td>Name  : </td>
-                              <td>{{$datas->full_name}} </td>
+                              <td>Name  </td>
+                              <td> : </td>
+                              <td> {{$datas->full_name}} </td>
                             </tr>
                             <tr>
-                              <td>Special Rate  : </td>
+                              <td>Special Rate</td>
+                              <td> : </td>
                               <td> {{$datas->special_rate}}</td>
+                            </tr>
+                            <tr>
+                              <td>Period</td>
+                              <td> : </td>
+                              <td> {{$datas->period}} Bulan</td>
                             </tr>
                             @php
                                $c = 0;
@@ -50,17 +57,17 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Branch Manager</span>
-                      <span class="time-wrapper"><span class="time">{{$datas->date_rollover}}</span></span>
+                      <span class="time-wrapper"><span class="time" id="time">-</span></span>
                     </div>
                    @if($valButton == 1)
                     <div class="desc">Waiting An Action From Branch Manager<br>
-                      <button type="button" data-toggle="modal" data-target="#modalDetailBM" class="btn btn-info btn-sm">Detail</button>
-                      <button type="button" data-toggle="modal" data-target="#modalAprBM"class="btn btn-success btn-sm">Approve</button>
-                      <button type="button" data-toggle="modal" data-target="#modalRejBM"class="btn btn-danger btn-sm">Reject</button>
+                      <button type="button" id="btn-revisi-bm"data-toggle="modal" data-target="#modalDetailBM" class="btn btn-info btn-sm">Detail</button>
+                      <input type="button" id="btn-approve-bm" value="Approve" data-toggle="modal" data-target="#modalAprBM"class="btn btn-success btn-sm" >
+                      <button type="button" id="btn-reject-bm" data-toggle="modal" data-target="#modalRejBM"class="btn btn-danger btn-sm">Reject</button>
                     </div>
                   </div>
                    @elseif($valButton == 0)
-                    <div class="desc">Already Have An Action From Branch Manager<br>
+                    <div class="desc">Change Special Rate To<br>
                       <button type="button"  disabled="true" data-toggle="modal" data-target="#modalDetailBM" class="btn btn-info btn-sm">Detail</button>
                       <button type="button" disabled="true" data-toggle="modal" data-target="#modalAprBM"class="btn btn-success btn-sm">Approve</button>
                       <button type="button" disabled="true" data-toggle="modal" data-target="#modalRejBM"class="btn btn-danger btn-sm">Reject</button>
@@ -76,7 +83,8 @@
                               <h4 class="modal-title" id="defaultModalLabel">Detail Deposan</h4>
                           </div>
                           <div class="modal-body">
-                            <form action="{{url('td/revisi',$datas->id)}}" method="post">
+                            <!-- <form action="{{url('td/revisi',$datas->id)}}" method="post"> -->
+                            <form action="{{url('trx/revisi',$datas->id)}}" method="post">
                             {{ csrf_field() }}
                             <table class="table">
                               <tr>
@@ -91,6 +99,7 @@
                                 <td>
                                   <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
                                 </td>
+                                <input type="hidden" enable="false" name="role" value="Branch Manager">
                                 <td>{{$datas->amount}}</td>
                                 <td>{{$datas->expired_date}}</td>
                                 <td>{{$datas->created_by}}</td>
@@ -116,8 +125,9 @@
                                <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
+                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
                              <button type="button" class="btn btn-info">Cancel</button>
-                             <button type="submit" class="btn btn-success">Approve</button>
+                             <button type="submit" onclick="autoDisable();" class="btn btn-success">Approve</button>
                           </form>
                           </div>
                       </div>
@@ -150,12 +160,12 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Area Manager</span>
-                      <span class="time-wrapper"><span class="time">{{$datas->date_rollover}}</span></span>
+                      <span class="time-wrapper"><span class="time">-</span></span>
                     </div>
                     @if($valButton == 1)
                     <div class="desc">Waiting An Action From Area Manager<br>
                       <button type="button" data-toggle="modal" data-target="#modalDetailAM"class="btn btn-info btn-sm">Detail</button>
-                      <button type="button" data-toggle="modal" data-target="#modalAprAM"class="btn btn-success btn-sm">Approve</button>
+                      <button type="button" id="btn-approve-am" data-toggle="modal" data-target="#modalAprAM"class="btn btn-success btn-sm">Approve</button>
                       <button type="button" data-toggle="modal" data-target="#modalRejAM"class="btn btn-danger btn-sm">Reject</button>
                     </div>
                     @elseif($valButton == 0)
@@ -250,12 +260,12 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Branch Manager</span>
-                      <span class="time-wrapper"><span class="time">{{$datas->date_rollover}}</span></span>
+                      <span class="time-wrapper"><span class="time">-</span></span>
                     </div>
                     @if($valButton == 1)
                     <div class="desc">Waiting An Action From Branch Manager<br>
                       <button type="button" data-toggle="modal" data-target="#modal2BMDet"class="btn btn-info btn-sm">Detail</button>
-                      <button type="button" data-toggle="modal" data-target="#modal2BMApr"class="btn btn-success btn-sm">Approve</button>
+                      <button type="button" data-toggle="modal" id="btn-approve-bm" data-target="#modal2BMApr"class="btn btn-success btn-sm">Approve</button>
                       <button type="button" data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm">Reject</button>
                     </div>
                     @elseif($valButton == 0)
@@ -349,7 +359,7 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Area Manager</span>
-                      <span class="time-wrapper"><span class="time">{{$datas->date_rollover}}</span></span>
+                      <span class="time-wrapper"><span class="time">-</span></span>
                     </div>
                     @if($valButton == 1)
                     <div class="desc">Waiting An Action From Area Manager<br>
@@ -449,7 +459,7 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Regional Head</span>
-                      <span class="time-wrapper"><span class="time">{{$datas->date_rollover}}</span></span>
+                      <span class="time-wrapper"><span class="time">-</span></span>
                     </div>
                     @if($valButton == 1)
                     <div class="desc">Waiting An Action From Regional Head<br>
@@ -550,12 +560,12 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Branch Manager</span>
-                      <span class="time-wrapper"><span class="time">{{$datas->date_rollover}}</span></span>
+                      <span class="time-wrapper"><span class="time">-</span></span>
                     </div>
                     @if($valButton == 1)
                     <div class="desc">Waiting An Action From Area<br>
                       <button type="button" data-toggle="modal" data-target="#modal2BMDet"class="btn btn-info btn-sm">Detail</button>
-                      <button type="button" data-toggle="modal" data-target="#modal2BMApr"class="btn btn-success btn-sm">Approve</button>
+                      <button type="button" data-toggle="modal" id="btn-approve-bm" data-target="#modal2BMApr"class="btn btn-success btn-sm">Approve</button>
                       <button type="button" data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm">Reject</button>
                     </div>
                     @else if($valButton == 0)
@@ -648,7 +658,7 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Area Manager</span>
-                      <span class="time-wrapper"><span class="time">{{$datas->date_rollover}}</span></span>
+                      <span class="time-wrapper"><span class="time">-</span></span>
                     </div>
                     @if($valButton == 1)
                     <div class="desc">Waiting An Action From Area Manager<br>
@@ -747,7 +757,7 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Regional Head</span>
-                      <span class="time-wrapper"><span class="time">{{$datas->date_rollover}}</span></span>
+                      <span class="time-wrapper"><span class="time">-</span></span>
                     </div>
                     @if($valButton == 1)
                     <div class="desc">Waiting An Action From Regional Head<br>
@@ -845,7 +855,7 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Director</span>
-                      <span class="time-wrapper"><span class="time">{{$datas->date_rollover}}</span></span>
+                      <span class="time-wrapper"><span class="time">-</span></span>
                     </div>
                     @if($valButton == 1)
                     <div class="desc">Waiting An Action From Regional Head<br>
@@ -941,11 +951,44 @@
               @endif
              @endforeach
             </div>
-          <a href="{{url('td/updateStatus',$datas->id)}}"><button type="button" class="btn btn-info">Finish</button></a>
+         
         </div>
       </div>
     </div>
   </div>
+
+<script type="text/javascript">
+var me = '<?php echo $trx; ?>';
+var approver = '<?php echo $valButton; ?>'
+
+console.log('test: ', me);
+console.log('approver: ', approver);
+
+  function autoDisable() {    
+    document.getElementById("btn-approve-bm").disabled = true;
+    document.getElementById("btn-revisi-bm").disabled = true;
+    document.getElementById("btn-reject-bm").disabled = true;
+  }
+
+  function approverDisabled() {
+    document.getElementById("btn-approve-am").disabled = true;
+  }
+
+  $("input").click(function(e){
+    var idClicked = e.target.id;
+    console.log('idclicked:', idClicked);
+});
+  
+  if(me == 1) {
+    this.autoDisable();
+  }else if(me == 2) {
+    this.autoDisable();
+    this.approverDisabled();
+  }
+
+  
+</script>
 @endsection
+
 
 

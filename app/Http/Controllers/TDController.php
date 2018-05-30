@@ -104,8 +104,7 @@ class TDController extends Controller
         $data->updated_by = 'asami@gmail.com';
         $data->save();
        
-       //return redirect('time-deposit/summary')->with('id',$data->id);
-        Mail::to('harsyami@gmail.com')->send(new PostSubscribtion($data));
+        //Mail::to('harsyami@gmail.com')->send(new PostSubscribtion($data));
         return redirect('td/summary')->with('id',$data->id);
         
        
@@ -134,9 +133,9 @@ class TDController extends Controller
                     // echo'AM';
                     $dataApprover = array('approver'=>'Area Manager');
                 }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.25'){
-                    $dataApprover = array('approver'=>'Area Manager','RH');
+                    $dataApprover = array('approver'=>'Area Manager','Regional Head');
                 }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] > '6.25'){
-                    $dataApprover = array('approver'=>'Area Manager','RH','Director');
+                    $dataApprover = array('approver'=>'Area Manager','Regional Head','Director');
                 }else{
                     echo 'Approver Not Found';
                 }
@@ -144,9 +143,9 @@ class TDController extends Controller
                 if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '5.75'){
                     $dataApprover = array('approver'=>'Area Manager');
                 }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '6.00'){
-                    $dataApprover = array('approver'=>'Area Manager','RH');
+                    $dataApprover = array('approver'=>'Area Manager','Regional Head');
                 }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
-                    $dataApprover = array('approver'=>'Area Manager','RH','Director');
+                    $dataApprover = array('approver'=>'Area Manager','Regional Head','Director');
                 }else{
                     echo 'Approver Not Found';
                 }
@@ -154,9 +153,9 @@ class TDController extends Controller
                 if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '5.75'){
                     $dataApprover = array('approver'=>'Area Manager');
                 }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '60.00'){
-                    $dataApprover = array('approver'=>'Area Manager','RH');
+                    $dataApprover = array('approver'=>'Area Manager','Regional Head');
                 }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
-                    $dataApprover = array('approver'=>'Area Manager','RH','Director');
+                    $dataApprover = array('approver'=>'Area Manager','Regional Head','Director');
                 }else{
                     echo 'Approver Not Found';
                 }
@@ -284,18 +283,19 @@ class TDController extends Controller
     }
 
     public function timeline($id){
-        $data = TD::where('id', $id)->get();
-
+          $data = TD::where('id', $id)->get();
+       // $data = transaction_td::where('id_td', $id)->get();
+      
           foreach($data as $datas){
             if($datas['period'] == 1 || $datas['period'] == 3){
                 if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
                     $dataApprover = array('approver'=>'AM');
                     $apr = 2;
                 }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.25'){
-                    $dataApprover = array('approver'=>'AM','RH');
+                    $dataApprover = array('approver'=>'AM','Regional Head');
                     $apr = 3;
                 }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] > '6.25'){
-                    $dataApprover = array('approver'=>'AM','RH','Director');
+                    $dataApprover = array('approver'=>'AM','Regional Head','Director');
                     $apr = 4;
                 }else{
                     echo 'Approver Not Found';
@@ -305,10 +305,10 @@ class TDController extends Controller
                     $dataApprover = array('approver'=>'AM');
                     $apr = 2;
                 }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '6.00'){
-                    $dataApprover = array('approver'=>'AM','RH');
+                    $dataApprover = array('approver'=>'AM','Regional Head');
                     $apr = 3;
                 }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
-                    $dataApprover = array('approver'=>'AM','RH','Director');
+                    $dataApprover = array('approver'=>'AM','Regional Head','Director');
                     $apr = 4;
                 }else{
                     echo 'Approver Not Found';
@@ -318,10 +318,10 @@ class TDController extends Controller
                     $dataApprover = array('approver'=>'AM');
                     $apr = 2;
                 }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '60.00'){
-                    $dataApprover = array('approver'=>'AM','RH');
+                    $dataApprover = array('approver'=>'AM','Regional Head');
                     $apr = 3;
                 }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
-                    $dataApprover = array('approver'=>'AM','RH','Director');
+                    $dataApprover = array('approver'=>'AM','Regional Head','Director');
                     $apr = 4;
                 }else{
                     echo 'Approver Not Found';
@@ -332,9 +332,9 @@ class TDController extends Controller
         $trx = transaction_td::where('id_td',$id)->count();
         
         if($trx == $apr)
-            $valButton = 0;
+            $valButton = 1;
         else 
             $valButton = 1;
-        return view('timeline-td',compact('data',$data))->with('apr',$dataApprover)->with('valButton',$valButton)->with('trx',$trx);
+         return view('timeline-td',compact('data',$data))->with('apr',$dataApprover)->with('valButton',$valButton)->with('trx',$trx);
     }
 }

@@ -48,6 +48,7 @@ class TransactionTimeDepositController extends Controller
         $count = 0;
         $data->id_td = $request->id_td;
         $data->approved = 1;
+        $data->special_rate=$request->special_rate;
         $data->role=$request->role;
         $data->created_by = 'asami@gmail.com';
         $data->approved_by = 'BranchManager@ccb.com';
@@ -71,8 +72,40 @@ class TransactionTimeDepositController extends Controller
             );
         }
 
-       Mail::to('AreaManager@gmail.com')->send(new PostSubscribtion($data));
-       return redirect()->back()->with($notification);
+    //    Mail::to('AreaManager@gmail.com')->send(new PostSubscribtion($data));
+        return redirect('timeline/'.$data->id_td)->with($notification);
+        //return redirect()->back()->with($notification);
+    }
+
+    public function revisi(Request $request, $id)
+    {
+       // $data = TD::where('id',$id)->first();
+        $data = new transaction_td();
+        // $data = transaction_td::find($id);
+        $data->id_td = $id;
+        $data->approved = 0;
+        $data->special_rate = $request->special_rate;
+        $data->role=$request->role;
+        $data->created_by = 'asami@gmail.com';
+        $data->approved_by = 'BranchManager@ccb.com';
+        $data->approved_at = '2018-02-02';
+        $result = $data->save();
+
+        if($result==1){
+            echo "success";
+            $notification = array(
+                'message' => 'The Data Has Been Revised',
+                'alert-type' => 'success'
+            );
+        }else if($result==0){
+            echo "error";
+            $notification = array(
+                'message' => 'Error ! Can not Save Data',
+                'alert-type' => 'error'
+            );
+        }
+        $sr = $data->special_rate;
+        return redirect('timeline/'.$data->id_td)->with($notification);
     }
 
     public function reject(Request $request){

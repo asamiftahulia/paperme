@@ -20,14 +20,14 @@
                         {{csrf_field()}}
                         <div class="row">
                             <div class="col-md-12">
-                                <b>Fullname</b>
+                                <b>Full Name</b>
                                 <input type="text" class="form-control" placeholder="e.g : John Doe" name="full_name">
                             </div>
                          </div>
                         <div class="row">
                         <div class="col-md-4">
                                 <div class="form-group label-floating">
-                                    <b>Period</b>
+                                    <b>Period (/ bulan)</b>
                                     <select name="period" id="period" class="form-control" onChange="autoFill(); return false;">
                                     <option>-Select-</option>
                                       <option value="1">1 bln</option>
@@ -40,13 +40,13 @@
                             </div>
                              <div class="col-md-4">
                                 <div class="form-group label-floating">
-                                      <b>Special Rate</b>
+                                      <b>Special Rate (%)</b>
                                     <input type="number" step="0.01" class="form-control" id="special_rate" placeholder="e.g: 5.00" name="special_rate">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group label-floating">
-                                      <b>Normal Rate</b>
+                                      <b>Normal Rate (%)</b>
                                     <input type="number" step="0.01" class="form-control" id="normal_rate" placeholder="e.g : 5.00" name="normal_rate">
                                 </div>
                             </div> 
@@ -83,6 +83,7 @@
                                     <option value="{{$b->KODE_LJK}}" data-tokens="{{$b->NAMA_BANK}}">{{$b->NAMA_BANK}}</option>
                                 @endforeach
                                 </select>
+                                <p>Note: Default Bank CCBI</p>
                             </div>
                             
                         </div>

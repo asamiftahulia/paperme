@@ -21,9 +21,11 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Paperless System </br></br></br></br>
-                
-                
+                    Bussiness Internal Memorandum</br></br>
+                </div>
+                <div class="title m-b-md">
+                    Approval</br></br>
+                </div>
                      <button type="button" class="btn btn-info waves-effect m-r-20" data-toggle="modal" data-target="#defaultModal">Time Deposit Special Rate</button>
                 
                 

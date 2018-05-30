@@ -22,8 +22,7 @@
                                     <p class="card-content" align="center">
                                         Kepada :Regional</br>
                                         Dari   : {{$datas['full_name']}} </br>
-                                        Tanggal : 019/CCBI/TIP1/12/18
-                                        <!-- Tanggal : {{$datas['expired_date']}} </br> -->
+                                        <!-- Tanggal : 019/CCBI/TIP1/12/18 -->
                                     </p>
                                      @endforeach
                                 <div class="card-content table-responsive">
@@ -31,7 +30,7 @@
                                         <thead>
                                             <td>ID</td>
                                             <th>Nama Deposan</th>
-                                            <th>Deposan Baru</th>
+                                            <!-- <th>Deposan Baru</th> -->
                                             <th>Nominal Deposito</th>
                                             <th>Tgl Penempatan</th>
                                             <th>Tgl Jatuh Tempo</th>
@@ -48,13 +47,13 @@
                                                 @foreach($data as $datas)
                                                 <td>{{$datas['id']}} </td>
                                                 <td>{{$datas['full_name']}} </td>
-                                                <td>
+                                                <!-- <td>
                                                     @if($datas['status'] == 1)
                                                         {{'EXISTING'}}
                                                     @else
                                                         {{'NEW'}}
                                                     @endif 
-                                                </td>
+                                                </td> -->
                                                 <td>{{$datas['amount']}} </td>
                                                  <td>{{$datas['date_rollover']}} </td>
                                                 <td>{{$datas['expired_date']}} </td>
@@ -96,6 +95,7 @@
                                                 <td colspan="12">
                                                     @foreach($apr as $da)
                                                         {{$da}}
+                                                        </br>
                                                     @endforeach
                                                 </td>
                                             </tr>
@@ -105,9 +105,9 @@
                                     </table>
                                 </div>
                                 </div>
-                                    <a href="{{URL::to('./td')}}" class="btn btn-info btn-round">back</a>
-                                     <a href="{{route('td.edit',$datas->id)}}" class="btn btn-info btn-round">Edit</a>
-                                     <a href="{{URL::to('td/create')}}" class="btn btn-info btn-round">Add Customer</a>
+                                    <!-- <a href="{{URL::to('./td')}}" class="btn btn-info btn-round">back</a> -->
+                                     <a href="{{route('td.edit',$datas->id)}}" class="btn btn-info btn-round">BACK</a>
+                                     <!-- <a href="{{URL::to('td/create')}}" class="btn btn-info btn-round">Add Customer</a> -->
                                     <a href="{{url('timeline',$datas->id)}}" class="btn btn-info btn-round">Submit</a>
 
                                      
