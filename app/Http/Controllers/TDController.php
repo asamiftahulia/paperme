@@ -15,6 +15,7 @@ use Mail;
 use App\transaction_td;
 use App\MasterSpecialRate;
 use App\M_Tipe_Deposito;
+use DB;
 
 class TDController extends Controller
 {
@@ -282,10 +283,17 @@ class TDController extends Controller
         return $pdf->download('Summary_Time_Deposit_'.$data[0]->full_name.'.pdf');
     }
 
+    
+    public function cekApproved($id){
+        $approverBM = DB::table('transaksi_td')->where('role', 'Branch Manager')->where('id_td',$id)->get();
+      //  dd($approverBM);
+    }
+
     public function timeline($id){
           $data = TD::where('id', $id)->get();
        // $data = transaction_td::where('id_td', $id)->get();
-      
+         $approverBM = self::cekApproved($id);
+        
           foreach($data as $datas){
             if($datas['period'] == 1 || $datas['period'] == 3){
                 if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
@@ -330,11 +338,12 @@ class TDController extends Controller
         }
 
         $trx = transaction_td::where('id_td',$id)->count();
-        
+       
+       // dd($approverBM);
         if($trx == $apr)
             $valButton = 1;
         else 
             $valButton = 1;
-         return view('timeline-td',compact('data',$data))->with('apr',$dataApprover)->with('valButton',$valButton)->with('trx',$trx);
+        return view('timeline-td',compact('data',$data))->with('apr',$dataApprover)->with('valButton',$valButton)->with('trx',$trx)->with('approverBM',$approverBM);
     }
 }

@@ -60,17 +60,10 @@
                       <span class="time-wrapper"><span class="time" id="time">-</span></span>
                     </div>
                    @if($valButton == 1)
-                    <div class="desc">Waiting An Action From Branch Manager<br>
-                      <button type="button" id="btn-revisi-bm"data-toggle="modal" data-target="#modalDetailBM" class="btn btn-info btn-sm">Detail</button>
-                      <input type="button" id="btn-approve-bm" value="Approve" data-toggle="modal" data-target="#modalAprBM"class="btn btn-success btn-sm" >
-                      <button type="button" id="btn-reject-bm" data-toggle="modal" data-target="#modalRejBM"class="btn btn-danger btn-sm">Reject</button>
-                    </div>
-                  </div>
-                   @elseif($valButton == 0)
-                    <div class="desc">Change Special Rate To<br>
-                      <button type="button"  disabled="true" data-toggle="modal" data-target="#modalDetailBM" class="btn btn-info btn-sm">Detail</button>
-                      <button type="button" disabled="true" data-toggle="modal" data-target="#modalAprBM"class="btn btn-success btn-sm">Approve</button>
-                      <button type="button" disabled="true" data-toggle="modal" data-target="#modalRejBM"class="btn btn-danger btn-sm">Reject</button>
+                    <div class="desc"><p id="actionBM1">Waiting An Action From Branch Manager</p><br>
+                      <input type="button" id="btn-revisi-bm"data-toggle="modal" data-target="#modalDetailBM" class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" id="btn-approve-bm" value="Approve" data-toggle="modal" data-target="#modalAprBM"class="btn btn-success btn-sm"  >
+                      <input type="button" id="btn-reject-bm" data-toggle="modal" data-target="#modalRejBM"class="btn btn-danger btn-sm" value="Reject">
                     </div>
                   </div>
                    @endif
@@ -160,21 +153,15 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Area Manager</span>
-                      <span class="time-wrapper"><span class="time">-</span></span>
+                      <span class="time-wrapper"><span class="time" id="approved-date-by-am">-</span></span>
                     </div>
-                    @if($valButton == 1)
-                    <div class="desc">Waiting An Action From Area Manager<br>
-                      <button type="button" data-toggle="modal" data-target="#modalDetailAM"class="btn btn-info btn-sm">Detail</button>
+                   
+                    <div class="desc"><p id="act">Waiting An Action From Branch Manager</p><br>
+                      <button type="button" id="btn-revisi-am"data-toggle="modal" data-target="#modalDetailAM"class="btn btn-info btn-sm">Detail</button>
                       <button type="button" id="btn-approve-am" data-toggle="modal" data-target="#modalAprAM"class="btn btn-success btn-sm">Approve</button>
-                      <button type="button" data-toggle="modal" data-target="#modalRejAM"class="btn btn-danger btn-sm">Reject</button>
+                      <button type="button" id="btn-reject-am" data-toggle="modal" data-target="#modalRejAM"class="btn btn-danger btn-sm">Reject</button>
                     </div>
-                    @elseif($valButton == 0)
-                    <div class="desc">Already Have An Action From Area Manager<br>
-                      <button type="button" disabled="true" data-toggle="modal" data-target="#modalDetailAM"class="btn btn-info btn-sm">Detail</button>
-                      <button type="button" disabled="true" data-toggle="modal" data-target="#modalAprAM"class="btn btn-success btn-sm">Approve</button>
-                      <button type="button" disabled="true" data-toggle="modal" data-target="#modalRejAM"class="btn btn-danger btn-sm">Reject</button>
-                    </div>
-                    @endif
+                    
                   </div>
                 </li>
               </ul>
@@ -225,6 +212,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
+                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
                              <button type="button" class="btn btn-info">Cancel</button>
                              <button type="submit" class="btn btn-success">Approve</button>
                           </form>
@@ -960,18 +948,25 @@
 <script type="text/javascript">
 var me = '<?php echo $trx; ?>';
 var approver = '<?php echo $valButton; ?>'
+var bm = '<?php echo $approverBM; ?>'
 
 console.log('test: ', me);
-console.log('approver: ', approver);
+console.log('approverBM: ', bm);
 
   function autoDisable() {    
     document.getElementById("btn-approve-bm").disabled = true;
     document.getElementById("btn-revisi-bm").disabled = true;
     document.getElementById("btn-reject-bm").disabled = true;
+    document.getElementById("time").innerHTML = '2018-02-02';
+    document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been Approved by Branch Manager";
   }
 
   function approverDisabled() {
     document.getElementById("btn-approve-am").disabled = true;
+    document.getElementById("btn-revisi-am").disabled = true;
+    document.getElementById("btn-reject-am").disabled = true;
+    document.getElementById("approved-date-by-am").innerHTML = '2018-02-02';
+    document.getElementById("act").innerHTML = "This Special Rate Has Been Approved by Area Manager";
   }
 
   $("input").click(function(e){

@@ -8,6 +8,7 @@ use App\transaction_td;
 use App\TD;
 use App\Mail\PostSubscribtion;
 use Mail;
+use DB;
 use Illuminate\Support\Facades\Input;
 
 
@@ -34,6 +35,7 @@ class TransactionTimeDepositController extends Controller
         return view('trx-time-deposit-form');
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -43,7 +45,6 @@ class TransactionTimeDepositController extends Controller
     //approve
     public function store(Request $request)
     {
-        
         $data = new transaction_td();
         $count = 0;
         $data->id_td = $request->id_td;
@@ -73,7 +74,7 @@ class TransactionTimeDepositController extends Controller
         }
 
     //    Mail::to('AreaManager@gmail.com')->send(new PostSubscribtion($data));
-        return redirect('timeline/'.$data->id_td)->with($notification);
+         return redirect('timeline/'.$data->id_td)->with($notification);
         //return redirect()->back()->with($notification);
     }
 
@@ -133,6 +134,8 @@ class TransactionTimeDepositController extends Controller
         }
        return redirect()->back()->with($notification);
     }
+
+   
 
     public function special_rate($period, $special_rate){
         $approver = 0.00;
