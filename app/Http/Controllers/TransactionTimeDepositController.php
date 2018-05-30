@@ -90,6 +90,11 @@ class TransactionTimeDepositController extends Controller
         $data->created_by = 'asami@gmail.com';
         $data->approved_by = 'BranchManager@ccb.com';
         $data->approved_at = '2018-02-02';
+
+        $td = TD::find($id);
+        $td->special_rate = $request->special_rate;
+        $tdResult = $td->save();
+
         $result = $data->save();
 
         if($result==1){

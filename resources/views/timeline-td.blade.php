@@ -961,7 +961,6 @@ if(mm<10) {
 
 today = mm + '-' + dd + '-' + yyyy;
 
-
 var me = '<?php echo $trx; ?>';
 var approver = '<?php echo $valButton; ?>'
 var bm = '<?php echo $approverBM; ?>'
