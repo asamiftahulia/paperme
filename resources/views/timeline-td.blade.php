@@ -946,18 +946,36 @@
   </div>
 
 <script type="text/javascript">
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+} 
+
+if(mm<10) {
+    mm = '0'+mm
+} 
+
+today = mm + '-' + dd + '-' + yyyy;
+
+
 var me = '<?php echo $trx; ?>';
 var approver = '<?php echo $valButton; ?>'
 var bm = '<?php echo $approverBM; ?>'
-
+var am = '<?php echo $approverAM; ?>'
 console.log('test: ', me);
 console.log('approverBM: ', bm);
+console.log('approverAM: ', am);
+
 
   function autoDisable() {    
     document.getElementById("btn-approve-bm").disabled = true;
     document.getElementById("btn-revisi-bm").disabled = true;
     document.getElementById("btn-reject-bm").disabled = true;
-    document.getElementById("time").innerHTML = '2018-02-02';
+    document.getElementById("time").innerHTML = today;
     document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been Approved by Branch Manager";
   }
 
@@ -965,7 +983,7 @@ console.log('approverBM: ', bm);
     document.getElementById("btn-approve-am").disabled = true;
     document.getElementById("btn-revisi-am").disabled = true;
     document.getElementById("btn-reject-am").disabled = true;
-    document.getElementById("approved-date-by-am").innerHTML = '2018-02-02';
+    document.getElementById("approved-date-by-am").innerHTML = today;
     document.getElementById("act").innerHTML = "This Special Rate Has Been Approved by Area Manager";
   }
 
@@ -974,9 +992,10 @@ console.log('approverBM: ', bm);
     console.log('idclicked:', idClicked);
 });
   
-  if(me == 1) {
+  if(bm == 1) {
     this.autoDisable();
-  }else if(me == 2) {
+  }
+  if(am == 1) {
     this.autoDisable();
     this.approverDisabled();
   }

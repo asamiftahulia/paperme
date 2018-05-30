@@ -286,14 +286,13 @@ class TDController extends Controller
     
     public function cekApproved($id){
         $approverBM = DB::table('transaksi_td')->where('role', 'Branch Manager')->where('id_td',$id)->get();
-      //  dd($approverBM);
     }
 
-    public function timeline($id){
-          $data = TD::where('id', $id)->get();
+    public function timeline($id_td){
+          $data = TD::where('id', $id_td)->get();
        // $data = transaction_td::where('id_td', $id)->get();
-         $approverBM = self::cekApproved($id);
-        
+          $approverBM = DB::table('transaksi_td')->where('role', 'Branch Manager')->where('id_td',$id_td)->where('approved','TRUE')->count();;
+          $approverAM = DB::table('transaksi_td')->where('role', 'Area Manager')->where('id_td',$id_td)->where('approved','TRUE')->count();;
           foreach($data as $datas){
             if($datas['period'] == 1 || $datas['period'] == 3){
                 if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
@@ -337,13 +336,17 @@ class TDController extends Controller
             }
         }
 
-        $trx = transaction_td::where('id_td',$id)->count();
+        $trx = transaction_td::where('id_td',$id_td)->count();
        
-       // dd($approverBM);
+        //dd($approverBM);
         if($trx == $apr)
             $valButton = 1;
         else 
             $valButton = 1;
-        return view('timeline-td',compact('data',$data))->with('apr',$dataApprover)->with('valButton',$valButton)->with('trx',$trx)->with('approverBM',$approverBM);
+        return view('timeline-td',compact('data',$data))->with('apr',$dataApprover)
+        ->with('valButton',$valButton)
+        ->with('trx',$trx)
+        ->with('approverBM',$approverBM)
+        ->with('approverAM', $approverAM);
     }
 }
