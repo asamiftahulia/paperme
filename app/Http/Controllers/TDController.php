@@ -255,11 +255,11 @@ class TDController extends Controller
     public function updateStatus(Request $request, $id)
     {
         $data = TD::where('id',$id)->first();
-        $data->status = 1;
+        $data->status = 'asa';
         $data->save();
 
-        echo $id;
-        // return redirect('timeline/'.$data->id)->with('id',$data->id);
+        // echo $id;
+        return redirect('timeline/'.$data->id)->with('id',$data->id);
         
     }
 
@@ -294,6 +294,7 @@ class TDController extends Controller
           $approverBM = DB::table('transaksi_td')->where('role', 'Branch Manager')->where('id_td',$id_td)->where('approved','TRUE')->count();
           $approverAM = DB::table('transaksi_td')->where('role', 'Area Manager')->where('id_td',$id_td)->where('approved','TRUE')->count();
           $approverRH = DB::table('transaksi_td')->where('role', 'Regional Head')->where('id_td',$id_td)->where('approved','TRUE')->count();
+          $approverDR = DB::table('transaksi_td')->where('role', 'Director')->where('id_td',$id_td)->where('approved','TRUE')->count();
           foreach($data as $datas){
             if($datas['period'] == 1 || $datas['period'] == 3){
                 if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
@@ -350,6 +351,7 @@ class TDController extends Controller
         ->with('jumlahApr',$apr)
         ->with('approverBM',$approverBM)
         ->with('approverAM', $approverAM)
-        ->with('approverRH', $approverRH);
+        ->with('approverRH', $approverRH)
+        ->with('approverDR', $approverDR);
     }
 }
