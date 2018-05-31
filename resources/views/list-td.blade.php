@@ -26,7 +26,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Full Name</th>
-                                    <th>Amount </th>
+                                    <th>Amount (Rp)</th>
                                     <th>Expired Date</th>
                                     <th>Period</th>
                                     <th>Type Of TD</th>
@@ -42,7 +42,7 @@
                                     <tr>
                                        <td>{{$no++}}</td>
                                         <td>{{$datas->full_name}}</td>
-                                        <td>{{$datas->amount}}</td>
+                                        <td>{{number_format($datas->amount,2)}}</td>
                                         <td>{{$datas->expired_date}}</td>
                                         <td>{{$datas->period}} Bulan</td>
                                         <td>

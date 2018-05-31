@@ -59,14 +59,12 @@
                       <span class="flag">Branch Manager</span>
                       <span class="time-wrapper"><span class="time" id="time">-</span></span>
                     </div>
-                   @if($valButton == 1)
                     <div class="desc"><p id="actionBM1">Waiting An Action From Branch Manager</p><br>
-                      <input type="button" id="btn-revisi-bm"data-toggle="modal" data-target="#modalDetailBM" class="btn btn-info btn-sm" value="Detail">
-                      <input type="button" id="btn-approve-bm" value="Approve" data-toggle="modal" data-target="#modalAprBM"class="btn btn-success btn-sm"  >
-                      <input type="button" id="btn-reject-bm" data-toggle="modal" data-target="#modalRejBM"class="btn btn-danger btn-sm" value="Reject">
+                      <input type="button" id="btn-revisi-bm1" data-toggle="modal" data-target="#modalDetailBM" class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" id="btn-approve-bm1" value="Approve" data-toggle="modal" data-target="#modalAprBM"class="btn btn-success btn-sm"  >
+                      <input type="button" id="btn-reject-bm1" data-toggle="modal" data-target="#modalRejBM"class="btn btn-danger btn-sm" value="Reject">
                     </div>
                   </div>
-                   @endif
                 </li>
                 <!-- Revisi -->
                 <div class="modal fade" id="modalDetailBM" tabindex="-1" role="dialog">
@@ -153,13 +151,12 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Area Manager</span>
-                      <span class="time-wrapper"><span class="time" id="approved-date-by-am">-</span></span>
+                      <span class="time-wrapper"><span class="time" id="approved-date-by-am1">-</span></span>
                     </div>
-                   
                     <div class="desc"><p id="act">Waiting An Action From Branch Manager</p><br>
-                      <button type="button" id="btn-revisi-am"data-toggle="modal" data-target="#modalDetailAM"class="btn btn-info btn-sm">Detail</button>
-                      <button type="button" id="btn-approve-am" data-toggle="modal" data-target="#modalAprAM"class="btn btn-success btn-sm">Approve</button>
-                      <button type="button" id="btn-reject-am" data-toggle="modal" data-target="#modalRejAM"class="btn btn-danger btn-sm">Reject</button>
+                      <button type="button" id="btn-revisi-am1"data-toggle="modal" data-target="#modalDetailAM"class="btn btn-info btn-sm">Detail</button>
+                      <button type="button" id="btn-approve-am1" data-toggle="modal" data-target="#modalAprAM"class="btn btn-success btn-sm">Approve</button>
+                      <button type="button" id="btn-reject-am1" data-toggle="modal" data-target="#modalRejAM"class="btn btn-danger btn-sm">Reject</button>
                     </div>
                     
                   </div>
@@ -173,8 +170,8 @@
                               <h4 class="modal-title" id="defaultModalLabel">Detail Deposan</h4>
                           </div>
                           <div class="modal-body">
-                            <form action="{{url('td/revisi', $datas->id) }}" method="post">
-                            {{csrf_field()}}
+                            <form action="{{url('trx/revisi', $datas->id) }}" method="post">
+                            {{csrf_field()}}  
                             <table class="table">
                               <tr>
                                 <th>Fullname</th>
@@ -186,6 +183,7 @@
                               <tr>
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
+                                  <input type="hidden" enable="false" name="role" value="Area Manager">
                                   <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
                                 </td>
                                 <td>{{$datas->amount}}</td>
@@ -248,21 +246,13 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Branch Manager</span>
-                      <span class="time-wrapper"><span class="time">-</span></span>
+                      <span class="time-wrapper"><span class="time" id="approved-date-by-bm2">-</span></span>
                     </div>
-                    @if($valButton == 1)
                     <div class="desc">Waiting An Action From Branch Manager<br>
-                      <button type="button" data-toggle="modal" data-target="#modal2BMDet"class="btn btn-info btn-sm">Detail</button>
-                      <button type="button" data-toggle="modal" id="btn-approve-bm" data-target="#modal2BMApr"class="btn btn-success btn-sm">Approve</button>
-                      <button type="button" data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm">Reject</button>
+                      <input type="button" id="btn-revisi-bm2"  data-toggle="modal" data-target="#modal2BMDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" id="btn-revisi-bm2" data-toggle="modal" id="btn-approve-bm" data-target="#modal2BMApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" id="btn-revisi-bm2" data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm" value="Reject">
                     </div>
-                    @elseif($valButton == 0)
-                    <div class="desc">Already Have An Action From Branch Manager<br>
-                      <button type="button" disabled = "true" data-toggle="modal" data-target="#modal2BMDet"class="btn btn-info btn-sm">Detail</button>
-                      <button type="button" disabled = "true" data-toggle="modal" data-target="#modal2BMApr"class="btn btn-success btn-sm">Approve</button>
-                      <button type="button" disabled = "true" data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm">Reject</button>
-                    </div>
-                    @endif
                   </div>
                 </li>
                 <!-- Detail -->
@@ -273,7 +263,7 @@
                               <h4 class="modal-title" id="defaultModalLabel">Detail Deposan</h4>
                           </div>
                           <div class="modal-body">
-                            <form action="{{url('td/revisi', $datas->id) }}" method="post">
+                            <form action="{{url('trx/revisi', $datas->id) }}" method="post">
                             {{ csrf_field() }}
                             <table class="table">
                               <tr>
@@ -286,6 +276,7 @@
                               <tr>
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
+                                <input type="hidden" name="role" value="Branch Manager"/>
                                   <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
                                 </td>
                                 <td>{{$datas->amount}}</td>
@@ -347,21 +338,13 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Area Manager</span>
-                      <span class="time-wrapper"><span class="time">-</span></span>
+                      <span class="time-wrapper"><span class="time" >-</span></span>
                     </div>
-                    @if($valButton == 1)
                     <div class="desc">Waiting An Action From Area Manager<br>
-                      <button type="button" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm">Detail</button>
-                      <button type="button" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm">Approve</button>
-                      <button type="button" data-toggle="modal" data-target="#modal2AMRej"class="btn btn-danger btn-sm">Reject</button>
+                      <input type="button" id ="btn-revisi-am2" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" id ="btn-approver-am2" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" id ="btn-reject-am2" data-toggle="modal" data-target="#modal2AMRej"class="btn btn-danger btn-sm" value="Reject">
                     </div>
-                    @elseif($valButton == 0)
-                    <div class="desc">Already Have An Action From Area Manager<br>
-                      <button type="button" disabled = "true" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm">Detail</button>
-                      <button type="button" disabled = "true" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm">Approve</button>
-                      <button type="button" disabled = "true" data-toggle="modal" data-target="#modal2AMRej"class="btn btn-danger btn-sm">Reject</button>
-                    </div>
-                    @endif
                   </div>
                 </li>
                 <!-- Detail -->
@@ -372,7 +355,7 @@
                               <h4 class="modal-title" id="defaultModalLabel">Detail Deposan</h4>
                           </div>
                           <div class="modal-body">
-                            <form action="{{url('td/revisi', $datas->id) }}" method="post">
+                            <form action="{{url('trx/revisi', $datas->id) }}" method="post">
                             {{csrf_field()}}
                             <table class="table">
                               <tr>
@@ -385,7 +368,8 @@
                               <tr>
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
-                                  <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                <input type="hidden" name="role" value="Area Manager"/>
+                                <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
                                 </td>
                                 <td>{{$datas->amount}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -449,19 +433,12 @@
                       <span class="flag">Regional Head</span>
                       <span class="time-wrapper"><span class="time">-</span></span>
                     </div>
-                    @if($valButton == 1)
+                    
                     <div class="desc">Waiting An Action From Regional Head<br>
-                      <button type="button" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm">Detail</button>
-                      <button type="button" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm">Approve</button>
-                      <button type="button" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm">Reject</button>
+                      <input type="button" id="btn-revisi-rh2" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" id ="btn-revisi-rh2" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" id ="btn-revisi-rh2" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject">
                     </div>
-                    @elseif($valButton == 0)
-                    <div class="desc">Already Have An Action From Regional Head<br>
-                      <button type="button" disabled="true" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm">Detail</button>
-                      <button type="button" disabled="true" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm">Approve</button>
-                      <button type="button" disabled="true" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm">Reject</button>
-                    </div>
-                    @endif 
                   </div>
                 </li>
                 <div class="modal fade" id="modal2RHDet" tabindex="-1" role="dialog">
@@ -970,19 +947,19 @@ console.log('approverBM: ', bm);
 console.log('approverAM: ', am);
 
 
-  function autoDisable() {    
-    document.getElementById("btn-approve-bm").disabled = true;
-    document.getElementById("btn-revisi-bm").disabled = true;
-    document.getElementById("btn-reject-bm").disabled = true;
+  function autoDisableBM1() {    
+    document.getElementById("btn-approve-bm1").disabled = true;
+    document.getElementById("btn-revisi-bm1").disabled = true;
+    document.getElementById("btn-reject-bm1").disabled = true;
     document.getElementById("time").innerHTML = today;
     document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been Approved by Branch Manager";
   }
 
-  function approverDisabled() {
-    document.getElementById("btn-approve-am").disabled = true;
-    document.getElementById("btn-revisi-am").disabled = true;
-    document.getElementById("btn-reject-am").disabled = true;
-    document.getElementById("approved-date-by-am").innerHTML = today;
+  function autoDisableAM1() {
+    document.getElementById("btn-approve-am1").disabled = true;
+    document.getElementById("btn-revisi-am1").disabled = true;
+    document.getElementById("btn-reject-am1").disabled = true;
+    document.getElementById("approved-date-by-am1").innerHTML = today;
     document.getElementById("act").innerHTML = "This Special Rate Has Been Approved by Area Manager";
   }
 
@@ -992,11 +969,11 @@ console.log('approverAM: ', am);
 });
   
   if(bm == 1) {
-    this.autoDisable();
+    this.autoDisableBM1();
   }
   if(am == 1) {
-    this.autoDisable();
-    this.approverDisabled();
+    this.autoDisableBM1();
+    this.autoDisableAM1();
   }
 
   
