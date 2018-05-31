@@ -248,10 +248,10 @@
                       <span class="flag">Branch Manager</span>
                       <span class="time-wrapper"><span class="time" id="approved-date-by-bm2">-</span></span>
                     </div>
-                    <div class="desc">Waiting An Action From Branch Manager<br>
+                    <div class="desc"><p id='act-bm2'>Waiting An Action From Branch Manager</p><br>
                       <input type="button" id="btn-revisi-bm2"  data-toggle="modal" data-target="#modal2BMDet"class="btn btn-info btn-sm" value="Detail">
-                      <input type="button" id="btn-revisi-bm2" data-toggle="modal" id="btn-approve-bm" data-target="#modal2BMApr"class="btn btn-success btn-sm" value="Approve">
-                      <input type="button" id="btn-revisi-bm2" data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm" value="Reject">
+                      <input type="button" id="btn-approve-bm2" data-toggle="modal" id="btn-approve-bm" data-target="#modal2BMApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" id="btn-reject-bm2" data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm" value="Reject">
                     </div>
                   </div>
                 </li>
@@ -304,6 +304,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
+                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
                              <button type="button" class="btn btn-info">Cancel</button>
                              <button type="submit" class="btn btn-success">Approve</button>
                           </form>
@@ -338,11 +339,11 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Area Manager</span>
-                      <span class="time-wrapper"><span class="time" >-</span></span>
+                      <span class="time-wrapper"><span class="time" id="approved-date-by-am2">-</span></span>
                     </div>
-                    <div class="desc">Waiting An Action From Area Manager<br>
+                    <div class="desc"><p id="act-am2">Waiting An Action From Area Manager</p><br>
                       <input type="button" id ="btn-revisi-am2" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm" value="Detail">
-                      <input type="button" id ="btn-approver-am2" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" id ="btn-approve-am2" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm" value="Approve">
                       <input type="button" id ="btn-reject-am2" data-toggle="modal" data-target="#modal2AMRej"class="btn btn-danger btn-sm" value="Reject">
                     </div>
                   </div>
@@ -397,6 +398,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
+                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
                              <button type="button" class="btn btn-info">Cancel</button>
                              <button type="submit" class="btn btn-success">Approve</button>
                           </form>
@@ -431,13 +433,12 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Regional Head</span>
-                      <span class="time-wrapper"><span class="time">-</span></span>
+                      <span class="time-wrapper"><span class="time" id="approved-date-by-rh2">-</span></span>
                     </div>
-                    
-                    <div class="desc">Waiting An Action From Regional Head<br>
+                    <div class="desc"><p id="act-rh2">Waiting An Action From Regional Head</p><br>
                       <input type="button" id="btn-revisi-rh2" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
-                      <input type="button" id ="btn-revisi-rh2" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
-                      <input type="button" id ="btn-revisi-rh2" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject">
+                      <input type="button" id ="btn-approve-rh2" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" id ="btn-reject-rh2" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject">
                     </div>
                   </div>
                 </li>
@@ -448,7 +449,7 @@
                               <h4 class="modal-title" id="defaultModalLabel">Detail Deposan</h4>
                           </div>
                           <div class="modal-body">
-                            <form action="{{url('td/revisi', $datas->id) }}" method="post">
+                            <form action="{{url('trx/revisi', $datas->id) }}" method="post">
                             {{csrf_field()}}
                             <table class="table">
                               <tr>
@@ -461,7 +462,8 @@
                               <tr>
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
-                                  <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                <input type="hidden" name="role" value="Regional Head"/>
+                                <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
                                 </td>
                                 <td>{{$datas->amount}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -488,6 +490,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <p><input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
+                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
                              <button type="button" class="btn btn-info">Cancel</button>
                              <button type="submit" class="btn btn-success">Approve</button>
                           </form>
@@ -938,14 +941,20 @@ if(mm<10) {
 
 today = mm + '-' + dd + '-' + yyyy;
 
-var me = '<?php echo $trx; ?>';
+var jumlahApr = '<?php echo $jumlahApr; ?>';
 var approver = '<?php echo $valButton; ?>'
 var bm = '<?php echo $approverBM; ?>'
 var am = '<?php echo $approverAM; ?>'
-console.log('test: ', me);
+var rh = '<?php echo $approverRH;?>'
+
+console.log('Jumlah Approver: ', jumlahApr);
 console.log('approverBM: ', bm);
 console.log('approverAM: ', am);
-
+console.log('approverRH: ', rh);
+$("input").click(function(e){
+    var idClicked = e.target.id;
+    console.log('idclicked:', idClicked);
+});
 
   function autoDisableBM1() {    
     document.getElementById("btn-approve-bm1").disabled = true;
@@ -963,18 +972,58 @@ console.log('approverAM: ', am);
     document.getElementById("act").innerHTML = "This Special Rate Has Been Approved by Area Manager";
   }
 
-  $("input").click(function(e){
-    var idClicked = e.target.id;
-    console.log('idclicked:', idClicked);
-});
+   function autoDisableBM2() {
+    document.getElementById("btn-approve-bm2").disabled = true;
+    document.getElementById("btn-revisi-bm2").disabled = true;
+    document.getElementById("btn-reject-bm2").disabled = true;
+    document.getElementById("approved-date-by-bm2").innerHTML = today;
+    document.getElementById("act-bm2").innerHTML = "This Special Rate Has Been Approved by Branch Manager";
+  }
+
+  function autoDisableAM2() {
+    document.getElementById("btn-approve-am2").disabled = true;
+    document.getElementById("btn-revisi-am2").disabled = true;
+    document.getElementById("btn-reject-am2").disabled = true;
+    document.getElementById("approved-date-by-am2").innerHTML = today;
+    document.getElementById("act-am2").innerHTML = "This Special Rate Has Been Approved by Area Manager";
+  }
+
+   function autoDisableRH2() {
+    document.getElementById("btn-approve-rh2").disabled = true;
+    document.getElementById("btn-revisi-rh2").disabled = true;
+    document.getElementById("btn-reject-rh2").disabled = true;
+    document.getElementById("approved-date-by-rh2").innerHTML = today;
+    document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been Approved by Area Manager";
+  }
+
+
+
+  if(jumlahApr == 2){
+      if(bm == 1) {
+        this.autoDisableBM1();
+      }
+      if(am == 1) {
+        this.autoDisableBM1();
+        this.autoDisableAM1();
+      }
+  }
+  if(jumlahApr == 3){
+    if(bm != 0) {
+        this.autoDisableBM2();
+      }
+    if(am != 0) {
+        this.autoDisableAM2();
+        this.autoDisableBM2();
+      }
+    if(rh != 0){
+        this.autoDisableBM2();
+        this.autoDisableAM2();
+        this.autoDisableRH2();
+      }
+  }
   
-  if(bm == 1) {
-    this.autoDisableBM1();
-  }
-  if(am == 1) {
-    this.autoDisableBM1();
-    this.autoDisableAM1();
-  }
+  
+  
 
   
 </script>

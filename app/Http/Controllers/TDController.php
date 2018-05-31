@@ -291,8 +291,9 @@ class TDController extends Controller
     public function timeline($id_td){
           $data = TD::where('id', $id_td)->get();
        // $data = transaction_td::where('id_td', $id)->get();
-          $approverBM = DB::table('transaksi_td')->where('role', 'Branch Manager')->where('id_td',$id_td)->where('approved','TRUE')->count();;
-          $approverAM = DB::table('transaksi_td')->where('role', 'Area Manager')->where('id_td',$id_td)->where('approved','TRUE')->count();;
+          $approverBM = DB::table('transaksi_td')->where('role', 'Branch Manager')->where('id_td',$id_td)->where('approved','TRUE')->count();
+          $approverAM = DB::table('transaksi_td')->where('role', 'Area Manager')->where('id_td',$id_td)->where('approved','TRUE')->count();
+          $approverRH = DB::table('transaksi_td')->where('role', 'Regional Head')->where('id_td',$id_td)->where('approved','TRUE')->count();
           foreach($data as $datas){
             if($datas['period'] == 1 || $datas['period'] == 3){
                 if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
@@ -346,7 +347,9 @@ class TDController extends Controller
         return view('timeline-td',compact('data',$data))->with('apr',$dataApprover)
         ->with('valButton',$valButton)
         ->with('trx',$trx)
+        ->with('jumlahApr',$apr)
         ->with('approverBM',$approverBM)
-        ->with('approverAM', $approverAM);
+        ->with('approverAM', $approverAM)
+        ->with('approverRH', $approverRH);
     }
 }
