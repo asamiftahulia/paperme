@@ -297,40 +297,81 @@ class TDController extends Controller
           $approverRH = DB::table('trx-time-deposit')->where('role', 'Regional Head')->where('id_td',$id_td)->where('approved','TRUE')->count();
           $approverDR = DB::table('trx-time-deposit')->where('role', 'Director')->where('id_td',$id_td)->where('approved','TRUE')->count();
           foreach($data as $datas){
-            if($datas['period'] == 1 || $datas['period'] == 3){
-                if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
+            if($datas['currency'] == 'IDR'){
+                if($datas['period'] == 1 || $datas['period'] == 3){
+                    if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
+                        $dataApprover = array('approver'=>'AM');
+                        $apr = 2;
+                    }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.25'){
+                        $dataApprover = array('approver'=>'AM','Regional Head');
+                        $apr = 3;
+                    }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] > '6.25'){
+                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                        $apr = 4;
+                    }else{
+                        echo 'Approver Not Found';
+                    }
+                }else if($datas['period'] == 6){
+                    if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '5.75'){
+                        $dataApprover = array('approver'=>'AM');
+                        $apr = 2;
+                    }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '6.00'){
+                        $dataApprover = array('approver'=>'AM','Regional Head');
+                        $apr = 3;
+                    }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
+                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                        $apr = 4;
+                    }else{
+                        echo 'Approver Not Found';
+                    }
+                }else if($datas['period'] == 12){
+                    if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '5.75'){
+                        $dataApprover = array('approver'=>'AM');
+                        $apr = 2;
+                    }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '60.00'){
+                        $dataApprover = array('approver'=>'AM','Regional Head');
+                        $apr = 3;
+                    }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
+                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                        $apr = 4;
+                    }else{
+                        echo 'Approver Not Found';
+                    }
+                }
+            }elseif($datas['currency']=='USD'){
+                if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '1.00'){
                     $dataApprover = array('approver'=>'AM');
                     $apr = 2;
-                }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.25'){
+                }else if($datas['special_rate'] == '1.00' || $datas['special_rate'] <= '1.25'){
                     $dataApprover = array('approver'=>'AM','Regional Head');
                     $apr = 3;
-                }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] > '6.25'){
+                }else if($datas['special_rate'] > '1.25'){
                     $dataApprover = array('approver'=>'AM','Regional Head','Director');
                     $apr = 4;
                 }else{
                     echo 'Approver Not Found';
                 }
-            }else if($datas['period'] == 6){
-                if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '5.75'){
+            }elseif($datas['currency']=='SGD'){
+                if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '0.75'){
                     $dataApprover = array('approver'=>'AM');
                     $apr = 2;
-                }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '6.00'){
+                }else if($datas['special_rate'] == '0.75' || $datas['special_rate'] <= '1.00'){
                     $dataApprover = array('approver'=>'AM','Regional Head');
                     $apr = 3;
-                }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
+                }else if($datas['special_rate'] > '1.00'){
                     $dataApprover = array('approver'=>'AM','Regional Head','Director');
                     $apr = 4;
                 }else{
                     echo 'Approver Not Found';
                 }
-            }else if($datas['period'] == 12){
-                if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '5.75'){
+            }elseif($datas['currency']=='CNY'){
+                if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '1.25'){
                     $dataApprover = array('approver'=>'AM');
                     $apr = 2;
-                }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '60.00'){
+                }else if($datas['special_rate'] == '1.25' || $datas['special_rate'] <= '1.50'){
                     $dataApprover = array('approver'=>'AM','Regional Head');
                     $apr = 3;
-                }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
+                }else if($datas['special_rate'] > '1.50'){
                     $dataApprover = array('approver'=>'AM','Regional Head','Director');
                     $apr = 4;
                 }else{
