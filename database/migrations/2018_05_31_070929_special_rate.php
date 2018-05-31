@@ -13,7 +13,16 @@ class SpecialRate extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('m-special-rates', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('term');
+            $table->string('currency');
+            $table->float('counter_rate');
+            $table->float('area_manager');
+            $table->float('regional_head');
+            $table->float('director');
+            $table->timestamps();
+        });
     }
 
     /**

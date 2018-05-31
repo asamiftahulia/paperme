@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\MasterSpecialRate;
+use App\SpecialRate;
 use Illuminate\Http\Request;
 
 class MasterSpecialRateController extends Controller
@@ -15,7 +16,8 @@ class MasterSpecialRateController extends Controller
     public function index()
     {
         //
-        $data = MasterSpecialRate::All();
+        // $data = MasterSpecialRate::All();
+        $data = SpecialRate::All();
         return view('master-special-rate-list',compact('data'));
     }
 

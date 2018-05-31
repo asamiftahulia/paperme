@@ -28,6 +28,7 @@
                                         <th>No</th>
                                             {{--<th>ID</th>--}}
                                             <th>Term</th>
+                                            <th>Currency</th>
                                             <th>Counter Rate</th>
                                             <th>Area Manager</th>
                                             <th>Regional Head</th>
@@ -42,6 +43,7 @@
                                                 <td>{{$no++}}</td>
                                                 {{--<td>{{$datas->id}}</td>--}}
                                                 <td>{{$datas->term}}</td>
+                                                <td>{{$datas->currency}}</td>
                                                 <td>{{$datas->counter_rate}}</td>
                                                 <td>{{$datas->area_manager}}</td>
                                                 <td>{{$datas->regional_head}}</td>
