@@ -52,11 +52,6 @@
                             </div> 
                         </div>
                         <div class="row">
-                        <div class="col-md-4">
-                                <b>Amount (Rp)</b>
-                                <input type="text" class="form-control" placeholder="Ex: Rp. 99,000" id="amount" name="amount">
-                            </div>
-                          
                               <div class="col-md-4">
                                 <div class="form-group label-floating"> 
                                     <b>Date Rollover</b>
@@ -74,6 +69,23 @@
                             </div>
                         </div>
                         
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group label-floating">
+                                     <b>Currency</b>
+                                    <select name="currency" class="form-control">
+                                      <option value="IDR">IDR</option>
+                                      <option value="USD">USD</option>
+                                      <option value="SGD">SGD</option>
+                                      <option value="CNY">CNY</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <b>Amount</b>
+                                <input type="text" class="form-control" placeholder="Ex: Rp. 99,000" id="amount" name="amount">
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <b>Sources Of Funds</b>

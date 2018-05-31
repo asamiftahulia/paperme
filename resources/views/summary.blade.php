@@ -31,7 +31,7 @@
                                             <td>ID</td>
                                             <th>Nama Deposan</th>
                                             <!-- <th>Deposan Baru</th> -->
-                                            <th>Nominal Deposito</th>
+                                            <th>Nominal Deposito </th>
                                             <th>Tgl Penempatan</th>
                                             <th>Tgl Jatuh Tempo</th>
                                             <th>Period</th>
@@ -54,7 +54,7 @@
                                                         {{'NEW'}}
                                                     @endif 
                                                 </td> -->
-                                                <td>{{$datas['amount']}} </td>
+                                                <td>{{$datas['amount']}} ({{$datas['currency']}})</td>
                                                  <td>{{$datas['date_rollover']}} </td>
                                                 <td>{{$datas['expired_date']}} </td>
                                                 <td>{{$datas['period']}} Bulan</td>

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TD extends Model
 {
     //
-    protected $table='td';
+    // protected $table='td';
+    protected $table='time-deposit';
     
 }

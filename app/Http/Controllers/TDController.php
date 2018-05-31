@@ -95,6 +95,7 @@ class TDController extends Controller
         $data->notes = $request->notes;
         $data->expired_date = $expired;
         $data->period = $request->period;
+        $data->currency = $request->currency;
         $data->type_of_td = $request->type_of_td;
         $data->bank = $request->bank;
         $data->date_rollover = $request->date_rollover;
@@ -291,10 +292,10 @@ class TDController extends Controller
     public function timeline($id_td){
           $data = TD::where('id', $id_td)->get();
        // $data = transaction_td::where('id_td', $id)->get();
-          $approverBM = DB::table('transaksi_td')->where('role', 'Branch Manager')->where('id_td',$id_td)->where('approved','TRUE')->count();
-          $approverAM = DB::table('transaksi_td')->where('role', 'Area Manager')->where('id_td',$id_td)->where('approved','TRUE')->count();
-          $approverRH = DB::table('transaksi_td')->where('role', 'Regional Head')->where('id_td',$id_td)->where('approved','TRUE')->count();
-          $approverDR = DB::table('transaksi_td')->where('role', 'Director')->where('id_td',$id_td)->where('approved','TRUE')->count();
+          $approverBM = DB::table('trx-time-deposit')->where('role', 'Branch Manager')->where('id_td',$id_td)->where('approved','TRUE')->count();
+          $approverAM = DB::table('trx-time-deposit')->where('role', 'Area Manager')->where('id_td',$id_td)->where('approved','TRUE')->count();
+          $approverRH = DB::table('trx-time-deposit')->where('role', 'Regional Head')->where('id_td',$id_td)->where('approved','TRUE')->count();
+          $approverDR = DB::table('trx-time-deposit')->where('role', 'Director')->where('id_td',$id_td)->where('approved','TRUE')->count();
           foreach($data as $datas){
             if($datas['period'] == 1 || $datas['period'] == 3){
                 if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
