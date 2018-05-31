@@ -209,7 +209,7 @@ class TransactionTimeDepositController extends Controller
         if($count == $approver)
             return redirect(route('td.index'))->with('message','Operation Successful !');
         else 
-            return redirect()->back()->with('message','Not Finish Yet !');
+            return redirect()->back()->with('message','Operation Successful !');
         
         // echo "period = ".$period;
         // echo "special = ".$special_rate;

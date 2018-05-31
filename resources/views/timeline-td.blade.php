@@ -894,9 +894,10 @@
               </ul>
               @endif
              @endforeach
-            </div>
-            <div class="row">
-            <a href="{{url('td/updateStatus',$datas->id)}}"><button type="button" class="btn btn-info">Finish</button></a>
+            </div></br></br></br></br></br>
+            <div class="row" align="center">
+                <a align="center" href="{{route('td.index')}}"><input type="button" id="btn-submit" class="btn btn-info" value="Submit"></a>
+                <a align="center" href="{{url('td/updateStatus',$datas->id)}}"><input type="button" id="btn-finish" disabled="true" class="btn btn-info" value="Finish"></a>
             </div>
         </div>
       </div>
@@ -947,6 +948,7 @@ $("input").click(function(e){
     document.getElementById("btn-approve-am1").disabled = true;
     document.getElementById("btn-revisi-am1").disabled = true;
     document.getElementById("btn-reject-am1").disabled = true;
+    document.getElementById("btn-finish").disabled = false;
     document.getElementById("approved-date-by-am1").innerHTML = today;
     document.getElementById("act").innerHTML = "This Special Rate Has Been Approved by Area Manager";
   }
