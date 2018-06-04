@@ -1012,6 +1012,7 @@ $("input").click(function(e){
     document.getElementById("btn-revisi-rh2").disabled = true;
     document.getElementById("btn-reject-rh2").disabled = true;
     document.getElementById("approved-date-by-rh2").innerHTML = today;
+    document.getElementById("btn-finish").disabled = false;
     document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been Approved by Area Manager";
   }
 
@@ -1046,6 +1047,7 @@ $("input").click(function(e){
     document.getElementById("btn-revisi-dr3").disabled = true;
     document.getElementById("btn-reject-dr3").disabled = true;
     document.getElementById("approved-date-by-dr3").innerHTML = today;
+    document.getElementById("btn-finish").disabled = false;
     document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been Approved by Area Manager";
   }
 
