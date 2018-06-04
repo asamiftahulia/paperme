@@ -77,8 +77,23 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
         ],
+        'secondary' => [
+            'driver' => 'pgsql',
+            'host' => env('DB_SECONDARY_HOST', 'db.ccb.co.id'),
+            'port' => env('DB_SECONDARY_PORT', '5432'),
+            'database' => env('DB_SECONDARY_DATABASE', 'forge'),
+            'username' => env('DB_SECONDARY_USERNAME', 'forge'),
+            'password' => env('DB_SECONDARY_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
+        
 
     ],
+  
+    
 
     /*
     |--------------------------------------------------------------------------

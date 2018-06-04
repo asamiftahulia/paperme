@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Customer;
+use App\User;
 use Illuminate\Http\Request;
 use PDF;
 use View;
+use DB;
 use App\TD;
 use App\MasterSpecialRate;
 use Illuminate\Support\Facades\Input;
@@ -36,11 +38,13 @@ class TestController extends Controller
     // //   $pdf = PDF::loadView('pdf-summary',compact('data',$data));
     //  return view('pdf-summary',compact('data',$data));
         
-        $data = MasterSpecialRate::all();
-    
-        return view('autofill-form',compact('data'));
+        // $data = MasterSpecialRate::all();
+        // return view('autofill-form',compact('data'));
         
-    
+        // $user = User::all();
+        // $user = DB::connection('secondary');
+        $user = user::all();
+        return view('test-user', compact('user'));
         
     }
 

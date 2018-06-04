@@ -29,9 +29,14 @@
                               <td> {{$datas->full_name}} </td>
                             </tr>
                             <tr>
+                              <td>Amount</td>
+                              <td> : </td>
+                              <td> <?php echo number_format($datas->amount,2); ?> {{$datas->currency}}</td>
+                            </tr>
+                            <tr>
                               <td>Special Rate</td>
                               <td> : </td>
-                              <td> {{$datas->special_rate}}</td>
+                              <td> {{$datas->special_rate}} %</td>
                             </tr>
                             <tr>
                               <td>Period</td>
@@ -71,7 +76,11 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Detail Deposan</h4>
+                              <div class="modal-header">
+                               
+                            </div>
                           </div>
                           <div class="modal-body">
                             <!-- <form action="{{url('td/revisi',$datas->id)}}" method="post"> -->
@@ -99,7 +108,9 @@
                             <button type="submit" class="btn btn-info">Revisi</button>
                          </form>
                           </div>
+                          
                       </div>
+                      
                   </div>
                 </div>
                 <!-- Approve -->
@@ -107,6 +118,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -117,7 +129,7 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info">Cancel</button>
+                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" onclick="autoDisable();" class="btn btn-success">Approve</button>
                           </form>
                           </div>
@@ -129,6 +141,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -138,7 +151,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
-                             <button type="button" class="btn btn-info">Cancel</button>
+                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-info">Reject</button>
                           </form>
                           </div>
@@ -167,6 +180,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Detail Deposan</h4>
                           </div>
                           <div class="modal-body">
@@ -201,6 +215,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -211,7 +226,7 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info">Cancel</button>
+                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
                           </form>
                           </div>
@@ -222,6 +237,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -231,7 +247,7 @@
                                 Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                                 <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                                 <input type="hidden" enable="false" name="role" value="Area Manager">
-                              <button type="button" class="btn btn-info">Cancel</button>
+                              <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                               <button type="submit" class="btn btn-info">Reject</button>
                             </form>
                           </div>
@@ -260,6 +276,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Detail Deposan</h4>
                           </div>
                           <div class="modal-body">
@@ -295,6 +312,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -305,7 +323,7 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info">Cancel</button>
+                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
                           </form>
                           </div>
@@ -317,6 +335,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -326,7 +345,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
-                             <button type="button" class="btn btn-info">Cancel</button>
+                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Reject</button>
                           </form>
                           </div>
@@ -353,6 +372,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Detail Deposan</h4>
                           </div>
                           <div class="modal-body">
@@ -389,6 +409,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -399,7 +420,7 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info">Cancel</button>
+                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
                           </form>
                           </div>
@@ -411,6 +432,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -420,7 +442,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
-                             <button type="button" class="btn btn-info">Cancel</button>
+                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
                           </form>
                           </div>
@@ -446,6 +468,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Detail Deposan</h4>
                           </div>
                           <div class="modal-body">
@@ -481,6 +504,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -491,7 +515,7 @@
                               <p><input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info">Cancel</button>
+                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
                           </form>
                           </div>
@@ -503,6 +527,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -512,7 +537,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
-                             <button type="button" class="btn btn-info">Cancel</button>
+                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-info">Reject</button>
                           </form>
                           </div>
@@ -541,6 +566,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Detail Deposan</h4>
                           </div>
                           <div class="modal-body">
@@ -576,6 +602,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -586,7 +613,7 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info">Cancel</button>
+                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-info">Approve</button>
                           </form>
                           </div>
@@ -598,6 +625,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -607,7 +635,7 @@
                               Atas Nama <b> {{$datas->full_name}}</b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
-                             <button type="button" class="btn btn-info">Cancel</button>
+                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Reject</button>
                           </form>
                           </div>
@@ -634,6 +662,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Detail Deposan</h4>
                           </div>
                           <div class="modal-body">
@@ -668,6 +697,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -678,7 +708,7 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info">Cancel</button>
+                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
                           </form>
                           </div>
@@ -690,6 +720,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -699,7 +730,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
-                             <button type="button" class="btn btn-info">Cancel</button>
+                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Reject</button>
                           </form>
                           </div>
@@ -725,6 +756,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Detail Deposan</h4>
                           </div>
                           <div class="modal-body">
@@ -741,7 +773,7 @@
                               <tr>
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
-                                <input type="text" name="role" value="Regional Head"/>
+                                <input type="hidden" name="role" value="Regional Head"/>
                                   <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
                                 </td>
                                 <td>{{$datas->amount}}</td>
@@ -760,6 +792,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -770,7 +803,7 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info">Cancel</button>
+                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
                           </form>
                           </div>
@@ -782,6 +815,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -791,7 +825,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                              <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                              <input type="hidden" enable="false" name="role" value="Regional Head">
-                             <button type="button" class="btn btn-info">Cancel</button>
+                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Reject</button>
                           </form>
                           </div>
@@ -817,6 +851,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Detail Deposan</h4>
                           </div>
                           <div class="modal-body">
@@ -853,6 +888,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -863,7 +899,7 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" name="special_rate" value="{{$datas->special_rate}}">
                               <input type="hidden" name="role" value="Director">
-                             <button type="button" class="btn btn-info">Cancel</button>
+                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
                           </form>
                           </div>
@@ -875,6 +911,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
                           </div>
                           <div class="modal-body">
@@ -884,7 +921,7 @@
                               Atas Nama <b> {{$datas->full_name}}</b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Director">
-                             <button type="button" class="btn btn-info">Cancel</button>
+                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Reject</button>
                           </form>
                           </div>

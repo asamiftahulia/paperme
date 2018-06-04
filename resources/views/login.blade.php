@@ -4,7 +4,6 @@
 	<title>Login V2</title>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" />
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -80,7 +79,7 @@
 <head>
 <title>Look at me Login</title>
 </head>
-<body><
+<body>
 
 {{ Form::open(array('url' => 'login')) }}
 <h1>Login</h1>
