@@ -25,6 +25,22 @@
                             </div>
                          </div>
                         <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group label-floating">
+                                     <b>Currency</b>
+                                    <select name="currency" id="currency" class="form-control" onChange="autoFillByCurrency(); return false;">
+                                      <option value="IDR">IDR</option>
+                                      <option value="USD">USD</option>
+                                      <option value="SGD">SGD</option>
+                                      <option value="CNY">CNY</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <b>Amount</b>
+                                <input type="text" class="form-control" placeholder="Ex: Rp. 99,000" id="amount" name="amount">
+                            </div>
+                        </div>
                         <div class="col-md-4">
                                 <div class="form-group label-floating">
                                     <b>Period (/ bulan)</b>
@@ -35,7 +51,6 @@
                                       <option value="6">6 bln</option>
                                       <option value="12">12 bln</option>
                                     </select>
-                               
                                 </div>
                             </div>
                              <div class="col-md-4">
@@ -50,9 +65,9 @@
                                     <input type="number" step="0.01" class="form-control" id="normal_rate" placeholder="e.g : 5.00" name="normal_rate">
                                 </div>
                             </div> 
-                        </div>
+                    </div>
                         <div class="row">
-                              <div class="col-md-4">
+                            <div class="col-md-4">
                                 <div class="form-group label-floating"> 
                                     <b>Date Rollover</b>
                                     <input class="form-control" type="date" name="date_rollover">
@@ -67,25 +82,9 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                         </div>
                         
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group label-floating">
-                                     <b>Currency</b>
-                                    <select name="currency" class="form-control">
-                                      <option value="IDR">IDR</option>
-                                      <option value="USD">USD</option>
-                                      <option value="SGD">SGD</option>
-                                      <option value="CNY">CNY</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <b>Amount</b>
-                                <input type="text" class="form-control" placeholder="Ex: Rp. 99,000" id="amount" name="amount">
-                            </div>
-                        </div>
+                   
                         <div class="row">
                             <div class="col-md-6">
                                 <b>Sources Of Funds</b>
@@ -141,17 +140,22 @@
     </form>
 
 <script type="text/javascript">
+  function autoFillByCurrency() {
+    var specialRate = document.getElementById('special_rate').value;
+    var normalRate = document.getElementById('normal_rate').value;
+    var currency = document.getElementById('currency').value;
+      document.getElementById('normal_rate').value = 0.50;
+    }
+
   function autoFill() {
     var specialRate = document.getElementById('special_rate').value;
     var normalRate = document.getElementById('normal_rate').value;
     var period = document.getElementById('period').value;
-    if(specialRate=='' || specialRate!= ''){ 
-        
+    if(specialRate=='' || specialRate!= ''){
         if(period == 1 || period == 3)
             document.getElementById('normal_rate').value = 5.25;
         else if(period == 6 || period == 12)
         document.getElementById('normal_rate').value = 5.5;
-    
     }
    
     // var specialRate = document.getElementById('special_rate').value;
