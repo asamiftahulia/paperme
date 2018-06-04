@@ -45,7 +45,7 @@
                         <div class="col-md-4">
                                 <div class="form-group label-floating">
                                      <b>Currency</b>
-                                    <select name="currency" id="currency" class="form-control" onChange="autoFillByCurrency(); return false;">
+                                    <select name="currency" id="currency" class="form-control" onChange="autoFill(); return false;">
                                       <option value="IDR">IDR</option>
                                       <option value="USD">USD</option>
                                       <option value="SGD">SGD</option>
@@ -151,11 +151,22 @@
     var specialRate = document.getElementById('special_rate').value;
     var normalRate = document.getElementById('normal_rate').value;
     var period = document.getElementById('period').value;
+    var currency = document.getElementById('currency').value;
     if(specialRate=='' || specialRate!= ''){
-        if(period == 1 || period == 3)
+        if(period == 1 || period == 3){
+            if(currency == 'IDR'){
             document.getElementById('normal_rate').value = 5.25;
-        else if(period == 6 || period == 12)
-        document.getElementById('normal_rate').value = 5.5;
+            }else{
+                document.getElementById('normal_rate').value = 0.50;
+            }
+        }
+        else if(period == 6 || period == 12){
+            if(currency == 'IDR'){
+                document.getElementById('normal_rate').value = 5.5;
+            }else{
+                document.getElementById('normal_rate').value = 0.50;
+            }
+        }
     }
    
     // var specialRate = document.getElementById('special_rate').value;

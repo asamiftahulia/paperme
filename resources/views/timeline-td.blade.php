@@ -933,7 +933,7 @@
              @endforeach
             </div></br></br></br></br></br>
             <div class="row" align="center">
-                <a align="center" href="{{route('td.index')}}"><input type="button" id="btn-submit" class="btn btn-info" value="Submit"></a>
+                <a align="center" href="{{route('td.index')}}"><input type="button" id="btn-submit" class="btn btn-info" value="Go TO List Data Time Deposit"></a>
                 <a align="center" href="{{url('td/updateStatus',$datas->id)}}"><input type="button" id="btn-finish" disabled="true" class="btn btn-info" value="Finish"></a>
             </div>
         </div>
@@ -959,15 +959,19 @@ today = mm + '-' + dd + '-' + yyyy;
 
 var jumlahApr = '<?php echo $jumlahApr; ?>';
 var approver = '<?php echo $valButton; ?>'
+var period = '<?php echo $period; ?>'
 var bm = '<?php echo $approverBM; ?>'
 var am = '<?php echo $approverAM; ?>'
 var rh = '<?php echo $approverRH;?>'
 var dr = '<?php echo $approverDR;?>'
 
 console.log('Jumlah Approver: ', jumlahApr);
+console.log('Period: ', period);
 console.log('approverBM: ', bm);
 console.log('approverAM: ', am);
 console.log('approverRH: ', rh);
+console.log('approverDR: ', dr);
+
 $("input").click(function(e){
     var idClicked = e.target.id;
     console.log('idclicked:', idClicked);
@@ -1011,8 +1015,8 @@ $("input").click(function(e){
     document.getElementById("btn-approve-rh2").disabled = true;
     document.getElementById("btn-revisi-rh2").disabled = true;
     document.getElementById("btn-reject-rh2").disabled = true;
-    document.getElementById("approved-date-by-rh2").innerHTML = today;
     document.getElementById("btn-finish").disabled = false;
+    document.getElementById("approved-date-by-rh2").innerHTML = today;
     document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been Approved by Area Manager";
   }
 
@@ -1046,8 +1050,8 @@ $("input").click(function(e){
     document.getElementById("btn-approve-dr3").disabled = true;
     document.getElementById("btn-revisi-dr3").disabled = true;
     document.getElementById("btn-reject-dr3").disabled = true;
-    document.getElementById("approved-date-by-dr3").innerHTML = today;
     document.getElementById("btn-finish").disabled = false;
+    document.getElementById("approved-date-by-dr3").innerHTML = today;
     document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been Approved by Area Manager";
   }
 
