@@ -27,12 +27,13 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group label-floating">
-                                     <b>Currency</b>
-                                    <select name="currency" id="currency" class="form-control" onChange="autoFillByCurrency(); return false;">
-                                      <option value="IDR">IDR</option>
-                                      <option value="USD">USD</option>
-                                      <option value="SGD">SGD</option>
-                                      <option value="CNY">CNY</option>
+                                    <b>Period (/ bulan)</b>
+                                    <select name="period" id="period" class="form-control" onChange="autoFill(); return false;">
+                                    <option>-Select-</option>
+                                      <option value="1">1 bln</option>
+                                      <option value="3">3 bln</option>
+                                      <option value="6">6 bln</option>
+                                      <option value="12">12 bln</option>
                                     </select>
                                 </div>
                             </div>
@@ -43,13 +44,12 @@
                         </div>
                         <div class="col-md-4">
                                 <div class="form-group label-floating">
-                                    <b>Period (/ bulan)</b>
-                                    <select name="period" id="period" class="form-control" onChange="autoFill(); return false;">
-                                    <option>-Select-</option>
-                                      <option value="1">1 bln</option>
-                                      <option value="3">3 bln</option>
-                                      <option value="6">6 bln</option>
-                                      <option value="12">12 bln</option>
+                                     <b>Currency</b>
+                                    <select name="currency" id="currency" class="form-control" onChange="autoFillByCurrency(); return false;">
+                                      <option value="IDR">IDR</option>
+                                      <option value="USD">USD</option>
+                                      <option value="SGD">SGD</option>
+                                      <option value="CNY">CNY</option>
                                     </select>
                                 </div>
                             </div>
