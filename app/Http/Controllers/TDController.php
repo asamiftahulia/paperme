@@ -29,7 +29,8 @@ class TDController extends Controller
         //
         $data = TD::All();
       //  return view('time-deposit-list', compact('data'));
-        return view('list-td',compact('data'));
+      
+        return view('list-td',compact('data','trx'));
     }
 
     /**
@@ -331,47 +332,48 @@ class TDController extends Controller
                         echo 'Approver Not Found';
                     }
                 }
+            }elseif($datas['currency']=='USD'){
+                $period = "All Period";
+                if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '1.00'){
+                    $dataApprover = array('approver'=>'AM');
+                    $apr = 2;
+                   
+                }else if($datas['special_rate'] == '1.00' || $datas['special_rate'] <= '1.25'){
+                    $dataApprover = array('approver'=>'AM','Regional Head');
+                    $apr = 3;
+                }else if($datas['special_rate'] > '1.25'){
+                    $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                    $apr = 4;
+                }else{
+                    echo 'Approver Not Found';
+                }
+            }elseif($datas['currency']=='SGD'){
+                if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '0.75'){
+                    $dataApprover = array('approver'=>'AM');
+                    $apr = 2;
+                }else if($datas['special_rate'] == '0.75' || $datas['special_rate'] <= '1.00'){
+                    $dataApprover = array('approver'=>'AM','Regional Head');
+                    $apr = 3;
+                }else if($datas['special_rate'] > '1.00'){
+                    $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                    $apr = 4;
+                }else{
+                    echo 'Approver Not Found';
+                }
+            }elseif($datas['currency']=='CNY'){
+                if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '1.25'){
+                    $dataApprover = array('approver'=>'AM');
+                    $apr = 2;
+                }else if($datas['special_rate'] == '1.25' || $datas['special_rate'] <= '1.50'){
+                    $dataApprover = array('approver'=>'AM','Regional Head');
+                    $apr = 3;
+                }else if($datas['special_rate'] > '1.50'){
+                    $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                    $apr = 4;
+                }else{
+                    echo 'Approver Not Found';
+                }
             }
-                // elseif($datas['currency']=='USD'){
-            //     if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '1.00'){
-            //         $dataApprover = array('approver'=>'AM');
-            //         $apr = 2;
-            //     }else if($datas['special_rate'] == '1.00' || $datas['special_rate'] <= '1.25'){
-            //         $dataApprover = array('approver'=>'AM','Regional Head');
-            //         $apr = 3;
-            //     }else if($datas['special_rate'] > '1.25'){
-            //         $dataApprover = array('approver'=>'AM','Regional Head','Director');
-            //         $apr = 4;
-            //     }else{
-            //         echo 'Approver Not Found';
-            //     }
-            // }elseif($datas['currency']=='SGD'){
-            //     if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '0.75'){
-            //         $dataApprover = array('approver'=>'AM');
-            //         $apr = 2;
-            //     }else if($datas['special_rate'] == '0.75' || $datas['special_rate'] <= '1.00'){
-            //         $dataApprover = array('approver'=>'AM','Regional Head');
-            //         $apr = 3;
-            //     }else if($datas['special_rate'] > '1.00'){
-            //         $dataApprover = array('approver'=>'AM','Regional Head','Director');
-            //         $apr = 4;
-            //     }else{
-            //         echo 'Approver Not Found';
-            //     }
-            // }elseif($datas['currency']=='CNY'){
-            //     if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '1.25'){
-            //         $dataApprover = array('approver'=>'AM');
-            //         $apr = 2;
-            //     }else if($datas['special_rate'] == '1.25' || $datas['special_rate'] <= '1.50'){
-            //         $dataApprover = array('approver'=>'AM','Regional Head');
-            //         $apr = 3;
-            //     }else if($datas['special_rate'] > '1.50'){
-            //         $dataApprover = array('approver'=>'AM','Regional Head','Director');
-            //         $apr = 4;
-            //     }else{
-            //         echo 'Approver Not Found';
-            //     }
-            // }
         }
 
         $trx = transaction_td::where('id_td',$id_td)->count();

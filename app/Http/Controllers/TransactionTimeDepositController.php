@@ -56,6 +56,10 @@ class TransactionTimeDepositController extends Controller
         $data->approved_at = '2018-02-02';
         $result = $data->save();
         
+        $td = TD::find($request->id_td);
+        $td->id_branch = 1;
+        $td->save();
+
         if($result==1){
             echo "success";
             $act = 0;
