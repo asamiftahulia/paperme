@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header" data-background-color="blue">
-                    <h4 class="title">Registration Time Deposit</h4>
+                    <h4 class="title">Registration Time Deposit Edit</h4>
                     <p class="category"><font color="red">New</font> Time Deposit</p>
                 </div>
                 <div class="card-content">
@@ -15,7 +15,7 @@
                         {{method_field('PUT')}}
                         <div class="row">
                             <div class="col-md-12">
-                                <b>Fullname</b>
+                                <b>Full Name</b>
                                 <input type="text" class="form-control" placeholder="Ex: John Doe" name="full_name" value="{{ $datas->full_name}}">
                             </div>
                          </div>
@@ -31,25 +31,35 @@
                                     </select>
                                 </div>
                             </div>
-                             <div class="col-md-4">
+                            <div class="col-md-4">
+                                <b>Amount (Rp)</b>
+                                <input type="text" class="form-control" placeholder="Ex: Rp. 99,000" id="aing" name="amount" value="{{ $datas->amount}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                     <b>Currency</b>
+                                    <select name="currency" id="currency" class="form-control" onChange="autoFill(); return false;">
+                                      <option value="IDR">IDR</option>
+                                      <option value="USD">USD</option>
+                                      <option value="SGD">SGD</option>
+                                      <option value="CNY">CNY</option>
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                                 <div class="form-group label-floating">
-                                      <b>Special Rate</b>
+                                      <b>Special Rate (%)</b>
                                       <input type="text" class="form-control" name="special_rate" id="special_rate" value="{{ $datas->special_rate}}" onChange="autoFill(); return false;">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group label-floating">
-                                      <b>Normal Rate</b>
+                                      <b>Normal Rate (%)</b>
                                       <input type="text" class="form-control" name="normal_rate" id="normal_rate" value="{{$datas->normal_rate}}">
                                 </div>
-                            </div> 
-                        </div>
-                        <div class="row">
-                        <div class="col-md-4">
-                                <b>Amount (Rp)</b>
-                                <input type="text" class="form-control" placeholder="Ex: Rp. 99,000" id="aing" name="amount" value="{{ $datas->amount}}">
                             </div>
-                          
+                        <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group label-floating"> 
                                     <b>Date Rollover</b>
@@ -91,8 +101,6 @@
                         <button type="submit" class="btn btn-info pull-right">Submit</button>
                         <a href="{{URL::to('./')}}" class="btn btn-info waves-effect ">Back</a>
                         <div class="clearfix"></div>
-                        
-
                     </form>
                      @endforeach
                 </div>
@@ -100,21 +108,69 @@
         </div>
     </div>
 
-
 <script type="text/javascript">
+  function autoFillByCurrency() {
+    var specialRate = document.getElementById('special_rate').value;
+    var normalRate = document.getElementById('normal_rate').value;
+    var currency = document.getElementById('currency').value;
+      document.getElementById('normal_rate').value = 0.50;
+    }
+
   function autoFill() {
-      
     var specialRate = document.getElementById('special_rate').value;
     var normalRate = document.getElementById('normal_rate').value;
     var period = document.getElementById('period').value;
-    if(specialRate!='' ){ 
-        
-        if(period == 1 || period == 3)
+    var currency = document.getElementById('currency').value;
+    if(specialRate=='' || specialRate!= ''){
+        if(period == 1 || period == 3){
+            if(currency == 'IDR'){
             document.getElementById('normal_rate').value = 5.25;
-        else if(period == 6 || period == 12)
-        document.getElementById('normal_rate').value = 5.5;
-    
+            }else{
+                document.getElementById('normal_rate').value = 0.50;
+            }
+        }
+        else if(period == 6 || period == 12){
+            if(currency == 'IDR'){
+                document.getElementById('normal_rate').value = 5.5;
+            }else{
+                document.getElementById('normal_rate').value = 0.50;
+            }
+        }
     }
+   
+    // var specialRate = document.getElementById('special_rate').value;
+    // if(specialRate!='' ){    
+       
+    // var period = document.getElementById('period').value;
+    // var pausecontent = new Array();
+    // <?php foreach($data as $datas){ ?>
+    //     pausecontent.push('<?php echo $datas; ?>');
+    // <?php } ?> 
+    // var data ;
+    // for(var i = 0; i<pausecontent.length;i++){
+    //         pausecontent[i] = JSON.parse(pausecontent[i]);
+    //        if(period == pausecontent[i].term){
+    //            data = pausecontent[i];
+    //            break;
+    //        }
+    // }
+    // //  document.getElementById("demo").innerHTML = data.term;
+    //  document.getElementById("demo").innerHTML = data.term + ", " + data.counter_rate + ", " + data.area_manager + ", " + data.regional_head + ", " + data.director;
+    
+    //  if(specialRate >= data.counter_rate && specialRate <= data.area_manager){
+    //     document.getElementById('nr').value = data.counter_rate;
+    //     document.getElementById("apr").innerHTML = 'BRANCH MANAGER';
+    //  }else if(specialRate >= data.area_manager && specialRate <= data.regional_head){
+    //     document.getElementById('nr').value = data.counter_rate;
+    //     document.getElementById("apr").innerHTML = 'AREA MANAGER';
+    //  }else if(specialRate >= data.regional_head && specialRate <= data.director){
+    //     document.getElementById('nr').value = data.counter_rate;
+    //     document.getElementById("apr").innerHTML = 'REGIONAL HEAD';
+    //  }else if(specialRate > data.director){
+    //      document.getElementById('nr').value = data.counter_rate;
+    //     document.getElementById("apr").innerHTML = 'DIRECTOR';
+    //  }
+    // }
   }
 
 </script>

@@ -64,8 +64,7 @@
                                       <b>Normal Rate (%)</b>
                                     <input type="number" step="0.01" class="form-control" id="normal_rate" placeholder="e.g : 5.00" name="normal_rate">
                                 </div>
-                            </div> 
-                    </div>
+                            </div>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group label-floating"> 
@@ -83,8 +82,6 @@
                                 </div>
                             </div>
                          </div>
-                        
-                   
                         <div class="row">
                             <div class="col-md-6">
                                 <b>Sources Of Funds</b>
