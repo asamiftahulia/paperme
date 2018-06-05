@@ -40,6 +40,7 @@
                             <div class="form-group label-floating">
                                      <b>Currency</b>
                                     <select name="currency" id="currency" class="form-control" onChange="autoFill(); return false;">
+                                      <option value="{{$datas->currency}}" selected>-{{$datas->currency}}-</option>
                                       <option value="IDR">IDR</option>
                                       <option value="USD">USD</option>
                                       <option value="SGD">SGD</option>
