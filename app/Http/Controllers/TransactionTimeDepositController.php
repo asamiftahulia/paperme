@@ -122,6 +122,7 @@ class TransactionTimeDepositController extends Controller
         $data = new transaction_td();
         $data->id_td = $request->id_td;
         $data->approved = 0;
+        $data->special_rate=$request->special_rate;
         $data->role=$request->role;
         $data->created_by = 'asami@gmail.com';
         $data->approved_by = 'asa@ccb.com';

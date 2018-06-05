@@ -333,7 +333,7 @@ class TDController extends Controller
                     }
                 }
             }elseif($datas['currency']=='USD'){
-                $period = "All Period";
+                 $period = "All Period";
                 if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '1.00'){
                     $dataApprover = array('approver'=>'AM');
                     $apr = 2;
