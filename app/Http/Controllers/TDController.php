@@ -225,7 +225,6 @@ class TDController extends Controller
         $data = TD::where('id',$id)->get();
         $banks = MasterBank::all();
         $tipeDeps = M_Tipe_Deposito::all();
-
         return view('registrasi-td-form-edit',compact('data','banks','tipeDeps'));
     }
 
@@ -240,7 +239,6 @@ class TDController extends Controller
     {
         $data = TD::where('id',$id)->first();
         
-
         $data->full_name = $request->full_name;
 
         $strAmount = filter_var($request->amount, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
@@ -249,6 +247,7 @@ class TDController extends Controller
         $str = trim($request->amount);
         $data->type_of_td = $request->type_of_td;
         $data->special_rate = $request->special_rate;
+        $data->currency = $request->currency;
         $data->normal_rate = $request->normal_rate;
 
         $dt = strtotime($request->date_rollover);
