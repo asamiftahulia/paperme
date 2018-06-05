@@ -49,6 +49,7 @@ class TransactionTimeDepositController extends Controller
         $count = 0;
         $data->id_td = $request->id_td;
         $data->approved = 1;
+        $data->aksi='Approve';
         $data->special_rate=$request->special_rate;
         $data->role=$request->role;
         $data->created_by = 'asami@gmail.com';
@@ -89,6 +90,7 @@ class TransactionTimeDepositController extends Controller
         // $data = transaction_td::find($id);
         $data->id_td = $id;
         $data->approved = 0;
+        $data->aksi='Revisi';
         $data->special_rate = $request->special_rate;
         $data->role=$request->role;
         $data->created_by = 'asami@gmail.com';
@@ -124,6 +126,7 @@ class TransactionTimeDepositController extends Controller
         $data->approved = 0;
         $data->special_rate=$request->special_rate;
         $data->role=$request->role;
+        $data->aksi='Reject';
         $data->created_by = 'asami@gmail.com';
         $data->approved_by = 'asa@ccb.com';
         $data->approved_at = '2018-02-02';

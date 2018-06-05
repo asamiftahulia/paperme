@@ -47,7 +47,7 @@ class LoginApiController extends Controller
        // dd(session('username'),session('token'), session('nik'), session('nama'), session('branch'), session('job'));
        // dd(session('job'));
        // dd($data);
-       return View('yeay',compact('token','username'));
+       return View('user-mapping-test',compact('token','username','nik','nama','branch','job'));
     }
 
     public function logout(){

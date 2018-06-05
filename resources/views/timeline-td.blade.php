@@ -619,7 +619,7 @@
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
                              <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-info">Approve</button>
+                             <button type="submit" class="btn btn-success">Approve</button>
                           </form>
                           </div>
                       </div>
@@ -974,12 +974,23 @@ var am = '<?php echo $approverAM; ?>'
 var rh = '<?php echo $approverRH;?>'
 var dr = '<?php echo $approverDR;?>'
 
+var rejectbm = '<?php echo $rejectBM; ?>'
+var rejectam = '<?php echo $rejectAM; ?>'
+var rejectrh = '<?php echo $rejectRH;?>'
+var rejectdr = '<?php echo $rejectDR;?>'
+
 console.log('Jumlah Approver: ', jumlahApr);
 console.log('Period: ', period);
 console.log('approverBM: ', bm);
 console.log('approverAM: ', am);
 console.log('approverRH: ', rh);
 console.log('approverDR: ', dr);
+console.log('-----------------');
+console.log('rejectBM: ', rejectbm);
+console.log('rejectAM: ', rejectam);
+console.log('rejectRH: ', rejectrh);
+console.log('rejectrDR: ', rejectdr);
+
 
 $("input").click(function(e){
     var idClicked = e.target.id;
@@ -991,7 +1002,10 @@ $("input").click(function(e){
     document.getElementById("btn-revisi-bm1").disabled = true;
     document.getElementById("btn-reject-bm1").disabled = true;
     document.getElementById("time").innerHTML = today;
-    document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been Approved by Branch Manager";
+    if(rejectbm == 0)
+      document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='Green'>Approved</font>  by Branch Manager";
+    else
+    document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
   }
 
   function autoDisableAM1() {
@@ -1000,7 +1014,10 @@ $("input").click(function(e){
     document.getElementById("btn-reject-am1").disabled = true;
     document.getElementById("btn-finish").disabled = false;
     document.getElementById("approved-date-by-am1").innerHTML = today;
-    document.getElementById("act").innerHTML = "This Special Rate Has Been Approved by Area Manager";
+    if(rejectam == 0)
+      document.getElementById("act").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Area Manager";
+    else
+      document.getElementById("act").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Area Manager";
   }
 
   // 3 approver 
@@ -1009,7 +1026,10 @@ $("input").click(function(e){
     document.getElementById("btn-revisi-bm2").disabled = true;
     document.getElementById("btn-reject-bm2").disabled = true;
     document.getElementById("approved-date-by-bm2").innerHTML = today;
-    document.getElementById("act-bm2").innerHTML = "This Special Rate Has Been Approved by Branch Manager";
+    if(rejectbm == 0)
+      document.getElementById("act-bm2").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Branch Manager";
+    else
+    document.getElementById("act-bm2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
   }
 
   function autoDisableAM2() {
@@ -1017,7 +1037,10 @@ $("input").click(function(e){
     document.getElementById("btn-revisi-am2").disabled = true;
     document.getElementById("btn-reject-am2").disabled = true;
     document.getElementById("approved-date-by-am2").innerHTML = today;
-    document.getElementById("act-am2").innerHTML = "This Special Rate Has Been Approved by Area Manager";
+    if(rejectam == 0)
+      document.getElementById("act-am2").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Area Manager";
+    else
+    document.getElementById("act-am2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
   }
 
    function autoDisableRH2() {
@@ -1026,7 +1049,10 @@ $("input").click(function(e){
     document.getElementById("btn-reject-rh2").disabled = true;
     document.getElementById("btn-finish").disabled = false;
     document.getElementById("approved-date-by-rh2").innerHTML = today;
-    document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been Approved by Area Manager";
+    if(rejectrh == 0)
+      document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Area Manager";
+    else
+      document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
   }
 
   // approver 4
@@ -1036,7 +1062,10 @@ $("input").click(function(e){
     document.getElementById("btn-revisi-bm3").disabled = true;
     document.getElementById("btn-reject-bm3").disabled = true;
     document.getElementById("approved-date-by-bm3").innerHTML = today;
-    document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been Approved by Branch Manager";
+    if(rejectbm == 0)
+      document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Branch Manager";
+    else
+      document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
   }
 
   function autoDisableAM3() {
@@ -1044,7 +1073,10 @@ $("input").click(function(e){
     document.getElementById("btn-revisi-am3").disabled = true;
     document.getElementById("btn-reject-am3").disabled = true;
     document.getElementById("approved-date-by-am3").innerHTML = today;
-    document.getElementById("act-am3").innerHTML = "This Special Rate Has Been Approved by Area Manager";
+    if(rejectam == 0)
+      document.getElementById("act-am3").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Area Manager";
+    else
+      document.getElementById("act-am3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
   }
 
    function autoDisableRH3() {
@@ -1052,7 +1084,10 @@ $("input").click(function(e){
     document.getElementById("btn-revisi-rh3").disabled = true;
     document.getElementById("btn-reject-rh3").disabled = true;
     document.getElementById("approved-date-by-rh3").innerHTML = today;
-    document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been Approved by Area Manager";
+    if(rejectrh == 0)
+      document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Area Manager";
+    else
+      document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'> Rejected</font>by Area Manager";
   }
 
    function autoDisableDR3() {
@@ -1061,46 +1096,49 @@ $("input").click(function(e){
     document.getElementById("btn-reject-dr3").disabled = true;
     document.getElementById("btn-finish").disabled = false;
     document.getElementById("approved-date-by-dr3").innerHTML = today;
-    document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been Approved by Area Manager";
+    if(rejectdr == 0)
+      document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Area Manager";
+    else
+    document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
   }
 
   if(jumlahApr == 2){
-      if(bm == 1) {
+      if(bm == 1 || rejectbm==1) {
         this.autoDisableBM1();
       }
-      if(am == 1) {
+      if(am == 1 || rejectam==1) {
         this.autoDisableBM1();
         this.autoDisableAM1();
       }
   }
   if(jumlahApr == 3){
-    if(bm != 0) {
+    if(bm != 0 || rejectbm != 0) {
         this.autoDisableBM2();
       }
-    if(am != 0) {
+    if(am != 0 || rejectam!=0) {
         this.autoDisableAM2();
         this.autoDisableBM2();
       }
-    if(rh != 0){
+    if(rh != 0 || rejectrh!=0){
         this.autoDisableBM2();
         this.autoDisableAM2();
         this.autoDisableRH2();
       }
   }
   if(jumlahApr == 4){
-    if(bm != 0) {
+    if(bm != 0 || rejectbm != 0) {
         this.autoDisableBM3();
       }
-    if(am != 0) {
+    if(am != 0 || rejectam != 0) {
         this.autoDisableAM3();
         this.autoDisableBM3();
       }
-    if(rh != 0){
+    if(rh != 0 || rejectrh != 0){
         this.autoDisableBM3();
         this.autoDisableAM3();
         this.autoDisableRH3();
       }
-      if(dr != 0){
+      if(dr != 0 || rejectdr != 0){
         this.autoDisableBM3();
         this.autoDisableAM3();
         this.autoDisableRH3();
