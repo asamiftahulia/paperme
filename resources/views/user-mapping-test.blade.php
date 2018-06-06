@@ -17,30 +17,119 @@
                     
                     <div class="card">
                                 <div class="card-header" data-background-color="blue">
-                                    <h4 class="title">Mapping</h4>
-                                    Hai {{session('username')}}
+                                    <h4 class="title">User Mapping</h4>
+                                    Hai {{session('username')}} </br>
+                                    NIK : {{session('nik')}} </br>
+                                    BRANCH : {{session('branch')}} </br>
+                                    JOB : {{session('job')}}</br>
                                 </div>
                                 <div class="card-content table-responsive">
                             <table class="table table-bordered table-striped table-hover dataTable js-exportable">
-                                <thead>
+                                <thead>flow cabang
                                 <tr>
-                                    <th>No</th>
-                                    <th>nik</th>
-                                    <th>branch</th>
-                                    <th>job</th>
+                                    <th>ID</th>
+                                    <th>Nama</th>
+                                    <th>Regional</th>
+                                    <th>Path</th>
+                                    <th>Path Name</th>
+                                    <th>Jenis Cabang</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                               
+                                @foreach($flow as $data)
+                                <?php
+                                    $id = explode(';',$data->path);
+                                    $path = explode(';',$data->path);
+                                    $pathName = explode('->',$data->path_name);
+                                    $jenisCabang = explode(';',$data->jenis_cabang);
+                                ?>
                                     <tr>
-                                        <td>1</td>
-                                        <td>{{session('nik')}}</td>
-                                        <td>{{session('branch')}}</td>
-                                        <td>{{session('job')}}</td>
+                                       <td>{{$id[0]}}</td>
+                                       <td>{{$data->nama}}</td>
+                                       <td>{{$data->regional}}</td>
+                                       <td><?php
+                                            for($i = 0; $i<count($path);$i++){
+                                                echo $path[$i];
+                                                echo'</br>';
+                                            }?>
+                                       </td>
+                                       <td><?php
+                                            for($i = 0; $i<count($pathName);$i++){
+                                                echo $pathName[$i];
+                                                echo'</br>';
+                                            }?>
+                                       </td>
+                                       <td>
+                                       <?php
+                                            for($i = 0; $i<count($jenisCabang);$i++){
+                                                echo $jenisCabang[$i];
+                                                echo'</br>';
+                                            }?>
+                                       </td>
+                                       
                                     </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            <table border='1'>
+                                <thead>User BM {{session('bm')}}
+                                <tr>
+                                    <th>Username</th>
+                                    <th>job</th>
+                                    <th>Id Branch</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($userBM as $user)
+                                    <tr>
+                                        <td>{{$user->username}}</td>
+                                        <td>{{$user->id_jobs}}</td>
+                                        <td>{{$user->id_branch}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            <table border='1'>
+                                <thead>User AM {{session('am')}}
+                                <tr>
+                                    <th>Username</th>
+                                    <th>job</th>
+                                    <th>Id Branch</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($userAM as $user)
+                                    <tr>
+                                        <td>{{$user->username}}</td>
+                                        <td>{{$user->id_jobs}}</td>
+                                        <td>{{$user->id_branch}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+
+                             <table border='1'>
+                                <thead>User Regional Head {{session('rh')}}
+                                <tr>
+                                    <th>Username</th>
+                                    <th>job</th>
+                                    <th>Id Branch</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($userRH as $user)
+                                    <tr>
+                                        <td>{{$user->username}}</td>
+                                        <td>{{$user->id_jobs}}</td>
+                                        <td>{{$user->id_branch}}</td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                             </div>
-                    </div>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>

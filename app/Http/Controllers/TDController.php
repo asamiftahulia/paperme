@@ -102,9 +102,9 @@ class TDController extends Controller
         $data->date_rollover = $request->date_rollover;
         $data->special_rate = $request->special_rate;
         $data->normal_rate = $request->normal_rate;
-        $data->id_branch = '0';
-        $data->created_by = 'asami@gmail.com';
-        $data->updated_by = 'asami@gmail.com';
+        $data->id_branch = session('branch');
+        $data->created_by = session('username');
+        $data->updated_by = session('username');
         $data->save();
        
         //Mail::to('harsyami@gmail.com')->send(new PostSubscribtion($data));

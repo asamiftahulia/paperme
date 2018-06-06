@@ -68,9 +68,9 @@ use App\transaction_td;
                                             <a href="{{action('TDController@downloadSummary',$datas->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
                                             <a href="{{action('TDController@timeline',$datas->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
                                         
-                                            <?php if($datas->id_branch == 1){ ?>
+                                            <?php if($datas->action == 1){ ?>
                                                         <a href="javascript: void(0)" class="material-icons" rel="tooltip" title="Can Not Edit">mode_edit</a>
-                                            <?php        }elseif($datas->id_branch== 0){ ?>
+                                            <?php        }elseif($datas->action== 0){ ?>
                                                        <a href="{{route("td.edit",$datas->id)}}" class="material-icons" rel="tooltip" title="Edit Data">mode_edit</a>
                                             <?php        }
                                             ?>

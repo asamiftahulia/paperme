@@ -57,7 +57,7 @@
 -->
         <div class="logo">
             <a href="http://www.creative-tim.com" class="simple-text">
-                Paperless System
+                Paperless System 
             </a>
         </div>
         <div class="sidebar-wrapper">

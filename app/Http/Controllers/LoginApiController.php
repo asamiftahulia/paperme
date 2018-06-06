@@ -8,6 +8,8 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Message\Response;
 use View;
 use Session;
+use App\FlowMapping;
+use App\UserJob;
 
 class LoginApiController extends Controller
 {
@@ -29,25 +31,71 @@ class LoginApiController extends Controller
         ]);
      
         
-       $response = $client->post('http://192.168.1.57:8015/login', ['json'=>['username'=>'harsya.mifta@idn.ccb.com','password'=>'asaasaasa']]);
+       $response = $client->post('http://192.168.1.57:8015/login', ['json'=>['username'=>'tien.muntiara@idn.ccb.com','password'=>'10 1446']]);
 
         $data = $response->getBody();
 
         $data = json_decode($data);
-        // dd($data->token);
-       // dd($data->username,$data->token);
-       // $token = $data->token;
-       
+    //    asli
         session(['token' => $data->token,
          'username'=> $data->username,
          'nik' => $data->employee->nik,
          'nama'=> $data->employee->nama,
          'branch'=> $data->userJobs[0]->userJobPK->idBranch,
          'job'=> $data->userJobs[0]->userJobPK->idJobs]);
+
+        //palsu
+        //  session(['token' => '1234567',
+        //  'username'=> 'anisentus.yoseph@idn.ccb.com ',
+        //  'nik' => '17 3694',
+        //  'nama'=> 'yosep',
+        //  'branch'=> 'ID0010028',
+        //  'job'=> 'S0309']);
+
        // dd(session('username'),session('token'), session('nik'), session('nama'), session('branch'), session('job'));
        // dd(session('job'));
        // dd($data);
-       return View('user-mapping-test',compact('token','username','nik','nama','branch','job'));
+       $id_branch = session('branch');
+       $flow = FlowMapping::where('id',$id_branch)->get();
+        foreach($flow as $data)
+        {
+            $path = explode(';',$data->path);
+            $countPath = count($path);
+            for($i = 0; $i<$countPath;$i++){
+                if($countPath==4){
+                    // echo "<script type='text/javascript'>alert('$path[$i]');</script>";
+                    // echo'</br>';
+                    $userBM = UserJob::where('id_branch',$id_branch)->get();
+                    $userAM = UserJob::where('id_branch',$path[1])->get();
+                    $userRH = UserJob::where('id_branch',$path[2])->get();
+                    $userDR = UserJob::where('id_branch',$path[3])->get();
+                }else{
+                    echo "<script type='text/javascript'>alert('aaa');</script>";
+                }
+            }
+            
+        }
+
+       
+    //    $userBM = UserJob::where('id_branch',$id_branch)->get();
+    //    $userAM = UserJob::where('id_branch','AR0012')->get();
+    //    $userRH = UserJob::where('id_branch','AR0001')->get();
+    //    $userDR = UserJob::where('id_branch','AR0001')->get();
+
+       session(['bm'=>$userBM[0]->username,
+       'am'=>$userAM[0]->username,
+       'rh'=>$userRH[0]->username,
+       'dr'=>$userDR[0]->username]);
+
+       return View('user-mapping-test',compact('token',
+       'username',
+       'nik',
+       'nama',
+       'branch',
+       'job',
+       'flow',
+       'userBM','userAM','userRH','userDR','bm','am','rh','dr'
+    ));
     }
 
     public function logout(){

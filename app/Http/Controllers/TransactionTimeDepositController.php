@@ -52,13 +52,14 @@ class TransactionTimeDepositController extends Controller
         $data->aksi='Approve';
         $data->special_rate=$request->special_rate;
         $data->role=$request->role;
-        $data->created_by = 'asami@gmail.com';
-        $data->approved_by = 'BranchManager@ccb.com';
-        $data->approved_at = '2018-02-02';
+        $data->created_by = session('username');
+        $data->approved_by = session('username');
+        $today = date("Y-m-d");
+        $data->approved_at = $today;
         $result = $data->save();
         
         $td = TD::find($request->id_td);
-        $td->id_branch = 1;
+        $td->action = 1;
         $td->save();
 
         if($result==1){
@@ -93,9 +94,9 @@ class TransactionTimeDepositController extends Controller
         $data->aksi='Revisi';
         $data->special_rate = $request->special_rate;
         $data->role=$request->role;
-        $data->created_by = 'asami@gmail.com';
-        $data->approved_by = 'BranchManager@ccb.com';
-        $data->approved_at = '2018-02-02';
+        $data->created_by = session('username');
+        $data->approved_by = session('username');
+        $data->approved_at = date("Y-m-d");
 
         $td = TD::find($id);
         $td->special_rate = $request->special_rate;
@@ -127,9 +128,9 @@ class TransactionTimeDepositController extends Controller
         $data->special_rate=$request->special_rate;
         $data->role=$request->role;
         $data->aksi='Reject';
-        $data->created_by = 'asami@gmail.com';
-        $data->approved_by = 'asa@ccb.com';
-        $data->approved_at = '2018-02-02';
+        $data->created_by = session('username');
+        $data->approved_by = session('username');
+        $data->approved_at = date("Y-m-d");
         $result = $data->save();
 
         if($result==1){
@@ -225,19 +226,6 @@ class TransactionTimeDepositController extends Controller
         // echo "approver ".$approver;
        
         
-    }
-
-     public function storeArea(Request $request)
-    {
-        $data = new transaction_td();
-        $data->id_td = $request->id_td;
-        $data->approved = 1;
-        $data->created_by = 'asami@gmail.com';
-        $data->approved_by = 'BranchManager@ccb.com';
-        $data->approved_at = '2018-02-02';
-        $result = $data->save();
-        return redirect()->back()->with($notification);
-     
     }
 
     /**
