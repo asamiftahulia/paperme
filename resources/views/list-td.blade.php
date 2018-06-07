@@ -1,18 +1,17 @@
-<?php
-use App\transaction_td;
-?>
 @extends('master-dp')
 @section('page-title','Time Deposit Special Rate')
 @section('aktif-mtimedeplist','active')
 @section('content')
-    @if(Session::has('flash_message'))
-        <div class="alert alert-info">
+    @if(Session::has('username'))
+        <div class="alert alert-info"> ada token {{session('token')}};
             <button type="button" aria-hidden="true" class="close">×</button>
             <span><b> Info - </b><em> {!! session('flash_message') !!}</em></span>
         </div>
-        @php
-            $flash = Session::get('flash_message');
-        @endphp
+    @else
+    <div class="alert alert-info"> Tidak ada login {{session('username')}};
+            <button type="button" aria-hidden="true" class="close">×</button>
+            <span><b> Info - </b><em> {!! session('flash_message') !!}</em></span>
+        </div>
     @endif
     <div class="col-md-12">
         <div class="row clearfix">
@@ -20,8 +19,8 @@ use App\transaction_td;
                     
                     <div class="card">
                                 <div class="card-header" data-background-color="blue">
-                                    <h4 class="title">Time Deposit{{session('token')}} Special Rate</h4>
-                                    <p class="category">Data Pengajuan Special Rate</p>
+                                    <h4 class="title">Time Deposit {{session('token')}} Special Rate</h4>
+                                    <p class="category">Data Pengajuan Special Rate {{session('username')}}</p>
                                 </div>
                                 <div class="card-content table-responsive">
                             <table class="table table-bordered table-striped table-hover dataTable js-exportable">
@@ -44,7 +43,7 @@ use App\transaction_td;
                                 @foreach($data as $datas)
                                     <tr>
                                        <td>{{$no++}}</td>
-                                        <td>{{$datas->full_name}}</td>
+                                        <td>{{$datas->full_name}}</br>{{$datas->created_by}}</td>
                                         <td>{{number_format($datas->amount,2)}} ({{$datas->currency}})</td>
                                         <td>{{$datas->expired_date}}</td>
                                         <td>{{$datas->period}} Bulan</td>

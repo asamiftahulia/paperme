@@ -29,10 +29,8 @@ class LoginApiController extends Controller
         $client = new Client([
            'headers'=>['content-type'=>'application/json','X-Auth-Token'=>'fa6dce03-de34-4534-9c51-06eafa50f23e'],
         ]);
-     
-        
-       $response = $client->post('http://192.168.1.57:8015/login', ['json'=>['username'=>'tien.muntiara@idn.ccb.com','password'=>'10 1446']]);
 
+       $response = $client->post('http://192.168.1.57:8015/login', ['json'=>['username'=>'lim.rita@idn.ccb.com','password'=>'10 1371']]);
         $data = $response->getBody();
 
         $data = json_decode($data);
@@ -45,6 +43,7 @@ class LoginApiController extends Controller
          'job'=> $data->userJobs[0]->userJobPK->idJobs]);
 
         //palsu
+ 
         //  session(['token' => '1234567',
         //  'username'=> 'anisentus.yoseph@idn.ccb.com ',
         //  'nik' => '17 3694',
@@ -63,14 +62,18 @@ class LoginApiController extends Controller
             $countPath = count($path);
             for($i = 0; $i<$countPath;$i++){
                 if($countPath==4){
-                    // echo "<script type='text/javascript'>alert('$path[$i]');</script>";
-                    // echo'</br>';
-                    $userBM = UserJob::where('id_branch',$id_branch)->get();
-                    $userAM = UserJob::where('id_branch',$path[1])->get();
-                    $userRH = UserJob::where('id_branch',$path[2])->get();
-                    $userDR = UserJob::where('id_branch',$path[3])->get();
+                    //cocok eko
+                    $userBM = UserJob::where('id_branch',$id_branch)->where('id_jobs','S0362')->get();
+                    $userAM = UserJob::where('id_branch',$path[1])->where('id_jobs','S0465')->get();
+                    $userRH = UserJob::where('id_branch',$path[2])->where('id_jobs','S0301')->get();
+                    $userDR = 'setiawati.samahita@idn.ccb.com';
                 }else{
-                    echo "<script type='text/javascript'>alert('aaa');</script>";
+                    //cocok buat eko
+                    $userBM = UserJob::where('id_branch',$id_branch)->where('id_jobs','S0465')->get();
+                    $userAM = UserJob::where('id_branch',$id_branch)->where('id_jobs','S0465')->get();
+                    $userRH = UserJob::where('id_branch',$path[1])->where('id_jobs','S0301')->get();
+                    $userDR = 'setiawati.samahita@idn.ccb.com';
+                    echo "<script type='text/javascript'>alert('Non Jabodetabek');</script>";
                 }
             }
             
@@ -85,7 +88,7 @@ class LoginApiController extends Controller
        session(['bm'=>$userBM[0]->username,
        'am'=>$userAM[0]->username,
        'rh'=>$userRH[0]->username,
-       'dr'=>$userDR[0]->username]);
+       'dr'=>$userDR]);
 
        return View('user-mapping-test',compact('token',
        'username',
@@ -102,13 +105,18 @@ class LoginApiController extends Controller
         $client = new Client([
             'headers'=>['content-type'=>'application/json','X-Auth-Token'=>session('token')],
          ]);
-      
-         
+         session(['token' => '',
+         'username'=> '',
+         'nik' =>'',
+         'nama'=> '',
+         'branch'=> '',
+         'job'=> '']);
         $response = $client->DELETE('http://192.168.1.57:8015/login', ['json'=>['username'=>'harsya.mifta@idn.ccb.com','password'=>'asaasaasa']]);
  
          $data = $response->getBody();
          $data = json_decode($data);
          dd($data);
+
     }
 
 }

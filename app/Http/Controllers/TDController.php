@@ -16,6 +16,9 @@ use App\transaction_td;
 use App\MasterSpecialRate;
 use App\M_Tipe_Deposito;
 use DB;
+use App\FlowMapping;
+use App\UserJob;
+use App\TD_User;
 
 class TDController extends Controller
 {
@@ -106,11 +109,10 @@ class TDController extends Controller
         $data->created_by = session('username');
         $data->updated_by = session('username');
         $data->save();
-       
+    
+
         //Mail::to('harsyami@gmail.com')->send(new PostSubscribtion($data));
         return redirect('td/summary')->with('id',$data->id);
-        
-       
     }
 
     /**
@@ -334,7 +336,63 @@ class TDController extends Controller
         $approverBM = DB::table('transaksi_td')->where('role', 'Branch Manager')->where('id_td',$id)->get();
     }
 
+    
+
     public function timeline($id_td){
+        
+    //    $id_branch = session('branch');
+       $IdBranch = TD::where('id', $id_td)->get(['id_branch']);
+    //    dd($IdBranch);
+
+       if($IdBranch!='NULL'){
+        echo "<script type='text/javascript'>alert('$IdBranch[0]');</script>";
+        $branch = explode(':',$IdBranch[0]);
+        $cab =  substr( $branch[1], 1 );
+        $cabang= rtrim($cab, '"}');
+        
+        echo "<script type='text/javascript'>alert('$cabang');</script>";
+       }else{
+        echo "<script type='text/javascript'>alert('ga ada');</script>";
+       }
+       $flow = FlowMapping::where('id',$cabang)->get();
+
+       foreach($flow as $data)
+        {
+            $path = explode(';',$data->path);
+            $countPath = count($path);
+            $regional = $data->regional;
+            for($i = 0; $i<$countPath;$i++){
+                if($countPath==4){
+                    // echo "<script type='text/javascript'>alert('$path[$i]');</script>";
+                    // echo'</br>';
+                    $userBM = UserJob::where('id_branch',$cabang)->where('id_jobs','S0362')->get();
+                    $userAM = UserJob::where('id_branch',$path[1])->where('id_jobs','S0465')->get();
+                    $userRH = UserJob::where('id_branch',$path[2])->where('id_jobs','S0301')->get();
+                    $userDR = "setiawati.samahita@idn.ccb.com";
+                }elseif($countPath==3){
+                    $userBM = UserJob::where('id_branch',$cabang)->where('id_jobs','S0465')->get();
+                    $userAM = UserJob::where('id_branch',$cabang)->where('id_jobs','S0465')->get();
+                    $userRH = UserJob::where('id_branch',$path[1])->where('id_jobs','S0301')->get();
+                    $userDR = "setiawati.samahita@idn.ccb.com";
+                    // echo "<script type='text/javascript'>alert('$path[$i]');</script>";
+                }
+            }
+            
+        }
+            $cekTdUser = DB::table('td_user')->where('id_td', $id_td)->count();
+            if($cekTdUser!=0){
+                echo "<script type='text/javascript'>alert('adaan');</script>";
+            }else{
+                $td_user = new TD_USER();
+                $td_user->id_td = $id_td;
+                $td_user->bm = $userBM[0]->username;
+                $td_user->am = $userAM[0]->username;
+                $td_user->rh = $userRH[0]->username;
+                $td_user->dr = 'setiawati.samahita@idn.ccb.com';
+                $td_user->region = $regional;
+                $td_user->save();
+            }
+
           $data = TD::where('id', $id_td)->get();
        // $data = transaction_td::where('id_td', $id)->get();
           $approverBM = DB::table('trx-time-deposit')->where('role', 'Branch Manager')->where('id_td',$id_td)->where('aksi','Approve')->count();
@@ -428,13 +486,15 @@ class TDController extends Controller
         }
 
         $trx = transaction_td::where('id_td',$id_td)->count();
-       
+        $user = TD_USER::where('id_td',$id_td)->get();
         //dd($approverBM);
         if($trx == $apr)
             $valButton = 1;
         else 
             $valButton = 1;
+            // dd($user);
         return view('timeline-td',compact('data',$data))->with('apr',$dataApprover)
+        ->with('user',$user)
         ->with('valButton',$valButton)
         ->with('trx',$trx)
         ->with('jumlahApr',$apr)

@@ -127,6 +127,21 @@
                                 @endforeach
                                 </tbody>
                             </table>
+
+                            <table border='1'>
+                                <thead>User Director {{session('dr')}}
+                                <tr>
+                                    <th>Username</th>
+                                    <th>job</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{$userDR}}</td>
+                                        <td>S0384}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                             </div>
                             </div>
                         </div>
