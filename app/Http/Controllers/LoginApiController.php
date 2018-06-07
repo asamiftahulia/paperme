@@ -30,26 +30,26 @@ class LoginApiController extends Controller
            'headers'=>['content-type'=>'application/json','X-Auth-Token'=>'fa6dce03-de34-4534-9c51-06eafa50f23e'],
         ]);
 
-       $response = $client->post('http://192.168.1.57:8015/login', ['json'=>['username'=>'lim.rita@idn.ccb.com','password'=>'10 1371']]);
-        $data = $response->getBody();
+    //    $response = $client->post('http://192.168.1.57:8015/login', ['json'=>['username'=>'anisentus.yoseph@idn.ccb.com','password'=>'17 3694']]);
+        //$data = $response->getBody();
 
-        $data = json_decode($data);
+     //   $data = json_decode($data);
     //    asli
-        session(['token' => $data->token,
-         'username'=> $data->username,
-         'nik' => $data->employee->nik,
-         'nama'=> $data->employee->nama,
-         'branch'=> $data->userJobs[0]->userJobPK->idBranch,
-         'job'=> $data->userJobs[0]->userJobPK->idJobs]);
+        // session(['token' => $data->token,
+        //  'username'=> $data->username,
+        //  'nik' => $data->employee->nik,
+        //  'nama'=> $data->employee->nama,
+        //  'branch'=> $data->userJobs[0]->userJobPK->idBranch,
+        //  'job'=> $data->userJobs[0]->userJobPK->idJobs]);
 
         //palsu
  
-        //  session(['token' => '1234567',
-        //  'username'=> 'anisentus.yoseph@idn.ccb.com ',
-        //  'nik' => '17 3694',
-        //  'nama'=> 'yosep',
-        //  'branch'=> 'ID0010028',
-        //  'job'=> 'S0309']);
+         session(['token' => '1234567',
+         'username'=> 'anisentus.yoseph@idn.ccb.com',
+         'nik' => '17 3694',
+         'nama'=> 'Yosep',
+         'branch'=> 'ID0010028',
+         'job'=> 'S0309']);
 
        // dd(session('username'),session('token'), session('nik'), session('nama'), session('branch'), session('job'));
        // dd(session('job'));

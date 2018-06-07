@@ -32,7 +32,7 @@ class TDController extends Controller
         //
         $data = TD::All();
       //  return view('time-deposit-list', compact('data'));
-      
+        
         return view('list-td',compact('data','trx'));
     }
 
@@ -340,24 +340,107 @@ class TDController extends Controller
 
     public function timeline($id_td){
         
-    //    $id_branch = session('branch');
+    
        $IdBranch = TD::where('id', $id_td)->get(['id_branch']);
-    //    dd($IdBranch);
-
        if($IdBranch!='NULL'){
-        echo "<script type='text/javascript'>alert('$IdBranch[0]');</script>";
+        // echo "<script type='text/javascript'>alert('$IdBranch[0]');</script>";
+        //get id branch
         $branch = explode(':',$IdBranch[0]);
         $cab =  substr( $branch[1], 1 );
         $cabang= rtrim($cab, '"}');
-        
-        echo "<script type='text/javascript'>alert('$cabang');</script>";
+        // echo "<script type='text/javascript'>alert('$cabang');</script>";
        }else{
         echo "<script type='text/javascript'>alert('ga ada');</script>";
        }
+       
+       //get flow cabang
        $flow = FlowMapping::where('id',$cabang)->get();
 
        foreach($flow as $data)
         {
+            $cekJumlahApr = TD::where('id', $id_td)->get();
+            foreach($cekJumlahApr as $datas){
+                if($datas['currency'] == 'IDR'){
+                    if($datas['period'] == 1 || $datas['period'] == 3){
+                        if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
+                            $dataApprover = array('approver'=>'AM');
+                            $jumlah = 2;
+                            $period = "1 & 3";
+                        }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.25'){
+                            $dataApprover = array('approver'=>'AM','Regional Head');
+                            $jumlah = 3;
+                            $period = "1 & 3";
+                        }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] > '6.25'){
+                            $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                            $jumlah = 4;
+                            $period = "1 & 3";
+                        }else{
+                            echo 'Approver Not Found';
+                        }
+                    }else if($datas['period'] == 6 || $datas['period'] == 12){
+                        if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '5.75'){
+                            $dataApprover = array('approver'=>'AM');
+                            $jumlah = 2;
+                            $period = "6 & 12";
+                        }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '6.00'){
+                            $dataApprover = array('approver'=>'AM','Regional Head');
+                            $jumlah = 3;
+                            $period = "6 & 12";
+                        }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
+                            $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                            $jumlah = 4;
+                            $period = "6 & 12";
+                        }else{
+                            echo 'Approver Not Found';
+                        }
+                    }
+                }elseif($datas['currency']=='USD'){
+                     $period = "All Period";
+                    if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '1.00'){
+                        $dataApprover = array('approver'=>'AM');
+                        $jumlah = 2;
+                       
+                    }else if($datas['special_rate'] == '1.00' || $datas['special_rate'] <= '1.25'){
+                        $dataApprover = array('approver'=>'AM','Regional Head');
+                        $jumlah = 3;
+                    }else if($datas['special_rate'] > '1.25'){
+                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                        $jumlah = 4;
+                    }else{
+                        echo 'Approver Not Found';
+                    }
+                }elseif($datas['currency']=='SGD'){
+                    $period = "All Period";
+                    if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '0.75'){
+                        $dataApprover = array('approver'=>'AM');
+                        $jumlah = 2;
+                    }else if($datas['special_rate'] == '0.75' || $datas['special_rate'] <= '1.00'){
+                        $dataApprover = array('approver'=>'AM','Regional Head');
+                        $jumlah = 3;
+                    }else if($datas['special_rate'] > '1.00'){
+                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                        $jumlah = 4;
+                    }else{
+                        echo 'Approver Not Found';
+                    }
+                }elseif($datas['currency']=='CNY'){
+                    $period = "All Period";
+                    if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '1.25'){
+                        $dataApprover = array('approver'=>'AM');
+                        $jumlah = 2;
+                    }else if($datas['special_rate'] == '1.25' || $datas['special_rate'] <= '1.50'){
+                        $dataApprover = array('approver'=>'AM','Regional Head');
+                        $jumlah = 3;
+                    }else if($datas['special_rate'] > '1.50'){
+                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                        $jumlah = 4;
+                    }else{
+                        echo 'Approver Not Found';
+                    }
+                }
+            }
+            
+
             $path = explode(';',$data->path);
             $countPath = count($path);
             $regional = $data->regional;
@@ -381,8 +464,111 @@ class TDController extends Controller
         }
             $cekTdUser = DB::table('td_user')->where('id_td', $id_td)->count();
             if($cekTdUser!=0){
-                echo "<script type='text/javascript'>alert('adaan');</script>";
+                $cekRev = DB::table('trx-time-deposit')->where('id_td', $id_td)->where('aksi','Revisi')->count();
+                if($cekRev!=0){
+                    $cekRevisi = DB::table('trx-time-deposit')->where('id_td', $id_td)->where('aksi','Revisi')->get(['special_rate']);
+                        foreach($cekRevisi as $c){                    
+                            $rev = explode(':', $c->special_rate);
+                            $countRev = count($rev);
+                            $count = $countRev-1;
+                            for($i = 0; $i<$countRev;$i++){
+                                // echo "<script type='text/javascript'>alert('$rev[$i]');</script>";
+                            }
+                        }
+                    //  dd($rev[$count]);
+                     //get data sr dan currency dan period untuk dapat tau jumlah approver
+                     $sr = DB::table('time-deposit')->where('id', $id_td)->get(['period','currency','special_rate']);
+                        // dd($sr[0]->period);
+                        foreach($cekJumlahApr as $datas){
+                            if($sr[0]->currency == 'IDR'){
+                                if($sr[0]->period == 1 || $sr[0]->period == 3){
+                                    if($sr[0]->special_rate == '5.25' || $sr[0]->special_rate <= '6.00'){
+                                        $dataApprover = array('approver'=>'AM');
+                                        $jumlah = 2;
+                                        $period = "1 & 3";
+                                    }else if($sr[0]->special_rate == '5.25' || $sr[0]->special_rate <= '6.25'){
+                                        $dataApprover = array('approver'=>'AM','Regional Head');
+                                        $jumlah = 3;
+                                        $period = "1 & 3";
+                                    }else if($sr[0]->special_rate == '5.25' || $sr[0]->special_rate > '6.25'){
+                                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                        $jumlah = 4;
+                                        $period = "1 & 3";
+                                    }else{
+                                        echo 'Approver Not Found';
+                                    }
+                                }else if($sr[0]->period == 6 || $sr[0]->period == 12){
+                                    if($sr[0]->special_rate == '5.50' || $sr[0]->special_rate <= '5.75'){
+                                        $dataApprover = array('approver'=>'AM');
+                                        $jumlah = 2;
+                                        $period = "6 & 12";
+                                    }else if($sr[0]->special_rate == '5.50' || $sr[0]->special_rate <= '6.00'){
+                                        $dataApprover = array('approver'=>'AM','Regional Head');
+                                        $jumlah = 3;
+                                        $period = "6 & 12";
+                                    }else if($sr[0]->special_rate == '5.50' || $sr[0]->special_rate > '6.00'){
+                                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                        $jumlah = 4;
+                                        $period = "6 & 12";
+                                    }else{
+                                        echo 'Approver Not Found';
+                                    }
+                                }
+                            }elseif($sr[0]->currency=='USD'){
+                                 $period = "All Period";
+                                if($sr[0]->special_rate == '0.50' || $sr[0]->special_rate <= '1.00'){
+                                    $dataApprover = array('approver'=>'AM');
+                                    $jumlah = 2;
+                                   
+                                }else if($sr[0]->special_rate == '1.00' || $sr[0]->special_rate <= '1.25'){
+                                    $dataApprover = array('approver'=>'AM','Regional Head');
+                                    $jumlah = 3;
+                                }else if($sr[0]->special_rate > '1.25'){
+                                    $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                    $jumlah = 4;
+                                }else{
+                                    echo 'Approver Not Found';
+                                }
+                            }elseif($sr[0]->currency=='SGD'){
+                                $period = "All Period";
+                                if($sr[0]->special_rate == '0.50' || $sr[0]->special_rate <= '0.75'){
+                                    $dataApprover = array('approver'=>'AM');
+                                    $jumlah = 2;
+                                }else if($sr[0]->special_rate == '0.75' || $sr[0]->special_rate <= '1.00'){
+                                    $dataApprover = array('approver'=>'AM','Regional Head');
+                                    $jumlah = 3;
+                                }else if($sr[0]->special_rate > '1.00'){
+                                    $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                    $jumlah = 4;
+                                }else{
+                                    echo 'Approver Not Found';
+                                }
+                            }elseif($sr[0]->currency=='CNY'){
+                                $period = "All Period";
+                                if($sr[0]->special_rate == '0.50' || $sr[0]->special_rate <= '1.25'){
+                                    $dataApprover = array('approver'=>'AM');
+                                    $jumlah = 2;
+                                }else if($sr[0]->special_rate == '1.25' || $sr[0]->special_rate <= '1.50'){
+                                    $dataApprover = array('approver'=>'AM','Regional Head');
+                                    $jumlah = 3;
+                                }else if($sr[0]->special_rate > '1.50'){
+                                    $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                    $jumlah = 4;
+                                }else{
+                                    echo 'Approver Not Found';
+                                }
+                            }
+                        }
+                        // dd($jumlah);
+                        $ganti = DB::table('td_user')->where('id_td', $id_td)->update(['jumlah' => $jumlah]);
+                        // dd($ganti);
+                     //echo "<script type='text/javascript'>alert('$cekRevisi[0]');</script>";
+                }
+                // else{
+                //     echo "<script type='text/javascript'>alert('ga ada revisi');</script>";
+                // }
             }else{
+                //insert td user 
                 $td_user = new TD_USER();
                 $td_user->id_td = $id_td;
                 $td_user->bm = $userBM[0]->username;
@@ -390,6 +576,7 @@ class TDController extends Controller
                 $td_user->rh = $userRH[0]->username;
                 $td_user->dr = 'setiawati.samahita@idn.ccb.com';
                 $td_user->region = $regional;
+                $td_user->jumlah = $jumlah;
                 $td_user->save();
             }
 

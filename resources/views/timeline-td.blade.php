@@ -64,10 +64,12 @@
                                     <th>bm</th>
                                     <th>am</th>
                                     <th>rh</th>
-                                    <th>director</th>
-                                    <th>regional</th>
+                                    <th>dir</th>
+                                    <th>jum</th>
+                                    <th>reg</th>
                                 </tr>
                                 </thead>
+                                
                                 <tbody>
                                 @foreach($user as $orang)
                                     <tr>
@@ -75,6 +77,7 @@
                                         <td>{{$orang->am}}</td>
                                         <td>{{$orang->rh}}</td>
                                         <td>{{$orang->dr}}</td>
+                                        <td>{{$orang->jumlah}}</td>
                                         <td>{{$orang->region}}</td>
                                     </tr>
                                     
@@ -96,9 +99,21 @@
                     </div>
                     <div class="desc"><p id="actionBM1">Waiting An Action From Branch Manager</p><br>
                     <span>{{$orang->bm}}</span></br>
+                    <?php
+                        if(session('username')==$orang->bm){
+                    ?>
                       <input type="button" id="btn-revisi-bm1" data-toggle="modal" data-target="#modalDetailBM" class="btn btn-info btn-sm" value="Detail">
                       <input type="button" id="btn-approve-bm1" value="Approve" data-toggle="modal" data-target="#modalAprBM"class="btn btn-success btn-sm"  >
                       <input type="button" id="btn-reject-bm1" data-toggle="modal" data-target="#modalRejBM"class="btn btn-danger btn-sm" value="Reject">
+                    <?php
+                        }else{
+                    ?>
+                      <input type="button" disabled="true" id="btn-revisi-bm1" data-toggle="modal" data-target="#modalDetailBM" class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" disabled="true" id="btn-approve-bm1" value="Approve" data-toggle="modal" data-target="#modalAprBM"class="btn btn-success btn-sm"  >
+                      <input type="button" disabled="true" id="btn-reject-bm1" data-toggle="modal" data-target="#modalRejBM"class="btn btn-danger btn-sm" value="Reject">
+                    <?php 
+                    }
+                    ?>
                     </div>
                   </div>
                 </li>
@@ -200,9 +215,21 @@
                     </div>
                     <div class="desc"><p id="act">Waiting An Action From Branch Manager</p><br>
                       <span>{{$orang->am}}</span></br>
+                      <?php
+                      if(session('username')==$orang->am){
+                      ?>
                       <button type="button" id="btn-revisi-am1"data-toggle="modal" data-target="#modalDetailAM"class="btn btn-info btn-sm">Detail</button>
                       <button type="button" id="btn-approve-am1" data-toggle="modal" data-target="#modalAprAM"class="btn btn-success btn-sm">Approve</button>
                       <button type="button" id="btn-reject-am1" data-toggle="modal" data-target="#modalRejAM"class="btn btn-danger btn-sm">Reject</button>
+                      <?php
+                      }else{
+                        ?>
+                      <button type="button" disabled="true" id="btn-revisi-am1"data-toggle="modal" data-target="#modalDetailAM"class="btn btn-info btn-sm">Detail</button>
+                      <button type="button" disabled="true" id="btn-approve-am1" data-toggle="modal" data-target="#modalAprAM"class="btn btn-success btn-sm">Approve</button>
+                      <button type="button" disabled="true" id="btn-reject-am1" data-toggle="modal" data-target="#modalRejAM"class="btn btn-danger btn-sm">Reject</button>
+                        <?php
+                      }
+                      ?>
                     </div>
                     
                   </div>
@@ -300,9 +327,21 @@
                     </div>
                     <div class="desc"><p id='act-bm2'>Waiting An Action From Branch Manager</p><br>
                     <span>{{$orang->bm}}</span></br>
+                    <?php
+                        if(session('username')==$orang->bm){
+                    ?>
                       <input type="button" id="btn-revisi-bm2"  data-toggle="modal" data-target="#modal2BMDet"class="btn btn-info btn-sm" value="Detail">
                       <input type="button" id="btn-approve-bm2" data-toggle="modal" id="btn-approve-bm" data-target="#modal2BMApr"class="btn btn-success btn-sm" value="Approve">
                       <input type="button" id="btn-reject-bm2" data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm" value="Reject">
+                    <?php
+                        }else{ ?>
+                          <input type="button" disabled="true" id="btn-revisi-bm2"  data-toggle="modal" data-target="#modal2BMDet"class="btn btn-info btn-sm" value="Detail">
+                          <input type="button" disabled="true" id="btn-approve-bm2" data-toggle="modal" id="btn-approve-bm" data-target="#modal2BMApr"class="btn btn-success btn-sm" value="Approve">
+                          <input type="button" disabled="true" id="btn-reject-bm2" data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm" value="Reject">
+                  
+                    <?php
+                      }  
+                    ?>
                     </div>
                   </div>
                 </li>
@@ -398,9 +437,21 @@
                     </div>
                     <div class="desc"><p id="act-am2">Waiting An Action From Area Manager</p><br>
                     <span>{{$orang->am}}</span></br>
+                    <?php
+                      if(session('username')==$orang->am){
+                    ?>
                       <input type="button" id ="btn-revisi-am2" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm" value="Detail">
                       <input type="button" id ="btn-approve-am2" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm" value="Approve">
                       <input type="button" id ="btn-reject-am2" data-toggle="modal" data-target="#modal2AMRej"class="btn btn-danger btn-sm" value="Reject">
+                    <?php
+                      }else{
+                        ?>
+                      <input type="button" disabled="true" id ="btn-revisi-am2" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" disabled="true" id ="btn-approve-am2" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" disabled="true" id ="btn-reject-am2" data-toggle="modal" data-target="#modal2AMRej"class="btn btn-danger btn-sm" value="Reject">
+                    <?php
+                      }
+                    ?>
                     </div>
                   </div>
                 </li>
@@ -497,9 +548,21 @@
                     </div>
                     <div class="desc"><p id="act-rh2">Waiting An Action From Regional Head</p><br>
                     <span>{{$orang->rh}}</span></br>
+                    <?php
+                      if(session('username') == $orang->rh){
+                    ?>
                       <input type="button" id="btn-revisi-rh2" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
                       <input type="button" id ="btn-approve-rh2" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
                       <input type="button" id ="btn-reject-rh2" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject">
+                    <?php
+                      }else{
+                        ?>
+                      <input type="button" disabled="true" id="btn-revisi-rh2" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" disabled="true" id ="btn-approve-rh2" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" disabled="true" id ="btn-reject-rh2" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject">
+                        <?php
+                      }
+                      ?>
                     </div>
                   </div>
                 </li>
@@ -597,9 +660,20 @@
                     </div>
                     <div class="desc"><p id="act-bm3">Waiting An Action From Area<br></p>
                     <span>{{$orang->bm}}</span></br>
+                    <?php
+                        if(session('username')==$orang->bm){
+                    ?>
                       <input type="button" id="btn-revisi-bm3" data-toggle="modal" data-target="#modal2BMDet"class="btn btn-info btn-sm" value="Detail">
                       <input type="button" id="btn-approve-bm3"data-toggle="modal" id="btn-approve-bm" data-target="#modal2BMApr"class="btn btn-success btn-sm" value="Approve">
                       <input type="button" id="btn-reject-bm3"data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm" value="Reject">
+                    <?php
+                        }else{
+                    ?>
+                     <input type="button" disabled="true" id="btn-revisi-bm3" data-toggle="modal" data-target="#modal2BMDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" disabled="true" id="btn-approve-bm3"data-toggle="modal" id="btn-approve-bm" data-target="#modal2BMApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" disabled="true" id="btn-reject-bm3"data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm" value="Reject">
+                    <?php  }
+                    ?>
                     </div>
                   </div>
                 </li>
@@ -694,9 +768,21 @@
                     </div>
                     <div class="desc"><p id="act-am3">Waiting An Action From Area Manager<br></p>
                     <span>{{$orang->am}}}</span></br>
+                    <?php
+                        if(session('username')==$orang->am){
+                    ?>
                       <input type="button" id="btn-revisi-am3" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm" value="Detail">
                       <input type="button" id="btn-approve-am3" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm" value="Approve">
                       <input type="button" id="btn-reject-am3" data-toggle="modal" data-target="#modal2AMRej"class="btn btn-danger btn-sm" value="Reject">
+                    <?php
+                        }else{
+                    ?>
+                       <input type="button" disabled="true" id="btn-revisi-am3" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" disabled="true" id="btn-approve-am3" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" disabled="true" id="btn-reject-am3" data-toggle="modal" data-target="#modal2AMRej"class="btn btn-danger btn-sm" value="Reject">
+                    <?php   
+                      }
+                    ?>
                     </div>
                   </div>
                 </li>
@@ -791,9 +877,21 @@
                     </div>
                     <div class="desc"><p id="act-rh3">Waiting An Action From Regional Head<br></p>
                     <span>{{$orang->rh}}</span></br>
+                    <?php
+                        if(session('username')==$orang->rh){
+                    ?>
                       <input type="button" id="btn-revisi-rh3" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
                       <input type="button" id="btn-approve-rh3" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
                       <input type="button" id="btn-reject-rh3" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject">
+                    <?php
+                        }else{
+                          ?>
+                      <input type="button" disabled="true" id="btn-revisi-rh3" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" disabled="true" id="btn-approve-rh3" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" disabled="true" id="btn-reject-rh3" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject">
+                          <?php
+                        }
+                        ?>
                     </div>
                   </div>
                 </li>
@@ -888,9 +986,21 @@
                     </div>
                     <div class="desc"><p id="act-dr3">Waiting An Action From Regional Head<br></p>
                     <span>Director : {{$orang->dr}}</span></br>
+                    <?php
+                      if(session('username') == $orang->dr){
+                    ?>
                       <input type="button" id="btn-revisi-dr3" data-toggle="modal" data-target="#modal2DirDet" class="btn btn-sm btn-info" value="Detail">
                       <input type="button" id="btn-approve-dr3" data-toggle="modal" data-target="#modal2DirApr" class="btn btn-sm btn-success" value="Approve">
                       <input type="button" id="btn-reject-dr3" data-toggle="modal" data-target="#modal2DirRej" class="btn btn-sm btn-danger" value="Reject">
+                    <?php
+                    }else{?>
+                      <input type="button" disabled="true" id="btn-revisi-dr3" data-toggle="modal" data-target="#modal2DirDet" class="btn btn-sm btn-info" value="Detail">
+                      <input type="button" disabled="true" id="btn-approve-dr3" data-toggle="modal" data-target="#modal2DirApr" class="btn btn-sm btn-success" value="Approve">
+                      <input type="button" disabled="true" id="btn-reject-dr3" data-toggle="modal" data-target="#modal2DirRej" class="btn btn-sm btn-danger" value="Reject">
+                    <?php
+                      }
+                    ?>
+
                     </div>
                   </div>
                 </li>

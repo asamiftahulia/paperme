@@ -41,41 +41,53 @@
                                 <tbody>
                                 @php $no = 1; @endphp
                                 @foreach($data as $datas)
-                                    <tr>
-                                       <td>{{$no++}}</td>
-                                        <td>{{$datas->full_name}}</br>{{$datas->created_by}}</td>
-                                        <td>{{number_format($datas->amount,2)}} ({{$datas->currency}})</td>
-                                        <td>{{$datas->expired_date}}</td>
-                                        <td>{{$datas->period}} Bulan</td>
-                                        <td>
-                                            @if($datas->type_of_td == 1)
-                                                {{$datas->type_of_td = 'BREAKABLE'}}
-                                            @else
-                                                 {{$datas->type_of_td = 'UNBREAKABLE'}}
-                                            @endif
-                                        </td>
-                                        <td>{{$datas->date_rollover}}</td>
-                                        <td>{{$datas->expired_date}}</td>
-                                        <td>
-                                            @if($datas->status == 1)
-                                                {{$datas->status = 'FINISHED'}}
-                                            @else
-                                                 {{$datas->status = 'ON_PROGRESS'}}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a href="{{action('TDController@downloadSummary',$datas->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
-                                            <a href="{{action('TDController@timeline',$datas->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
-                                        
-                                            <?php if($datas->action == 1){ ?>
-                                                        <a href="javascript: void(0)" class="material-icons" rel="tooltip" title="Can Not Edit">mode_edit</a>
-                                            <?php        }elseif($datas->action== 0){ ?>
-                                                       <a href="{{route("td.edit",$datas->id)}}" class="material-icons" rel="tooltip" title="Edit Data">mode_edit</a>
-                                            <?php        }
-                                            ?>
-                                                
-                                        </td>
-                                    </tr>
+                                <?php 
+                                        //RM
+                                        if(session('job')=='S0309'){
+                                            if($datas->created_by == 'anisentus.yoseph@idn.ccb.com'){
+                                                ?>
+                                                <tr>
+                                                    <td>{{$no++}}</td>
+                                                        <td>{{$datas->full_name}}</br>{{$datas->created_by}}</td>
+                                                        <td>{{number_format($datas->amount,2)}} ({{$datas->currency}})</td>
+                                                        <td>{{$datas->expired_date}}</td>
+                                                        <td>{{$datas->period}} Bulan</td>
+                                                        <td>
+                                                            @if($datas->type_of_td == 1)
+                                                                {{$datas->type_of_td = 'B'}}
+                                                            @else
+                                                                {{$datas->type_of_td = 'U'}}
+                                                            @endif
+                                                        </td>
+                                                        <td>{{$datas->date_rollover}}</td>
+                                                        <td>{{$datas->expired_date}}</td>
+                                                        <td>
+                                                            @if($datas->status == 1)
+                                                                {{$datas->status = 'F'}}
+                                                            @else
+                                                                {{$datas->status = 'P'}}
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{action('TDController@downloadSummary',$datas->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                            <a href="{{action('TDController@timeline',$datas->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
+                                                        
+                                                            <?php if($datas->action == 1){ ?>
+                                                                        <a href="javascript: void(0)" class="material-icons" rel="tooltip" title="Can Not Edit">mode_edit</a>
+                                                            <?php        }elseif($datas->action== 0){ ?>
+                                                                    <a href="{{route("td.edit",$datas->id)}}" class="material-icons" rel="tooltip" title="Edit Data">mode_edit</a>
+                                                            <?php        }
+                                                            ?>
+                                                                
+                                                        </td>
+                                                    </tr> 
+                                                    <?php
+                                            }
+                                        }
+
+                                ?>
+                                
+                                    
                                 @endforeach
                                 </tbody>
                             </table>
