@@ -98,12 +98,26 @@
                         <p>Master Special Rate</p>
                     </a>
                  </li>
+                 <?php
+                    if(session('job')=='S0309'){
+                 ?>
                 <li class="@yield('aktif-mtimedep')">
                     <a href="{{route('time-deposit.create')}}">
                         <i class="material-icons">assignment</i>
                         <p>Time Deposit (TD)</p>
                     </a>
                  </li>
+                 <?php
+                    }else{ ?>
+                <li class="@yield('aktif-mtimedep')">
+                    <a href="#">
+                        <i class="material-icons">assignment</i>
+                        <p>Time Deposit (TD)</p>
+                    </a>
+                 </li>
+                <?php
+                    }
+                 ?>
                  <li class="@yield('aktif-mtimedeplist')">
                     <a href="{{route('td.index')}}">
                         <i class="material-icons">view_list</i>

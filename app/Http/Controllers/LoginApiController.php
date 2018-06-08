@@ -45,11 +45,11 @@ class LoginApiController extends Controller
         //palsu
  
          session(['token' => '1234567',
-         'username'=> 'anisentus.yoseph@idn.ccb.com',
-         'nik' => '17 3694',
-         'nama'=> 'Yosep',
-         'branch'=> 'ID0010028',
-         'job'=> 'S0309']);
+         'username'=> 'agus.setiawan@idn.ccb.com',
+         'nik' => '09 0859',
+         'nama'=> 'Agus',
+         'branch'=> 'ID0010006',
+         'job'=> 'S0301']);
 
        // dd(session('username'),session('token'), session('nik'), session('nama'), session('branch'), session('job'));
        // dd(session('job'));

@@ -32,8 +32,13 @@ class TDController extends Controller
         //
         $data = TD::All();
       //  return view('time-deposit-list', compact('data'));
-        
-        return view('list-td',compact('data','trx'));
+        $tdUser = TD_USER::All();
+        $lengkap = DB::table('time-deposit')
+            ->select('*')
+            ->join('td_user', 'time-deposit.id', '=', 'td_user.id_td')
+            ->get();
+        // dd($lengkap);
+        return view('list-td',compact('data','trx','tdUser','lengkap'));
     }
 
     /**

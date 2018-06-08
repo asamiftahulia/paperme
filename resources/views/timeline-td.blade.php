@@ -777,7 +777,8 @@
                     <?php
                         }else{
                     ?>
-                       <input type="button" disabled="true" id="btn-revisi-am3" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm" value="Detail">
+                    
+                      <input type="button" disabled="true" id="btn-revisi-am3" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm" value="Detail">
                       <input type="button" disabled="true" id="btn-approve-am3" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm" value="Approve">
                       <input type="button" disabled="true" id="btn-reject-am3" data-toggle="modal" data-target="#modal2AMRej"class="btn btn-danger btn-sm" value="Reject">
                     <?php   
@@ -917,7 +918,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Regional Head"/>
-                                  <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
                                 </td>
                                 <td>{{$datas->amount}}</td>
                                 <td>{{$datas->expired_date}}</td>
