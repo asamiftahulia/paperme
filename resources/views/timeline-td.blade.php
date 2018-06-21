@@ -58,7 +58,7 @@
                           </table>
                             @endforeach
 
-                            <table border=1>
+                            <!-- <table border=1>
                                 <thead>td user{{session('username')}}
                                 <tr>
                                     <th>bm</th>
@@ -82,7 +82,7 @@
                                     </tr>
                                     
                                 </tbody>
-                            </table> 
+                            </table>  -->
                         </h5>
                     </div>
                     <div class="body">
@@ -1261,6 +1261,21 @@ $("input").click(function(e){
         this.autoDisableBM1();
         this.autoDisableAM1();
       }
+      if(rejectbm == 1){
+        // alert('reject');
+        this.autoDisableBM1();
+        document.getElementById("btn-approve-am1").disabled = true;
+        document.getElementById("btn-revisi-am1").disabled = true;
+        document.getElementById("btn-reject-am1").disabled = true;
+        document.getElementById("act").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Branch Manager";
+      }
+
+      if(rejectam == 1){
+        document.getElementById("btn-approve-am1").disabled = true;
+        document.getElementById("btn-revisi-am1").disabled = true;
+        document.getElementById("btn-reject-am1").disabled = true;
+        document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Area Manager";
+      }
   }
   if(jumlahApr == 3){
     if(bm != 0 || rejectbm != 0) {
@@ -1275,6 +1290,13 @@ $("input").click(function(e){
         this.autoDisableAM2();
         this.autoDisableRH2();
       }
+
+    if(rejectam == 1){
+    document.getElementById("btn-approve-rh2").disabled = true;
+    document.getElementById("btn-revisi-rh2").disabled = true;
+    document.getElementById("btn-reject-rh2").disabled = true;
+    document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Area Manager";
+    }
   }
   if(jumlahApr == 4){
     if(bm != 0 || rejectbm != 0) {
@@ -1294,6 +1316,59 @@ $("input").click(function(e){
         this.autoDisableAM3();
         this.autoDisableRH3();
         this.autoDisableDR3();
+      }
+
+      if(rejectbm == 1){
+        document.getElementById("btn-approve-bm3").disabled = true;
+        document.getElementById("btn-revisi-bm3").disabled = true;
+        document.getElementById("btn-reject-bm3").disabled = true;
+
+        document.getElementById("btn-approve-am3").disabled = true;
+        document.getElementById("btn-revisi-am3").disabled = true;
+        document.getElementById("btn-reject-am3").disabled = true;
+
+        document.getElementById("btn-approve-rh3").disabled = true;
+        document.getElementById("btn-revisi-rh3").disabled = true;
+        document.getElementById("btn-reject-rh3").disabled = true;
+
+        document.getElementById("btn-approve-dr3").disabled = true;
+        document.getElementById("btn-revisi-dr3").disabled = true;
+        document.getElementById("btn-reject-dr3").disabled = true;
+
+        document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+        document.getElementById("act-am3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+        document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+        document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+      }
+
+      if(rejectam == 1){
+        document.getElementById("btn-approve-bm3").disabled = true;
+        document.getElementById("btn-revisi-bm3").disabled = true;
+        document.getElementById("btn-reject-bm3").disabled = true;
+
+        document.getElementById("btn-approve-am3").disabled = true;
+        document.getElementById("btn-revisi-am3").disabled = true;
+        document.getElementById("btn-reject-am3").disabled = true;
+
+        document.getElementById("btn-approve-rh3").disabled = true;
+        document.getElementById("btn-revisi-rh3").disabled = true;
+        document.getElementById("btn-reject-rh3").disabled = true;
+
+        document.getElementById("btn-approve-dr3").disabled = true;
+        document.getElementById("btn-revisi-dr3").disabled = true;
+        document.getElementById("btn-reject-dr3").disabled = true;
+
+        document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+        document.getElementById("act-am3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+        document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+        document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+      }
+
+      if(rejectrh == 1){
+        document.getElementById("btn-approve-dr3").disabled = true;
+        document.getElementById("btn-revisi-dr3").disabled = true;
+        document.getElementById("btn-reject-dr3").disabled = true;
+        document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
       }
   }
   

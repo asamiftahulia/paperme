@@ -78,23 +78,20 @@ tr:nth-child(even){background-color: #f2f2f2}
     </div>
     <br><br>
 
-    <table border="1" style="width:50%">
+    <table border="1" style="width:100%">
         <tr>
-            <th>Pimpinan Cabang & Area Head</th>
-            <th>Regional Head</th>
+            <th>Role</th>
+            <th>Approved At</th>
+            <th>Approved By</th>
         </tr>
+        @foreach($datalengkap as $aprover)
         <tr>
-            <td>Proposed By</td>
-            <td>Approved By</td>
+            <td>Proposed By : {{$aprover->role}}</td>
+            <td>{{$aprover->approved_at}}</td>
+            <td>Approved By : {{$aprover->approved_by}}</td>
         </tr>
-        <tr style="width:50px">
-            <td style="height:30px;width: 5%"></td>
-            <td  style="height:30px;width: 5%"></td>
-        </tr>
-        <tr>
-            <td>Paulus Sinkiang</td>
-            <td>Jusry S Hausiah</td>
-        </tr>
+        @endforeach
+        
     </table>
 
 </main>

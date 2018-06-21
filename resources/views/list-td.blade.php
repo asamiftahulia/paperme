@@ -149,6 +149,7 @@
                                         <th>Period</th>
                                         <!-- <th>branch</th> -->
                                         <th>Created By</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                         <!-- <th>bm</th>
                                         <th>am</th>
@@ -179,9 +180,23 @@
                                                     <td>{{$datalengkap->rh}}</td>
                                                     <td>{{$datalengkap->dr}}</td>
                                                     <td>{{$datalengkap->jumlah}}</td> -->
+                                                    <td>   @if($datalengkap->status == 1)
+                                                                {{$datalengkap->status = 'FINISH'}}
+                                                            @else
+                                                                {{$datalengkap->status = 'ON PROGRESS'}}
+                                                            @endif
+                                                    </td>
                                                     <td>
-                                                            <a href="{{action('TDController@downloadSummary',$datas->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
-                                                            <a href="{{action('TDController@timeline',$datas->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
+                                                             <?php if($datalengkap->status == TRUE){ ?>
+                                                                <a href="{{action('TDController@downloadSummary',$datas->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                            <?php
+                                                             }else{?>
+                                                                 <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDF">assignment_returned</a>
+                                                             <?php
+                                                             }
+                                                             ?>
+                                                                <a href="{{action('TDController@timeline',$datas->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
+
                                                         
                                                             <?php if($datalengkap->action == 1){ ?>
                                                                         <a href="javascript: void(0)" class="material-icons" rel="tooltip" title="Can Not Edit">mode_edit</a>
@@ -211,6 +226,12 @@
                                                     <td>{{$datalengkap->rh}}</td>
                                                     <td>{{$datalengkap->dr}}</td>
                                                     <td>{{$datalengkap->jumlah}}</td> -->
+                                                    <td>   @if($datalengkap->status == 1)
+                                                                {{$datalengkap->status = 'FINISH'}}
+                                                            @else
+                                                                {{$datalengkap->status = 'ON PROGRESS'}}
+                                                            @endif
+                                                    </td>
                                                     <td>
                                                             <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
                                                             <a href="{{action('TDController@timeline',$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
@@ -244,9 +265,23 @@
                                                     <td>{{$datalengkap->rh}}</td>
                                                     <td>{{$datalengkap->dr}}</td>
                                                     <td>{{$datalengkap->jumlah}}</td> -->
+                                                    <td>    @if($datalengkap->status == 1)
+                                                                {{$datalengkap->status = 'FINISH'}}
+                                                            @else
+                                                                {{$datalengkap->status = 'ON PROGRESS'}}
+                                                            @endif
+                                                    </td>
                                                     <td>
-                                                        <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
-                                                        <a href="{{action('TDController@timeline',$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
+                                                        <?php if($datalengkap->status == TRUE){ ?>
+                                                                <a href="{{action('TDController@downloadSummary',$datas->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                            <?php
+                                                             }else{?>
+                                                                 <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDF">assignment_returned</a>
+                                                             <?php
+                                                             }
+                                                        ?>
+                                                        
+                                                            <a href="{{action('TDController@timeline',$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
                                                             <?php if($datalengkap->action == 1){ ?>
                                                                 <a href="javascript: void(0)" class="material-icons" rel="tooltip" title="Can Not Edit">mode_edit</a>
                                                             <?php }elseif($datalengkap->action== 0){ ?>
@@ -275,6 +310,12 @@
                                                         <td>{{$datalengkap->rh}}</td>
                                                         <td>{{$datalengkap->dr}}</td>
                                                         <td>{{$datalengkap->jumlah}}</td> -->
+                                                        <td>    @if($datalengkap->status == 1)
+                                                                {{$datalengkap->status = 'FINISH'}}
+                                                            @else
+                                                                {{$datalengkap->status = 'ON PROGRESS'}}
+                                                            @endif
+                                                    </td>
                                                         <td>
                                                                 <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
                                                                 <a href="{{action('TDController@timeline',$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
@@ -305,6 +346,12 @@
                                             <td>{{$datalengkap->rh}}</td>
                                             <td>{{$datalengkap->dr}}</td>
                                             <td>{{$datalengkap->jumlah}}</td> -->
+                                            <td>    @if($datalengkap->status == 1)
+                                                                {{$datalengkap->status = 'FINISH'}}
+                                                            @else
+                                                                {{$datalengkap->status = 'ON PROGRESS'}}
+                                                            @endif
+                                                    </td>
                                             <td>
                                                 <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
                                                 <a href="{{action('TDController@timeline',$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  

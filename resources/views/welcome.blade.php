@@ -20,13 +20,14 @@
             @endif
 
             <div class="content">
+            <img src="{{URL::asset('assets/img/logo.png')}}" alt="profile Pic" height="100" width="100">
                 <div class="title m-b-md">
-                    Bussiness Internal Memorandum</br></br>
+                   </br> Bussiness Internal
                 </div>
                 <div class="title m-b-md">
-                    Approval</br></br>
+                   </br>Memorandum Approval</br></br>
                 </div>
-                     <button type="button" class="btn btn-info waves-effect m-r-20" data-toggle="modal" data-target="#defaultModal">Time Deposit Special Rate</button>
+                     <button type="button" class="btn btn-info waves-effect m-r-20" data-toggle="modal" data-target="#defaultModal"><b>Time Deposit Special Rate</b></button>
                 
                 
                      <button type="button" disable="true" class="btn btn-grey waves-effect m-r-20">PPJS</button>
@@ -41,9 +42,9 @@
                             <h4 class="modal-title" id="defaultModalLabel">Deposan Status ?</h4>
                         </div>
                         <div class="modal-body">
-                        <a href="{{URL::to('td/create')}}" class="btn btn-info  waves-effect">NEW</a>
+                        <a href="{{URL::to('td/create')}}" class="btn btn-info  waves-effect"><b>NEW</b></a>
                        <!--  <a href="{{URL::to('td/create')}}" class="btn btn-primary waves-effect">Registration</a> -->
-                    <button type="button" class="btn btn-link waves-effect">EXISTING</button>
+                    <button type="button" class="btn btn-link waves-effect"><b>EXISTING</b></button>
                         </div>
                     </div>
                 </div>

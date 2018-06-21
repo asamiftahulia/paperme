@@ -86,7 +86,7 @@
                             <div class="col-md-6">
                                 <b>Sources Of Funds</b>
                                 <select class="selectpicker form-control" data-live-search="true" name="bank">
-                                    <option value="0">--Select--</option>
+                                    <option value="000036">--Select--</option>
                                         @foreach($banks as $b)
                                     <option value="{{$b->KODE_LJK}}" data-tokens="{{$b->NAMA_BANK}}">{{$b->NAMA_BANK}}</option>
                                 @endforeach

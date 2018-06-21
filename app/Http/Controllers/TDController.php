@@ -150,7 +150,7 @@ class TDController extends Controller
                     }else{
                         echo 'Approver Not Found';
                     }
-                }else if($datas['period'] == 6){
+                }else if($datas['period'] == 6 || $datas['period'] == 12){
                     if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '5.75'){
                         $dataApprover = array('approver'=>'Area Manager');
                     }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '6.00'){
@@ -331,7 +331,17 @@ class TDController extends Controller
     public function downloadSummary($id){
         $td = TD::find($id);
         $data = TD::where('id', $id)->get();    
-        $pdf = PDF::loadView('pdf-summary',compact('data',$data));
+        $trxTD = transaction_td::where('id_td', $id)->get();
+        // dd($trxTD);
+      
+        $datalengkap = DB::table('trx-time-deposit')
+        ->select('*')
+        ->join('time-deposit', 'trx-time-deposit.id_td', '=', 'time-deposit.id')
+        ->join('td_user','td_user.id_td','=','time-deposit.id')
+        ->where('trx-time-deposit.aksi','=','Approve')
+        ->get();
+        // dd($datalengkap);
+        $pdf = PDF::loadView('pdf-summary',compact('data',$data,'datalengkap',$datalengkap));
         $pdf->setPaper('A4','landscape');
         return $pdf->download('Summary_Time_Deposit_'.$data[0]->full_name.'.pdf');
     }

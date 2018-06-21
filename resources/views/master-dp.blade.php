@@ -108,16 +108,7 @@
                     </a>
                  </li>
                  <?php
-                    }else{ ?>
-                <li class="@yield('aktif-mtimedep')">
-                    <a href="#">
-                        <i class="material-icons">assignment</i>
-                        <p>Time Deposit (TD)</p>
-                    </a>
-                 </li>
-                <?php
-                    }
-                 ?>
+                    } ?>
                  <li class="@yield('aktif-mtimedeplist')">
                     <a href="{{route('td.index')}}">
                         <i class="material-icons">view_list</i>
