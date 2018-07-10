@@ -187,11 +187,11 @@
                                                             @endif
                                                     </td>
                                                     <td>
-                                                             <?php if($datalengkap->status == TRUE){ ?>
-                                                                <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                             <?php if($datalengkap->status == 'FINISH'){ ?>
+                                                                <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDFbbb">assignment_returned</a>
                                                             <?php
                                                              }else{?>
-                                                                 <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDF">assignment_returned</a>
+                                                                 <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDFaaaa">assignment_returned</a>
                                                              <?php
                                                              }
                                                              ?>
@@ -233,7 +233,7 @@
                                                             @endif
                                                     </td>
                                                     <td>
-                                                            <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                            <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDFxxx">assignment_returned</a>
                                                             <a href="{{action('TDController@timeline',$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
                                                         
                                                             <?php if($datalengkap->action == 1){ ?>
@@ -272,7 +272,7 @@
                                                             @endif
                                                     </td>
                                                     <td>
-                                                        <?php if($datalengkap->status == TRUE){ ?>
+                                                        <?php if($datalengkap->status == 'FINISH'){ ?>
                                                                 <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
                                                             <?php
                                                              }else{?>
@@ -353,7 +353,7 @@
                                                             @endif
                                                     </td>
                                             <td>
-                                                <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDFaAA">assignment_returned</a>
                                                 <a href="{{action('TDController@timeline',$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
                                                     <?php if($datalengkap->action == 1){ ?>
                                                         <a href="javascript: void(0)" class="material-icons" rel="tooltip" title="Can Not Edit">mode_edit</a>
