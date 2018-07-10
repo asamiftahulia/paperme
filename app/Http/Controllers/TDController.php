@@ -339,6 +339,7 @@ class TDController extends Controller
         ->join('time-deposit', 'trx-time-deposit.id_td', '=', 'time-deposit.id')
         ->join('td_user','td_user.id_td','=','time-deposit.id')
         ->where('trx-time-deposit.aksi','=','Approve')
+        ->where('trx-time-deposit.id_td','=',$id)
         ->get();
         // dd($datalengkap);
         $pdf = PDF::loadView('pdf-summary',compact('data',$data,'datalengkap',$datalengkap));

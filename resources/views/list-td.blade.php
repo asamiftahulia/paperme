@@ -330,7 +330,7 @@
                                                         </td>
                                                 </tr>   
                                  <?php  }
-                                    }else if(session('job')=='S0384'){ 
+                                    }else if(session('job')=='S0384' || session('job') == 'S0148'){ 
                                         $login = session('username');
                                         if($login=='setiawati.samahita@idn.ccb.com' && $datalengkap->jumlah >= 4){ ?>
                                         <tr>

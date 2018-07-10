@@ -52,12 +52,12 @@ class LoginApiController extends Controller
         // 'job'=> 'S0301']);
 
         // jalan
-         session(['token' => '1234567',
-         'username'=> 'anisentus.yoseph@idn.ccb.com',
-         'nik' => '17 3694',
-         'nama'=> 'Lim ',
-         'branch'=> 'ID0010028',
-         'job'=> 'S0309']);
+        //  session(['token' => '1234567',
+        //  'username'=> 'anisentus.yoseph@idn.ccb.com',
+        //  'nik' => '17 3694',
+        //  'nama'=> 'Lim ',
+        //  'branch'=> 'ID0010028',
+        //  'job'=> 'S0309']);
 
         //  session(['token' => '1234567',
         //  'username'=> 'tien.muntiara@idn.ccb.com',
@@ -73,12 +73,19 @@ class LoginApiController extends Controller
         //  'branch'=> 'ID0010028',
         //  'job'=> 'S0465']);
 
-        //  session(['token' => '1234567',
-        //  'username'=> 'agus.setiawan@idn.ccb.com',
-        //  'nik' => '17 3694',
-        //  'nama'=> 'Lim ',
-        //  'branch'=> 'ID0010028',
-        //  'job'=> 'S0301']);
+            // session(['token' => '1234567',
+            // 'username'=> 'agus.setiawan@idn.ccb.com',
+            // 'nik' => '17 3694',
+            // 'nama'=> 'Lim ',
+            // 'branch'=> 'ID0010028',
+            // 'job'=> 'S0301']);
+
+        session(['token' => '1234567',
+         'username'=> 'setiawati.samahita@idn.ccb.com',
+         'nik' => '09 0859',
+         'nama'=> 'Lim ',
+         'branch'=> 'ID0010028',
+         'job'=> 'S0148']);
 
        // dd(session('username'),session('token'), session('nik'), session('nama'), session('branch'), session('job'));
        // dd(session('job'));

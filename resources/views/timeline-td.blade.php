@@ -193,7 +193,7 @@
                           <div class="modal-body">
                            <form action="{{url('trx/reject',$datas->id)}}" method="post">
                             {{csrf_field()}}
-                            <p>Apakah Benar Anda Akan <font color='red'><b>Menolak</b></font> Pengajuan Special Rate <br>
+                            <p>Apakah Benar Anda Akan <font color='red'><b>Menolak </b></font> Pengajuan Special Rate <br>
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
@@ -213,7 +213,7 @@
                       <span class="flag">Area Manager</span>
                       <span class="time-wrapper"><span class="time" id="approved-date-by-am1">-</span></span>
                     </div>
-                    <div class="desc"><p id="act">Waiting An Action From Branch Manager</p><br>
+                    <div class="desc"><p id="act">Waiting An Action From Area Manager</p><br>
                       <span>{{$orang->am}}</span></br>
                       <?php
                       if(session('username')==$orang->am){
@@ -303,7 +303,7 @@
                           <div class="modal-body">
                             <form action="{{url('trx/reject',$datas->id)}}" method="post">
                               {{csrf_field()}}
-                              <p>Apakah Benar Anda Akan <font color='red'><b>Menolak</b></font> Pengajuan Special Rate <br>
+                              <p>Apakah Benar Anda Akan <font color='red'><b>Menolak </b></font> Pengajuan Special Rate <br>
                                 Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                                 <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                                 <input type="hidden" enable="false" name="role" value="Area Manager">
@@ -415,7 +415,7 @@
                           <div class="modal-body">
                            <form action="{{url('trx/reject',$datas->id)}}" method="post">
                             {{csrf_field()}}
-                            <p>Apakah Benar Anda Akan <font color='red'><b>Menolak</b></font> Pengajuan Special Rate <br>
+                            <p>Apakah Benar Anda Akan <font color='red'><b>Menolak </b></font> Pengajuan Special Rate <br>
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
@@ -526,7 +526,7 @@
                           <div class="modal-body">
                            <form action="{{url('trx/reject',$datas->id)}}" method="post">
                             {{csrf_field()}}
-                            <p>Apakah Benar Anda Akan <font color='red'><b>Menolak</b></font> Pengajuan Special Rate <br>
+                            <p>Apakah Benar Anda Akan <font color='red'><b>Menolak </b></font> Pengajuan Special Rate <br>
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
@@ -635,7 +635,7 @@
                           <div class="modal-body">
                            <form action="{{url('trx/reject',$datas->id)}}" method="post">
                             {{csrf_field()}}
-                            <p>Apakah Benar Anda Akan <font color='red'><b>Menolak</b></font>Pengajuan Special Rate <br>
+                            <p>Apakah Benar Anda Akan <font color='red'><b>Menolak </b></font>Pengajuan Special Rate <br>
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
@@ -658,7 +658,7 @@
                       <span class="flag">Branch Manager</span>
                       <span class="time-wrapper"><span class="time" id="approved-date-by-bm3">-</span></span>
                     </div>
-                    <div class="desc"><p id="act-bm3">Waiting An Action From Area<br></p>
+                    <div class="desc"><p id="act-bm3">Waiting An Action From Branch Manager<br></p>
                     <span>{{$orang->bm}}</span></br>
                     <?php
                         if(session('username')==$orang->bm){
@@ -746,7 +746,7 @@
                           <div class="modal-body">
                            <form action="{{url('trx/reject',$datas->id)}}" method="post">
                            {{csrf_field()}}
-                            <p>Apakah Benar Anda Akan <font color='red'><b>Menolak</b></font> Pengajuan Special Rate <br>
+                            <p>Apakah Benar Anda Akan <font color='red'><b>Menolak </b></font> Pengajuan Special Rate <br>
                               Atas Nama <b> {{$datas->full_name}}</b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
@@ -856,7 +856,7 @@
                           <div class="modal-body">
                            <form action="{{url('trx/reject',$datas->id)}}" method="post">
                            {{csrf_field()}}
-                            <p>Apakah Benar Anda Akan <font color='red'><b>Menolak</b></font> Pengajuan Special Rate <br>
+                            <p>Apakah Benar Anda Akan <font color='red'><b>Menolak </b></font> Pengajuan Special Rate <br>
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
@@ -965,7 +965,7 @@
                           <div class="modal-body">
                            <form action="{{url('trx/reject',$datas->id)}}" method="post">
                            {{csrf_field()}}
-                            <p>Apakah Benar Anda Akan <font color='red'><b>Menolak</b></font> Pengajuan Special Rate <br>
+                            <p>Apakah Benar Anda Akan <font color='red'><b>Menolak </b></font> Pengajuan Special Rate <br>
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                              <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                              <input type="hidden" enable="false" name="role" value="Regional Head">
@@ -985,7 +985,7 @@
                       <span class="flag">Director</span>
                       <span class="time-wrapper"><span class="time" id="approved-date-by-dr3">-</span></span>
                     </div>
-                    <div class="desc"><p id="act-dr3">Waiting An Action From Regional Head<br></p>
+                    <div class="desc"><p id="act-dr3">Waiting An Action From Director<br></p>
                     <span>Director : {{$orang->dr}}</span></br>
                     <?php
                       if(session('username') == $orang->dr){
@@ -1075,7 +1075,7 @@
                           <div class="modal-body">
                            <form action="{{url('trx/reject',$datas->id)}}" method="post">
                             {{csrf_field()}}
-                            <p>Apakah Benar Anda Akan <font color='red'><b>Menolak</b></font> Pengajuan Special Rate <br>
+                            <p>Apakah Benar Anda Akan <font color='red'><b>Menolak </b></font> Pengajuan Special Rate <br>
                               Atas Nama <b> {{$datas->full_name}}</b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Director">
@@ -1094,7 +1094,15 @@
             @endforeach
             <div class="row" align="center">
                 <a align="center" href="{{route('td.index')}}"><input type="button" id="btn-submit" class="btn btn-info" value="Go TO List Data Time Deposit"></a>
-                <a align="center" href="{{url('td/updateStatus',$datas->id)}}"><input type="button" id="btn-finish" disabled="true" class="btn btn-info" value="Finish"></a>
+                <?php
+                  if($datas->status == 1){ ?>
+                    <a align="center" href="{{url('td/updateStatus',$datas->id)}}"><input type="button" enable="false" id="btn-finish"  class="btn btn-info" value="Finished"></a>
+                  <?php
+                  }else{?>
+                    <a align="center" href="{{url('td/updateStatus',$datas->id)}}"><input type="button" id="btn-finish" enabled="false" class="btn btn-info" value="Finish"></a>
+                <?php  
+                  }
+                ?>
             </div>
         </div>
       </div>
@@ -1201,9 +1209,9 @@ $("input").click(function(e){
     document.getElementById("btn-finish").disabled = false;
     document.getElementById("approved-date-by-rh2").innerHTML = today;
     if(rejectrh == 0)
-      document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Area Manager";
+      document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Regional Head";
     else
-      document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
+      document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
   }
 
   // approver 4
@@ -1236,9 +1244,9 @@ $("input").click(function(e){
     document.getElementById("btn-reject-rh3").disabled = true;
     document.getElementById("approved-date-by-rh3").innerHTML = today;
     if(rejectrh == 0)
-      document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Area Manager";
+      document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Regional Head";
     else
-      document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'> Rejected</font>by Area Manager";
+      document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'> Rejected</font>by Regional Head";
   }
 
    function autoDisableDR3() {
@@ -1248,9 +1256,9 @@ $("input").click(function(e){
     document.getElementById("btn-finish").disabled = false;
     document.getElementById("approved-date-by-dr3").innerHTML = today;
     if(rejectdr == 0)
-      document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Area Manager";
+      document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Director";
     else
-    document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
+    document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Director";
   }
 
   if(jumlahApr == 2){
@@ -1268,6 +1276,7 @@ $("input").click(function(e){
         document.getElementById("btn-revisi-am1").disabled = true;
         document.getElementById("btn-reject-am1").disabled = true;
         document.getElementById("act").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Branch Manager";
+        
       }
 
       if(rejectam == 1){
@@ -1290,12 +1299,20 @@ $("input").click(function(e){
         this.autoDisableAM2();
         this.autoDisableRH2();
       }
-
+    
+    if(rejectbm == 1){
+      document.getElementById("btn-approve-rh2").disabled = true;
+      document.getElementById("btn-revisi-rh2").disabled = true;
+      document.getElementById("btn-reject-rh2").disabled = true;
+      document.getElementById("act-bm2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Branch Manager";
+      document.getElementById("act-am2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Branch Manager";
+      document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Branch Manager";
+    }
     if(rejectam == 1){
-    document.getElementById("btn-approve-rh2").disabled = true;
-    document.getElementById("btn-revisi-rh2").disabled = true;
-    document.getElementById("btn-reject-rh2").disabled = true;
-    document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Area Manager";
+      document.getElementById("btn-approve-rh2").disabled = true;
+      document.getElementById("btn-revisi-rh2").disabled = true;
+      document.getElementById("btn-reject-rh2").disabled = true;
+      document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Area Manager";
     }
   }
   if(jumlahApr == 4){

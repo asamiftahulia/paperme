@@ -61,7 +61,7 @@ tr:nth-child(even){background-color: #f2f2f2}
         </thead>
         <tbody>
         <tr>
-            <td class="desc">{{$datas->amount}}</td>
+            <td class="desc">{{number_format($datas->amount,0)}} {{$datas->currency}}</td>
             <td class="unit">{{$datas->date_rollover}}</td>
             <td class="qty">{{$datas->expired_date}}</td>
             <td class="qty">{{$datas->period}}</td>
@@ -87,7 +87,7 @@ tr:nth-child(even){background-color: #f2f2f2}
         @foreach($datalengkap as $aprover)
         <tr>
             <td>Proposed By : {{$aprover->role}}</td>
-            <td>{{$aprover->approved_at}}</td>
+            <td>{{$aprover->created_at}}</td>
             <td>Approved By : {{$aprover->approved_by}}</td>
         </tr>
         @endforeach
