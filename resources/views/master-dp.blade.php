@@ -115,6 +115,12 @@
                         <p>Time Deposit List</p>
                     </a>
                  </li>
+                 <li class="">
+                    <a href="{{url('/logout')}}">
+                        <i class="material-icons">assignment</i>
+                        <p>Logout</p>
+                    </a>
+                 </li>
               <!--<li class="@yield('aktif-timeline')">
                     <a href="{{route('time-deposit.create')}}">
                         <i class="material-icons">person</i>

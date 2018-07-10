@@ -1,28 +1,76 @@
-<!doctype html>
-<html>
+
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Look at me Login</title>
+	<title>asa</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{{asset('/assets/login/css/util.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('/assets/login/css/main.css')}}">
+<!--===============================================================================================-->
 </head>
 <body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<!-- <form class="login100-form validate-form"> -->
+                {{ Form::open(array('url' => 'login')) }}
+					<span class="login100-form-title p-b-26">
+						PAPERLESS SYSTEM 
+					</span>
+					<span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-font"></i>
+					</span>
 
-{{ Form::open(array('url' => 'login')) }}
-<h1>Login</h1>
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+						<input class="input100" type="text" name="email">
+						<span class="focus-input100" data-placeholder="Email"></span>
+					</div>
 
-<!-- if there are login errors, show them here -->
-<p>
-    {{ $errors->first('email') }}
-    {{ $errors->first('password') }}
-</p>
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						<input class="input100" type="password" name="password">
+						<span class="focus-input100" data-placeholder="Password"></span>
+					</div>
 
-<p>
-    {{ Form::label('email', 'Email Address') }}
-    {{ Form::text('email', Request::old('email'), array('placeholder' => 'awesome@awesome.com')) }}
-</p>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+                            {{ Form::submit('Submit!') }}
+							</button>
+						</div>
+					</div>
 
-<p>
-    {{ Form::label('password', 'Password') }}
-    {{ Form::password('password') }}
-</p>
+					<!-- <div class="text-center p-t-115">
+						<span class="txt1">
+							Don’t have an account?
+						</span>
 
-<p>{{ Form::submit('Submit!') }}</p>
-{{ Form::close() }}
+						<a class="txt2" href="#">
+							Sign Up
+						</a>
+                    </div> -->
+                    {{ Form::close() }}
+                <!-- </form> -->
+                
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="{{asset('/assets/login/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
+<!--===============================================================================================-->
+	<script src="{{asset('/assets/login/vendor/animsition/js/animsition.min.js')}}"></script>
+    
+	<script src="{{asset('/assets/login/js/main.js')}}"></script>
+
+</body>
+</html>

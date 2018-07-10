@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Message\Response;
 use View;
 use Session;
+use Illuminate\Support\Facades\Input;
 use App\FlowMapping;
 use App\UserJob;
 
@@ -29,18 +30,21 @@ class LoginApiController extends Controller
         $client = new Client([
            'headers'=>['content-type'=>'application/json','X-Auth-Token'=>'fa6dce03-de34-4534-9c51-06eafa50f23e'],
         ]);
+        
+        $email = Input::get('email');
+        $password = Input::get('password');
 
-    //    $response = $client->post('http://192.168.1.57:8015/login', ['json'=>['username'=>'anisentus.yoseph@idn.ccb.com','password'=>'17 3694']]);
-        //$data = $response->getBody();
+       $response = $client->post('http://192.168.1.57:8015/login', ['json'=>['username'=>$email,'password'=>$password]]);
+        $data = $response->getBody();
 
-     //   $data = json_decode($data);
+       $data = json_decode($data);
     //    asli
-        // session(['token' => $data->token,
-        //  'username'=> $data->username,
-        //  'nik' => $data->employee->nik,
-        //  'nama'=> $data->employee->nama,
-        //  'branch'=> $data->userJobs[0]->userJobPK->idBranch,
-        //  'job'=> $data->userJobs[0]->userJobPK->idJobs]);
+        session(['token' => $data->token,
+         'username'=> $data->username,
+         'nik' => $data->employee->nik,
+         'nama'=> $data->employee->nama,
+         'branch'=> $data->userJobs[0]->userJobPK->idBranch,
+         'job'=> $data->userJobs[0]->userJobPK->idJobs]);
 
         //palsu
         
@@ -80,13 +84,15 @@ class LoginApiController extends Controller
             // 'branch'=> 'ID0010028',
             // 'job'=> 'S0301']);
 
-        session(['token' => '1234567',
-         'username'=> 'setiawati.samahita@idn.ccb.com',
-         'nik' => '09 0859',
-         'nama'=> 'Lim ',
-         'branch'=> 'ID0010028',
-         'job'=> 'S0148']);
-
+         
+        // session(['token' => '1234567',
+        //  'username'=> $email,
+        //  'nik' => $password,
+        //  'nama'=> 'Lim ',
+        //  'branch'=> 'ID0010028',
+        //  'job'=> 'S0148']);
+        
+        //  09 0859
        // dd(session('username'),session('token'), session('nik'), session('nama'), session('branch'), session('job'));
        // dd(session('job'));
        // dd($data);
@@ -151,7 +157,8 @@ class LoginApiController extends Controller
  
          $data = $response->getBody();
          $data = json_decode($data);
-         dd($data);
+        //  dd($data);
+        return view('login');
 
     }
 
