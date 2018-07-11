@@ -57,7 +57,7 @@
                                                 <td>{{number_format($datas['amount'],2)}} ({{$datas['currency']}})</td>
                                                  <td>{{$datas['date_rollover']}} </td>
                                                 <td>{{$datas['expired_date']}} </td>
-                                                <td>{{$datas['period']}} Bulan</td>
+                                                <td>{{$datas['period']}} Bln</td>
                                                 <td>@php 
                                                         if($datas['type_of_td']==1)
                                                             echo 'Breakable';

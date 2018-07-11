@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="card-content">
-                    <form action="{{route('td.store')}}" method="post">
+                    <form action="{{route('td.store')}}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="row">
                             <div class="col-md-12">
@@ -93,7 +93,12 @@
                                 </select>
                                 <p>Note: Default Bank CCBI</p>
                             </div>
-                            
+                       
+                        <div class="col-md-6">
+                                <b>Sumber Dana</b>
+                                <input type="file" name="image">
+                                <p>Note: If Bank Is Not CCB</p>
+                            </div>
                         </div>
                         <div class="row">
                         <div class="col-md-12">

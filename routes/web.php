@@ -62,3 +62,7 @@ Route::post('verify',function(){
     var_dump($_POST);
 });
 
+Route::get('image-upload-with-validation',['as'=>'getuploadimage','uses'=>'ImageUploadController@getUploadImage']);
+Route::get('image-upload-with-validation',['as'=>'viewImage','uses'=>'ImageUploadController@viewImage']);
+Route::post('image-upload-with-validation',['as'=>'postuplodeimage','uses'=>'ImageUploadController@postUplodeImage']);
+

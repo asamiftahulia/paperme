@@ -34,17 +34,17 @@ class LoginApiController extends Controller
         $email = Input::get('email');
         $password = Input::get('password');
 
-       $response = $client->post('http://192.168.1.57:8015/login', ['json'=>['username'=>$email,'password'=>$password]]);
-        $data = $response->getBody();
+    //    $response = $client->post('http://192.168.1.57:8015/login', ['json'=>['username'=>$email,'password'=>$password]]);
+    //     $data = $response->getBody();
 
-       $data = json_decode($data);
-    //    asli
-        session(['token' => $data->token,
-         'username'=> $data->username,
-         'nik' => $data->employee->nik,
-         'nama'=> $data->employee->nama,
-         'branch'=> $data->userJobs[0]->userJobPK->idBranch,
-         'job'=> $data->userJobs[0]->userJobPK->idJobs]);
+    //    $data = json_decode($data);
+    // //    asli
+    //     session(['token' => $data->token,
+    //      'username'=> $data->username,
+    //      'nik' => $data->employee->nik,
+    //      'nama'=> $data->employee->nama,
+    //      'branch'=> $data->userJobs[0]->userJobPK->idBranch,
+    //      'job'=> $data->userJobs[0]->userJobPK->idJobs]);
 
         //palsu
         
@@ -56,12 +56,12 @@ class LoginApiController extends Controller
         // 'job'=> 'S0301']);
 
         // jalan
-        //  session(['token' => '1234567',
-        //  'username'=> 'anisentus.yoseph@idn.ccb.com',
-        //  'nik' => '17 3694',
-        //  'nama'=> 'Lim ',
-        //  'branch'=> 'ID0010028',
-        //  'job'=> 'S0309']);
+         session(['token' => '1234567',
+         'username'=> 'anisentus.yoseph@idn.ccb.com',
+         'nik' => '17 3694',
+         'nama'=> 'Lim ',
+         'branch'=> 'ID0010028',
+         'job'=> 'S0309']);
 
         //  session(['token' => '1234567',
         //  'username'=> 'tien.muntiara@idn.ccb.com',
@@ -158,7 +158,22 @@ class LoginApiController extends Controller
          $data = $response->getBody();
          $data = json_decode($data);
         //  dd($data);
-        return view('login');
+
+        if($data!=''){
+            echo "Logout Successfull";
+            $notification = array(
+                'message' => 'The Data Has Been Revised',
+                'alert-type' => 'logout success'
+            );
+        }else{
+            echo "error";
+            $notification = array(
+                'message' => 'Logout Failed',
+                'alert-type' => 'error'
+            );
+        }
+
+        return view('login')->with($notification);
 
     }
 

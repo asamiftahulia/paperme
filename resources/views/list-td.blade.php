@@ -233,7 +233,15 @@
                                                             @endif
                                                     </td>
                                                     <td>
-                                                            <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDFxxx">assignment_returned</a>
+                                                        <?php if($datalengkap->status == 'FINISH'){ ?>
+                                                                <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                            <?php
+                                                             }else{?>
+                                                                 <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDF">assignment_returned</a>
+                                                             <?php
+                                                             }
+                                                        ?>
+                                                            <!-- <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDFxxx">assignment_returned</a> -->
                                                             <a href="{{action('TDController@timeline',$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
                                                         
                                                             <?php if($datalengkap->action == 1){ ?>
@@ -289,6 +297,8 @@
                                                             <?php        
                                                                 }
                                                             ?>
+                                                                <a href="{{action('ImageUploadController@viewImage')}}" class="material-icons" rel="tooltip" title="View Photo">photo_size_select_actual</a>
+
                                                     </td>
                                             </tr> 
                                 <?php   }

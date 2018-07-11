@@ -32,6 +32,7 @@ class TimeDeposit extends Migration
             $table->string('id_branch')->unsigned();
             $table->string('created_by');
             $table->string('updated_by');
+            $table->string('image');
             $table->timestamps();
         });
     }

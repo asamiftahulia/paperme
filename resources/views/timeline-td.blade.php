@@ -22,7 +22,6 @@
 
                       <h3 align="center">
                             Timeline Time Deposit Special Rate
-                            
                         </h3>
                         </br></br>
                         <h5>
@@ -49,6 +48,30 @@
                               <td> : </td>
                               <td> {{$datas->period}} Bulan</td>
                             </tr>
+                            <tr>
+                            <td>Image</td>
+                              <td> : </td>
+                              <td><a data-toggle="modal" data-target="#defaultModal">View Image</a></td>
+                            </tr>
+                            <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h4 class="modal-title" id="defaultModalLabel">Bukti Sumber Dana</h4>
+                          </div>
+                          <div class="modal-body">
+                          
+                            {{csrf_field()}}
+                            <img src="{{asset('/images/'.$datas->image)}}" />
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                            <!-- <tr>
+                              <td>Sumber Dana bank</td>
+                              <td>:</td>
+                              <td>{{$datas->bank}}</td>  
+                          </tr> -->
                             @php
                                $c = 0;
                                 @endphp

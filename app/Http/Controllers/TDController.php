@@ -112,10 +112,21 @@ class TDController extends Controller
         $data->normal_rate = $request->normal_rate;
         $data->id_branch = session('branch');
         $data->created_by = session('username');
-        $data->updated_by = session('username');
+        $data->updated_by = session('username');       
+        //image
+        if($request->hasfile('image')){
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $fileName = $file->getClientOriginalName();
+            $img = $request->image->move(public_path('images'), $fileName);
+        }else{
+            $fileName = 'No Photo';
+        }
+        
+        
+        // dd($fileName);
+        $data->image = $fileName;
         $data->save();
-    
-
         //Mail::to('harsyami@gmail.com')->send(new PostSubscribtion($data));
         return redirect('td/summary')->with('id',$data->id);
     }
@@ -356,7 +367,6 @@ class TDController extends Controller
 
     public function timeline($id_td){
         
-    
        $IdBranch = TD::where('id', $id_td)->get(['id_branch']);
        if($IdBranch!='NULL'){
         // echo "<script type='text/javascript'>alert('$IdBranch[0]');</script>";
@@ -595,8 +605,9 @@ class TDController extends Controller
                 $td_user->jumlah = $jumlah;
                 $td_user->save();
             }
-
+         
           $data = TD::where('id', $id_td)->get();
+            
        // $data = transaction_td::where('id_td', $id)->get();
           $approverBM = DB::table('trx-time-deposit')->where('role', 'Branch Manager')->where('id_td',$id_td)->where('aksi','Approve')->count();
           $approverAM = DB::table('trx-time-deposit')->where('role', 'Area Manager')->where('id_td',$id_td)->where('aksi','Approve')->count();
