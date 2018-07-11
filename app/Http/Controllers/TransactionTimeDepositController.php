@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\transaction_td;
 use App\TD;
+use App\TD_USER;
 use App\Mail\PostSubscribtion;
 use Mail;
 use DB;
@@ -103,7 +104,7 @@ class TransactionTimeDepositController extends Controller
         $tdResult = $td->save();
 
         $result = $data->save();
-
+        
         if($result==1){
             echo "success";
             $notification = array(
@@ -118,6 +119,7 @@ class TransactionTimeDepositController extends Controller
             );
         }
         $sr = $data->special_rate;
+
         return redirect('timeline/'.$data->id_td)->with($notification);
     }
 

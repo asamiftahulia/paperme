@@ -293,10 +293,9 @@ class TDController extends Controller
     public function revisi(Request $request, $id)
     {
        // $data = TD::where('id',$id)->first();
-        $data = TD::find($id);
+        $data = TD::find($ids);
         
         $data->special_rate = $request->special_rate;
-     
         $result = $data->save();
 
         if($result==1){
@@ -312,6 +311,7 @@ class TDController extends Controller
                 'alert-type' => 'error'
             );
         }
+
         return redirect('timeline/'.$data->id)->with($notification);
         
     }
@@ -586,7 +586,14 @@ class TDController extends Controller
                             }
                         }
                         // dd($jumlah);
-                        $ganti = DB::table('td_user')->where('id_td', $id_td)->update(['jumlah' => $jumlah]);
+                        // $ganti = DB::table('td_user')->where('id_td', $id_td)->update(['jumlah' => $jumlah]);
+                        $td = TD::find($id_td);
+                        if($jumlah < $td->approver){
+                            echo "<script type='text/javascript'>alert('oi gak boleh revisi');</script>";
+                            $ganti = DB::table('td_user')->where('id_td', $id_td)->update(['jumlah' => $td->approver]);
+                        }else{
+                            echo "<script type='text/javascript'>alert('gak');</script>";
+                        }
                         // dd($ganti);
                      //echo "<script type='text/javascript'>alert('$cekRevisi[0]');</script>";
                 }
@@ -604,6 +611,11 @@ class TDController extends Controller
                 $td_user->region = $regional;
                 $td_user->jumlah = $jumlah;
                 $td_user->save();
+                
+                $td = TD::find($id_td);
+                $td->approver = $td_user->jumlah;
+                $td->save();
+
             }
          
           $data = TD::where('id', $id_td)->get();
@@ -707,6 +719,8 @@ class TDController extends Controller
         else 
             $valButton = 1;
             // dd($user);
+        
+        
         return view('timeline-td',compact('data',$data))->with('apr',$dataApprover)
         ->with('user',$user)
         ->with('valButton',$valButton)

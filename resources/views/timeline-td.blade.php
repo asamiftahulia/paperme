@@ -53,6 +53,11 @@
                               <td> : </td>
                               <td><a data-toggle="modal" data-target="#defaultModal">View Image</a></td>
                             </tr>
+                            <tr>
+                              <td>Jumlah Approver</td>
+                              <td> : </td>
+                              <td> {{$datas->approver}}</td>
+                            </tr>
                             <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
@@ -110,7 +115,7 @@
                     </div>
                     <div class="body">
           <!-- Item 1 -->
-              @if($c == 1)
+              @if($datas->approver == 2)
               <ul class="timeline">
                   <li>
                   <div class="direction-r">
@@ -338,7 +343,7 @@
                       </div>
                   </div>
                 </div>
-              @elseif($c == 2)
+              @elseif($datas->approver == 3)
               <ul class="timeline">
                 <!-- Item 1 -->
                 <li>
