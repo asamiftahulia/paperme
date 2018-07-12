@@ -36,6 +36,7 @@ class TDController extends Controller
         $lengkap = DB::table('time-deposit')
             ->select('*')
             ->join('td_user', 'time-deposit.id', '=', 'td_user.id_td')
+            ->orderBy('time-deposit.id','asc')
             ->get();
         // dd($lengkap);
         return view('list-td',compact('data','trx','tdUser','lengkap'));

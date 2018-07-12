@@ -188,10 +188,10 @@
                                                     </td>
                                                     <td>
                                                              <?php if($datalengkap->status == 'FINISH'){ ?>
-                                                                <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDFbbb">assignment_returned</a>
+                                                                <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
                                                             <?php
                                                              }else{?>
-                                                                 <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDFaaaa">assignment_returned</a>
+                                                                 <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDF">assignment_returned</a>
                                                              <?php
                                                              }
                                                              ?>
