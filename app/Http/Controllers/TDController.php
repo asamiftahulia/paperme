@@ -589,10 +589,8 @@ class TDController extends Controller
                         // $ganti = DB::table('td_user')->where('id_td', $id_td)->update(['jumlah' => $jumlah]);
                         $td = TD::find($id_td);
                         if($jumlah < $td->approver){
-                            echo "<script type='text/javascript'>alert('oi gak boleh revisi');</script>";
+                            // echo "<script type='text/javascript'>alert('oi gak boleh revisi');</script>";
                             $ganti = DB::table('td_user')->where('id_td', $id_td)->update(['jumlah' => $td->approver]);
-                        }else{
-                            echo "<script type='text/javascript'>alert('gak');</script>";
                         }
                         // dd($ganti);
                      //echo "<script type='text/javascript'>alert('$cekRevisi[0]');</script>";
@@ -630,6 +628,9 @@ class TDController extends Controller
           $rejectAM = DB::table('trx-time-deposit')->where('role', 'Area Manager')->where('id_td',$id_td)->where('aksi','Reject')->count();
           $rejectRH = DB::table('trx-time-deposit')->where('role', 'Regional Head')->where('id_td',$id_td)->where('aksi','Reject')->count();
           $rejectDR = DB::table('trx-time-deposit')->where('role', 'Director')->where('id_td',$id_td)->where('aksi','Reject')->count();
+
+          //revisi
+          $revisiRH = DB::table('trx-time-deposit')->where('role', 'Regional Head')->where('id_td',$id_td)->where('aksi','Revisi')->count();
           foreach($data as $datas){
             if($datas['currency'] == 'IDR'){
                 if($datas['period'] == 1 || $datas['period'] == 3){
@@ -712,6 +713,9 @@ class TDController extends Controller
         }
 
         $trx = transaction_td::where('id_td',$id_td)->count();
+        //untuk ditampilin yang revisi dan menghilangkan diri sendiri
+        $rev = transaction_td::where('id_td',$id_td)->where('trx-time-deposit.aksi','Revisi')->orderBy('created_at','desc')->limit(1)
+        ->get(['special_rate','created_at']);
         $user = TD_USER::where('id_td',$id_td)->get();
         //dd($approverBM);
         if($trx == $apr)
@@ -723,6 +727,7 @@ class TDController extends Controller
         
         return view('timeline-td',compact('data',$data))->with('apr',$dataApprover)
         ->with('user',$user)
+        ->with('rev',$rev)
         ->with('valButton',$valButton)
         ->with('trx',$trx)
         ->with('jumlahApr',$apr)
@@ -734,6 +739,9 @@ class TDController extends Controller
         ->with('rejectBM',$rejectBM)
         ->with('rejectAM', $rejectAM)
         ->with('rejectRH', $rejectRH)
-        ->with('rejectDR', $rejectDR);
+        ->with('rejectDR', $rejectDR)
+        ->with('revisiRH', $revisiRH);
+        //bikin yg revisi juga
+        
     }
 }
