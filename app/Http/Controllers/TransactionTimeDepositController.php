@@ -148,6 +148,11 @@ class TransactionTimeDepositController extends Controller
                 'alert-type' => 'error'
             );
         }
+
+        $td = TD::find($request->id_td);
+        $td->status = 'Rejected';
+        $tdResult = $td->save();
+
        return redirect()->back()->with($notification);
     }
 
@@ -206,7 +211,7 @@ class TransactionTimeDepositController extends Controller
         $count = transaction_td::where('id_td',$id)->count();
         $td = TD::where('id', $id)->get();
         $data = TD::find($id);
-        $data->status = 1;
+        $data->status = 'Finish';
         $data->save();
 
         foreach($td as $data){

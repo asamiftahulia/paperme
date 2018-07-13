@@ -40,6 +40,7 @@ class TDController extends Controller
             ->get();
         // dd($lengkap);
         return view('list-td',compact('data','trx','tdUser','lengkap'));
+        
     }
 
     /**
@@ -101,7 +102,7 @@ class TDController extends Controller
         else 
             $expired = date("Y-m-d", strtotime("+12 month", $dt));
         
-        $data->status = '0';
+        $data->status = 'ON PROGRESS';
         $data->notes = $request->notes;
         $data->expired_date = $expired;
         $data->period = $request->period;

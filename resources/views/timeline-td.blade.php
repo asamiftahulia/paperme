@@ -1146,6 +1146,9 @@
                     <?php
                         }else{
                           ?>
+                      <div class="desc"><p id="act-revisi-rh3-telah"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font>
+                      <div class="desc"><p id="act-revisi-rh3"></br> 
+                      <p><span>{{$orang->rh}}</span></br></p>
                       <input type="button" disabled="true" id="btnrev-revisi-rh3" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
                       <input type="button" disabled="true" id="btnrev-approve-rh3" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
                       <input type="button" disabled="true" id="btnrev-reject-rh3" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject">
@@ -1246,7 +1249,7 @@
             <div class="row" align="center">
                 <a align="center" href="{{route('td.index')}}"><input type="button" id="btn-submit" class="btn btn-info" value="Go TO List Data Time Deposit"></a>
                 <?php
-                  if($datas->status == 1){ ?>
+                  if($datas->status == 'FINISH'){ ?>
                     <a align="center" href="{{url('td/updateStatus',$datas->id)}}"><input type="button" enable="false" id="btn-finish"  class="btn btn-info" value="Finished"></a>
                   <?php
                   }else{?>

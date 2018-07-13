@@ -34,18 +34,29 @@ class LoginApiController extends Controller
         $email = Input::get('email');
         $password = Input::get('password');
 
-    //    $response = $client->post('http://192.168.1.57:8015/login', ['json'=>['username'=>$email,'password'=>$password]]);
-    //     $data = $response->getBody();
+       $response = $client->post('http://192.168.1.57:8015/login', ['json'=>['username'=>$email,'password'=>$password]]);
+        $data = $response->getBody();
 
-    //    $data = json_decode($data);
-    // //    asli
-    //     session(['token' => $data->token,
-    //      'username'=> $data->username,
-    //      'nik' => $data->employee->nik,
-    //      'nama'=> $data->employee->nama,
-    //      'branch'=> $data->userJobs[0]->userJobPK->idBranch,
-    //      'job'=> $data->userJobs[0]->userJobPK->idJobs]);
-
+       $data = json_decode($data);
+    //    asli
+    //berapa job nya
+    $jumlahJobUser = count($data->userJobs);
+    // dd($jumlahJobUser);
+    for($i = 0; $i<$jumlahJobUser; $i++){
+        echo "<script type='text/javascript'>alert($i);</script>";
+    
+        session(['token' => $data->token,
+        'username'=> $data->username,
+        'nik' => $data->employee->nik,
+        'nama'=> $data->employee->nama,
+        'branch'=> $data->userJobs[$jumlahJobUser-1]->userJobPK->idBranch,
+        'job'=> $data->userJobs[$jumlahJobUser-1]->userJobPK->idJobs]);
+        $nik = session('nik');
+        echo "<script type='text/javascript'>alert(".$jumlahJobUser.");</script>";
+        // dd(session('job'));
+    }
+    
+    echo "<script type='text/javascript'>alert(".$nik.");</script>";
         //palsu
         
         // session(['token' => '1234567',
@@ -56,12 +67,12 @@ class LoginApiController extends Controller
         // 'job'=> 'S0301']);
 
         // jalan
-         session(['token' => '1234567',
-         'username'=> 'anisentus.yoseph@idn.ccb.com',
-         'nik' => '17 3694',
-         'nama'=> 'Lim ',
-         'branch'=> 'ID0010028',
-         'job'=> 'S0309']);
+        //  session(['token' => '1234567',
+        //  'username'=> 'anisentus.yoseph@idn.ccb.com',
+        //  'nik' => '17 3694',
+        //  'nama'=> 'Lim ',
+        //  'branch'=> 'ID0010028',
+        //  'job'=> 'S0309']);
 
         // session(['token' => '1234567',
         //  'username'=> 'tien.muntiara@idn.ccb.com',
@@ -97,25 +108,34 @@ class LoginApiController extends Controller
        // dd(session('job'));
        // dd($data);
        $id_branch = session('branch');
+    //    dd($id_branch);
        $flow = FlowMapping::where('id',$id_branch)->get();
         foreach($flow as $data)
         {
             $path = explode(';',$data->path);
             $countPath = count($path);
             for($i = 0; $i<$countPath;$i++){
-                if($countPath==4){
-                    //cocok eko
+                if($id_branch == 'ID0010001'){
                     $userBM = UserJob::where('id_branch',$id_branch)->where('id_jobs','S0362')->get();
-                    $userAM = UserJob::where('id_branch',$path[1])->where('id_jobs','S0465')->get();
-                    $userRH = UserJob::where('id_branch',$path[2])->where('id_jobs','S0301')->get();
+                    $userAM = UserJob::where('id_branch',$path[0])->where('id_jobs','S0465')->get();
+                    $userRH = UserJob::where('id_branch',$path[0])->where('id_jobs','S0301')->get();
                     $userDR = 'setiawati.samahita@idn.ccb.com';
+                    echo "<script> alert('asaaa')</script>";
                 }else{
-                    //cocok buat eko
-                    $userBM = UserJob::where('id_branch',$id_branch)->where('id_jobs','S0465')->get();
-                    $userAM = UserJob::where('id_branch',$id_branch)->where('id_jobs','S0465')->get();
-                    $userRH = UserJob::where('id_branch',$path[1])->where('id_jobs','S0301')->get();
-                    $userDR = 'setiawati.samahita@idn.ccb.com';
-                    echo "<script type='text/javascript'>alert('Non Jabodetabek');</script>";
+                    if($countPath==4){
+                        //cocok eko
+                        $userBM = UserJob::where('id_branch',$id_branch)->where('id_jobs','S0362')->get();
+                        $userAM = UserJob::where('id_branch',$path[1])->where('id_jobs','S0465')->get();
+                        $userRH = UserJob::where('id_branch',$path[2])->where('id_jobs','S0301')->get();
+                        $userDR = 'setiawati.samahita@idn.ccb.com';
+                    }else{
+                        //cocok buat eko
+                        $userBM = UserJob::where('id_branch',$id_branch)->where('id_jobs','S0465')->get();
+                        $userAM = UserJob::where('id_branch',$id_branch)->where('id_jobs','S0465')->get();
+                        $userRH = UserJob::where('id_branch',$path[1])->where('id_jobs','S0301')->get();
+                        $userDR = 'setiawati.samahita@idn.ccb.com';
+                        // echo "<script type='text/javascript'>alert('Non Jabodetabek');</script>";
+                    }
                 }
             }
             
@@ -127,10 +147,10 @@ class LoginApiController extends Controller
     //    $userRH = UserJob::where('id_branch','AR0001')->get();
     //    $userDR = UserJob::where('id_branch','AR0001')->get();
 
-       session(['bm'=>$userBM[0]->username,
-       'am'=>$userAM[0]->username,
-       'rh'=>$userRH[0]->username,
-       'dr'=>$userDR]);
+    //    session(['bm'=>$userBM[0]->username,
+    //    'am'=>$userAM[0]->username,
+    //    'rh'=>$userRH[0]->username,
+    //    'dr'=>$userDR]);
 
        return View('user-mapping-test',compact('token',
        'username',
