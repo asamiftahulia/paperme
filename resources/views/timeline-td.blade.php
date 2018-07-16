@@ -12,21 +12,19 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="card">
                 <div class="card-header" data-background-color="blue">
-                  <h4 class="title">TIMELINE</h4>
-                  <p class="category">Time Deposit Special Rate {{$valButton}}{{$trx}} </p>
-                  
+                  <h4 class="title">TIMELINE </br>
+                  Time Deposit Special Rate
+                  </h4>
+                  <!-- <p class="category">Time Deposit Special Rate {{$valButton}}{{$trx}} </p>
+                   -->
                   @foreach($data as $datas)
-                  <p> created by {{$datas->created_by}} </p>
+                  <p class="category"> created by {{$datas->created_by}} </br> created at {{date_format($datas->created_at,"d-m-Y")}} </p>
                   </div>
                     <div class="header">
-
-                      <h3 align="center">
-                            Timeline Time Deposit Special Rate
-                        </h3>
                         </br></br>
                         <h5>
                         
-                          <table align="center">
+                          <table>
                            
                             <tr>
                               <td>Name  </td>
@@ -51,21 +49,21 @@
                             <tr>
                             <td>Image</td>
                               <td> : </td>
-                              <td><a data-toggle="modal" data-target="#defaultModal">View Image</a></td>
+                              <td><a data-toggle="modal" data-target="#defaultModal">Bukti Sumber Dana</a></td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                               <td>Jumlah Approver</td>
                               <td> : </td>
                               <td> {{$datas->approver}}</td>
-                            </tr>
+                            </tr> -->
                             <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Bukti Sumber Dana</h4>
                           </div>
                           <div class="modal-body">
-                          
                             {{csrf_field()}}
                             <img src="{{asset('/images/'.$datas->image)}}" />
                           </div>
@@ -147,7 +145,7 @@
                 </li>
                 <!-- Revisi -->
                 <div class="modal fade" id="modalDetailBM" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -189,7 +187,7 @@
                 </div>
                 <!-- Approve -->
                 <div class="modal fade" id="modalAprBM" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -212,7 +210,7 @@
                 </div>
                 <!-- Reject -->
                 <div class="modal fade" id="modalRejBM" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -265,7 +263,7 @@
               <!-- </ul> -->
               <!-- Revisi -->
                 <div class="modal fade" id="modalDetailAM" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -300,7 +298,7 @@
                   </div>
                 </div>
                 <div class="modal fade" id="modalAprAM" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -314,7 +312,7 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
                           </form>
                           </div>
@@ -322,7 +320,7 @@
                   </div>
                 </div>
                 <div class="modal fade" id="modalRejAM" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -375,7 +373,7 @@
                 </li>
                 <!-- Detail -->
                 <div class="modal fade" id="modal2BMDet" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -411,7 +409,7 @@
                 </div>
                 <!-- Approve -->
                 <div class="modal fade" id="modal2BMApr" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -425,7 +423,7 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
                           </form>
                           </div>
@@ -434,7 +432,7 @@
                 </div>
                 <!-- Reject -->
                 <div class="modal fade" id="modal2BMRej" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -485,7 +483,7 @@
                 </li>
                 <!-- Detail -->
                 <div class="modal fade" id="modal2AMDet" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -522,7 +520,7 @@
                 </div>
                 <!-- Approve -->
                 <div class="modal fade" id="modal2AMApr" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -536,7 +534,7 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
                           </form>
                           </div>
@@ -545,7 +543,7 @@
                 </div>
                 <!-- Reject -->
                 <div class="modal fade" id="modal2AMRej" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -595,7 +593,7 @@
                   </div>
                 </li>
                 <div class="modal fade" id="modal2RHDet" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -631,7 +629,7 @@
                 </div>
                 <!-- Approve -->
                 <div class="modal fade" id="modal2RHApr" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -645,7 +643,7 @@
                               <p><input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
                           </form>
                           </div>
@@ -654,7 +652,7 @@
                 </div>
                 <!-- Reject -->
                 <div class="modal fade" id="modal2RHRej" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -706,7 +704,7 @@
                   </div>
                 </li>
                 <div class="modal fade" id="modal2BMDet" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -742,7 +740,7 @@
                 </div>
                 <!-- Approve -->
                 <div class="modal fade" id="modal2BMApr" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -756,8 +754,10 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                            <div align="right">
+                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
+                             </div>
                           </form>
                           </div>
                       </div>
@@ -765,7 +765,7 @@
                 </div>
                 <!-- Reject -->
                 <div class="modal fade" id="modal2BMRej" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -779,8 +779,10 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
                               <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-danger">Reject</button>
+                              <div align="right">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">Reject</button>
+                             </div>
                           </form>
                           </div>
                       </div>
@@ -817,7 +819,7 @@
                 </li>
                 <!-- Detail -->
                 <div class="modal fade" id="modal2AMDet" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -852,7 +854,7 @@
                 </div>
                 <!-- Approve -->
                 <div class="modal fade" id="modal2AMApr" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -866,8 +868,10 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-success">Approve</button>
+                              <div align="right">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Approve</button>
+                              </div>
                           </form>
                           </div>
                       </div>
@@ -875,7 +879,7 @@
                 </div>
                 <!-- Reject -->
                 <div class="modal fade" id="modal2AMRej" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -889,8 +893,10 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
                               <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-danger">Reject</button>
+                              <div align="right">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">Reject</button>
+                              </div>
                           </form>
                           </div>
                       </div>
@@ -925,7 +931,7 @@
                   </div>
                 </li>
                 <div class="modal fade" id="modal2RHDet" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -961,7 +967,7 @@
                 </div>
                 <!-- Approve -->
                 <div class="modal fade" id="modal2RHApr" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -975,8 +981,10 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-success">Approve</button>
+                              <div align="right">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Approve</button>
+                              </div>
                           </form>
                           </div>
                       </div>
@@ -984,7 +992,7 @@
                 </div>
                 <!-- Reject -->
                 <div class="modal fade" id="modal2RHRej" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1034,7 +1042,7 @@
                   </div>
                 </li>
                 <div class="modal fade" id="modal2DirDet" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1071,7 +1079,7 @@
                 </div>
                 <!-- Approve -->
                 <div class="modal fade" id="modal2DirApr" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1085,8 +1093,10 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" name="special_rate" value="{{$datas->special_rate}}">
                               <input type="hidden" name="role" value="Director">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-success">Approve</button>
+                              <div align="right">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Approve</button>
+                              </div>
                           </form>
                           </div>
                       </div>
@@ -1094,7 +1104,7 @@
                 </div>
                 <!-- Reject -->
                 <div class="modal fade" id="modal2DirRej" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1108,8 +1118,10 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Director">
                               <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-danger">Reject</button>
+                              <div align="right">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">Reject</button>
+                              <div align="right">
                           </form>
                           </div>
                       </div>
@@ -1164,7 +1176,7 @@
               ?>
              @endforeach
              <div class="modal fade" id="modal2RHDet" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1200,7 +1212,7 @@
                 </div>
                 <!-- Approve -->
                 <div class="modal fade" id="modal2RHApr" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1214,8 +1226,10 @@
                               <p><input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-success">Approve</button>
+                              <div align="right">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Approve</button>
+                              </div>
                           </form>
                           </div>
                       </div>
@@ -1223,7 +1237,7 @@
                 </div>
                 <!-- Reject -->
                 <div class="modal fade" id="modal2RHRej" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1237,8 +1251,10 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
                               <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-danger">Reject</button>
+                              <div align="right">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">Reject</button>
+                              </div>
                           </form>
                           </div>
                       </div>
@@ -1248,15 +1264,15 @@
             @endforeach
             <div class="row" align="center">
                 <a align="center" href="{{route('td.index')}}"><input type="button" id="btn-submit" class="btn btn-info" value="Go TO List Data Time Deposit"></a>
-                <?php
-                  if($datas->status == 'FINISH'){ ?>
+                <!-- <?php
+                  // if($datas->status == 'FINISH'){ ?>
                     <a align="center" href="{{url('td/updateStatus',$datas->id)}}"><input type="button" enable="false" id="btn-finish"  class="btn btn-info" value="Finished"></a>
                   <?php
-                  }else{?>
+                  // }else{?>
                     <a align="center" href="{{url('td/updateStatus',$datas->id)}}"><input type="button" id="btn-finish" enabled="false" class="btn btn-info" value="Finish"></a>
                 <?php  
-                  }
-                ?>
+                  // }
+                ?> -->
             </div>
         </div>
       </div>

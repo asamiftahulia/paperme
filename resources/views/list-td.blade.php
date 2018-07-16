@@ -21,6 +21,10 @@
                                 <div class="card-header" data-background-color="blue">
                                     <h4 class="title">Time Deposit Special Rate</h4>
                                     <p class="category">Data Pengajuan Special Rate login : {{session('username')}}</p>
+                                </div></br>
+                                <div align="right">
+                                    <a href="{{route('time-deposit.create')}}">
+                                        <i class="material-icons">assignment</i>create new data</a>
                                 </div>
                                 <div class="card-content table-responsive">
                             <!-- <table class="table table-bordered table-striped table-hover dataTable js-exportable">
@@ -206,7 +210,7 @@
                                    <?php    }
                                         }
                                         // area head / am
-                                        else if(session('job')=='S0465'){
+                                        else if(session('username')=='rahman.fianto@idn.ccb.com'){
                                             $login = session('username');
                                             if($login==$datalengkap->am){ ?>
                                                 <tr>
@@ -274,15 +278,7 @@
                                                              <?php
                                                              }
                                                         ?>
-                                                        
                                                             <a href="{{action('TDController@timeline',$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
-                                                            <?php if($datalengkap->action == 1 || $datalengkap->status == 'Rejected'){ ?>
-                                                                <a href="javascript: void(0)" class="material-icons" rel="tooltip" title="Can Not Edit">mode_edit</a>
-                                                            <?php }elseif($datalengkap->action== 0){ ?>
-                                                                <a href="{{route("td.edit",$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Edit Data">mode_edit</a>
-                                                            <?php        
-                                                                }
-                                                            ?>
                                                     </td>
                                             </tr> 
                                 <?php   }
@@ -304,27 +300,22 @@
                                                         <td>{{$datalengkap->rh}}</td>
                                                         <td>{{$datalengkap->dr}}</td>
                                                         <td>{{$datalengkap->jumlah}}</td> -->
-                                                        <td>    @if($datalengkap->status == 1)
-                                                                {{$datalengkap->status = 'FINISH'}}
-                                                            @else
-                                                                {{$datalengkap->status = 'ON PROGRESS'}}
-                                                            @endif
-                                                    </td>
+                                                        <td>{{$datalengkap->status}}</td>
                                                         <td>
-                                                                <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                        <?php if($datalengkap->status == 'FINISH'){ ?>
+                                                            <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                        <?php
+                                                            }else{?>
+                                                            <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDF">assignment_returned</a>
+                                                        <?php
+                                                            }
+                                                        ?>
                                                                 <a href="{{action('TDController@timeline',$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
-                                                            
-                                                                <?php if($datalengkap->action == 1){ ?>
-                                                                            <a href="javascript: void(0)" class="material-icons" rel="tooltip" title="Can Not Edit">mode_edit</a>
-                                                                <?php        }elseif($datalengkap->action== 0){ ?>
-                                                                        <a href="{{route("td.edit",$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Edit Data">mode_edit</a>
-                                                                <?php        
-                                                                }
-                                                                ?>
+                                                         
                                                         </td>
                                                 </tr>   
                                  <?php  }
-                                    }else if(session('username')=='S9' || session('job') == 'S0148'){ 
+                                    }else if(session('job')=='S9' || session('job') == 'S0148'){ 
                                         $login = session('username');
                                         if($login=='setiawati.samahita@idn.ccb.com' && $datalengkap->jumlah >= 4){ ?>
                                         <tr>
@@ -340,22 +331,18 @@
                                             <td>{{$datalengkap->rh}}</td>
                                             <td>{{$datalengkap->dr}}</td>
                                             <td>{{$datalengkap->jumlah}}</td> -->
-                                            <td>    @if($datalengkap->status == 1)
-                                                                {{$datalengkap->status = 'FINISH'}}
-                                                            @else
-                                                                {{$datalengkap->status = 'ON PROGRESS'}}
-                                                            @endif
-                                                    </td>
+                                            <td>{{$datalengkap->status}}</td>
                                             <td>
-                                                <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDFaAA">assignment_returned</a>
+                                                <?php if($datalengkap->status == 'FINISH'){ ?>
+                                                        <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                <?php
+                                                    }else{?>
+                                                        <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDF">assignment_returned</a>
+                                                <?php
+                                                    }
+                                                ?>
+                                                
                                                 <a href="{{action('TDController@timeline',$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
-                                                    <?php if($datalengkap->action == 1){ ?>
-                                                        <a href="javascript: void(0)" class="material-icons" rel="tooltip" title="Can Not Edit">mode_edit</a>
-                                                    <?php }elseif($datalengkap->action== 0){ ?>
-                                                        <a href="{{route("td.edit",$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Edit Data">mode_edit</a>
-                                                    <?php        
-                                                        }
-                                                    ?>
                                             </td>
                                     </tr> 
                             <?php

@@ -21,14 +21,14 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <b>Full Name</b>
-                                <input type="text" class="form-control" placeholder="e.g : John Doe" name="full_name">
+                                <input type="text" class="form-control" placeholder="e.g : John Doe" name="full_name" required>
                             </div>
                          </div>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group label-floating">
-                                    <b>Period (/ bulan)</b>
-                                    <select name="period" id="period" class="form-control" onChange="autoFill(); return false;">
+                                    <b>Period (Month)</b>
+                                    <select name="period" id="period" class="form-control" onChange="autoFill(); return false;" required>
                                     <option>-Select-</option>
                                       <option value="1">1 bln</option>
                                       <option value="3">3 bln</option>
@@ -39,13 +39,13 @@
                             </div>
                             <div class="col-md-4">
                                 <b>Amount</b>
-                                <input type="text" class="form-control" placeholder="Ex: Rp. 99,000" id="amount" name="amount">
+                                <input type="text" class="form-control" placeholder="Ex: Rp. 99,000" id="amount" name="amount" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                                 <div class="form-group label-floating">
                                      <b>Currency</b>
-                                    <select name="currency" id="currency" class="form-control" onChange="autoFill(); return false;">
+                                    <select name="currency" id="currency" class="form-control" onChange="autoFill(); return false;" required>
                                       <option value="IDR">IDR</option>
                                       <option value="USD">USD</option>
                                       <option value="SGD">SGD</option>
@@ -56,7 +56,7 @@
                              <div class="col-md-4">
                                 <div class="form-group label-floating">
                                       <b>Special Rate (%)</b>
-                                    <input type="number" step="0.01" class="form-control" id="special_rate" placeholder="e.g: 5.00" name="special_rate">
+                                    <input type="number" step="0.01" class="form-control" id="special_rate" placeholder="e.g: 5.00" name="special_rate" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -69,13 +69,13 @@
                             <div class="col-md-4">
                                 <div class="form-group label-floating"> 
                                     <b>Date Rollover</b>
-                                    <input class="form-control" type="date" name="date_rollover">
+                                    <input class="form-control" type="date" name="date_rollover" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group label-floating">
                                      <b>Type Of TD</b>
-                                    <select name="type_of_td" class="form-control">
+                                    <select name="type_of_td" class="form-control" required>
                                       <option value="2">Unbreakable</option>
                                       <option value="1">Breakable</op  tion>
                                     </select>
@@ -108,8 +108,8 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <button type="submit" class="btn btn-info pull-right">Submit</button>
+                        <input type="submit" class="btn btn-info pull-right">
+                        <!-- <button type="submit" class="btn btn-info pull-right">Submit</button> -->
                         <a href="{{URL::to('./')}}" class="btn btn-info waves-effect ">Back</a>
                         <div class="clearfix"></div>
                     </form>

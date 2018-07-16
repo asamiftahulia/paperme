@@ -92,10 +92,11 @@
                         <p>Master User</p>
                     </a>
                 </li> -->
-                <li class="@yield('aktif-m-sr')">
-                    <a href="{{route('special-rate.index')}}">
-                        <i class="material-icons">dns</i>
-                        <p>Master Special Rate</p>
+                
+                 <li class="@yield('aktif-mtimedeplist')">
+                    <a href="{{route('td.index')}}">
+                        <i class="material-icons">view_list</i>
+                        <p>Time Deposit List</p>
                     </a>
                  </li>
                  <?php
@@ -104,17 +105,18 @@
                 <li class="@yield('aktif-mtimedep')">
                     <a href="{{route('time-deposit.create')}}">
                         <i class="material-icons">assignment</i>
-                        <p>Time Deposit (TD)</p>
+                        <p>New Time Deposit (TD)</p>
                     </a>
                  </li>
                  <?php
                     } ?>
-                 <li class="@yield('aktif-mtimedeplist')">
-                    <a href="{{route('td.index')}}">
-                        <i class="material-icons">view_list</i>
-                        <p>Time Deposit List</p>
+                    <li class="@yield('aktif-m-sr')">
+                    <a href="{{route('special-rate.index')}}">
+                        <i class="material-icons">dns</i>
+                        <p>Master Special Rate</p>
                     </a>
                  </li>
+                 
                  <li class="">
                     <a href="{{url('/logout')}}">
                         <i class="material-icons">assignment</i>
@@ -157,7 +159,7 @@
         </div>
         <footer class="footer">
             <div class="container-fluid">
-                <nav class="pull-left">
+                <!-- <nav class="pull-left">
                     <ul>
                         <li>
                             <a href="#">
@@ -180,7 +182,7 @@
                             </a>
                         </li>
                     </ul>
-                </nav>
+                </nav> -->
                 <p class="copyright pull-right">
                     &copy;
                     <script>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>asa</title>
+	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="{{asset('/assets/login/css/util.css')}}">
@@ -42,6 +42,7 @@
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn">
                             {{ Form::submit('Submit!') }}
+								
 							</button>
 						</div>
 					</div>

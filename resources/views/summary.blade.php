@@ -108,7 +108,7 @@
                                     <!-- <a href="{{URL::to('./td')}}" class="btn btn-info btn-round">back</a> -->
                                      <a href="{{route('td.edit',$datas->id)}}" class="btn btn-info btn-round">BACK</a>
                                      <!-- <a href="{{URL::to('td/create')}}" class="btn btn-info btn-round">Add Customer</a> -->
-                                    <a href="{{url('timeline',$datas->id)}}" class="btn btn-info btn-round">Submit</a>
+                                    <a href="{{url('timeline',$datas->id)}}" class="btn btn-info btn-round">GO TO TIMELINE</a>
 
                                      
                             </div>

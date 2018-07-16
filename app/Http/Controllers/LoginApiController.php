@@ -8,6 +8,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Message\Response;
 use View;
 use Session;
+use App\TD;
+use App\TD_USER;
+use DB;
 use Illuminate\Support\Facades\Input;
 use App\FlowMapping;
 use App\UserJob;
@@ -34,29 +37,29 @@ class LoginApiController extends Controller
         $email = Input::get('email');
         $password = Input::get('password');
 
-       $response = $client->post('http://192.168.1.57:8015/login', ['json'=>['username'=>$email,'password'=>$password]]);
-        $data = $response->getBody();
+    //    $response = $client->post('http://192.168.1.57:8015/login', ['json'=>['username'=>$email,'password'=>$password]]);
+    //     $data = $response->getBody();
 
-       $data = json_decode($data);
-    //    asli
-    //berapa job nya
-    $jumlahJobUser = count($data->userJobs);
-    // dd($jumlahJobUser);
-    for($i = 0; $i<$jumlahJobUser; $i++){
-        echo "<script type='text/javascript'>alert($i);</script>";
+    //    $data = json_decode($data);
+    // //    asli
+    // //berapa job nya
+    // $jumlahJobUser = count($data->userJobs);
+    // // dd($jumlahJobUser);
+    // for($i = 0; $i<$jumlahJobUser; $i++){
+    //     // echo "<script type='text/javascript'>alert($i);</script>";
     
-        session(['token' => $data->token,
-        'username'=> $data->username,
-        'nik' => $data->employee->nik,
-        'nama'=> $data->employee->nama,
-        'branch'=> $data->userJobs[$jumlahJobUser-1]->userJobPK->idBranch,
-        'job'=> $data->userJobs[$jumlahJobUser-1]->userJobPK->idJobs]);
-        $nik = session('nik');
-        echo "<script type='text/javascript'>alert(".$jumlahJobUser.");</script>";
-        // dd(session('job'));
-    }
+    //     session(['token' => $data->token,
+    //     'username'=> $data->username,
+    //     'nik' => $data->employee->nik,
+    //     'nama'=> $data->employee->nama,
+    //     'branch'=> $data->userJobs[$jumlahJobUser-1]->userJobPK->idBranch,
+    //     'job'=> $data->userJobs[$jumlahJobUser-1]->userJobPK->idJobs]);
+    //     $nik = session('nik');
+    //     // echo "<script type='text/javascript'>alert(".$jumlahJobUser.");</script>";
+    //     // dd(session('job'));
+    // }
     
-    echo "<script type='text/javascript'>alert(".$nik.");</script>";
+    // echo "<script type='text/javascript'>alert(".$nik.");</script>";
         //palsu
         
         // session(['token' => '1234567',
@@ -74,19 +77,19 @@ class LoginApiController extends Controller
         //  'branch'=> 'ID0010028',
         //  'job'=> 'S0309']);
 
-        // session(['token' => '1234567',
-        //  'username'=> 'tien.muntiara@idn.ccb.com',
-        //  'nik' => '17 3694',
-        //  'nama'=> 'Lim ',
-        //  'branch'=> 'ID0010028',
-        //  'job'=> 'S0362']);
+        session(['token' => '1234567',
+         'username'=> 'tien.muntiara@idn.ccb.com',
+         'nik' => '17 3694',
+         'nama'=> 'Lim ',
+         'branch'=> 'ID0010028',
+         'job'=> 'S0362']);
 
-        //  session(['token' => '1234567',
-        //  'username'=> 'rahman.fianto@idn.ccb.com',
-        //  'nik' => '17 3694',
-        //  'nama'=> 'Lim ',
-        //  'branch'=> 'ID0010028',
-        //  'job'=> 'S0465']);
+            // session(['token' => '1234567',
+            // 'username'=> 'rahman.fianto@idn.ccb.com',
+            // 'nik' => '17 3694',
+            // 'nama'=> 'Lim ',
+            // 'branch'=> 'ID0010028',
+            // 'job'=> 'S0465']);
 
             // session(['token' => '1234567',
             // 'username'=> 'agus.setiawan@idn.ccb.com',
@@ -120,7 +123,7 @@ class LoginApiController extends Controller
                     $userAM = UserJob::where('id_branch',$path[0])->where('id_jobs','S0465')->get();
                     $userRH = UserJob::where('id_branch',$path[0])->where('id_jobs','S0301')->get();
                     $userDR = 'setiawati.samahita@idn.ccb.com';
-                    echo "<script> alert('asaaa')</script>";
+                    // echo "<script> alert('asaaa')</script>";
                 }else{
                     if($countPath==4){
                         //cocok eko
@@ -152,15 +155,28 @@ class LoginApiController extends Controller
     //    'rh'=>$userRH[0]->username,
     //    'dr'=>$userDR]);
 
-       return View('user-mapping-test',compact('token',
-       'username',
-       'nik',
-       'nama',
-       'branch',
-       'job',
-       'flow',
-       'userBM','userAM','userRH','userDR','bm','am','rh','dr'
-    ));
+    //    return View('user-mapping-test',compact('token',
+    //    'username',
+    //    'nik',
+    //    'nama',
+    //    'branch',
+    //    'job',
+    //    'flow',
+    //    'userBM','userAM','userRH','userDR','bm','am','rh','dr'
+    // ));
+        
+    $data = TD::All();
+    //  return view('time-deposit-list', compact('data'));
+      $tdUser = TD_USER::All();
+      $lengkap = DB::table('time-deposit')
+          ->select('*')
+          ->join('td_user', 'time-deposit.id', '=', 'td_user.id_td')
+          ->orderBy('time-deposit.id','asc')
+          ->get();
+      // dd($lengkap);
+      return view('list-td',compact('data','trx','tdUser','lengkap'));
+
+     
     }
 
     public function logout(){
