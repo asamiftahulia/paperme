@@ -210,7 +210,7 @@
                                    <?php    }
                                         }
                                         // area head / am
-                                        else if(session('username')=='rahman.fianto@idn.ccb.com'){
+                                        else if(session('username')=='rahman.fianto@idn.ccb.com' || session('username')=='sherly.marthalena@idn.ccb.com'){
                                             $login = session('username');
                                             if($login==$datalengkap->am){ ?>
                                                 <tr>

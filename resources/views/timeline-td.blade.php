@@ -224,8 +224,10 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-info">Reject</button>
+                              <div align="right">
+                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                             <button type="submit" class="btn btn-danger">Reject</button>
+                             </div>
                           </form>
                           </div>
                       </div>
@@ -312,8 +314,10 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
+                              <div align="right">
                              <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
+                             </div>
                           </form>
                           </div>
                       </div>
@@ -334,8 +338,10 @@
                                 <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                                 <input type="hidden" enable="false" name="role" value="Area Manager">
                                 <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
-                              <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                              <button type="submit" class="btn btn-danger">Reject</button>
+                              <div align="right">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">Reject</button>
+                              </div>
                             </form>
                           </div>
                       </div>
@@ -423,8 +429,10 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-success">Approve</button>
+                              <div align="right">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Approve</button>
+                             </div>
                           </form>
                           </div>
                       </div>
@@ -446,8 +454,10 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
                               <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-danger">Reject</button>
+                              <div align="right">
+                                  <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-danger">Reject</button>
+                              </div>
                           </form>
                           </div>
                       </div>
@@ -534,8 +544,10 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-success">Approve</button>
+                              <div align="right">
+                                  <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-success">Approve</button>
+                              </div>
                           </form>
                           </div>
                       </div>
@@ -557,8 +569,10 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
                               <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-danger">Reject</button>
+                              <div align="right">
+                                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">Reject</button>
+                              </div>
                           </form>
                           </div>
                       </div>
@@ -643,8 +657,10 @@
                               <p><input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
                               <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-success">Approve</button>
+                              <div align="right">
+                                  <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-success">Approve</button>
+                              </div>
                           </form>
                           </div>
                       </div>
@@ -666,8 +682,10 @@
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
                               <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-danger">Reject</button>
+                              <div align="right">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">Reject</button>
+                              </div>
                           </form>
                           </div>
                       </div>
