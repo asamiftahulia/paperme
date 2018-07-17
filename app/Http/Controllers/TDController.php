@@ -41,11 +41,14 @@ class TDController extends Controller
         $lengkapForBM = DB::table('time-deposit')
             ->select('*')
             ->join('td_user', 'time-deposit.id', '=', 'td_user.id_td')
-            ->where('time-deposit.status','=','ON PROGRESS')
             ->orderBy('time-deposit.created_at','asc')
             ->get();
-        // dd($lengkap);
-        return view('list-td',compact('data','trx','tdUser','lengkap','lengkapForBM'));
+
+            $query = 'SELECT * FROM "time-deposit" td JOIN td_user tu ON td.id = tu.id_td WHERE td.status = "ON PROGRESS" ORDER BY td.created_at = "asc"';
+        $dataLengkapForBM = DB::raw($query);
+        //dd($lengkap);
+        return view('list-td',compact('data','trx','tdUser','lengkap','lengkapForBM','dataLengkapForBM'));
+        //  dd($lengkapForBM);
         
     }
 
@@ -625,6 +628,7 @@ class TDController extends Controller
             }
          
           $data = TD::where('id', $id_td)->get();
+          $cekAksiApprover = 
             
        // $data = transaction_td::where('id_td', $id)->get();
           $approverBM = DB::table('trx-time-deposit')->where('role', 'Branch Manager')->where('id_td',$id_td)->where('aksi','Approve')->count();

@@ -164,12 +164,13 @@
                                 </thead>
                                         <tbody>
                                         <?php $no = 1; ?>
-                                    @foreach($lengkap as $datalengkap)
+                                   
                                     
                                     <?php
                                     // rm / created_by
                                         if(session('job')=='S0309'){
                                             $login = session('username');
+                                            foreach($lengkap as $datalengkap){
                                             if(session('username')==$datalengkap->created_by){ ?>
                                                 <tr>
                                                     <td>{{$no++}}</td>
@@ -195,7 +196,7 @@
                                                              <?php
                                                              }
                                                              ?>
-                                                                <a href="{{action('TDController@timeline',$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
+                                                                <a href="{{action('TDController@timeline',$datalengkap->id_td)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
 
                                                         
                                                             <?php if($datalengkap->action == 1 || $datalengkap->status == 'Rejected'){ ?>
@@ -209,132 +210,131 @@
                                                 </tr> 
                                    <?php    }
                                         }
+                                        }
+                                        
                                         // area head / am
                                         else if(session('username')=='rahman.fianto@idn.ccb.com' || session('username')=='sherly.marthalena@idn.ccb.com'){
-                                            $login = session('username');
-                                            if($login==$datalengkap->am){ ?>
+                                            $login = session('username'); 
+                                        ?>
+                                            @foreach($lengkapForBM as $dataBM)
+                                        <?php
+                                            if($login==$dataBM->am){ ?>
                                                 <tr>
                                                     <td>{{$no++}}</td>
-                                                    <td>{{$datalengkap->full_name}}</td>
-                                                    <td>{{number_format($datalengkap->amount,0)}} {{$datalengkap->currency}}</td>
-                                                    <td>{{$datalengkap->special_rate}} %</td>
-                                                    <td>{{$datalengkap->period}} bln</td>
-                                                    <!-- <td>{{$datalengkap->id_branch}}</td> -->
-                                                    <td>{{$datalengkap->created_by}}</td>
-                                                    <!-- <td>{{$datalengkap->bm}}</td>
-                                                    <td>{{$datalengkap->am}}</td>
-                                                    <td>{{$datalengkap->rh}}</td>
-                                                    <td>{{$datalengkap->dr}}</td>
-                                                    <td>{{$datalengkap->jumlah}}</td> -->
-                                                    <td>{{$datalengkap->status}}</td>
+                                                    <td>{{$dataBM->full_name}}</td>
+                                                    <td>{{number_format($dataBM->amount,0)}} {{$dataBM->currency}}</td>
+                                                    <td>{{$dataBM->special_rate}} %</td>
+                                                    <td>{{$dataBM->period}} bln</td>
+                                                    <td>{{$dataBM->created_by}}</td>
+                                                    <td>{{$dataBM->status}}</td>
                                                     <td>
-                                                        <?php if($datalengkap->status == 'FINISH'){ ?>
-                                                                <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                        <?php if($dataBM->status == 'FINISH'){ ?>
+                                                                <a href="{{action('TDController@downloadSummary',$dataBM->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
                                                             <?php
                                                              }else{?>
                                                                  <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDF">assignment_returned</a>
                                                              <?php
                                                              }
                                                         ?>
-                                                            <!-- <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDFxxx">assignment_returned</a> -->
-                                                            <a href="{{action('TDController@timeline',$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
+                                                            
+                                                            <a href="{{action('TDController@timeline',$dataBM->id_td)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
                                                         
-                                                            <?php if($datalengkap->action == 1 || $datalengkap->status == 'Rejected'){ ?>
+                                                            <?php if($dataBM->action == 1 || $dataBM->status == 'Rejected'){ ?>
                                                                         <a href="javascript: void(0)" class="material-icons" rel="tooltip" title="Can Not Edit">mode_edit</a>
-                                                            <?php        }elseif($datalengkap->action== 0){ ?>
-                                                                    <a href="{{route("td.edit",$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Edit Data">mode_edit</a>
+                                                            <?php        }elseif($dataBM->action== 0){ ?>
+                                                                    <a href="{{route("td.edit",$dataBM->id)}}" class="material-icons" rel="tooltip" title="Edit Data">mode_edit</a>
                                                             <?php        
                                                             }
                                                             ?>
                                                     </td>
                                                 </tr> 
-                                   <?php    
+                                                <?php
                                             }
+                                            ?>
+                                            @endforeach
+                                   <?php    
+                                            
                                         }
                                         // bm / branch manager
                                         else if(session('job') == 'S0362'){
-                                            $login = session('username');
-                                            if($login == $datalengkap->bm ){ ?>
+                                            $login = session('username'); ?>
+                                            @foreach($lengkapForBM as $dataBM)
+                                        <?php   if($login == $dataBM->bm){ ?>
                                                 <tr>
                                                     <td>{{$no++}}</td>
-                                                    <td>{{$datalengkap->full_name}}</td>
-                                                    <td>{{number_format($datalengkap->amount,0)}} {{$datalengkap->currency}}</td>
-                                                    <td>{{$datalengkap->special_rate}} %</td>
-                                                    <td>{{$datalengkap->period}} bln</td>
-                                                    <!-- <td>{{$datalengkap->id_branch}}</td> -->
-                                                    <td>{{$datalengkap->created_by}}</td>
-                                                    <!-- <td>{{$datalengkap->bm}}</td>
-                                                    <td>{{$datalengkap->am}}</td>
-                                                    <td>{{$datalengkap->rh}}</td>
-                                                    <td>{{$datalengkap->dr}}</td>
-                                                    <td>{{$datalengkap->jumlah}}</td> -->
-                                                    <td>{{$datalengkap->status}}</td>
+                                                    <td>{{$dataBM->full_name}}</td>
+                                                    <td>{{number_format($dataBM->amount,0)}} {{$dataBM->currency}}</td>
+                                                    <td>{{$dataBM->special_rate}} %</td>
+                                                    <td>{{$dataBM->period}} bln</td>
+                                                    <td>{{$dataBM->created_by}}</td>
+                                                    <td>{{$dataBM->status}}</td>
                                                     <td>
-                                                        <?php if($datalengkap->status == 'FINISH'){ ?>
-                                                                <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                        <?php if($dataBM->status == 'FINISH'){ ?>
+                                                                <a href="{{action('TDController@downloadSummary',$dataBM->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
                                                             <?php
                                                              }else{?>
                                                                  <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDF">assignment_returned</a>
                                                              <?php
                                                              }
                                                         ?>
-                                                            <a href="{{action('TDController@timeline',$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
+                                                            <a href="{{action('TDController@timeline',$dataBM->id_td)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
                                                     </td>
-                                            </tr> 
-                                <?php   }
+                                            </tr>
+                                    <?php
+                                        }
+                                        ?> 
+                                        @endforeach
+                                <?php   
                                         }
                                 //    rh / regional head
                                         else if(session('job') == 'S0301'){
-                                            $login = session('username');
-                                            if($login==$datalengkap->rh && $datalengkap->jumlah >= 3){ ?>
+                                            $login = session('username'); ?>
+                                            @foreach($lengkapForBM as $dataBM)
+                                        
+                                        <?php    if($login==$dataBM->rh && $dataBM->jumlah >= 3){ ?>
                                                      <tr>
                                                         <td>{{$no++}}</td>
-                                                        <td>{{$datalengkap->full_name}}</td>
-                                                        <td>{{number_format($datalengkap->amount,0)}} {{$datalengkap->currency}}</td>
-                                                        <td>{{$datalengkap->special_rate}} %</td>
-                                                        <td>{{$datalengkap->period}} bln</td>
-                                                        <!-- <td>{{$datalengkap->id_branch}}</td> -->
-                                                        <td>{{$datalengkap->created_by}}</td>
-                                                        <!-- <td>{{$datalengkap->bm}}</td>
-                                                        <td>{{$datalengkap->am}}</td>
-                                                        <td>{{$datalengkap->rh}}</td>
-                                                        <td>{{$datalengkap->dr}}</td>
-                                                        <td>{{$datalengkap->jumlah}}</td> -->
-                                                        <td>{{$datalengkap->status}}</td>
+                                                        <td>{{$dataBM->full_name}}</td>
+                                                        <td>{{number_format($dataBM->amount,0)}} {{$dataBM->currency}}</td>
+                                                        <td>{{$dataBM->special_rate}} %</td>
+                                                        <td>{{$dataBM->period}} bln</td>
+                                                        <td>{{$dataBM->created_by}}</td>
+                                                        <td>{{$dataBM->status}}</td>
                                                         <td>
-                                                        <?php if($datalengkap->status == 'FINISH'){ ?>
-                                                            <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                        <?php if($dataBM->status == 'FINISH'){ ?>
+                                                            <a href="{{action('TDController@downloadSummary',$dataBM->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
                                                         <?php
                                                             }else{?>
                                                             <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDF">assignment_returned</a>
                                                         <?php
                                                             }
                                                         ?>
-                                                                <a href="{{action('TDController@timeline',$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
+                                                                <a href="{{action('TDController@timeline',$dataBM->id_td)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
                                                          
                                                         </td>
                                                 </tr>   
-                                 <?php  }
-                                    }else if(session('job')=='S9' || session('job') == 'S0148'){ 
-                                        $login = session('username');
-                                        if($login=='setiawati.samahita@idn.ccb.com' && $datalengkap->jumlah >= 4){ ?>
+                                                <?php 
+                                                    }
+                                                ?>
+                                        @endforeach
+                                 <?php  
+                                    }else if(session('job')=='S9' || session('job') == 'S0148' || session('username') == 'setiawati.samahita@idn.ccb.com'){ 
+                                        $login = session('username');  
+                                 ?>
+                                    @foreach($lengkap as $dataBM)
+                                      <?php
+                                         if($login=='setiawati.samahita@idn.ccb.com' && $dataBM->jumlah >= 4){ ?>
                                         <tr>
                                             <td>{{$no++}}</td>
-                                            <td>{{$datalengkap->full_name}}</td>
-                                            <td>{{number_format($datalengkap->amount,0)}} {{$datalengkap->currency}}</td>
-                                            <td>{{$datalengkap->special_rate}} %</td>
-                                            <td>{{$datalengkap->period}}</td>
-                                            <!-- <td>{{$datalengkap->id_branch}}</td> -->
-                                            <td>{{$datalengkap->created_by}}</td>
-                                            <!-- <td>{{$datalengkap->bm}}</td>
-                                            <td>{{$datalengkap->am}}</td>
-                                            <td>{{$datalengkap->rh}}</td>
-                                            <td>{{$datalengkap->dr}}</td>
-                                            <td>{{$datalengkap->jumlah}}</td> -->
-                                            <td>{{$datalengkap->status}}</td>
+                                            <td>{{$dataBM->full_name}}</td>
+                                            <td>{{number_format($dataBM->amount,0)}} {{$dataBM->currency}}</td>
+                                            <td>{{$dataBM->special_rate}} %</td>
+                                            <td>{{$dataBM->period}}</td>
+                                            <td>{{$dataBM->created_by}}</td>
+                                            <td>{{$dataBM->status}}</td>
                                             <td>
-                                                <?php if($datalengkap->status == 'FINISH'){ ?>
-                                                        <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                <?php if($dataBM->status == 'FINISH'){ ?>
+                                                        <a href="{{action('TDController@downloadSummary',$dataBM->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
                                                 <?php
                                                     }else{?>
                                                         <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDF">assignment_returned</a>
@@ -342,15 +342,16 @@
                                                     }
                                                 ?>
                                                 
-                                                <a href="{{action('TDController@timeline',$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
+                                                <a href="{{action('TDController@timeline',$dataBM->id_td)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
                                             </td>
                                     </tr> 
-                            <?php
-                                    }
-                                }
+                                    <?php
+                                         }
                                     ?>
-                                    
                                     @endforeach
+                            <?php    
+                            }
+                                    ?>
                                     </tbody>
                             </table>
                             </div>

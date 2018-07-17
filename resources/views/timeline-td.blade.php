@@ -241,10 +241,11 @@
                       <span class="flag">Area Manager</span>
                       <span class="time-wrapper"><span class="time" id="approved-date-by-am1">-</span></span>
                     </div>
-                    <div class="desc"><p id="act">Waiting An Action From Area Manager</p><br>
+                    <div class="desc"><p id="actionAM1">Waiting An Action From Area Manager</p><br>
+                    
                       <span>{{$orang->am}}</span></br>
                       <?php
-                      if(session('username')==$orang->am){
+                      if(session('username')==$orang->am && $approverBM!=0){
                       ?>
                       <button type="button" id="btn-revisi-am1"data-toggle="modal" data-target="#modalDetailAM"class="btn btn-info btn-sm">Detail</button>
                       <button type="button" id="btn-approve-am1" data-toggle="modal" data-target="#modalAprAM"class="btn btn-success btn-sm">Approve</button>
@@ -474,7 +475,7 @@
                     <div class="desc"><p id="act-am2">Waiting An Action From Area Manager</p><br>
                     <span>{{$orang->am}}</span></br>
                     <?php
-                      if(session('username')==$orang->am){
+                      if(session('username')==$orang->am && $approverBM!=0){
                     ?>
                       <input type="button" id ="btn-revisi-am2" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm" value="Detail">
                       <input type="button" id ="btn-approve-am2" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm" value="Approve">
@@ -589,7 +590,7 @@
                     <div class="desc"><p id="act-rh2">Waiting An Action From Regional Head</p><br>
                     <span>{{$orang->rh}}</span></br>
                     <?php
-                      if(session('username') == $orang->rh){
+                      if(session('username') == $orang->rh && $approverAM!=0){
                     ?>
                       <input type="button" id="btn-revisi-rh2" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
                       <input type="button" id ="btn-approve-rh2" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
@@ -815,9 +816,9 @@
                       <span class="time-wrapper"><span class="time" id="approved-date-by-am3">-</span></span>
                     </div>
                     <div class="desc"><p id="act-am3">Waiting An Action From Area Manager<br></p>
-                    <span>{{$orang->am}}}</span></br>
+                    <span>{{$orang->am}}</span></br>
                     <?php
-                        if(session('username')==$orang->am){
+                        if(session('username')==$orang->am && $approverBM!=0){
                     ?>
                       <input type="button" id="btn-revisi-am3" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm" value="Detail">
                       <input type="button" id="btn-approve-am3" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm" value="Approve">
@@ -931,7 +932,7 @@
                     <div class="desc"><p id="act-rh3">Waiting An Action From Regional Head<br></p>
                     <span>{{$orang->rh}}</span></br>
                     <?php
-                        if(session('username')==$orang->rh){
+                        if(session('username')==$orang->rh && $approverAM!=0){
                     ?>
                       <input type="button" id="btn-revisi-rh3" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
                       <input type="button" id="btn-approve-rh3" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
@@ -1024,8 +1025,10 @@
                              <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                              <input type="hidden" enable="false" name="role" value="Regional Head">
                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-danger">Reject</button>
+                             <div align="right">
+                                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">Reject</button>
+                              </div>
                           </form>
                           </div>
                       </div>
@@ -1042,7 +1045,7 @@
                     <div class="desc"><p id="act-dr3">Waiting An Action From Director<br></p>
                     <span>Director : {{$orang->dr}}</span></br>
                     <?php
-                      if(session('username') == $orang->dr){
+                      if(session('username') == $orang->dr && $approverRH!=0){
                     ?>
                       <input type="button" id="btn-revisi-dr3" data-toggle="modal" data-target="#modal2DirDet" class="btn btn-sm btn-info" value="Detail">
                       <input type="button" id="btn-approve-dr3" data-toggle="modal" data-target="#modal2DirApr" class="btn btn-sm btn-success" value="Approve">
@@ -1164,7 +1167,7 @@
                    
                    
                     <?php
-                        if(session('username')==$orang->rh){
+                        if(session('username')==$orang->rh && $approverAM!= 0 && $revisiRH != 0){
                     ?>
                      <div class="desc"><p id="act-revisi-rh3-telah"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font>
                      <div class="desc"><p id="act-revisi-rh3"></br> 
@@ -1188,6 +1191,7 @@
                     </div>
                   </div>
                 </li>
+                
               <?php 
                }
               }
@@ -1280,23 +1284,24 @@
                 </div>
             </div></br></br></br></br></br>
             @endforeach
-            <div class="row" align="center">
-                <a align="center" href="{{route('td.index')}}"><input type="button" id="btn-submit" class="btn btn-info" value="Go TO List Data Time Deposit"></a>
-                <!-- <?php
-                  // if($datas->status == 'FINISH'){ ?>
-                    <a align="center" href="{{url('td/updateStatus',$datas->id)}}"><input type="button" enable="false" id="btn-finish"  class="btn btn-info" value="Finished"></a>
-                  <?php
-                  // }else{?>
-                    <a align="center" href="{{url('td/updateStatus',$datas->id)}}"><input type="button" id="btn-finish" enabled="false" class="btn btn-info" value="Finish"></a>
-                <?php  
-                  // }
-                ?> -->
-            </div>
+          
         </div>
       </div>
-    </div>
+  
+  <div class="row" align="center">
+                <a align="center" href="{{route('td.index')}}"><input type="button" id="btn-submit" class="btn btn-info" value="Go TO List Data Time Deposit"></a>
+                  <?php
+                    if($datas->status == 'FINISH'){ ?>
+                      <a align="center" href="{{url('td/updateStatus',$datas->id)}}"><input type="button" enable="false" id="btn-finish"  class="btn btn-info" value="Finished"></a>
+                  <?php
+                    }else{?>
+                      <a align="center" href="{{url('td/updateStatus',$datas->id)}}"><input type="button" id="btn-finish" enabled="false" class="btn btn-info" value="Finish"></a>
+                 <?php  
+                  }
+                ?> 
+            </div>
+            </div>
   </div>
-
 <script type="text/javascript">
 var today = new Date();
 var dd = today.getDate();
@@ -1348,27 +1353,40 @@ $("input").click(function(e){
     console.log('idclicked:', idClicked);
 });
 
-  function autoDisableBM1() {    
-    document.getElementById("btn-approve-bm1").disabled = true;
-    document.getElementById("btn-revisi-bm1").disabled = true;
-    document.getElementById("btn-reject-bm1").disabled = true;
-    document.getElementById("time").innerHTML = today;
+  function autoDisableBM1() {   
     if(rejectbm == 0)
       document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='Green'>Approved</font>  by Branch Manager";
     else
     document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+    document.getElementById("btn-approve-bm1").disabled = true;
+    document.getElementById("btn-revisi-bm1").disabled = true;
+    document.getElementById("btn-reject-bm1").disabled = true;
+    document.getElementById("time").innerHTML = today;
   }
 
   function autoDisableAM1() {
+   
+    document.getElementById("approved-date-by-am1").innerHTML = today;
+    
+    if(rejectam == 0)
+      document.getElementById("actionAM1").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Area Manager";
+    else
+      document.getElementById("actionAM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Area Manager";
+    
     document.getElementById("btn-approve-am1").disabled = true;
     document.getElementById("btn-revisi-am1").disabled = true;
     document.getElementById("btn-reject-am1").disabled = true;
     document.getElementById("btn-finish").disabled = false;
-    document.getElementById("approved-date-by-am1").innerHTML = today;
-    if(rejectam == 0)
-      document.getElementById("act").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Area Manager";
-    else
-      document.getElementById("act").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Area Manager";
+    document.getElementById("btn-approve-bm1").disabled = true;
+    document.getElementById("btn-revisi-bm1").disabled = true;
+    document.getElementById("btn-reject-bm1").disabled = true;
+    document.getElementById("time").innerHTML = today;
+      if(rejectbm == 0)
+        document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='Green'>Approved</font>  by Branch Manager";
+      else
+        document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+  
+    
   }
 
   // 3 approver 
@@ -1454,88 +1472,138 @@ $("input").click(function(e){
   }
 
   if(jumlahApr == 2){
-      if(bm == 1 || rejectbm==1) {
-        this.autoDisableBM1();
-      }
-      if(am == 1 || rejectam==1) {
-        this.autoDisableBM1();
-        this.autoDisableAM1();
-      }
-      if(rejectbm == 1){
-        // alert('reject');
-        this.autoDisableBM1();
+    if(bm != 0){
+       this.autoDisableBM1();
+    }
+    if(am != 0){
+      this.autoDisableAM1();
+    
+    }
+    
+    // REJECT
+    if(rejectam != 0){
+        document.getElementById("approved-date-by-am1").innerHTML = today;
+
         document.getElementById("btn-approve-am1").disabled = true;
         document.getElementById("btn-revisi-am1").disabled = true;
         document.getElementById("btn-reject-am1").disabled = true;
-        document.getElementById("act").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Branch Manager";
+        
+
+        document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
+        document.getElementById("actionAM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
         
       }
 
-      if(rejectam == 1){
-        document.getElementById("btn-approve-am1").disabled = true;
-        document.getElementById("btn-revisi-am1").disabled = true;
-        document.getElementById("btn-reject-am1").disabled = true;
-        document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Area Manager";
-      }
+      // if(bm == 1 || rejectbm==1) {
+      //   this.autoDisableBM1();
+      // }
+      // if(am == 1 || rejectam==1) {
+      //   this.autoDisableBM1();
+      //   this.autoDisableAM1();
+      // }
+      // if(am == 1 && bm ==1){
+      //   this.autoDisableAM1();
+      // }
+      // if(rejectbm == 1){
+      //   // alert('reject');
+      //   this.autoDisableBM1();
+      //   document.getElementById("btn-approve-am1").disabled = true;
+      //   document.getElementById("btn-revisi-am1").disabled = true;
+      //   document.getElementById("btn-reject-am1").disabled = true;
+      //   document.getElementById("act").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Branch Manager";
+        
+      // }
 
-      if(revisirh != 0 && rh != 0){
-        document.getElementById("btnrev-approve-rh3").disabled = true;
-        document.getElementById("btnrev-revisi-rh3").disabled = true;
-        document.getElementById("btnrev-reject-rh3").disabled = true;
-        document.getElementById("act-revisi-rh3").innerHTML = "This Special Rate Has Been Approved by Regional Head";
+      // if(rejectam == 1){
+      //   document.getElementById("btn-approve-am1").disabled = true;
+      //   document.getElementById("btn-revisi-am1").disabled = true;
+      //   document.getElementById("btn-reject-am1").disabled = true;
+      //   document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Area Manager";
+      // }
+
+    //   if(revisirh != 0 && rh != 0){
+    //     document.getElementById("btnrev-approve-rh3").disabled = true;
+    //     document.getElementById("btnrev-revisi-rh3").disabled = true;
+    //     document.getElementById("btnrev-reject-rh3").disabled = true;
+    //     document.getElementById("act-revisi-rh3").innerHTML = "This Special Rate Has Been Approved by Regional Head";
+    // }
+  }else if(jumlahApr==3){
+    if(bm != 0){
+       this.autoDisableBM2();
     }
-  }
-  if(jumlahApr == 3){
-    if(bm != 0 || rejectbm != 0) {
-        this.autoDisableBM2();
-      }
-    if(am != 0 || rejectam!=0) {
-        this.autoDisableAM2();
-        this.autoDisableBM2();
-      }
-    if(rh != 0 || rejectrh!=0){
-        this.autoDisableBM2();
-        this.autoDisableAM2();
-        this.autoDisableRH2();
-      }
-    
+    if(am != 0){
+      this.autoDisableBM2();
+      this.autoDisableAM2();
+    }
+    if(rh != 0){
+      this.autoDisableRH2();
+      
+    }
+    // REJECT
     if(rejectbm == 1){
-      document.getElementById("btn-approve-rh2").disabled = true;
-      document.getElementById("btn-revisi-rh2").disabled = true;
-      document.getElementById("btn-reject-rh2").disabled = true;
-      document.getElementById("act-bm2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Branch Manager";
-      document.getElementById("act-am2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Branch Manager";
-      document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Branch Manager";
-    }
-    if(rejectam == 1){
-      document.getElementById("btn-approve-rh2").disabled = true;
-      document.getElementById("btn-revisi-rh2").disabled = true;
-      document.getElementById("btn-reject-rh2").disabled = true;
-      document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Area Manager";
-    }
-    
-  }
-  if(jumlahApr == 4){
-    if(bm != 0 || rejectbm != 0) {
-        this.autoDisableBM3();
-      }
-    if(am != 0 || rejectam != 0) {
-        this.autoDisableAM3();
-        this.autoDisableBM3();
-      }
-    if(rh != 0 || rejectrh != 0){
-        this.autoDisableBM3();
-        this.autoDisableAM3();
-        this.autoDisableRH3();
-      }
-      if(dr != 0 || rejectdr != 0){
-        this.autoDisableBM3();
-        this.autoDisableAM3();
-        this.autoDisableRH3();
-        this.autoDisableDR3();
-      }
+        document.getElementById("btn-approve-bm2").disabled = true;
+        document.getElementById("btn-revisi-bm2").disabled = true;
+        document.getElementById("btn-reject-bm2").disabled = true;
 
-      if(rejectbm == 1){
+        document.getElementById("btn-approve-am2").disabled = true;
+        document.getElementById("btn-revisi-am2").disabled = true;
+        document.getElementById("btn-reject-am2").disabled = true;
+
+        document.getElementById("btn-approve-rh2").disabled = true;
+        document.getElementById("btn-revisi-rh2").disabled = true;
+        document.getElementById("btn-reject-rh2").disabled = true;
+
+
+        document.getElementById("act-bm2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+        document.getElementById("act-am2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+        document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+        
+      }
+      if(rejectam != 0){
+        document.getElementById("approved-date-by-am2").innerHTML = today;
+        document.getElementById("approved-date-by-rh2").innerHTML = today;
+        document.getElementById("btn-approve-am2").disabled = true;
+        document.getElementById("btn-revisi-am2").disabled = true;
+        document.getElementById("btn-reject-am2").disabled = true;
+        
+        document.getElementById("act-bm2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
+        document.getElementById("act-am2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
+        document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
+        document.getElementById("act-dr2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
+      }
+    if(rejectrh != 0){
+        document.getElementById("btn-approve-bm2").disabled = true;
+        document.getElementById("btn-revisi-bm2").disabled = true;
+        document.getElementById("btn-reject-bm2").disabled = true;
+
+        document.getElementById("btn-approve-am2").disabled = true;
+        document.getElementById("btn-revisi-am2").disabled = true;
+        document.getElementById("btn-reject-am2").disabled = true;
+
+        document.getElementById("btn-approve-rh2").disabled = true;
+        document.getElementById("btn-revisi-rh2").disabled = true;
+        document.getElementById("btn-reject-rh2").disabled = true;
+
+        document.getElementById("act-bm2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
+        document.getElementById("act-am2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
+        document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
+        document.getElementById("act-dr2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
+      }
+  }else{
+    if(bm != 0){
+       this.autoDisableBM3();
+    }
+    if(am != 0){
+      this.autoDisableAM3();
+    }
+    if(rh != 0){
+      this.autoDisableRH3();
+    }
+    if(dr != 0){
+      this.autoDisableDR3();
+    }
+    // REJECT
+       if(rejectbm == 1){
         document.getElementById("btn-approve-bm3").disabled = true;
         document.getElementById("btn-revisi-bm3").disabled = true;
         document.getElementById("btn-reject-bm3").disabled = true;
@@ -1557,7 +1625,6 @@ $("input").click(function(e){
         document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
         document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
       }
-
       if(rejectam == 1){
         document.getElementById("btn-approve-bm3").disabled = true;
         document.getElementById("btn-revisi-bm3").disabled = true;
@@ -1575,20 +1642,58 @@ $("input").click(function(e){
         document.getElementById("btn-revisi-dr3").disabled = true;
         document.getElementById("btn-reject-dr3").disabled = true;
 
-        document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
-        document.getElementById("act-am3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
-        document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
-        document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+        document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
+        document.getElementById("act-am3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
+        document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
+        document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
       }
 
-      if(rejectrh == 1){
+         if(rejectrh == 1){
+        document.getElementById("btn-approve-bm3").disabled = true;
+        document.getElementById("btn-revisi-bm3").disabled = true;
+        document.getElementById("btn-reject-bm3").disabled = true;
+
+        document.getElementById("btn-approve-am3").disabled = true;
+        document.getElementById("btn-revisi-am3").disabled = true;
+        document.getElementById("btn-reject-am3").disabled = true;
+
+        document.getElementById("btn-approve-rh3").disabled = true;
+        document.getElementById("btn-revisi-rh3").disabled = true;
+        document.getElementById("btn-reject-rh3").disabled = true;
+
         document.getElementById("btn-approve-dr3").disabled = true;
         document.getElementById("btn-revisi-dr3").disabled = true;
         document.getElementById("btn-reject-dr3").disabled = true;
+
+        document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
+        document.getElementById("act-am3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
+        document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
         document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
       }
+    if(rejectdr == 1){
+        document.getElementById("approved-date-by-dr3").innerHTML = today;
+        document.getElementById("btn-approve-bm3").disabled = true;
+        document.getElementById("btn-revisi-bm3").disabled = true;
+        document.getElementById("btn-reject-bm3").disabled = true;
+
+        document.getElementById("btn-approve-am3").disabled = true;
+        document.getElementById("btn-revisi-am3").disabled = true;
+        document.getElementById("btn-reject-am3").disabled = true;
+
+        document.getElementById("btn-approve-rh3").disabled = true;
+        document.getElementById("btn-revisi-rh3").disabled = true;
+        document.getElementById("btn-reject-rh3").disabled = true;
+
+        document.getElementById("btn-approve-dr3").disabled = true;
+        document.getElementById("btn-revisi-dr3").disabled = true;
+        document.getElementById("btn-reject-dr3").disabled = true;
+
+        document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Director";
+        document.getElementById("act-am3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Director";
+        document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Director";
+        document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Director";
+        }
   }
-  
   
   
 

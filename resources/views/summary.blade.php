@@ -17,11 +17,17 @@
                          
                                
                                 <div class="content">
+                                        <?php
+                                        $temp = 0;
+                                            foreach($apr as $da){
+                                                $temp = $da;
+                                            }
+                                        ?>
                                       @foreach($data as $datas)
                                     <h6 class="category text-gray">Nomor Surat : {{$datas['id']}}/CCBI</h6>
                                     <p class="card-content" align="center">
-                                        Kepada :Regional</br>
-                                        Dari   : {{$datas['full_name']}} </br>
+                                        Kepada :{{$temp}}</br>
+                                        Dari   : {{$datas['created_by']}} </br>
                                         <!-- Tanggal : 019/CCBI/TIP1/12/18 -->
                                     </p>
                                      @endforeach

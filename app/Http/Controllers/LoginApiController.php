@@ -174,7 +174,8 @@ class LoginApiController extends Controller
           ->orderBy('time-deposit.id','asc')
           ->get();
       // dd($lengkap);
-      return view('list-td',compact('data','trx','tdUser','lengkap'));
+    //   return view('list-td',compact('data','trx','tdUser','lengkap'));
+      return redirect('td')->with(compact('data','trx','tdUser','lengkap'));
 
      
     }

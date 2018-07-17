@@ -211,7 +211,7 @@ class TransactionTimeDepositController extends Controller
         $count = transaction_td::where('id_td',$id)->count();
         $td = TD::where('id', $id)->get();
         $data = TD::find($id);
-        $data->status = 'Finish';
+        $data->status = 'FINISH';
         $data->save();
 
         foreach($td as $data){
