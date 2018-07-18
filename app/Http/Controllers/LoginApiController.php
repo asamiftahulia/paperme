@@ -98,6 +98,13 @@ class LoginApiController extends Controller
             // 'branch'=> 'ID0010028',
             // 'job'=> 'S0301']);
 
+            //    session(['token' => '1234567',
+            // 'username'=> 'setiawati.samahita@idn.ccb.com',
+            // 'nik' => '17 3694',
+            // 'nama'=> 'Lim ',
+            // 'branch'=> 'ID0010028',
+            // 'job'=> 'S9']);
+
          
         // session(['token' => '1234567',
         //  'username'=> $email,

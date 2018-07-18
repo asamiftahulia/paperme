@@ -37,12 +37,22 @@
 						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
 
+					<!-- <div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn">
+							{{ Form::submit('Submit!') }}
+							</div>
+							<button class="login100-form-btn" type="submit">
+							</button>
+						</div>
+					</div> -->
+
+					
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
-                            {{ Form::submit('Submit!') }}
-								
+							<button type="submit"class="login100-form-btn">
+								Login
 							</button>
 						</div>
 					</div>

@@ -138,7 +138,7 @@ class TDController extends Controller
         // dd($fileName);
         $data->image = $fileName;
         $data->save();
-        //Mail::to('harsyami@gmail.com')->send(new PostSubscribtion($data));
+        Mail::to('harsyami@gmail.com')->send(new PostSubscribtion($data));
         return redirect('td/summary')->with('id',$data->id);
     }
 
@@ -499,6 +499,7 @@ class TDController extends Controller
             }
             
         }
+        $tandaRevisiMenghilangkan = 0;
             $cekTdUser = DB::table('td_user')->where('id_td', $id_td)->count();
             if($cekTdUser!=0){
                 $cekRev = DB::table('trx-time-deposit')->where('id_td', $id_td)->where('aksi','Revisi')->count();
@@ -599,9 +600,36 @@ class TDController extends Controller
                         // dd($jumlah);
                         // $ganti = DB::table('td_user')->where('id_td', $id_td)->update(['jumlah' => $jumlah]);
                         $td = TD::find($id_td);
-                        if($jumlah < $td->approver){
-                            // echo "<script type='text/javascript'>alert('oi gak boleh revisi');</script>";
+                        $cekApproverKeBerapa = TD_USER::where('id_td', $id_td)->get(['bm','am','rh','dr']);
+                        $x = 'asa';
+                        $ApproverKe = 0;
+                        $login = session('username');
+                        foreach($cekApproverKeBerapa as $a){
+                            if($a->bm == $login){
+                                echo "bm";
+                                $ApproverKe = 1;
+                            }elseif($a->am == $login){
+                                echo "am";
+                                $ApproverKe = 2;
+                            }elseif($a->rh == $login){
+                                echo "rh";
+                                $ApproverKe = 3;
+                            }else{
+                                echo "dr";
+                                $ApproverKe = 4;
+                            }
+                        }
+                        
+                        $approverTd = $td->approver;
+                        echo "<script type='text/javascript'>alert($td->approver);</script>";
+                        if(($jumlah < $approverTd) && ($approverTd == $ApproverKe) && (session('job')!='S0362')){
+                            echo "<script type='text/javascript'>alert('gabole');</script>";
                             $ganti = DB::table('td_user')->where('id_td', $id_td)->update(['jumlah' => $td->approver]);
+                            $tandaRevisiMenghilangkan = 1;
+                        }else{
+                            echo "<script type='text/javascript'>alert($jumlah);</script>";
+                            $ganti = DB::table('time-deposit')->where('id', $id_td)->update(['approver' => $jumlah]);
+                            echo "<script type='text/javascript'>alert($ganti);</script>";
                         }
                         // dd($ganti);
                      //echo "<script type='text/javascript'>alert('$cekRevisi[0]');</script>";
@@ -628,7 +656,7 @@ class TDController extends Controller
             }
          
           $data = TD::where('id', $id_td)->get();
-          $cekAksiApprover = 
+        
             
        // $data = transaction_td::where('id_td', $id)->get();
           $approverBM = DB::table('trx-time-deposit')->where('role', 'Branch Manager')->where('id_td',$id_td)->where('aksi','Approve')->count();
@@ -643,6 +671,7 @@ class TDController extends Controller
 
           //revisi
           $revisiRH = DB::table('trx-time-deposit')->where('role', 'Regional Head')->where('id_td',$id_td)->where('aksi','Revisi')->count();
+          $revisiDR = DB::table('trx-time-deposit')->where('role', 'Director')->where('id_td',$id_td)->where('aksi','Revisi')->count();
           foreach($data as $datas){
             if($datas['currency'] == 'IDR'){
                 if($datas['period'] == 1 || $datas['period'] == 3){
@@ -736,6 +765,15 @@ class TDController extends Controller
             $valButton = 1;
             // dd($user);
         
+            $strApr = "Approve";
+            $strStatus = "FINISH";
+        $checkApproved = transaction_td::where('id_td', $id_td)->where('aksi',$strApr)->count();
+        $approver = TD::where('id', $id_td)->pluck('approver')->first();
+        $status = TD::where('id', $id_td)
+        ->where('status', $strStatus)
+        ->pluck('approver')->first();
+        // dd($checkApproved);
+        // dd($approver);
         
         return view('timeline-td',compact('data',$data))->with('apr',$dataApprover)
         ->with('user',$user)
@@ -752,8 +790,13 @@ class TDController extends Controller
         ->with('rejectAM', $rejectAM)
         ->with('rejectRH', $rejectRH)
         ->with('rejectDR', $rejectDR)
-        ->with('revisiRH', $revisiRH);
-        //bikin yg revisi juga
+        ->with('tandaRevisiMenghilangkan',$tandaRevisiMenghilangkan)
+        ->with('revisiRH', $revisiRH)
+        ->with('revisiDR', $revisiDR)
+        ->with('checkApproved', $checkApproved)
+        ->with('approver',$approver)
+        ->with('status',$status);
+        // bikin yg revisi juga
         
     }
 }

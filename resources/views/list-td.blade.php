@@ -22,10 +22,18 @@
                                     <h4 class="title">Time Deposit Special Rate</h4>
                                     <p class="category">Data Pengajuan Special Rate login : {{session('username')}}</p>
                                 </div></br>
+                                <?php
+                                    if(session('job') == 'S0309'){
+                                ?>
                                 <div align="right">
+                                    <button class="btn btn-info">
                                     <a href="{{route('time-deposit.create')}}">
-                                        <i class="material-icons">assignment</i>create new data</a>
+                                        <i class="material-icons">assignment</i>ADD</a>
+                                    </button>
                                 </div>
+                                <?php
+                                    }
+                                ?>
                                 <div class="card-content table-responsive">
                             <!-- <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                 <thead>
@@ -189,7 +197,7 @@
                                                     <td>{{$datalengkap->status}}</td>
                                                     <td>
                                                              <?php if($datalengkap->status == 'FINISH'){ ?>
-                                                                <a href="{{action('TDController@downloadSummary',$datalengkap->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                                <a href="{{action('TDController@downloadSummary',$datalengkap->id_td)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
                                                             <?php
                                                              }else{?>
                                                                  <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDF">assignment_returned</a>
@@ -229,7 +237,7 @@
                                                     <td>{{$dataBM->status}}</td>
                                                     <td>
                                                         <?php if($dataBM->status == 'FINISH'){ ?>
-                                                                <a href="{{action('TDController@downloadSummary',$dataBM->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                                <a href="{{action('TDController@downloadSummary',$dataBM->id_td)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
                                                             <?php
                                                              }else{?>
                                                                  <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDF">assignment_returned</a>
@@ -270,7 +278,7 @@
                                                     <td>{{$dataBM->status}}</td>
                                                     <td>
                                                         <?php if($dataBM->status == 'FINISH'){ ?>
-                                                                <a href="{{action('TDController@downloadSummary',$dataBM->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                                <a href="{{action('TDController@downloadSummary',$dataBM->id_td)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
                                                             <?php
                                                              }else{?>
                                                                  <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDF">assignment_returned</a>
@@ -291,7 +299,7 @@
                                             $login = session('username'); ?>
                                             @foreach($lengkapForBM as $dataBM)
                                         
-                                        <?php    if($login==$dataBM->rh && $dataBM->jumlah >= 3){ ?>
+                                        <?php    if($login==$dataBM->rh && $dataBM->approver >= 3){ ?>
                                                      <tr>
                                                         <td>{{$no++}}</td>
                                                         <td>{{$dataBM->full_name}}</td>
@@ -302,7 +310,7 @@
                                                         <td>{{$dataBM->status}}</td>
                                                         <td>
                                                         <?php if($dataBM->status == 'FINISH'){ ?>
-                                                            <a href="{{action('TDController@downloadSummary',$dataBM->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                            <a href="{{action('TDController@downloadSummary',$dataBM->id_td)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
                                                         <?php
                                                             }else{?>
                                                             <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDF">assignment_returned</a>
@@ -323,7 +331,7 @@
                                  ?>
                                     @foreach($lengkap as $dataBM)
                                       <?php
-                                         if($login=='setiawati.samahita@idn.ccb.com' && $dataBM->jumlah >= 4){ ?>
+                                         if($login=='setiawati.samahita@idn.ccb.com' && $dataBM->approver >= 4){ ?>
                                         <tr>
                                             <td>{{$no++}}</td>
                                             <td>{{$dataBM->full_name}}</td>
@@ -334,7 +342,7 @@
                                             <td>{{$dataBM->status}}</td>
                                             <td>
                                                 <?php if($dataBM->status == 'FINISH'){ ?>
-                                                        <a href="{{action('TDController@downloadSummary',$dataBM->id)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
+                                                        <a href="{{action('TDController@downloadSummary',$dataBM->id_td)}}" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>
                                                 <?php
                                                     }else{?>
                                                         <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDF">assignment_returned</a>

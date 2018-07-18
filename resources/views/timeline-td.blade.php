@@ -51,12 +51,22 @@
                               <td> : </td>
                               <td><a data-toggle="modal" data-target="#defaultModal">Bukti Sumber Dana</a></td>
                             </tr>
-                            <!-- <tr>
+                            <tr>
                               <td>Jumlah Approver</td>
                               <td> : </td>
                               <td> {{$datas->approver}}</td>
-                            </tr> -->
-                            <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+                            </tr>
+              <div class="row" align="right">
+                <a align="center" href="{{route('td.index')}}"><input type="button" id="btn-submit" class="btn btn-warning" value="Back To List Time Deposit"></a>
+                  <?php
+                    if($checkApproved == $approver){ ?>
+                      <a align="center" href="{{url('td/updateStatus',$datas->id)}}"><input type="button"  id="btn-finish"  class="btn btn-info" value="FINISH"></a>
+                  <?php
+                    }
+                    ?>
+            </div>
+            </div>
+                  <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
@@ -1150,6 +1160,7 @@
                 </div>
               <!-- </ul> -->
               @endif
+              
               <?php
               $tmp = $c + 1;
                 if($tmp < $datas->approver){ 
@@ -1164,18 +1175,31 @@
                     </div>
                     @endforeach
                    
-                   
-                   
                     <?php
-                        if(session('username')==$orang->rh && $approverAM!= 0 && $revisiRH != 0){
+                        if((session('username')==$orang->rh || session('username')==$orang->am || session('username')==$orang->bm)&& $approverAM!= 0 && $revisiRH != 0 && $tandaRevisiMenghilangkan != 0){
                     ?>
                      <div class="desc"><p id="act-revisi-rh3-telah"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font>
-                     <div class="desc"><p id="act-revisi-rh3"></br> 
+                     <p><input type="button" id="btnrev-revisi-rh3"  data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" id="btnrev-approve-rh3"  data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" id="btnrev-reject-rh3"   data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject"></p>
                     
-                    <p><span>{{$orang->rh}}</span></br></p>
-                      <p><input type="button" id="btnrev-revisi-rh3" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
-                      <input type="button" id="btnrev-approve-rh3" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
-                      <input type="button" id="btnrev-reject-rh3" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject"></p>
+                    <?php
+                        if($approverRH!=0)
+                        {
+                        ?> <div class="desc"><p id="act-revisi-rh3-apr">This Special Rate Has Been <font color='Green'>Approved</font>  by Regional Head</br>
+                        <p><span>{{$orang->rh}}</span></br></p>
+                      <p><input type="button" id="btnrev-revisi-rh3" disabled="true" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" id="btnrev-approve-rh3"  disabled="true" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" id="btnrev-reject-rh3"  disabled="true" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject"></p>
+                    <?php
+                        }else if($rejectRH!=0){ 
+                    ?>
+                          <div class="desc"><p id="act-revisi-rh3-apr">This Special Rate Has Been <font color='red'>Rejected</font>  by Regional Head</br>
+                          
+                    <?php
+                        }
+                        ?>
+                    
                     <?php
                         }else{
                           ?>
@@ -1191,12 +1215,100 @@
                     </div>
                   </div>
                 </li>
-                
               <?php 
-               }
+               }else if($datas->approver == 4){ ?>
+<li>
+                  <div class="direction-r">
+                    <div class="flag-wrapper">
+                    @foreach($rev as $key => $data) 
+                      <span class="hexa"></span>
+                      <span class="flag">Regional Head</span>
+                      <span class="time-wrapper"><span class="time">{{date('d-m-Y', strtotime($data->created_at))}}</span></span>
+                    </div>
+                    @endforeach
+                   
+                    <?php
+                        if(session('username')=='setiawati.samahita@idn.ccb.com' && $approverRH!= 0 && $revisiDR != 0 && $tandaRevisiMenghilangkan != 0){
+                    ?>
+                     <!-- <div class="desc"><p id="act-revisi-rh3-telah"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font> -->
+                    <?php
+                        if($approverRH!=0)
+                        {
+                        ?> <div class="desc"><p id="act-revisi-rh3-apr">This Special Rate Has Been <font color='Green'>Approved</font>  by Regional Head</br>
+                        <p><span>{{$orang->rh}}</span></br></p>
+                      <p><input type="button" id="btnrev-revisi-rh3" disabled="true" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" id="btnrev-approve-rh3"  disabled="true" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" id="btnrev-reject-rh3"  disabled="true" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject"></p>
+                    <?php
+                        }else if($rejectRH!=0){ 
+                    ?>
+                          <div class="desc"><p id="act-revisi-rh3-apr">This Special Rate Has Been <font color='red'>Rejected</font>  by Regional Head</br>
+                          
+                    <?php
+                        }
+                        ?>
+                    
+                    <?php
+                        }else{
+                          ?>
+                      <div class="desc"><p id="act-revisi-rh3-telah"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font>
+                      <div class="desc"><p id="act-revisi-rh3"></br> 
+                      <p><span>{{$orang->rh}}</span></br></p>
+                      <input type="button" disabled="true" id="btnrev-revisi-rh3" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" disabled="true" id="btnrev-approve-rh3" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" disabled="true" id="btnrev-reject-rh3" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject">
+                          <?php
+                        }
+                        ?>
+                    </div>
+                  </div>
+                </li>
+                <!-- Director -->
+                <li>
+                  <div class="direction-l">
+                    <div class="flag-wrapper">
+                      <span class="hexa"></span>
+                      <span class="flag">Director</span>
+                      <span class="time-wrapper"><span class="time" id="approved-date-by-dr3">-</span></span>
+                    </div>
+                    <?php
+                      if(session('username') == $orang->dr && $approverRH!=0 && $tandaRevisiMenghilangkan != 0){   ?>
+                      <div class="desc"><p id="act-dr3"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font>
+                      <!-- <span>Director : {{$orang->dr}}</span></br> -->
+                      <?php
+                        if($approverDR!=0)
+                        {
+                        ?> <div class="desc"><p id="act-revisi-rh3-apr">This Special Rate Has Been <font color='Green'>Approved</font>  by Director</br>
+                        <p><span>{{$orang->dr}}</span></br></p>
+                      <p>
+                      <input type="button" id="btnrev-revisi-rh3" disabled="true" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" id="btnrev-approve-rh3"  disabled="true" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" id="btnrev-reject-rh3"  disabled="true" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject">
+                    <?php
+                        }else if($rejectDR!=0){ 
+                    ?>
+                          <div class="desc"><p id="act-revisi-rh3-apr">This Special Rate Has Been <font color='red'>Rejected</font>  by Director</br>
+                          
+                    <?php
+                        }
+                        ?>
+                      <?php
+                    }else{?>
+                      <input type="button" disabled="true" id="btn-revisi-dr3" data-toggle="modal" data-target="#modal2DirDet" class="btn btn-sm btn-info" value="Detail">
+                      <input type="button" disabled="true" id="btn-approve-dr3" data-toggle="modal" data-target="#modal2DirApr" class="btn btn-sm btn-success" value="Approve">
+                      <input type="button" disabled="true" id="btn-reject-dr3" data-toggle="modal" data-target="#modal2DirRej" class="btn btn-sm btn-danger" value="Reject">
+                    <?php
+                      }
+                    ?>
+
+                    </div>
+                  </div>
+                </li>
+        <?php    }
               }
               ?>
              @endforeach
+             <!-- REGIONAL -->
              <div class="modal fade" id="modal2RHDet" tabindex="-1" role="dialog">
                   <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
@@ -1282,25 +1394,100 @@
                       </div>
                   </div>
                 </div>
-            </div></br></br></br></br></br>
+            </div>
+            </br></br></br></br></br>
+            <!-- director -->
+            <div class="modal fade" id="modal2DirDet" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title" id="defaultModalLabel">Detail Deposan</h4>
+                          </div>
+                          <div class="modal-body">
+                            <form action="{{url('trx/revisi', $datas->id) }}" method="post">
+                            {{csrf_field()}}
+                            <table class="table">
+                              <tr>
+                                <th>Fullname</th>
+                                <th>Special Rate</th>
+                                <th>Amount</th>
+                                <th>Expired Date</th>
+                                <th>Created By</th>
+                              </tr>
+                              <tr>
+                                <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
+                                <td>
+                                <input type="hidden" name="role" value="Director"/>
+                                  <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                  
+                                </td>
+                                <td>{{$datas->amount}}</td>
+                                <td>{{$datas->expired_date}}</td>
+                                <td>{{$datas->created_by}}</td>
+                              </tr>
+                            </table>
+                            <button type="submit" class="btn btn-info">Revisi</button>
+                          </form>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <!-- Approve -->
+                <div class="modal fade" id="modal2DirApr" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
+                          </div>
+                          <div class="modal-body">
+                           <form action="{{route('trx.store')}}" method="post">
+                           {{csrf_field()}}
+                            <p>Apakah Benar Anda Akan <font color="green"><b>Menyetujui</b></font> Pengajuan Special Rate <br>
+                              Atas Nama <b> {{$datas->full_name}} </b> ? </p>
+                              <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
+                              <input type="hidden" name="special_rate" value="{{$datas->special_rate}}">
+                              <input type="hidden" name="role" value="Director">
+                              <div align="right">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Approve</button>
+                              </div>
+                          </form>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <!-- Reject -->
+                <div class="modal fade" id="modal2DirRej" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title" id="defaultModalLabel">Konfirmasi</h4>
+                          </div>
+                          <div class="modal-body">
+                           <form action="{{url('trx/reject',$datas->id)}}" method="post">
+                            {{csrf_field()}}
+                            <p>Apakah Benar Anda Akan <font color='red'><b>Menolak </b></font> Pengajuan Special Rate <br>
+                              Atas Nama <b> {{$datas->full_name}}</b> ? </p>
+                              <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
+                              <input type="hidden" enable="false" name="role" value="Director">
+                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
+                              <div align="right">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">Reject</button>
+                              <div align="right">
+                          </form>
+                          </div>
+                      </div>
+                  </div>
+                </div>
             @endforeach
           
         </div>
       </div>
-  
-  <div class="row" align="center">
-                <a align="center" href="{{route('td.index')}}"><input type="button" id="btn-submit" class="btn btn-info" value="Go TO List Data Time Deposit"></a>
-                  <?php
-                    if($datas->status == 'FINISH'){ ?>
-                      <a align="center" href="{{url('td/updateStatus',$datas->id)}}"><input type="button" enable="false" id="btn-finish"  class="btn btn-info" value="Finished"></a>
-                  <?php
-                    }else{?>
-                      <a align="center" href="{{url('td/updateStatus',$datas->id)}}"><input type="button" id="btn-finish" enabled="false" class="btn btn-info" value="Finish"></a>
-                 <?php  
-                  }
-                ?> 
-            </div>
-            </div>
+          
   </div>
 <script type="text/javascript">
 var today = new Date();
@@ -1331,7 +1518,9 @@ var rejectam = '<?php echo $rejectAM; ?>'
 var rejectrh = '<?php echo $rejectRH;?>'
 var rejectdr = '<?php echo $rejectDR;?>'
 
-var revisirh = '<?php echo $revisiRH?>'
+var tandaRevisiMenghilangkan = '<?php echo $tandaRevisiMenghilangkan; ?>'
+var revisirh = '<?php echo $revisiRH;?>'
+var revisidr = '<?php echo $revisiDR;?>'
 
 console.log('Jumlah Approver: ', jumlahApr);
 console.log('Period: ', period);
@@ -1346,6 +1535,8 @@ console.log('rejectRH: ', rejectrh);
 console.log('rejectrDR: ', rejectdr);
 console.log('------------------');
 console.log('revisiRH:', revisirh);
+console.log('revisiDR:', revisidr);
+console.log('tandaRevisiMenghilangkan:', tandaRevisiMenghilangkan);
 
 
 $("input").click(function(e){
@@ -1481,6 +1672,18 @@ $("input").click(function(e){
     }
     
     // REJECT
+    if(rejectbm != 0){
+        document.getElementById("time").innerHTML = today;
+
+        document.getElementById("btn-approve-bm1").disabled = true;
+        document.getElementById("btn-revisi-bm1").disabled = true;
+        document.getElementById("btn-reject-bm1").disabled = true;
+        
+
+        document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+        document.getElementById("actionAM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+        
+      }
     if(rejectam != 0){
         document.getElementById("approved-date-by-am1").innerHTML = today;
 
@@ -1537,10 +1740,15 @@ $("input").click(function(e){
     }
     if(rh != 0){
       this.autoDisableRH2();
-      
+    }else if(rh != 00 && revisirh!=0){
+      document.getElementById("act-revisi-rh3-br").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
     }
     // REJECT
     if(rejectbm == 1){
+        document.getElementById("approved-date-by-bm2").innerHTML = today;
+        document.getElementById("approved-date-by-am2").innerHTML = today;
+        document.getElementById("approved-date-by-rh2").innerHTML = today;
+
         document.getElementById("btn-approve-bm2").disabled = true;
         document.getElementById("btn-revisi-bm2").disabled = true;
         document.getElementById("btn-reject-bm2").disabled = true;
@@ -1572,6 +1780,7 @@ $("input").click(function(e){
         document.getElementById("act-dr2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
       }
     if(rejectrh != 0){
+        document.getElementById("approved-date-by-rh2").innerHTML = today;
         document.getElementById("btn-approve-bm2").disabled = true;
         document.getElementById("btn-revisi-bm2").disabled = true;
         document.getElementById("btn-reject-bm2").disabled = true;
@@ -1589,6 +1798,9 @@ $("input").click(function(e){
         document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
         document.getElementById("act-dr2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
       }
+      
+      // REVISI
+      
   }else{
     if(bm != 0){
        this.autoDisableBM3();
@@ -1604,6 +1816,11 @@ $("input").click(function(e){
     }
     // REJECT
        if(rejectbm == 1){
+        document.getElementById("approved-date-by-bm3").innerHTML = today;
+        document.getElementById("approved-date-by-am3").innerHTML = today;
+        document.getElementById("approved-date-by-rh3").innerHTML = today;
+        document.getElementById("approved-date-by-dr3").innerHTML = today;
+
         document.getElementById("btn-approve-bm3").disabled = true;
         document.getElementById("btn-revisi-bm3").disabled = true;
         document.getElementById("btn-reject-bm3").disabled = true;
@@ -1626,6 +1843,11 @@ $("input").click(function(e){
         document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
       }
       if(rejectam == 1){
+        document.getElementById("approved-date-by-bm3").innerHTML = today;
+        document.getElementById("approved-date-by-am3").innerHTML = today;
+        document.getElementById("approved-date-by-rh3").innerHTML = today;
+        document.getElementById("approved-date-by-dr3").innerHTML = today;
+
         document.getElementById("btn-approve-bm3").disabled = true;
         document.getElementById("btn-revisi-bm3").disabled = true;
         document.getElementById("btn-reject-bm3").disabled = true;
