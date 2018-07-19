@@ -182,6 +182,7 @@ class LoginApiController extends Controller
           ->get();
       // dd($lengkap);
     //   return view('list-td',compact('data','trx','tdUser','lengkap'));
+        Session::flash('flash_message','-');
       return redirect('td')->with(compact('data','trx','tdUser','lengkap'));
 
      

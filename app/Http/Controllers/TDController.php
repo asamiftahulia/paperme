@@ -257,6 +257,14 @@ class TDController extends Controller
         return view('registrasi-td-form-edit',compact('data','banks','tipeDeps'));
     }
 
+    public function renew($id)
+    {
+        $data = TD::where('id',$id)->get();
+        $banks = MasterBank::all();
+        $tipeDeps = M_Tipe_Deposito::all();
+        return view('registrasi-td-form-renew',compact('data','banks','tipeDeps'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -299,6 +307,56 @@ class TDController extends Controller
         return redirect('td/summary')->with('id',$data->id);
     }
 
+    public function CreateRenew(Request $request)
+    {
+        $data = new TD();
+        $data->full_name = $request->full_name; 
+        $strAmount = filter_var($request->amount, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $data->amount = $strAmount;
+        $str = ltrim($request->amount, ',');
+        $str = trim($request->amount);
+    
+        $dt = strtotime($request->date_rollover);
+
+        if($request->period==1)
+            $expired = date("Y-m-d", strtotime("+1 month", $dt));
+        else if($request->period==3)
+            $expired = date("Y-m-d", strtotime("+3 month", $dt));
+        else if($request->period==6)
+            $expired = date("Y-m-d", strtotime("+6 month", $dt));
+        else 
+            $expired = date("Y-m-d", strtotime("+12 month", $dt));
+        
+        $data->status = 'ON PROGRESS';
+        $data->notes = $request->notes;
+        $data->expired_date = $expired;
+        $data->period = $request->period;
+        $data->currency = $request->currency;
+        $data->type_of_td = $request->type_of_td;
+        $data->bank = $request->bank;
+        $data->date_rollover = $request->date_rollover;
+        $data->special_rate = $request->special_rate;
+        $data->normal_rate = $request->normal_rate;
+        $data->id_branch = session('branch');
+        $data->created_by = session('username');
+        $data->updated_by = session('username');       
+        //image
+        if($request->hasfile('image')){
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $fileName = $file->getClientOriginalName();
+            $img = $request->image->move(public_path('images'), $fileName);
+        }else{
+            $fileName = 'No Photo';
+        }
+        
+        
+        // dd($fileName);
+        $data->image = $fileName;
+        $data->save();
+        Mail::to('harsyami@gmail.com')->send(new PostSubscribtion($data));
+        return redirect('td/summary')->with('id',$data->id);
+    }
     
 
     public function revisi(Request $request, $id)
@@ -387,7 +445,7 @@ class TDController extends Controller
         $cabang= rtrim($cab, '"}');
         // echo "<script type='text/javascript'>alert('$cabang');</script>";
        }else{
-        echo "<script type='text/javascript'>alert('ga ada');</script>";
+        // echo "<script type='text/javascript'>alert('ga ada');</script>";
        }
        
        //get flow cabang
@@ -621,15 +679,15 @@ class TDController extends Controller
                         }
                         
                         $approverTd = $td->approver;
-                        echo "<script type='text/javascript'>alert($td->approver);</script>";
+                        // echo "<script type='text/javascript'>alert($td->approver);</script>";
                         if(($jumlah < $approverTd) && ($approverTd == $ApproverKe) && (session('job')!='S0362')){
-                            echo "<script type='text/javascript'>alert('gabole');</script>";
+                            // echo "<script type='text/javascript'>alert('gabole');</script>";
                             $ganti = DB::table('td_user')->where('id_td', $id_td)->update(['jumlah' => $td->approver]);
                             $tandaRevisiMenghilangkan = 1;
                         }else{
-                            echo "<script type='text/javascript'>alert($jumlah);</script>";
+                            // echo "<script type='text/javascript'>alert($jumlah);</script>";
                             $ganti = DB::table('time-deposit')->where('id', $id_td)->update(['approver' => $jumlah]);
-                            echo "<script type='text/javascript'>alert($ganti);</script>";
+                            // echo "<script type='text/javascript'>alert($ganti);</script>";
                         }
                         // dd($ganti);
                      //echo "<script type='text/javascript'>alert('$cekRevisi[0]');</script>";

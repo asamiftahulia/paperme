@@ -51,11 +51,11 @@
                               <td> : </td>
                               <td><a data-toggle="modal" data-target="#defaultModal">Bukti Sumber Dana</a></td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                               <td>Jumlah Approver</td>
                               <td> : </td>
                               <td> {{$datas->approver}}</td>
-                            </tr>
+                            </tr> -->
               <div class="row" align="right">
                 <a align="center" href="{{route('td.index')}}"><input type="button" id="btn-submit" class="btn btn-warning" value="Back To List Time Deposit"></a>
                   <?php

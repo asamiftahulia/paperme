@@ -39,10 +39,22 @@ Route::get('/summary','TDController@show')->name('summary');
 Route::get('downloadSummary/{id}','TDController@downloadSummary');
 Route::get('timeline/{id}','TDController@timeline');
 Route::post('td/revisi/{id}','TDController@revisi');
+Route::get('td/renew/{id}','TDController@renew');
 Route::post('trx/revisi/{id}','TransactionTimeDepositController@revisi');
 Route::post('trx/reject/{id}','TransactionTimeDepositController@reject');
 Route::get('td/updateStatus/{id}','TransactionTimeDepositController@validasiApprover');
 Route::resource('special-rate','MasterSpecialRateController');
+//renew
+Route::patch('td/renew/{id}',[
+    'as' => 'td.renew',
+    'uses' => 'TDController@renew'
+]);
+
+Route::post('td/CreateRenew',[
+    'as' => 'td.CreateRenew',
+    'uses' => 'TDController@CreateRenew'
+]);
+
 //toastr
 Route::get('/tost', function(){
     return view('test-toastr');

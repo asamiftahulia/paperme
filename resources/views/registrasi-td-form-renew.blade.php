@@ -10,9 +10,9 @@
                 </div>
                 <div class="card-content">
                      @foreach($data as $datas)
-                    <form action="{{route('td.update', $datas->id) }}" method="post">
+                    <form action="{{route('td.store')}}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
-                        {{method_field('PUT')}}
+                        
                         <div class="row">
                             <div class="col-md-12">
                                 <b>Full Name</b>
@@ -39,7 +39,7 @@
                         <div class="col-md-4">
                             <div class="form-group label-floating">
                                      <b>Currency</b>
-                                    <select name="currency" id="currency" class="form-control" onChange="autoFill(); return false;">
+                                    <select name="currency" id="currency" class="form-control" onChange="autoFill(); return false;" required>
                                       <option value="{{$datas->currency}}" selected>-{{$datas->currency}}-</option>
                                       <option value="IDR">IDR</option>
                                       <option value="USD">USD</option>
@@ -64,16 +64,15 @@
                             <div class="col-md-4">
                                 <div class="form-group label-floating"> 
                                     <b>Date Rollover</b>
-                                    <input class="form-control" type="date" value="{{ $datas->date_rollover}}" name="date_rollover" >
+                                    <input class="form-control" type="date" name="date_rollover" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group label-floating">
                                      <b>Type Of TD</b>
                                     <select name="type_of_td" class="form-control">
-                                    @foreach ($tipeDeps as $tipe)
-                                        <option @if($tipe->id_deposito == $datas->type_of_td) @endif value="{{$tipe->id_deposito}}">{{$tipe->name_time_deposit}}</option>
-                                    @endforeach
+                                        <option value="1">Unbreakable</option>
+                                        <option value="0">Breakable</option>
                                     </select>
                                 </div>
                             </div>
@@ -93,8 +92,7 @@
                             <div class="col-md-12">
                                 <div class="form-group label-floating">
                                     <b>Notes</b>
-
-                                    <input type="text" class="form-control" name="notes" placeholder="Write a notes" value="{{ $datas->notes}}">
+                                    <input type="text" class="form-control" name="notes" placeholder="Write a notes">
                                 </div>
                             </div>
                         </div>
