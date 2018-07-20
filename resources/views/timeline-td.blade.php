@@ -142,13 +142,7 @@
                       <input type="button" id="btn-approve-bm1" value="Approve" data-toggle="modal" data-target="#modalAprBM"class="btn btn-success btn-sm"  >
                       <input type="button" id="btn-reject-bm1" data-toggle="modal" data-target="#modalRejBM"class="btn btn-danger btn-sm" value="Reject">
                     <?php
-                        }else{
-                    ?>
-                      <input type="button" disabled="true" id="btn-revisi-bm1" data-toggle="modal" data-target="#modalDetailBM" class="btn btn-info btn-sm" value="Detail">
-                      <input type="button" disabled="true" id="btn-approve-bm1" value="Approve" data-toggle="modal" data-target="#modalAprBM"class="btn btn-success btn-sm"  >
-                      <input type="button" disabled="true" id="btn-reject-bm1" data-toggle="modal" data-target="#modalRejBM"class="btn btn-danger btn-sm" value="Reject">
-                    <?php 
-                    }
+                        }
                     ?>
                     </div>
                   </div>
@@ -161,7 +155,6 @@
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">Detail Deposan</h4>
                               <div class="modal-header">
-                               
                             </div>
                           </div>
                           <div class="modal-body">
@@ -179,10 +172,10 @@
                               <tr>
                                 <td>{{$datas->full_name}} </td>
                                 <td>
-                                  <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                  <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10px" />
                                 </td>
                                 <input type="hidden" enable="false" name="role" value="Branch Manager">
-                                <td>{{$datas->amount}}</td>
+                                <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
                                 <td>{{$datas->created_by}}</td>
                               </tr>
@@ -297,9 +290,9 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                   <input type="hidden" enable="false" name="role" value="Area Manager">
-                                  <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                  <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" />
                                 </td>
-                                <td>{{$datas->amount}}</td>
+                                <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
                                 <td>{{$datas->created_by}}</td>
                               </tr>
@@ -411,9 +404,9 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Branch Manager"/>
-                                  <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                  <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" />
                                 </td>
-                                <td>{{$datas->amount}}</td>
+                                <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
                                 <td>{{$datas->created_by}}</td>
                               </tr>
@@ -525,9 +518,9 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Area Manager"/>
-                                <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" />
                                 </td>
-                                <td>{{$datas->amount}}</td>
+                                <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
                                 <td>{{$datas->created_by}}</td>
                               </tr>
@@ -639,9 +632,9 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Regional Head"/>
-                                <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="3" />
                                 </td>
-                                <td>{{$datas->amount}}</td>
+                                <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
                                 <td>{{$datas->created_by}}</td>
                               </tr>
@@ -756,7 +749,7 @@
                                 <input type="hidden" name="role" value="Branch Manager"/>
                                   <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
                                 </td>
-                                <td>{{$datas->amount}}</td>
+                                <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
                                 <td>{{$datas->created_by}}</td>
                               </tr>
@@ -868,9 +861,10 @@
                               <tr>
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
-                                  <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                <input type="hidden" name="role" value="Area Manager"/>
+                                  <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" />
                                 </td>
-                                <td>{{$datas->amount}}</td>
+                                <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
                                 <td>{{$datas->created_by}}</td>
                               </tr>
@@ -975,15 +969,14 @@
                                 <th>Special Rate</th>
                                 <th>Amount</th>
                                 <th>Expired Date</th>
-                                <th>Created By</th>
                               </tr>
                               <tr>
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Regional Head"/>
-                                <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="3" />
                                 </td>
-                                <td>{{$datas->amount}}</td>
+                                <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
                                 <td>{{$datas->created_by}}</td>
                               </tr>
@@ -1053,7 +1046,7 @@
                       <span class="time-wrapper"><span class="time" id="approved-date-by-dr3">-</span></span>
                     </div>
                     <div class="desc"><p id="act-dr3">Waiting An Action From Director<br></p>
-                    <span>Director : {{$orang->dr}}</span></br>
+                    <span>{{$orang->dr}}</span></br>
                     <?php
                       if(session('username') == $orang->dr && $approverRH!=0){
                     ?>
@@ -1094,10 +1087,10 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Director"/>
-                                  <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                  <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="3" />
                                   
                                 </td>
-                                <td>{{$datas->amount}}</td>
+                                <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
                                 <td>{{$datas->created_by}}</td>
                               </tr>
@@ -1269,11 +1262,11 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Director</span>
-                      <span class="time-wrapper"><span class="time" id="approved-date-by-dr3">-</span></span>
+                      <span class="time-wrapper"><span class="time" id="approved-date-by-dr33">-</span></span>
                     </div>
                     <?php
                       if(session('username') == $orang->dr && $approverRH!=0 && $tandaRevisiMenghilangkan != 0){   ?>
-                      <div class="desc"><p id="act-dr3"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font>
+                      <div class="desc"><p id="act-dr33"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font>
                       <!-- <span>Director : {{$orang->dr}}</span></br> -->
                       <?php
                         if($approverDR!=0)
@@ -1651,16 +1644,18 @@ $("input").click(function(e){
   }
 
    function autoDisableDR3() {
+    if(rejectdr == 0)
+      document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Director";
+    else
+      document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Director";
+
+    document.getElementById("approved-date-by-dr3").innerHTML = today;
     document.getElementById("btn-approve-dr3").disabled = true;
     document.getElementById("btn-revisi-dr3").disabled = true;
     document.getElementById("btn-reject-dr3").disabled = true;
     document.getElementById("btn-finish").disabled = false;
-    document.getElementById("approved-date-by-dr3").innerHTML = today;
-    if(rejectdr == 0)
-      document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Director";
-    else
-    document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Director";
-  }
+    
+   }
 
   if(jumlahApr == 2){
     if(bm != 0){
@@ -1916,10 +1911,6 @@ $("input").click(function(e){
         document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Director";
         }
   }
-  
-  
-
-  
 </script>
 @endsection
 

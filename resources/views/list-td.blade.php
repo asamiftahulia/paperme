@@ -2,21 +2,9 @@
 @section('page-title','Time Deposit Special Rate')
 @section('aktif-mtimedeplist','active')
 @section('content')
-    @if(Session::has('username'))
-        <div class="alert alert-info"> Hello {{session('nama')}}
-            <button type="button" aria-hidden="true" class="close">×</button>
-            <span><b> Info - </b><em> {!! session('flash_message') !!}</em></span>
-        </div>
-    @else
-    <div class="alert alert-info"> Tidak ada login {{session('username')}};
-            <button type="button" aria-hidden="true" class="close">×</button>
-            <span><b> Info - </b><em> {!! session('flash_message') !!}</em></span>
-        </div>
-    @endif
     <div class="col-md-12">
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    
                     <div class="card">
                                 <div class="card-header" data-background-color="blue">
                                     <h4 class="title">Time Deposit Special Rate</h4>
@@ -25,14 +13,7 @@
                                 <?php
                                     if(session('job') == 'S0309'){
                                 ?>
-                                <div align="right">
-                                    <a href="{{route('time-deposit.create')}}">
-                                        <button class="btn btn-info">
-                                        ADD NEW Time Deposit
-                                        </button>
-                                    </a>
-                                   
-                                </div>
+                               
                                 <?php
                                     }
                                 ?>
@@ -65,7 +46,7 @@
                                             $login = session('username');
                                             foreach($lengkap as $datalengkap){
                                             if(session('username')==$datalengkap->created_by){ ?>
-                                                <tr>
+                                                <tr style="height:3px;">
                                                     <td>{{$no++}}</td>
                                                     <td>{{$datalengkap->full_name}}</td>
                                                     <td>{{number_format($datalengkap->amount,0)}} {{$datalengkap->currency}}</td>
@@ -113,7 +94,6 @@
                                                     <td>{{number_format($dataBM->amount,0)}} {{$dataBM->currency}}</td>
                                                     <td>{{$dataBM->special_rate}} %</td>
                                                     <td>{{$dataBM->period}} bln</td>
-                                                    <td>{{$dataBM->created_by}}</td>
                                                     <td>{{$dataBM->status}}</td>
                                                     <td>
                                                         <?php if($dataBM->status == 'FINISH'){ ?>
@@ -154,7 +134,6 @@
                                                     <td>{{number_format($dataBM->amount,0)}} {{$dataBM->currency}}</td>
                                                     <td>{{$dataBM->special_rate}} %</td>
                                                     <td>{{$dataBM->period}} bln</td>
-                                                    <td>{{$dataBM->created_by}}</td>
                                                     <td>{{$dataBM->status}}</td>
                                                     <td>
                                                         <?php if($dataBM->status == 'FINISH'){ ?>
@@ -186,7 +165,6 @@
                                                         <td>{{number_format($dataBM->amount,0)}} {{$dataBM->currency}}</td>
                                                         <td>{{$dataBM->special_rate}} %</td>
                                                         <td>{{$dataBM->period}} bln</td>
-                                                        <td>{{$dataBM->created_by}}</td>
                                                         <td>{{$dataBM->status}}</td>
                                                         <td>
                                                         <?php if($dataBM->status == 'FINISH'){ ?>
@@ -218,7 +196,6 @@
                                             <td>{{number_format($dataBM->amount,0)}} {{$dataBM->currency}}</td>
                                             <td>{{$dataBM->special_rate}} %</td>
                                             <td>{{$dataBM->period}}</td>
-                                            <td>{{$dataBM->created_by}}</td>
                                             <td>{{$dataBM->status}}</td>
                                             <td>
                                                 <?php if($dataBM->status == 'FINISH'){ ?>

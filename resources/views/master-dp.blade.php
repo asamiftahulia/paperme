@@ -152,37 +152,13 @@
     </div>
     <div class="main-panel">
 
-        <div class="content">
+        <!-- <div class="content"> -->
             <div class="container-fluid">
                 @yield('content')
             </div>
-        </div>
+        <!-- </div> -->
         <footer class="footer">
             <div class="container-fluid">
-                <!-- <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Company
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Blog
-                            </a>
-                        </li>
-                    </ul>
-                </nav> -->
                 <p class="copyright pull-right">
                     &copy;
                     <script>

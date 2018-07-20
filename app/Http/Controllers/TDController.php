@@ -857,4 +857,124 @@ class TDController extends Controller
         // bikin yg revisi juga
         
     }
+
+    public function insertTdUser($id_td){
+        $cekJumlahApr = TD::where('id', $id_td)->get();
+            foreach($cekJumlahApr as $datas){
+                if($datas['currency'] == 'IDR'){
+                    if($datas['period'] == 1 || $datas['period'] == 3){
+                        if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
+                            $dataApprover = array('approver'=>'AM');
+                            $jumlah = 2;
+                            $period = "1 & 3";
+                        }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.25'){
+                            $dataApprover = array('approver'=>'AM','Regional Head');
+                            $jumlah = 3;
+                            $period = "1 & 3";
+                        }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] > '6.25'){
+                            $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                            $jumlah = 4;
+                            $period = "1 & 3";
+                        }else{
+                            echo 'Approver Not Found';
+                        }
+                    }else if($datas['period'] == 6 || $datas['period'] == 12){
+                        if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '5.75'){
+                            $dataApprover = array('approver'=>'AM');
+                            $jumlah = 2;
+                            $period = "6 & 12";
+                        }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '6.00'){
+                            $dataApprover = array('approver'=>'AM','Regional Head');
+                            $jumlah = 3;
+                            $period = "6 & 12";
+                        }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
+                            $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                            $jumlah = 4;
+                            $period = "6 & 12";
+                        }else{
+                            echo 'Approver Not Found';
+                        }
+                    }
+                }elseif($datas['currency']=='USD'){
+                     $period = "All Period";
+                    if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '1.00'){
+                        $dataApprover = array('approver'=>'AM');
+                        $jumlah = 2;
+                       
+                    }else if($datas['special_rate'] == '1.00' || $datas['special_rate'] <= '1.25'){
+                        $dataApprover = array('approver'=>'AM','Regional Head');
+                        $jumlah = 3;
+                    }else if($datas['special_rate'] > '1.25'){
+                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                        $jumlah = 4;
+                    }else{
+                        echo 'Approver Not Found';
+                    }
+                }elseif($datas['currency']=='SGD'){
+                    $period = "All Period";
+                    if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '0.75'){
+                        $dataApprover = array('approver'=>'AM');
+                        $jumlah = 2;
+                    }else if($datas['special_rate'] == '0.75' || $datas['special_rate'] <= '1.00'){
+                        $dataApprover = array('approver'=>'AM','Regional Head');
+                        $jumlah = 3;
+                    }else if($datas['special_rate'] > '1.00'){
+                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                        $jumlah = 4;
+                    }else{
+                        echo 'Approver Not Found';
+                    }
+                }elseif($datas['currency']=='CNY'){
+                    $period = "All Period";
+                    if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '1.25'){
+                        $dataApprover = array('approver'=>'AM');
+                        $jumlah = 2;
+                    }else if($datas['special_rate'] == '1.25' || $datas['special_rate'] <= '1.50'){
+                        $dataApprover = array('approver'=>'AM','Regional Head');
+                        $jumlah = 3;
+                    }else if($datas['special_rate'] > '1.50'){
+                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                        $jumlah = 4;
+                    }else{
+                        echo 'Approver Not Found';
+                    }
+                }
+            }
+            
+
+            $path = explode(';',$data->path);
+            $countPath = count($path);
+            $regional = $data->regional;
+            for($i = 0; $i<$countPath;$i++){
+                if($countPath==4){
+                    // echo "<script type='text/javascript'>alert('$path[$i]');</script>";
+                    // echo'</br>';
+                    $userBM = UserJob::where('id_branch',$cabang)->where('id_jobs','S0362')->get();
+                    $userAM = UserJob::where('id_branch',$path[1])->where('id_jobs','S0465')->get();
+                    $userRH = UserJob::where('id_branch',$path[2])->where('id_jobs','S0301')->get();
+                    $userDR = "setiawati.samahita@idn.ccb.com";
+                }elseif($countPath==3){
+                    $userBM = UserJob::where('id_branch',$cabang)->where('id_jobs','S0465')->get();
+                    $userAM = UserJob::where('id_branch',$cabang)->where('id_jobs','S0465')->get();
+                    $userRH = UserJob::where('id_branch',$path[1])->where('id_jobs','S0301')->get();
+                    $userDR = "setiawati.samahita@idn.ccb.com";
+                    // echo "<script type='text/javascript'>alert('$path[$i]');</script>";
+                }
+            }
+        
+                $td_user = new TD_USER();
+                $td_user->id_td = $id_td;
+                $td_user->bm = $userBM[0]->username;
+                $td_user->am = $userAM[0]->username;
+                $td_user->rh = $userRH[0]->username;
+                $td_user->dr = 'setiawati.samahita@idn.ccb.com';
+                $td_user->region = $regional;
+                $td_user->jumlah = $jumlah;
+                $td_user->save();
+                
+                $td = TD::find($id_td);
+                $td->approver = $td_user->jumlah;
+                $td->save();
+
+    }
 }

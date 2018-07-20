@@ -88,6 +88,12 @@
                                 </select>
                             </div>
                             </div>
+                            <div class="col-md-6">
+                                <b>Sumber Dana</b>
+                                <input type="file" name="image">
+                                <p>Note: If Bank Is Not CCB</p>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group label-floating">
