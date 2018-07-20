@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Message\Response;
 use View;
 use Session;
@@ -37,10 +37,14 @@ class LoginApiController extends Controller
         $email = Input::get('email');
         $password = Input::get('password');
 
-       $response = $client->post('http://10.110.113.57:8015/login', ['json'=>['username'=>$email,'password'=>$password]]);
+       try{
+        $response = $client->post('http://10.110.113.57:8015/login', ['json'=>['username'=>$email,'password'=>$password]]);
         $data = $response->getBody();
 
        $data = json_decode($data);
+     $statuscode = $response->getStatusCode();
+     
+       if($data!=""){
     //    asli
     //berapa job nya
     $jumlahJobUser = count($data->userJobs);
@@ -184,9 +188,21 @@ class LoginApiController extends Controller
     //   return view('list-td',compact('data','trx','tdUser','lengkap'));
         Session::flash('flash_message','-');
       return redirect('td')->with(compact('data','trx','tdUser','lengkap'));
+    }else{
+        dd('aaa');
+    }
 
+       }catch(ClientException $e){
+            echo "Your Password Or Username Is Invalid";
+            $notification = array(
+                'message' => 'Logout Failed',
+                'alert-type' => 'error'
+            );
+        
+            return view('login')->with($notification);
      
     }
+}
 
     public function logout(){
         $client = new Client([

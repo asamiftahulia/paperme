@@ -134,7 +134,6 @@ class TDController extends Controller
             $fileName = 'No Photo';
         }
         
-        
         // dd($fileName);
         $data->image = $fileName;
         $data->save();
@@ -858,8 +857,24 @@ class TDController extends Controller
         
     }
 
-    public function insertTdUser($id_td){
-        $cekJumlahApr = TD::where('id', $id_td)->get();
+    public function insertTdUserForCollectiveTDNew($id_td){
+        $IdBranch = TD::where('id', $id_td)->get(['id_branch']);
+       if($IdBranch!='NULL'){
+        // echo "<script type='text/javascript'>alert('$IdBranch[0]');</script>";
+        //get id branch
+        $branch = explode(':',$IdBranch[0]);
+        $cab =  substr( $branch[1], 1 );
+        $cabang= rtrim($cab, '"}');
+        // echo "<script type='text/javascript'>alert('$cabang');</script>";
+       }else{
+        // echo "<script type='text/javascript'>alert('ga ada');</script>";
+       }
+        //get flow cabang
+       $flow = FlowMapping::where('id',$cabang)->get();
+
+       foreach($flow as $data)
+        {
+            $cekJumlahApr = TD::where('id', $id_td)->get();
             foreach($cekJumlahApr as $datas){
                 if($datas['currency'] == 'IDR'){
                     if($datas['period'] == 1 || $datas['period'] == 3){
@@ -941,7 +956,6 @@ class TDController extends Controller
                 }
             }
             
-
             $path = explode(';',$data->path);
             $countPath = count($path);
             $regional = $data->regional;
@@ -961,6 +975,7 @@ class TDController extends Controller
                     // echo "<script type='text/javascript'>alert('$path[$i]');</script>";
                 }
             }
+        }
         
                 $td_user = new TD_USER();
                 $td_user->id_td = $id_td;
@@ -975,6 +990,80 @@ class TDController extends Controller
                 $td = TD::find($id_td);
                 $td->approver = $td_user->jumlah;
                 $td->save();
-
+                
+        $banks = MasterBank::all();
+        $branch = m_branchs::all();
+        $data = MasterSpecialRate::all();
+        return view('registrasi-td-form', compact('banks','branch','data'));
     }
+
+    // public function CollectiveInsert(){
+        
+    //     $data = array(
+    //         array('user_id'=>'Coder 1', 'subject_id'=> 4096),
+    //         array('user_id'=>'Coder 2', 'subject_id'=> 2048)
+    //     );
+
+    //     $td = TD::insert($data); // Eloquent approach
+    //     DB::table('TD')->insert($data); // Query Builder approach
+    // }
+
+        // public function CollectiveInsert(Request $request)
+        // {
+        //     //
+        //     // $validatedData = $request->validate([
+        //     // 'full_name' => 'required|max:3']);
+        //     $validator = Validator::make($request->all(),[
+        //         'full_name' => 'required',
+        //         'amount' =>  'regex:/^\d*(\.\d{3})?$/',
+    
+        //     ]);
+        //     $data = new TD();
+        //     $data->full_name = $request->full_name; 
+        //     $strAmount = filter_var($request->amount, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        //     $data->amount = $strAmount;
+        //     $str = ltrim($request->amount, ',');
+        //     $str = trim($request->amount);
+        
+        //     $dt = strtotime($request->date_rollover);
+    
+        //     if($request->period==1)
+        //         $expired = date("Y-m-d", strtotime("+1 month", $dt));
+        //     else if($request->period==3)
+        //         $expired = date("Y-m-d", strtotime("+3 month", $dt));
+        //     else if($request->period==6)
+        //         $expired = date("Y-m-d", strtotime("+6 month", $dt));
+        //     else 
+        //         $expired = date("Y-m-d", strtotime("+12 month", $dt));
+            
+        //     $data->status = 'CREATED';
+        //     $data->notes = $request->notes;
+        //     $data->expired_date = $expired;
+        //     $data->period = $request->period;
+        //     $data->currency = $request->currency;
+        //     $data->type_of_td = $request->type_of_td;
+        //     $data->bank = $request->bank;
+        //     $data->date_rollover = $request->date_rollover;
+        //     $data->special_rate = $request->special_rate;
+        //     $data->normal_rate = $request->normal_rate;
+        //     $data->id_branch = session('branch');
+        //     $data->created_by = session('username');
+        //     $data->updated_by = session('username');       
+        //     //image
+        //     if($request->hasfile('image')){
+        //         $file = $request->file('image');
+        //         $ext = $file->getClientOriginalExtension();
+        //         $fileName = $file->getClientOriginalName();
+        //         $img = $request->image->move(public_path('images'), $fileName);
+        //     }else{
+        //         $fileName = 'No Photo';
+        //     }
+            
+        //     // dd($fileName);
+        //     $data->image = $fileName;
+        //     $data->save();
+        //     Mail::to('harsyami@gmail.com')->send(new PostSubscribtion($data));
+        //     return redirect('td/summary')->with('id',$data->id);
+        // }
+    
 }

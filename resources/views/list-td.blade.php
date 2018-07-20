@@ -105,15 +105,8 @@
                                                              }
                                                         ?>
                                                             
-                                                            <a href="{{action('TDController@timeline',$dataBM->id_td)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
-                                                        
-                                                            <?php if($dataBM->action == 1 || $dataBM->status == 'Rejected'){ ?>
-                                                                        <a href="javascript: void(0)" class="material-icons" rel="tooltip" title="Can Not Edit">mode_edit</a>
-                                                            <?php        }elseif($dataBM->action== 0){ ?>
-                                                                    <a href="{{route("td.edit",$dataBM->id)}}" class="material-icons" rel="tooltip" title="Edit Data">mode_edit</a>
-                                                            <?php        
-                                                            }
-                                                            ?>
+                                                            <a href="{{action('TDController@timeline',$dataBM->id_td)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>                                                          
+                                                          
                                                     </td>
                                                 </tr> 
                                                 <?php
