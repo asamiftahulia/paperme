@@ -710,7 +710,13 @@
                       <input type="button" id="btn-approve-bm3"data-toggle="modal" id="btn-approve-bm" data-target="#modal2BMApr"class="btn btn-success btn-sm" value="Approve">
                       <input type="button" id="btn-reject-bm3"data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm" value="Reject">
                     <?php
-                        }?>
+                        }else{
+                    ?>
+                     <input type="button" disabled="true" id="btn-revisi-bm3" data-toggle="modal" data-target="#modal2BMDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" disabled="true" id="btn-approve-bm3"data-toggle="modal" id="btn-approve-bm" data-target="#modal2BMApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" disabled="true" id="btn-reject-bm3"data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm" value="Reject">
+                    <?php  }
+                    ?>
                     </div>
                   </div>
                 </li>
@@ -816,7 +822,15 @@
                       <input type="button" id="btn-approve-am3" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm" value="Approve">
                       <input type="button" id="btn-reject-am3" data-toggle="modal" data-target="#modal2AMRej"class="btn btn-danger btn-sm" value="Reject">
                     <?php
-                        }?>
+                        }else{
+                    ?>
+                    
+                      <input type="button" disabled="true" id="btn-revisi-am3" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" disabled="true" id="btn-approve-am3" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" disabled="true" id="btn-reject-am3" data-toggle="modal" data-target="#modal2AMRej"class="btn btn-danger btn-sm" value="Reject">
+                    <?php   
+                      }
+                    ?>
                     </div>
                   </div>
                 </li>
@@ -923,7 +937,14 @@
                       <input type="button" id="btn-approve-rh3" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
                       <input type="button" id="btn-reject-rh3" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject">
                     <?php
-                        }?>
+                        }else{
+                          ?>
+                      <input type="button" disabled="true" id="btn-revisi-rh3" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="button" disabled="true" id="btn-approve-rh3" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="button" disabled="true" id="btn-reject-rh3" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject">
+                          <?php
+                        }
+                        ?>
                     </div>
                   </div>
                 </li>
@@ -1028,7 +1049,13 @@
                       <input type="button" id="btn-approve-dr3" data-toggle="modal" data-target="#modal2DirApr" class="btn btn-sm btn-success" value="Approve">
                       <input type="button" id="btn-reject-dr3" data-toggle="modal" data-target="#modal2DirRej" class="btn btn-sm btn-danger" value="Reject">
                     <?php
-                    }?>
+                    }else{?>
+                      <input type="button" disabled="true" id="btn-revisi-dr3" data-toggle="modal" data-target="#modal2DirDet" class="btn btn-sm btn-info" value="Detail">
+                      <input type="button" disabled="true" id="btn-approve-dr3" data-toggle="modal" data-target="#modal2DirApr" class="btn btn-sm btn-success" value="Approve">
+                      <input type="button" disabled="true" id="btn-reject-dr3" data-toggle="modal" data-target="#modal2DirRej" class="btn btn-sm btn-danger" value="Reject">
+                    <?php
+                      }
+                    ?>
 
                     </div>
                   </div>
@@ -1600,9 +1627,9 @@ $("input").click(function(e){
       document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Director";
 
     document.getElementById("approved-date-by-dr3").innerHTML = today;
-    document.getElementById("btn-approve-dr3").style.visibility = 'hidden';
-    document.getElementById("btn-revisi-dr3").style.visibility = 'hidden';
-    document.getElementById("btn-reject-dr3").style.visibility = 'hidden';
+    document.getElementById("btn-approve-dr3").disabled = true;
+    document.getElementById("btn-revisi-dr3").disabled = true;
+    document.getElementById("btn-reject-dr3").disabled = true;
     document.getElementById("btn-finish").disabled = false;
     
    }

@@ -412,7 +412,14 @@ class TDController extends Controller
         $data = TD::where('id', $id)->get();    
         $trxTD = transaction_td::where('id_td', $id)->get();
         // dd($trxTD);
-      
+        
+        
+        $namaApprover = DB::table('time-deposit')
+        ->select('*')
+        ->join('td_user','time-deposit.id', '=', 'td_user.id_td')
+        ->where('time-deposit.id','=',$id)
+        ->get();
+
         $datalengkap = DB::table('trx-time-deposit')
         ->select('*')
         ->join('time-deposit', 'trx-time-deposit.id_td', '=', 'time-deposit.id')
@@ -421,7 +428,7 @@ class TDController extends Controller
         ->where('trx-time-deposit.id_td','=',$id)
         ->get();
         // dd($datalengkap);
-        $pdf = PDF::loadView('pdf-summary',compact('data',$data,'datalengkap',$datalengkap));
+        $pdf = PDF::loadView('pdf-summary',compact('data',$data,'datalengkap',$datalengkap,'namaApprover',$namaApprover));
         $pdf->setPaper('A4','landscape');
         return $pdf->download('Summary_Time_Deposit_'.$data[0]->full_name.'.pdf');
     }
