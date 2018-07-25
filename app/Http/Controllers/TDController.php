@@ -141,6 +141,65 @@ class TDController extends Controller
         return redirect('td/summary')->with('id',$data->id);
     }
 
+    public function storeCol(Request $request)
+    {
+        //
+        // $validatedData = $request->validate([
+        // 'full_name' => 'required|max:3']);
+        $validator = Validator::make($request->all(),[
+            'full_name' => 'required',
+            'amount' =>  'regex:/^\d*(\.\d{3})?$/',
+
+        ]);
+        $data = new TD();
+        $data->full_name = $request->full_name; 
+        $strAmount = filter_var($request->amount, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $data->amount = $strAmount;
+        $str = ltrim($request->amount, ',');
+        $str = trim($request->amount);
+    
+        $dt = strtotime($request->date_rollover);
+
+        if($request->period==1)
+            $expired = date("Y-m-d", strtotime("+1 month", $dt));
+        else if($request->period==3)
+            $expired = date("Y-m-d", strtotime("+3 month", $dt));
+        else if($request->period==6)
+            $expired = date("Y-m-d", strtotime("+6 month", $dt));
+        else 
+            $expired = date("Y-m-d", strtotime("+12 month", $dt));
+        $count = 0;
+        $idMemo = $request->id_td."'asa'".$count;
+        $data->status = 'ON PROGRESS';
+        $data->notes = $request->notes;
+        $data->expired_date = $expired;
+        $data->period = $request->period;
+        $data->currency = $request->currency;
+        $data->type_of_td = $request->type_of_td;
+        $data->bank = $request->bank;
+        $data->date_rollover = $request->date_rollover;
+        $data->special_rate = $request->special_rate;
+        $data->normal_rate = $request->normal_rate;
+        $data->id_branch = session('branch');
+        $data->created_by = session('username');
+        $data->updated_by = session('username');       
+        //image
+        if($request->hasfile('image')){
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $fileName = $file->getClientOriginalName();
+            $img = $request->image->move(public_path('images'), $fileName);
+        }else{
+            $fileName = 'No Photo';
+        }
+        
+        // dd($fileName);
+        $data->image = $fileName;
+        $data->save();
+        dd($idMemo);
+        // Mail::to('harsyami@gmail.com')->send(new PostSubscribtion($data));
+        // return redirect('td/summary')->with('id',$data->id);
+    }
     /**
      * Display the specified resource.
      *
@@ -413,7 +472,7 @@ class TDController extends Controller
         $trxTD = transaction_td::where('id_td', $id)->get();
         // dd($trxTD);
         
-        
+
         $namaApprover = DB::table('time-deposit')
         ->select('*')
         ->join('td_user','time-deposit.id', '=', 'td_user.id_td')
@@ -1001,7 +1060,7 @@ class TDController extends Controller
         $banks = MasterBank::all();
         $branch = m_branchs::all();
         $data = MasterSpecialRate::all();
-        return view('registrasi-td-form', compact('banks','branch','data'));
+        return view('registrasi-td-form-col', compact('banks','branch','data'));
     }
 
     // public function CollectiveInsert(){

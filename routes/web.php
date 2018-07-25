@@ -39,6 +39,10 @@ Route::get('/summary','TDController@show')->name('summary');
 Route::get('downloadSummary/{id}','TDController@downloadSummary');
 Route::get('timeline/{id}','TDController@timeline');
 Route::get('CollectiveNewTD/{id}','TDController@insertTdUserForCollectiveTDNew');
+Route::patch('/InsertCol',[
+    'as' => 'td.storeCol',
+    'uses' => 'TDController@storeCol'
+]);
 Route::post('td/revisi/{id}','TDController@revisi');
 Route::get('td/renew/{id}','TDController@renew');
 Route::post('trx/revisi/{id}','TransactionTimeDepositController@revisi');
