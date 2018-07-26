@@ -28,7 +28,7 @@
                             <div class="col-md-12">
                                 <b>Full Name</b>
                                 <input type="text" class="form-control" placeholder="e.g : John Doe" name="full_name" required>  
-                                <input type="text" class="form-control" name="id_memmo" value='{{$lastIDMemo['id']}}'>
+                                <input type="text" class="form-control" name="id_memmo" value='{{$lastIDMemo["id_memmo"]}}'>
                                 
                             </div>
                          </div>
