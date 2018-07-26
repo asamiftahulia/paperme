@@ -22,76 +22,91 @@ tr:nth-child(even){background-color: #f2f2f2}
 </head>
 <body>
 <header class="clearfix">
-@foreach($data as $datas)
+
     <!-- <div id="logo">
         <img src="{{asset('css/lo.png')}}">
     </div> -->
+    @foreach($namaApprover as $dataa)
+
     @php
-    $month = date('m', strtotime($datas->date_rollover));
-    $year = date('y', strtotime($datas->date_rollover));
+    $month = date('m', strtotime($dataa->date_rollover));
+    $year = date('y', strtotime($dataa->date_rollover));
     @endphp
 
     <H2 align='center'><b>PERMOHONAN PERSETUJUAN SPECIAL RATE DEPOSITO</b></H2>
-    <H3 align='center'>Nomor Surat : 0{{$datas->id}}/CCBI/SR/{{$month}}/{{$year}}</H3>
-    <h4>Kepada : REGIONAL</h4>
-    <h4>Dari : BRANCH</h4>
-    <h4>Tanggal : {{$datas->date_rollover}}</h4>
+    <H3 align='center'>Nomor Surat : 0{{$dataa->id}}/CCBI/SR/{{$month}}/{{$year}}</H3>
+    <h4>Kepada : 
+    <?php
+            if($dataa->approver == 3){
+                $kpd = $dataa->rh;
+            }else if($dataa->approver == 2){
+                $kpd = $dataa->am;
+            }else if($dataa->approver == 4){
+                $kpd = $dataa->dr;
+            }
+    ?>
+        {{$kpd}}
+    </h4>
+    <h4>Dari : {{$dataa->created_by}}</h4>
+    <h4>Tanggal : {{$dataa->date_rollover}}</h4>
     </div>
+
+    @endforeach
 </header>
 <main>
-    <div id="details" class="clearfix">
-        <div id="client">
-            <div class="to">Time Deposit To :</div>
-            <h2 class="name">{{$datas->full_name}}</h2>
-            <div class="address">New Deposit</div>
-            <div class="email"><a href="mailto:john@example.com">New Deposan</a></div>
-            @endforeach
-        </div>
-    </div>
+<?php $no = 0; ?>
+@foreach($data as $datas)
+<?php $no = $no + 1; ?>
     <table border='2'>
         <thead>
         <tr>
+            <th class="desc">No</th>
+            <th class="desc">Nama</th>
             <th class="desc">Nominal Deposit</th>
             <th class="unit">Tanggal Rollover</th>
             <th class="unit">Tanggal Jatuh Tempo</th>
             <th class="unit">Period</th>
             <th class="total">Normal Rate (%)</th>
             <th class="total">Special Rate (%)</th>
+            <th>Keterangan </th>
         </tr>
         </thead>
         <tbody>
         <tr>
+            <td class="desc">{{$no}}</td>
+            <td class="desc">{{$datas->full_name}}</td>
             <td class="desc">{{number_format($datas->amount,0)}} {{$datas->currency}}</td>
             <td class="unit">{{$datas->date_rollover}}</td>
             <td class="qty">{{$datas->expired_date}}</td>
-            <td class="qty">{{$datas->period}}</td>
-            <td class="total">{{$datas->normal_rate}}</td>
+            <td class="qty">{{$datas->period}} Bulan</td>
+            <td class="total">-</td>
             <td class="total"><b>{{$datas->special_rate}}</b></td>
+            <td class="total"><b>{{$datas->notes}}</b></td>
         </tr>
         </tbody>
     </table>
+    @endforeach
 
     <div id="thanks"></div>
-    <div id="notices">
-        <div>NOTE:</div>
-        <div class="notice">{{$datas->notes}}</div>
-    </div>
-    <br><br>
+    <br><br><br><br><br><br><br><br>
 
     <table border="1" style="width:100%">
         <tr>
-            <th>Role</th>
+            <th>Approved By</th>
             <th>Approved At</th>
             <th>Approved By</th>
-        </tr>
+        
         @foreach($datalengkap as $aprover)
         <tr>
-            <td>Proposed By : {{$aprover->role}}</td>
             <td>{{$aprover->created_at}}</td>
-            <td>Approved By : {{$aprover->approved_by}}</td>
+        </tr>
+        <tr>
+            <td>{{$aprover->approved_by}}</td>
+        </tr>
+        <tr>
+            <td>{{$aprover->role}}</td>
         </tr>
         @endforeach
-        
     </table>
 
 </main>

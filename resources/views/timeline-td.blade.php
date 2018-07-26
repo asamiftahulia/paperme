@@ -242,7 +242,7 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Area Manager</span>
-                      <span class="time-wrapper"><span class="time" id="approved-date-by-am1">-</span></span>
+                      <span class="time-wrapper"><span class="time" id="time-am-1">--</span></span>
                     </div>
                     <div class="desc"><p id="actionAM1">Waiting An Action From Area Manager</p><br>
                     
@@ -254,14 +254,9 @@
                       <button type="button" id="btn-approve-am1" data-toggle="modal" data-target="#modalAprAM"class="btn btn-success btn-sm">Approve</button>
                       <button type="button" id="btn-reject-am1" data-toggle="modal" data-target="#modalRejAM"class="btn btn-danger btn-sm">Reject</button>
                       <?php
-                      }else{
-                        ?>
-                      <button type="button" disabled="true" id="btn-revisi-am1"data-toggle="modal" data-target="#modalDetailAM"class="btn btn-info btn-sm">Detail</button>
-                      <button type="button" disabled="true" id="btn-approve-am1" data-toggle="modal" data-target="#modalAprAM"class="btn btn-success btn-sm">Approve</button>
-                      <button type="button" disabled="true" id="btn-reject-am1" data-toggle="modal" data-target="#modalRejAM"class="btn btn-danger btn-sm">Reject</button>
-                        <?php
                       }
-                      ?>
+                        ?>
+                      
                     </div>
                     
                   </div>
@@ -1542,42 +1537,25 @@ $("input").click(function(e){
       document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='Green'>Approved</font>  by Branch Manager";
     else
     document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
-    document.getElementById("btn-approve-bm1").disabled = true;
-    document.getElementById("btn-revisi-bm1").disabled = true;
-    document.getElementById("btn-reject-bm1").disabled = true;
+    document.getElementById('btn-approve-bm1').style.visibility = 'hidden';
+    document.getElementById("btn-revisi-bm1").style.visibility = 'hidden';
+    document.getElementById("btn-reject-bm1").style.visibility = 'hidden';
     document.getElementById("time").innerHTML = today;
   }
 
   function autoDisableAM1() {
-   
-    document.getElementById("approved-date-by-am1").innerHTML = today;
-    
-    if(rejectam == 0)
-      document.getElementById("actionAM1").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Area Manager";
-    else
-      document.getElementById("actionAM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Area Manager";
-    
-    document.getElementById("btn-approve-am1").disabled = true;
-    document.getElementById("btn-revisi-am1").disabled = true;
-    document.getElementById("btn-reject-am1").disabled = true;
-    document.getElementById("btn-finish").disabled = false;
-    document.getElementById("btn-approve-bm1").disabled = true;
-    document.getElementById("btn-revisi-bm1").disabled = true;
-    document.getElementById("btn-reject-bm1").disabled = true;
-    document.getElementById("time").innerHTML = today;
-      if(rejectbm == 0)
-        document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='Green'>Approved</font>  by Branch Manager";
-      else
-        document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
-  
-    
+    document.getElementById("time-am-1").innerHTML = today;
+    document.getElementById('actionAM1').innerHTML = "This Special Rate Has Been <font color='green'>Approved </font>by Area Manager";
+    document.getElementById('btn-approve-am1').style.visibility = 'hidden';
+    document.getElementById("btn-revisi-am1").style.visibility = 'hidden';
+    document.getElementById("btn-reject-am1").style.visibility = 'hidden';
   }
 
   // 3 approver 
    function autoDisableBM2() {
-    document.getElementById("btn-approve-bm2").disabled = true;
-    document.getElementById("btn-revisi-bm2").disabled = true;
-    document.getElementById("btn-reject-bm2").disabled = true;
+    document.getElementById("btn-approve-bm2").style.visibility = 'hidden';
+    document.getElementById("btn-revisi-bm2").style.visibility = 'hidden';
+    document.getElementById("btn-reject-bm2").style.visibility = 'hidden';
     document.getElementById("approved-date-by-bm2").innerHTML = today;
     if(rejectbm == 0)
       document.getElementById("act-bm2").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Branch Manager";
@@ -1586,9 +1564,9 @@ $("input").click(function(e){
   }
 
   function autoDisableAM2() {
-    document.getElementById("btn-approve-am2").disabled = true;
-    document.getElementById("btn-revisi-am2").disabled = true;
-    document.getElementById("btn-reject-am2").disabled = true;
+    document.getElementById("btn-approve-am2").style.visibility = 'hidden';
+    document.getElementById("btn-revisi-am2").style.visibility = 'hidden';
+    document.getElementById("btn-reject-am2").style.visibility = 'hidden';
     document.getElementById("approved-date-by-am2").innerHTML = today;
     if(rejectam == 0)
       document.getElementById("act-am2").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Area Manager";
@@ -1597,10 +1575,9 @@ $("input").click(function(e){
   }
 
    function autoDisableRH2() {
-    document.getElementById("btn-approve-rh2").disabled = true;
-    document.getElementById("btn-revisi-rh2").disabled = true;
-    document.getElementById("btn-reject-rh2").disabled = true;
-    document.getElementById("btn-finish").disabled = false;
+    document.getElementById("btn-approve-rh2").style.visibility = 'hidden';
+    document.getElementById("btn-revisi-rh2").style.visibility = 'hidden';
+    document.getElementById("btn-reject-rh2").style.visibility = 'hidden';
     document.getElementById("approved-date-by-rh2").innerHTML = today;
     if(rejectrh == 0)
       document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Regional Head";
@@ -1611,9 +1588,9 @@ $("input").click(function(e){
   // approver 4
 
    function autoDisableBM3() {
-    document.getElementById("btn-approve-bm3").disabled = true;
-    document.getElementById("btn-revisi-bm3").disabled = true;
-    document.getElementById("btn-reject-bm3").disabled = true;
+    document.getElementById("btn-approve-bm3").style.visibility = 'hidden';
+    document.getElementById("btn-revisi-bm3").style.visibility = 'hidden';
+    document.getElementById("btn-reject-bm3").style.visibility = 'hidden';
     document.getElementById("approved-date-by-bm3").innerHTML = today;
     if(rejectbm == 0)
       document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Branch Manager";
@@ -1622,9 +1599,9 @@ $("input").click(function(e){
   }
 
   function autoDisableAM3() {
-    document.getElementById("btn-approve-am3").disabled = true;
-    document.getElementById("btn-revisi-am3").disabled = true;
-    document.getElementById("btn-reject-am3").disabled = true;
+    document.getElementById("btn-approve-am3").style.visibility = 'hidden';
+    document.getElementById("btn-revisi-am3").style.visibility = 'hidden';
+    document.getElementById("btn-reject-am3").style.visibility = 'hidden';
     document.getElementById("approved-date-by-am3").innerHTML = today;
     if(rejectam == 0)
       document.getElementById("act-am3").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Area Manager";
@@ -1633,9 +1610,9 @@ $("input").click(function(e){
   }
 
    function autoDisableRH3() {
-    document.getElementById("btn-approve-rh3").disabled = true;
-    document.getElementById("btn-revisi-rh3").disabled = true;
-    document.getElementById("btn-reject-rh3").disabled = true;
+    document.getElementById("btn-approve-rh3").style.visibility = 'hidden';
+    document.getElementById("btn-revisi-rh3").style.visibility = 'hidden';
+    document.getElementById("btn-reject-rh3").style.visibility = 'hidden';
     document.getElementById("approved-date-by-rh3").innerHTML = today;
     if(rejectrh == 0)
       document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Regional Head";
@@ -1658,73 +1635,13 @@ $("input").click(function(e){
    }
 
   if(jumlahApr == 2){
-    if(bm != 0){
-       this.autoDisableBM1();
-    }
     if(am != 0){
       this.autoDisableAM1();
+    }
+    if(bm != 0){
+      this.autoDisableBM1();
     
     }
-    
-    // REJECT
-    if(rejectbm != 0){
-        document.getElementById("time").innerHTML = today;
-
-        document.getElementById("btn-approve-bm1").disabled = true;
-        document.getElementById("btn-revisi-bm1").disabled = true;
-        document.getElementById("btn-reject-bm1").disabled = true;
-        
-
-        document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
-        document.getElementById("actionAM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
-        
-      }
-    if(rejectam != 0){
-        document.getElementById("approved-date-by-am1").innerHTML = today;
-
-        document.getElementById("btn-approve-am1").disabled = true;
-        document.getElementById("btn-revisi-am1").disabled = true;
-        document.getElementById("btn-reject-am1").disabled = true;
-        
-
-        document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
-        document.getElementById("actionAM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
-        
-      }
-
-      // if(bm == 1 || rejectbm==1) {
-      //   this.autoDisableBM1();
-      // }
-      // if(am == 1 || rejectam==1) {
-      //   this.autoDisableBM1();
-      //   this.autoDisableAM1();
-      // }
-      // if(am == 1 && bm ==1){
-      //   this.autoDisableAM1();
-      // }
-      // if(rejectbm == 1){
-      //   // alert('reject');
-      //   this.autoDisableBM1();
-      //   document.getElementById("btn-approve-am1").disabled = true;
-      //   document.getElementById("btn-revisi-am1").disabled = true;
-      //   document.getElementById("btn-reject-am1").disabled = true;
-      //   document.getElementById("act").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Branch Manager";
-        
-      // }
-
-      // if(rejectam == 1){
-      //   document.getElementById("btn-approve-am1").disabled = true;
-      //   document.getElementById("btn-revisi-am1").disabled = true;
-      //   document.getElementById("btn-reject-am1").disabled = true;
-      //   document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Area Manager";
-      // }
-
-    //   if(revisirh != 0 && rh != 0){
-    //     document.getElementById("btnrev-approve-rh3").disabled = true;
-    //     document.getElementById("btnrev-revisi-rh3").disabled = true;
-    //     document.getElementById("btnrev-reject-rh3").disabled = true;
-    //     document.getElementById("act-revisi-rh3").innerHTML = "This Special Rate Has Been Approved by Regional Head";
-    // }
   }else if(jumlahApr==3){
     if(bm != 0){
        this.autoDisableBM2();

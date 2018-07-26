@@ -11,18 +11,25 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header" data-background-color="blue">
-                    <h4 class="title">Registration Time Deposit</h4>
+                    <h4 class="title">Registration Time Deposit Collective</h4>
                     <p class="category"><font color="red">New</font> Time Deposit</p>
                 </div>
 
                 <div class="card-content">
-                    <form action="{{route('td.store')}}" method="post" enctype="multipart/form-data">
+                    <?php
+                        $c = 0;
+                        $idMemmo = 'C'.$c;
+                    ?>
+
+                    
+                    <form action="{{route('tdc.store')}}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="row">
                             <div class="col-md-12">
                                 <b>Full Name</b>
-                                <input type="text" class="form-control" placeholder="e.g : John Doe" name="full_name" required>
-                                <input type="text" class="form-control" placeholder="{{$lastID}}" name="id_memmo" value='{{$lastID['id']+1}}'>
+                                <input type="text" class="form-control" placeholder="e.g : John Doe" name="full_name" required>  
+                                <input type="text" class="form-control" name="id_memmo" value='{{$lastIDMemo["id_memmo"]}}'>
+                                
                             </div>
                          </div>
                         <div class="row">
@@ -113,6 +120,7 @@
                         <!-- <button type="submit" class="btn btn-info pull-right">Submit</button> -->
                         <a href="{{URL::to('./')}}" class="btn btn-info waves-effect ">Back</a>
                         <div class="clearfix"></div>
+                        <?php $c = $c + 1; ?>
                     </form>
 <!-- <table border='1'>
     <tr>
