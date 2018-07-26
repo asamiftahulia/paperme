@@ -65,7 +65,8 @@ class TDController extends Controller
         $banks = MasterBank::all();
         $branch = m_branchs::all();
         $data = MasterSpecialRate::all();
-        return view('registrasi-td-form', compact('banks','branch','data'));
+        $lastID = TD::orderBy('id','desc')->first();
+        return view('registrasi-td-form', compact('banks','branch','data', 'lastID'));
         // return view('registrasi-td-form');
 
     }
@@ -137,7 +138,7 @@ class TDController extends Controller
         // dd($fileName);
         $data->image = $fileName;
         $data->save();
-        Mail::to('harsyami@gmail.com')->send(new PostSubscribtion($data));
+        Mail::to('harsya.mifta@idn.ccb.com')->send(new PostSubscribtion($data));
         return redirect('td/summary')->with('id',$data->id);
     }
 
@@ -1056,11 +1057,13 @@ class TDController extends Controller
                 $td = TD::find($id_td);
                 $td->approver = $td_user->jumlah;
                 $td->save();
-                
+        
+        $lastIDMemo =  TD::orderBy('id', 'desc')->first();
         $banks = MasterBank::all();
         $branch = m_branchs::all();
         $data = MasterSpecialRate::all();
-        return view('registrasi-td-form-col', compact('banks','branch','data'));
+    //  dd($branch);
+        return view('registrasi-td-form-col', compact('banks','branch','data','lastIDMemo'));
     }
 
     // public function CollectiveInsert(){
