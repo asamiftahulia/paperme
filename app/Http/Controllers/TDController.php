@@ -118,6 +118,7 @@ class TDController extends Controller
         $data->period = $request->period;
         $data->currency = $request->currency;
         $data->type_of_td = $request->type_of_td;
+        $data->id_memmo = $request->id_memmo;
         $data->bank = $request->bank;
         $data->date_rollover = $request->date_rollover;
         $data->special_rate = $request->special_rate;
@@ -138,7 +139,7 @@ class TDController extends Controller
         // dd($fileName);
         $data->image = $fileName;
         $data->save();
-        Mail::to('harsya.mifta@idn.ccb.com')->send(new PostSubscribtion($data));
+        // Mail::to('harsya.mifta@idn.ccb.com')->send(new PostSubscribtion($data));
         return redirect('td/summary')->with('id',$data->id);
     }
 
@@ -1059,11 +1060,12 @@ class TDController extends Controller
                 $td->save();
         
         $lastIDMemo =  TD::orderBy('id', 'desc')->first();
+        $lastIDTd =  TD::orderBy('id', 'desc')->first();
         $banks = MasterBank::all();
         $branch = m_branchs::all();
         $data = MasterSpecialRate::all();
     //  dd($branch);
-        return view('registrasi-td-form-col', compact('banks','branch','data','lastIDMemo'));
+        return view('registrasi-td-form-col', compact('banks','branch','data','lastIDMemo', 'lastIDTd'));
     }
 
     // public function CollectiveInsert(){

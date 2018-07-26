@@ -17,8 +17,9 @@
 
                 <div class="card-content">
                     <?php
-                        $c = 0;
-                        $idMemmo = 'C'.$c;
+                      
+                            echo "<script>alert(".$lastIDMemo['id'].");</script>";
+                        
                     ?>
 
                     
@@ -120,7 +121,7 @@
                         <!-- <button type="submit" class="btn btn-info pull-right">Submit</button> -->
                         <a href="{{URL::to('./')}}" class="btn btn-info waves-effect ">Back</a>
                         <div class="clearfix"></div>
-                        <?php $c = $c + 1; ?>
+                        
                     </form>
 <!-- <table border='1'>
     <tr>
