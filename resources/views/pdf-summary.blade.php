@@ -92,12 +92,20 @@ tr:nth-child(even){background-color: #f2f2f2}
 
     <table border="1" style="width:100%">
         <tr>
-            <th>Approved By</th>
             <th>Approved At</th>
             <th>Approved By</th>
-        
+            <th>Role</th>
+        </tr>
+    
         @foreach($datalengkap as $aprover)
         <tr>
+            <th>{{$aprover->created_at}}</th>
+            <th>{{$aprover->approved_by}}</th>
+            <th>{{$aprover->role}}</th>
+        </tr>
+            @endforeach
+      
+        <!-- <tr>
             <td>{{$aprover->created_at}}</td>
         </tr>
         <tr>
@@ -105,8 +113,8 @@ tr:nth-child(even){background-color: #f2f2f2}
         </tr>
         <tr>
             <td>{{$aprover->role}}</td>
-        </tr>
-        @endforeach
+        </tr> -->
+   
     </table>
 
 </main>

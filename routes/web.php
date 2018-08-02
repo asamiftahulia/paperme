@@ -15,12 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Route::resource('dashboard','DashboardController');
 Route::resource('customer','CustomerController');
 Route::resource('/create','CustomerController');
 Route::resource('timedeposit','TimeDepositController');
 Route::resource('time-deposit','TDController');
 Route::get('/summary', 'TDController@show')->name('summary');
+Route::get('/summaryCol', 'TDCollectiveController@show')->name('summary');
 Route::resource('master-bank','MasterBankController');
 Route::resource('master-branch','MasterBranchController');
 Route::resource('user','UserController');
@@ -34,16 +37,26 @@ Route::post('/uploadfile','UploadFileController@showUploadFile');
 // time deposit
 
 Route::resource('td','TDController');
+Route::resource('ajax','WelcomeController');
+Route::post('{id}/getRequest','WelcomeController@getRequest');
 Route::resource('tdc','TDCollectiveController');
 Route::resource('trx','TransactionTimeDepositController');
 Route::get('/summary','TDController@show')->name('summary');
 Route::get('downloadSummary/{id}','TDController@downloadSummary');
 Route::get('timeline/{id}','TDController@timeline');
+Route::get('/timelineCol/{id_memmo}',[
+    'as' => 'tdc.timeline',
+    'uses' => 'TDCollectiveController@timelineCollective'
+]);
+
+
 Route::get('CollectiveNewTD/{id}','TDController@insertTdUserForCollectiveTDNew');
 Route::patch('/InsertCol',[
     'as' => 'td.storeCol',
     'uses' => 'TDController@storeCol'
 ]);
+
+
 Route::post('td/revisi/{id}','TDController@revisi');
 Route::get('td/renew/{id}','TDController@renew');
 Route::post('trx/revisi/{id}','TransactionTimeDepositController@revisi');
@@ -60,6 +73,12 @@ Route::post('td/CreateRenew',[
     'as' => 'td.CreateRenew',
     'uses' => 'TDController@CreateRenew'
 ]);
+
+Route::post('trx/storeCol',[
+    'as' => 'trx.storeCol',
+    'uses' => 'TransactionTimeDepositController@storeCol'
+]);
+
 
 //toastr
 Route::get('/tost', function(){
@@ -83,4 +102,3 @@ Route::post('verify',function(){
 Route::get('image-upload-with-validation',['as'=>'getuploadimage','uses'=>'ImageUploadController@getUploadImage']);
 Route::get('image-upload-with-validation',['as'=>'viewImage','uses'=>'ImageUploadController@viewImage']);
 Route::post('image-upload-with-validation',['as'=>'postuplodeimage','uses'=>'ImageUploadController@postUplodeImage']);
-

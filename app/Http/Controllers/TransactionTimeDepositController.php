@@ -85,6 +85,47 @@ class TransactionTimeDepositController extends Controller
         //return redirect()->back()->with($notification);
     }
 
+    public function storeCol(Request $request){
+      
+        $data = new transaction_td();
+        $count = 0;
+        $data->approved = 1;
+        $data->id_td = $request->id_td;
+        $data->aksi=$request->aksi;
+        $data->special_rate=$request->special_rate;
+        $data->role=$request->role;
+        $data->created_by = session('username');
+        $data->approved_by = session('username');
+        $today = date("Y-m-d");
+        $data->approved_at = $today;
+        $result = $data->save();
+        
+        $td = TD::find($request->id_td);
+        $td->action = 1;
+        $td->save();
+
+        if($result==1){
+            echo "success";
+            $act = 0;
+            $notification = array(
+                'message' => 'Approved Successfull & Email Has Been Sent',
+                'alert-type' => 'success',
+                'act' => 0
+            );
+            
+        }else if($result==0){
+            echo "error";
+            $notification = array(
+                'message' => 'Error ! Can not Save Data ',
+                'alert-type' => 'error'
+            );
+        }
+
+    //    Mail::to('AreaManager@gmail.com')->send(new PostSubscribtion($data));
+        // return redirect('timeline/'.$data->id_td)->with($notification);
+        dd($data->id_td);
+    }
+
     public function revisi(Request $request, $id)
     {
        // $data = TD::where('id',$id)->first();
