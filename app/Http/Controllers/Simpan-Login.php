@@ -1,3 +1,5 @@
+LOGIN
+http://10.110.113.62/login
 <?php
 
 namespace App\Http\Controllers;
@@ -38,7 +40,7 @@ class LoginApiController extends Controller
         $password = Input::get('password');
 
        try{
-        $response = $client->post('http://10.110.113.62/login', ['json'=>['username'=>$email,'password'=>$password]]);
+        $response = $client->post('http://10.110.113.57:8015/login', ['json'=>['username'=>$email,'password'=>$password]]);
         $data = $response->getBody();
 
        $data = json_decode($data);
@@ -214,7 +216,7 @@ class LoginApiController extends Controller
          'nama'=> '',
          'branch'=> '',
          'job'=> '']);
-        $response = $client->DELETE('http://10.110.113.62/login', ['json'=>['username'=>'harsya.mifta@idn.ccb.com','password'=>'asaasaasa']]);
+        $response = $client->DELETE('http://10.110.113.57:8015/login', ['json'=>['username'=>'harsya.mifta@idn.ccb.com','password'=>'asaasaasa']]);
  
          $data = $response->getBody();
          $data = json_decode($data);

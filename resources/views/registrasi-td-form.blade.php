@@ -22,7 +22,7 @@
                             <div class="col-md-12">
                                 <b>Full Name</b>
                                 <input type="text" class="form-control" placeholder="e.g : John Doe" name="full_name" required>
-                                <input type="text" class="form-control" placeholder="{{$lastID}}" name="id_memmo" value='{{$lastID['id']+1}}'>
+                                <input type="hidden" class="form-control" placeholder="{{$lastID}}" name="id_memmo" value='{{$lastID['id']+1}}'>
                             </div>
                          </div>
                         <div class="row">
@@ -40,7 +40,7 @@
                             </div>
                             <div class="col-md-4">
                                 <b>Amount</b>
-                                <input type="text" class="form-control" placeholder="Ex: Rp. 99,000" id="amount" name="amount" required>
+                                <input type="text" class="form-control" placeholder="e.g: Rp. 99,000" id="amount" name="amount" required>
                             </div>
                         </div>
                         <div class="col-md-4">

@@ -52,13 +52,6 @@
                                                     <td>{{number_format($datalengkap->amount,0)}} {{$datalengkap->currency}}</td>
                                                     <td>{{$datalengkap->special_rate}} %</td>
                                                     <td>{{$datalengkap->period}} bln</td>
-                                                    <!-- <td>{{$datalengkap->id_branch}}</td> -->
-                                                    <!-- <td>{{$datalengkap->created_by}}</td> -->
-                                                    <!-- <td>{{$datalengkap->bm}}</td>
-                                                    <td>{{$datalengkap->am}}</td>
-                                                    <td>{{$datalengkap->rh}}</td>
-                                                    <td>{{$datalengkap->dr}}</td>
-                                                    <td>{{$datalengkap->jumlah}}</td> -->
                                                     <td>{{$datalengkap->status}}</td>
                                                     <td>
                                                              @if($datalengkap->status == 'FINISH')
@@ -68,13 +61,11 @@
                                                              @else
                                                                  <a href="javascript: void(0)" class="material-icons"  rel="tooltip" title="Can't Generate PDF">assignment_returned</a>
                                                              @endif
-
-                                                             @if($datalengkap->col =='col')
-                                                                <a href="{{action('TDCollectiveController@timelineCollective',$datalengkap->id_memmo)}}" class="material-icons" rel="tooltip" title="Timeline Collective">swap_vertical_circle</a>  
-                                                             @else
-                                                                <a href="{{action('TDController@timeline',$datalengkap->id_td)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
-                                                             @endif  
-                                                                
+                                                                <?php
+                                                                    $tempIdMemo = $datalengkap->id_memmo;
+                                                                    
+                                                                ?>
+                                                                <a href="{{route("tdc.timeline", $tempIdMemo)}}">{{$datalengkap->id_memmo}}</a>
                                                             @if($datalengkap->action == 1 || $datalengkap->status == 'Rejected')
                                                                         <a href="javascript: void(0)" class="material-icons" rel="tooltip" title="Can Not Edit">mode_edit</a>
                                                             @elseif($datalengkap->action== 0)

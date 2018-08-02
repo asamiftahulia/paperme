@@ -3,10 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\TimeDeposit;
 use App\TD;
+use App\MasterBank;
+use App\M_branchs;
+use PDF;
+use Session;
 use Validator;
-use Mail;
 use App\Mail\PostSubscribtion;
+use Mail;
+use App\transaction_td;
+use App\MasterSpecialRate;
+use App\M_Tipe_Deposito;
+use DB;
+use App\FlowMapping;
+use App\UserJob;
+use App\TD_User;
+
 class TDCollectiveController extends Controller
 {
     /**
@@ -17,6 +30,48 @@ class TDCollectiveController extends Controller
     public function index()
     {
         //
+        $data = TD::All();
+      //  return view('time-deposit-list', compact('data'));
+        $tdUser = TD_USER::All();
+        $lengkap = DB::table('time-deposit')
+            ->select('*')
+            ->join('td_user', 'time-deposit.id', '=', 'td_user.id_td')
+            ->orderBy('time-deposit.created_at','desc')
+            ->get();
+        $lengkapForBM = DB::table('time-deposit')
+            ->select('*')
+            ->join('td_user', 'time-deposit.id', '=', 'td_user.id_td')
+            ->orderBy('time-deposit.created_at','asc')
+            ->get();
+
+            $query = 'SELECT * FROM "time-deposit" td JOIN td_user tu ON td.id = tu.id_td WHERE td.status = "ON PROGRESS" ORDER BY td.created_at = "asc"';
+        $dataLengkapForBM = DB::raw($query);
+        //dd($lengkap);
+        return view('list-td-col',compact('data','trx','tdUser','lengkap','lengkapForBM','dataLengkapForBM'));
+        //  dd($lengkapForBM);
+    }
+
+    public function getRequest(Request $request){
+        if($request->ajax()){
+            $counter = $request->counter;
+            for($i = 1; $i<=$counter; $i++){
+                $dataName = 'name'.$i;
+                $dataEmail = 'email'.$i;
+                $dataCheckApr = 'checkApr'.$i;
+
+                $datasName[$i] = $request->$dataName;
+                $datasEmail[$i] = $request->$dataEmail;
+                $datasCheckApr[$i] = $request->$dataCheckApr;
+
+                echo $datasName[$i].' ';
+                echo $datasEmail[$i].' ';
+                echo $datasCheckApr[$i].' ';
+                echo "</br>";
+            }
+
+          }else{
+            return dd(response()->json(['status' => 'error']));
+          }
     }
 
     /**
@@ -89,8 +144,155 @@ class TDCollectiveController extends Controller
         $data->image = $fileName;
         $data->save();
         Mail::to('harsyami@gmail.com')->send(new PostSubscribtion($data));
-        return redirect('td/summary')->with('id',$data->id);
+        return redirect('tdc/summaryCol')->with('id',$data->id_memmo);
     }
+
+    public function timelineCollective($id_memmo){
+        $data = TD::where('id_memmo',$id_memmo)->get();
+        //ambil id terakhir guna untuk update colom col diisi dengan 'col'
+        $id_td = TD::where('id_memmo',$id_memmo)->orderBy('id','desc')->get()->first();
+        $id = $id_td->id;
+        $allData = TD::all();
+
+        //insert td user
+        $IdBranch = TD::where('id', $id)->get(['id_branch']);
+        if($IdBranch!='NULL'){
+        //  echo "<script type='text/javascript'>alert('aaa');</script>";
+            $branch = explode(':',$IdBranch[0]);
+            $cab =  substr( $branch[1], 1 );
+            $cabang= rtrim($cab, '"}');
+        }else{
+        
+        }
+        $flow = FlowMapping::where('id',$cabang)->get();
+        foreach($flow as $dataa)
+        {
+            $cekJumlahApr = TD::where('id', $id)->get();
+            foreach($cekJumlahApr as $datas){
+                if($datas['currency'] == 'IDR'){
+                    if($datas['period'] == 1 || $datas['period'] == 3){
+                        if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
+                            $dataApprover = array('approver'=>'AM');
+                            $jumlah = 2;
+                            $period = "1 & 3";
+                        }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.25'){
+                            $dataApprover = array('approver'=>'AM','Regional Head');
+                            $jumlah = 3;
+                            $period = "1 & 3";
+                        }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] > '6.25'){
+                            $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                            $jumlah = 4;
+                            $period = "1 & 3";
+                        }else{
+                            echo 'Approver Not Found';
+                        }
+                    }else if($datas['period'] == 6 || $datas['period'] == 12){
+                        if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '5.75'){
+                            $dataApprover = array('approver'=>'AM');
+                            $jumlah = 2;
+                            $period = "6 & 12";
+                        }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '6.00'){
+                            $dataApprover = array('approver'=>'AM','Regional Head');
+                            $jumlah = 3;
+                            $period = "6 & 12";
+                        }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
+                            $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                            $jumlah = 4;
+                            $period = "6 & 12";
+                        }else{
+                            echo 'Approver Not Found';
+                        }
+                    }
+                }elseif($datas['currency']=='USD'){
+                     $period = "All Period";
+                    if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '1.00'){
+                        $dataApprover = array('approver'=>'AM');
+                        $jumlah = 2;
+                       
+                    }else if($datas['special_rate'] == '1.00' || $datas['special_rate'] <= '1.25'){
+                        $dataApprover = array('approver'=>'AM','Regional Head');
+                        $jumlah = 3;
+                    }else if($datas['special_rate'] > '1.25'){
+                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                        $jumlah = 4;
+                    }else{
+                        echo 'Approver Not Found';
+                    }
+                }elseif($datas['currency']=='SGD'){
+                    $period = "All Period";
+                    if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '0.75'){
+                        $dataApprover = array('approver'=>'AM');
+                        $jumlah = 2;
+                    }else if($datas['special_rate'] == '0.75' || $datas['special_rate'] <= '1.00'){
+                        $dataApprover = array('approver'=>'AM','Regional Head');
+                        $jumlah = 3;
+                    }else if($datas['special_rate'] > '1.00'){
+                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                        $jumlah = 4;
+                    }else{
+                        echo 'Approver Not Found';
+                    }
+                }elseif($datas['currency']=='CNY'){
+                    $period = "All Period";
+                    if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '1.25'){
+                        $dataApprover = array('approver'=>'AM');
+                        $jumlah = 2;
+                    }else if($datas['special_rate'] == '1.25' || $datas['special_rate'] <= '1.50'){
+                        $dataApprover = array('approver'=>'AM','Regional Head');
+                        $jumlah = 3;
+                    }else if($datas['special_rate'] > '1.50'){
+                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                        $jumlah = 4;
+                    }else{
+                        echo 'Approver Not Found';
+                    }
+                }
+            }
+            
+            $path = explode(';',$dataa->path);
+            $countPath = count($path);
+            $regional = $dataa->regional;
+            for($i = 0; $i<$countPath;$i++){
+                if($countPath==4){
+                    // echo "<script type='text/javascript'>alert('$path[$i]');</script>";
+                    // echo'</br>';
+                    $userBM = UserJob::where('id_branch',$cabang)->where('id_jobs','S0362')->get();
+                    $userAM = UserJob::where('id_branch',$path[1])->where('id_jobs','S0465')->get();
+                    $userRH = UserJob::where('id_branch',$path[2])->where('id_jobs','S0301')->get();
+                    $userDR = "setiawati.samahita@idn.ccb.com";
+                }elseif($countPath==3){
+                    $userBM = UserJob::where('id_branch',$cabang)->where('id_jobs','S0465')->get();
+                    $userAM = UserJob::where('id_branch',$cabang)->where('id_jobs','S0465')->get();
+                    $userRH = UserJob::where('id_branch',$path[1])->where('id_jobs','S0301')->get();
+                    $userDR = "setiawati.samahita@idn.ccb.com";
+                    // echo "<script type='text/javascript'>alert('$path[$i]');</script>";
+                }
+            }
+        }
+            $td_user = new TD_USER();
+            $td_user->id_td = $id;
+            $td_user->bm = $userBM[0]->username;
+            $td_user->am = $userAM[0]->username;
+            $td_user->rh = $userRH[0]->username;
+            $td_user->dr = 'setiawati.samahita@idn.ccb.com';
+            $td_user->region = $regional;
+            $td_user->jumlah = $jumlah;
+            $td_user->save();
+        
+             
+            $td = TD::find($id);
+            $td->approver = $td_user->jumlah;
+            $td->col = 'col';
+            $td->save();
+        //insert flag 'col' pada data yg terakhir dimasukan
+        $td = TD::find($id);
+        $td->col = 'col';
+        $td->save();
+        //return ke halaman timeline col
+       return view('timeline-col',compact('data',$data,'allData',$allData));
+        //  dd($td);
+     }
+ 
 
     /**
      * Display the specified resource.
@@ -101,6 +303,95 @@ class TDCollectiveController extends Controller
     public function show($id)
     {
         //
+        $id = session('id');
+        $data = TD::where('id_memmo', $id)->get();
+        $bm = 0;
+        $am = 0;
+        $rm = 0;
+        $director = 0;
+        $dataApprover = array(['Area Manager','Regional Head','Director']);
+        foreach($data as $datas){
+            if($datas['currency'] == 'IDR'){
+                if($datas['period'] == 1 || $datas['period'] == 3){
+                    if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
+                        // echo'AM';
+                        $dataApprover = array('approver'=>'Area Manager');
+                    }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.25'){
+                        $dataApprover = array('approver'=>'Area Manager','Regional Head');
+                    }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] > '6.25'){
+                        $dataApprover = array('approver'=>'Area Manager','Regional Head','Director');
+                    }else{
+                        echo 'Approver Not Found';
+                    }
+                }else if($datas['period'] == 6 || $datas['period'] == 12){
+                    if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '5.75'){
+                        $dataApprover = array('approver'=>'Area Manager');
+                    }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '6.00'){
+                        $dataApprover = array('approver'=>'Area Manager','Regional Head');
+                    }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
+                        $dataApprover = array('approver'=>'Area Manager','Regional Head','Director');
+                    }else{
+                        echo 'Approver Not Found';
+                    }
+                }else if($datas['period'] == 12){
+                    if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '5.75'){
+                        $dataApprover = array('approver'=>'Area Manager');
+                    }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '60.00'){
+                        $dataApprover = array('approver'=>'Area Manager','Regional Head');
+                    }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
+                        $dataApprover = array('approver'=>'Area Manager','Regional Head','Director');
+                    }else{
+                        echo 'Approver Not Found';
+                    }
+                }
+            }elseif($datas['currency']=='USD'){
+                $period = "All Period";
+               if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '1.00'){
+                   $dataApprover = array('approver'=>'Area Manager');
+                   $apr = 2;
+                  
+               }else if($datas['special_rate'] == '1.00' || $datas['special_rate'] <= '1.25'){
+                   $dataApprover = array('approver'=>'Area Manager','Regional Head');
+                   $apr = 3;
+               }else if($datas['special_rate'] > '1.25'){
+                   $dataApprover = array('approver'=>'Area Manager','Regional Head','Director');
+                   $apr = 4;
+               }else{
+                   echo 'Approver Not Found';
+               }
+           }elseif($datas['currency']=='SGD'){
+               $period = "All Period";
+               if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '0.75'){
+                   $dataApprover = array('approver'=>'Area Manager');
+                   $apr = 2;
+               }else if($datas['special_rate'] == '0.75' || $datas['special_rate'] <= '1.00'){
+                   $dataApprover = array('approver'=>'Area Manager','Regional Head');
+                   $apr = 3;
+               }else if($datas['special_rate'] > '1.00'){
+                   $dataApprover = array('approver'=>'Area Manager','Regional Head','Director');
+                   $apr = 4;
+               }else{
+                   echo 'Approver Not Found';
+               }
+           }elseif($datas['currency']=='CNY'){
+               $period = "All Period";
+               if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '1.25'){
+                   $dataApprover = array('approver'=>'Area Manager');
+                   $apr = 2;
+               }else if($datas['special_rate'] == '1.25' || $datas['special_rate'] <= '1.50'){
+                   $dataApprover = array('approver'=>'Area Manager','Regional Head');
+                   $apr = 3;
+               }else if($datas['special_rate'] > '1.50'){
+                   $dataApprover = array('approver'=>'Area Manager','Regional Head','Director');
+                   $apr = 4;
+               }else{
+                   echo 'Approver Not Found';
+               }
+           }
+        }
+        return view('summaryCol',compact('data', $data))->with('apr',$dataApprover);
+        //echo $id;
+       
     }
 
     /**
@@ -136,4 +427,6 @@ class TDCollectiveController extends Controller
     {
         //
     }
+
+   
 }

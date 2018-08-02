@@ -1057,6 +1057,7 @@ class TDController extends Controller
                 
                 $td = TD::find($id_td);
                 $td->approver = $td_user->jumlah;
+                $td->col = 'col';
                 $td->save();
         
         $lastIDMemo =  TD::orderBy('id', 'desc')->first();
@@ -1064,6 +1065,8 @@ class TDController extends Controller
         $banks = MasterBank::all();
         $branch = m_branchs::all();
         $data = MasterSpecialRate::all();
+
+       
     //  dd($branch);
         return view('registrasi-td-form-col', compact('banks','branch','data','lastIDMemo', 'lastIDTd'));
     }
