@@ -100,12 +100,6 @@
                     </a>
                  </li>
 
-                 <li class="@yield('')">
-                    <a href="{{route('tdc.index')}}">
-                        <i class="material-icons">view_list</i>
-                        <p>List Collective</p>
-                    </a>
-                 </li>
                  <?php
                     if(session('job')=='S0309'){
                  ?>
