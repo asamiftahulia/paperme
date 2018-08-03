@@ -87,7 +87,6 @@
                                 @endforeach                                           
                                 </select>
                             </div>
-                            </div>
                             <div class="col-md-6">
                                 <b>Sumber Dana</b>
                                 <input type="file" name="image">
@@ -98,7 +97,7 @@
                             <div class="col-md-12">
                                 <div class="form-group label-floating">
                                     <b>Notes</b>
-                                    <input type="text" class="form-control" name="notes" placeholder="Write a notes">
+                                    <textarea class="form-control" name="notes" rows="5"></textarea>
                                 </div>
                             </div>
                         </div>

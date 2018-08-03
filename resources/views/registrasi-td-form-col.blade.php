@@ -18,7 +18,7 @@
                 <div class="card-content">
                     <?php
                       
-                            echo "<script>alert(".$lastIDMemo['id'].");</script>";
+                            // echo "<script>alert(".$lastIDMemo['id'].");</script>";
                         
                     ?>
 
@@ -29,7 +29,7 @@
                             <div class="col-md-12">
                                 <b>Full Name</b>
                                 <input type="text" class="form-control" placeholder="e.g : John Doe" name="full_name" required>  
-                                <input type="text" class="form-control" name="id_memmo" value='{{$lastIDMemo["id_memmo"]}}'>
+                                <input type="hidden"  name="id_memmo" value='{{$lastIDMemo["id_memmo"]}}'>
                                 
                             </div>
                          </div>
