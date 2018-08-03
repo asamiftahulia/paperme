@@ -149,11 +149,13 @@ class TDCollectiveController extends Controller
 
     public function timelineCollective($id_memmo){
         $data = TD::where('id_memmo',$id_memmo)->get();
+        //ambil approvernya aja
+      
+        // for()
         //ambil id terakhir guna untuk update colom col diisi dengan 'col'
         $id_td = TD::where('id_memmo',$id_memmo)->orderBy('id','desc')->get()->first();
         $id = $id_td->id;
-        $allData = TD::all();
-
+     
         //insert td user
         $IdBranch = TD::where('id', $id)->get(['id_branch']);
         if($IdBranch!='NULL'){
@@ -269,28 +271,80 @@ class TDCollectiveController extends Controller
                 }
             }
         }
-            $td_user = new TD_USER();
-            $td_user->id_td = $id;
-            $td_user->bm = $userBM[0]->username;
-            $td_user->am = $userAM[0]->username;
-            $td_user->rh = $userRH[0]->username;
-            $td_user->dr = 'setiawati.samahita@idn.ccb.com';
-            $td_user->region = $regional;
-            $td_user->jumlah = $jumlah;
-            $td_user->save();
+
+                $arrJumlah = [];
         
-             
+                $td = TD::find($id);
+                $td->col = 'col';
+                $td->save();
+            //insert flag 'col' pada data yg terakhir dimasukan
             $td = TD::find($id);
-            $td->approver = $td_user->jumlah;
             $td->col = 'col';
             $td->save();
-        //insert flag 'col' pada data yg terakhir dimasukan
-        $td = TD::find($id);
-        $td->col = 'col';
-        $td->save();
-        //return ke halaman timeline col
-       return view('timeline-col',compact('data',$data,'allData',$allData));
-        //  dd($td);
+            $string =[];
+            $cekIdTdDiUser = DB::table('td_user')->where('id_td', $id)->pluck('id_td')->all();
+            // dd($cekIdTdDiUser,$string);
+            $maxAprover = TD::where('id_memmo', $id_memmo)->pluck('approver')->all();
+            $maksApprover = max($maxAprover);
+            // dd(max($maxAprover));
+            $allData = DB::table('time-deposit')
+            ->select('*')
+            ->join('td_user', 'time-deposit.id', '=', 'td_user.id_td')
+            ->where('time-deposit.id_memmo',$id_memmo)
+            ->where('time-deposit.approver',$maksApprover)
+            ->get();
+        // dd($allData);
+
+        $statusPengajuanBM = DB::table('trx-time-deposit')
+        ->select('*')
+        ->join('time-deposit', 'trx-time-deposit.id_td', '=', 'time-deposit.id')
+        ->where('time-deposit.id_memmo',$id_memmo)
+        ->where('role','Branch Manager')
+        ->pluck('aksi');
+        
+       
+        if($statusPengajuanBM!=$string){
+            $tempStatusBM = $statusPengajuanBM;
+        }else{
+            $tempStatusBM = '';
+        }
+
+        // 
+        $statusPengajuanAM = DB::table('trx-time-deposit')
+        ->select('*')
+        ->join('time-deposit', 'trx-time-deposit.id_td', '=', 'time-deposit.id')
+        ->where('time-deposit.id_memmo',$id_memmo)
+        ->where('role','Area Manager')
+        ->pluck('aksi');
+        // dd($statusPengajuanAM);
+        if($statusPengajuanAM!=$string){
+            $tempStatusAM = $statusPengajuanAM;
+        }else{
+            $tempStatusAM = '';
+        }
+            if($cekIdTdDiUser==$string){
+                $td_user = new TD_USER();
+                $td_user->id_td = $id;
+                $td_user->bm = $userBM[0]->username;
+                $td_user->am = $userAM[0]->username;
+                $td_user->rh = $userRH[0]->username;
+                $td_user->dr = 'setiawati.samahita@idn.ccb.com';
+                $td_user->region = $regional;
+                $td_user->jumlah = $jumlah;
+                $td_user->save();
+
+                $td = TD::find($id);
+                $td->approver = $td_user->jumlah;
+                $td->save();
+
+                
+                return view('timeline-col',compact('data',$data,'allData',$allData,'maksApprover',$maksApprover,'tempStatusBM',$tempStatusBM,'tempStatusBM',$tempStatusBM));
+            }else{
+               
+                return view('timeline-col',compact('data',$data,'allData',$allData,'maksApprover',$maksApprover,'tempStatusBM',$tempStatusBM,'tempStatusAM',$tempStatusAM));
+            }
+        
+        
      }
  
 

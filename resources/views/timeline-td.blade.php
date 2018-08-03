@@ -130,7 +130,7 @@
                     <div class="flag-wrapper">
                       <span class="hexa"></span>
                       <span class="flag">Branch Manager</span>
-                      <span class="time-wrapper"><span class="time" id="time">-</span></span>
+                      <span class="time-wrapper"><span class="time" id="time-bm">-</span></span>
                       </br>
                     </div>
                     <div class="desc"><p id="actionBM1">Waiting An Action From Branch Manager</p><br>
@@ -1540,11 +1540,12 @@ $("input").click(function(e){
     document.getElementById('btn-approve-bm1').style.visibility = 'hidden';
     document.getElementById("btn-revisi-bm1").style.visibility = 'hidden';
     document.getElementById("btn-reject-bm1").style.visibility = 'hidden';
-    document.getElementById("time").innerHTML = today;
+    document.getElementById("time-bm").innerHTML = today;
   }
 
   function autoDisableAM1() {
     document.getElementById("time-am-1").innerHTML = today;
+    document.getElementById("time-bm").innerHTML = today;
     document.getElementById('actionAM1').innerHTML = "This Special Rate Has Been <font color='green'>Approved </font>by Area Manager";
     document.getElementById('btn-approve-am1').style.visibility = 'hidden';
     document.getElementById("btn-revisi-am1").style.visibility = 'hidden';
@@ -1640,8 +1641,16 @@ $("input").click(function(e){
     }
     if(bm != 0){
       this.autoDisableBM1();
-    
     }
+    if(rejectbm == 1){
+        document.getElementById("time-bm").innerHTML = today;
+        document.getElementById("time-am-1").innerHTML = today;
+        document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+        document.getElementById('actionAM1').innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Branch Manager";
+        document.getElementById('btn-approve-bm1').style.visibility = 'hidden';
+    document.getElementById("btn-revisi-bm1").style.visibility = 'hidden';
+    document.getElementById("btn-reject-bm1").style.visibility = 'hidden';
+      }
   }else if(jumlahApr==3){
     if(bm != 0){
        this.autoDisableBM2();
