@@ -78,21 +78,18 @@
                   </div>
                 </div>
             </tr>
-                                            <tr bgcolor="#21daf9">
-                                                <td colspan="12">
-                                                    Approver
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="12">
-                                                    @foreach($apr as $da)
-                                                        {{$da}}
-                                                        </br>
-                                                    @endforeach
-                                                </td>
-                                            </tr>
-                                     
-                                         @endforeach
+                    @endforeach
+            <tr bgcolor="#21daf9">
+                <td colspan="12">Approver</td>
+            </tr>
+            <tr>
+                <td colspan="12">
+                @foreach($apr as $da)
+                        {{$da}} </br>
+                @endforeach
+                </br>
+                </td>
+            </tr>
                                           </tbody>
                                     </table>
                                 </div>

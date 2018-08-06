@@ -37,9 +37,9 @@
                               <td> <?php echo number_format($datas->amount,2); ?> {{$datas->currency}}</td>
                             </tr>
                             <tr>
-                              <td>Special Rate</td>
+                              <td>Status Pengajuan  </td>
                               <td> : </td>
-                              <td> {{$datas->special_rate}} %</td>
+                              <td>NEW</td>
                             </tr>
                             <tr>
                               <td>Period</td>

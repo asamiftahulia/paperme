@@ -14,7 +14,8 @@
                 <div class="card-header" data-background-color="blue">
                   <h4 class="title">TIMELINE </br>Time Deposit Special Rate</h4>
 
-                </div></br><font align="center">THIS DATA IS COLLECTIVE <?php echo $maksApprover;?></font></br></br>
+                </div></br>
+				<!-- <font align="center">THIS DATA IS COLLECTIVE <?php echo $maksApprover;?></font></br></br> -->
                 <!-- ini mulai BM -->
  <?php
 	$rm = '';
@@ -41,7 +42,26 @@
 			</br>
 		</div>
 		<div class="desc">
-			<p id="act-bm">Waiting An Action From Branch Manager</p>
+			<?php 
+				$rejected = 0;
+				foreach($tempStatusBM as $aksiBM){
+					if($aksiBM == 'Reject'){
+						$rejected = 1;
+					}
+				}
+				?>
+			<?php
+				if($rejected==0){ ?>
+					<p id="act-bm">This Special Rate Has Been<font color="green"> Approved </font>By Branch Manager</p>
+		<?php	}else if($rejected == 1){
+		?>
+					<p id="act-bm">This Special Rate Has Been<font color="red"> Rejected </font>By Branch Manager</p>
+		<?php	
+				}else{
+		?>
+				<p id="act-bm">Waiting an action from Branch Manager</p>
+		<?php		}
+			?>
 			<br>
 			<?php 
 				if(session('username')==$bm){
@@ -66,8 +86,26 @@
 			</br>
 		</div>
 		<div class="desc">
-			<p id="act-am">Waiting An Action From Area Manager</p>
-			
+		<?php 
+				$rejected = 0;
+				foreach($tempStatusAM as $aksiAM){
+					if($aksiAM == 'Reject'){
+						$rejected = 1;
+					}
+				}
+				?>
+			<?php
+				if($rejected==0){ ?>
+					<p id="act-am">This Special Rate Has Been<font color="green"> Approved </font>By Area Manager</p>
+		<?php	}else if($rejected == 1){
+		?>
+					<p id="act-am">This Special Rate Has Been<font color="red"> Rejected </font>By Area Manager</p>
+		<?php	
+				}else{
+		?>
+				<p id="act-am">Waiting an action from Area Manager</p>
+		<?php		}
+			?>
 			<br>
 			<?php
 				if(session('username')==$am){
@@ -92,7 +130,26 @@
 			</br>
 		</div>
 		<div class="desc">
-			<p id="act-rh">Waiting An Action From Regional Head</p>
+		<?php 
+				$rejected = 0;
+				foreach($tempStatusRH as $aksiRH){
+					if($aksiRH == 'Reject'){
+						$rejected = 1;
+					}
+				}
+				?>
+			<?php
+				if($rejected==0){ ?>
+					<p id="act-rh">This Special Rate Has Been<font color="green"> Approved </font>By Regional Head</p>
+		<?php	}else if($rejected == 1){
+		?>
+					<p id="act-rh">This Special Rate Has Been<font color="red"> Rejected </font>By Regional Head</p>
+		<?php	
+				}else{
+		?>
+				<p id="act-rh">Waiting an action from Regional Head</p>
+		<?php		}
+			?>
 			<br>
 			<?php
 				if(session('username')==$rh){
@@ -180,15 +237,20 @@
 										<td>
                                             <input type='radio' name='aksi<?php echo $counter;?>' value='Approve'/>Approve
                                             <input type='hidden' name='role<?php echo $counter;?>' value='Branch Manager'/>
-					</div>
-					<div><input type='radio' name='aksi<?php echo $counter;?>' value='Reject'/>Reject</div>
-					</td>
+									</div>
+									<div><input type='radio' name='aksi<?php echo $counter;?>' value='Reject'/>Reject</div>
+									</td>
 					<!-- <td class="text-primary">$36,738</td> -->
-					</tr>
+									</tr>
 					<?php 
 						$i=$i+1;
 					?>
-					@endforeach
+					@endforeach	
+									<tr>
+										<td>
+											<input type='checkbox' />Approve All </br> 
+											<input type='checkbox' />Reject All </br></td>
+									</tr>
 					<div><input type='hidden' name='counter' value='<?php echo $counter;?>'/></div>
 					</tbody>
 					</table>
