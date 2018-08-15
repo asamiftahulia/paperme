@@ -249,13 +249,13 @@ class TDController extends Controller
         foreach($data as $datas){
             if($datas['currency'] == 'IDR'){
                 if($datas['period'] == 1 || $datas['period'] == 3){
-                    if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '6.25'){
+                    if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
                         // echo'AM';
                         $dataApprover = array('approver'=>'Area Manager');
-                    }else if($datas['special_rate'] == '6.25' || $datas['special_rate'] <= '6.50'){
+                    }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.25'){
                         $dataApprover = array('approver'=>'Area Manager','Regional Head');
-                    }else if($datas['special_rate'] == '6.25' || $datas['special_rate'] < '6.75'){
-                        $dataApprover = array('approver'=>'Area Manager','Regional Head');
+                    }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] > '6.25'){
+                        $dataApprover = array('approver'=>'Area Manager','Regional Head','Director');
                     }else{
                         echo 'Approver Not Found';
                     }
@@ -827,17 +827,17 @@ class TDController extends Controller
           foreach($data as $datas){
             if($datas['currency'] == 'IDR'){
                 if($datas['period'] == 1 || $datas['period'] == 3){
-                    if($datas['special_rate'] == '5.5' || $datas['special_rate'] <= '6.25'){
+                    if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
                         $dataApprover = array('approver'=>'AM');
                         $apr = 2;
                         $period = "1 & 3";
-                    }else if($datas['special_rate'] == '6.25' || $datas['special_rate'] <= '6.50'){
+                    }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.25'){
                         $dataApprover = array('approver'=>'AM','Regional Head');
                         $apr = 3;
                         $period = "1 & 3";
-                    }else if($datas['special_rate'] == '6.25' || $datas['special_rate'] <= '6.75'){
-                        $dataApprover = array('approver'=>'AM','Regional Head');
-                        $apr = 3;
+                    }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] > '6.25'){
+                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                        $apr = 4;
                         $period = "1 & 3";
                     }else{
                         echo 'Approver Not Found';
