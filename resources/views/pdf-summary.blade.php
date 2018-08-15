@@ -30,11 +30,13 @@ tr:nth-child(even){background-color: #f2f2f2}
 
     @php
     $month = date('m', strtotime($dataa->date_rollover));
-    $year = date('y', strtotime($dataa->date_rollover));
+    $year = date('Y', strtotime($dataa->date_rollover));
+    
+    $branch = substr ($dataa->id_branch ,-3);
     @endphp
 
     <H2 align='center'><b>PERMOHONAN PERSETUJUAN SPECIAL RATE DEPOSITO</b></H2>
-    <H3 align='center'>Nomor Surat : 0{{$dataa->id}}/CCBI/SR/{{$month}}/{{$year}}</H3>
+    <H3 align='center'>Nomor Surat : 0{{$dataa->id}}/CCBI/{{$branch}}/SR/{{$month}}/{{$year}}</H3>
     <h4>Kepada : 
     <?php
             if($dataa->approver == 3){
@@ -47,7 +49,7 @@ tr:nth-child(even){background-color: #f2f2f2}
     ?>
         {{$kpd}}
     </h4>
-    <h4>Dari : {{$dataa->created_by}}</h4>
+    <h4>Diajukan Oleh : {{$dataa->created_by}}</h4>
     <h4>Tanggal : {{$dataa->date_rollover}}</h4>
     </div>
 
@@ -66,7 +68,7 @@ tr:nth-child(even){background-color: #f2f2f2}
             <th class="unit">Tanggal Rollover</th>
             <th class="unit">Tanggal Jatuh Tempo</th>
             <th class="unit">Period</th>
-            <th class="total">Normal Rate (%)</th>
+            <th class="total">Counter Rate (%)</th>
             <th class="total">Special Rate (%)</th>
             <th>Keterangan </th>
         </tr>
@@ -94,7 +96,7 @@ tr:nth-child(even){background-color: #f2f2f2}
         <tr>
             <th>Approved At</th>
             <th>Approved By</th>
-            <th>Role</th>
+            <th>Jabatan </th>
         </tr>
     
         @foreach($datalengkap as $aprover)
@@ -119,7 +121,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 
 </main>
 <footer>
-    Permohonan Persetujuan Special Rate Deposito
+Proposal ini diajukan dan disetujui melalui system sehingga tidak memerlukan tanda tangan
 </footer>
 </body>
 </html>

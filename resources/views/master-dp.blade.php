@@ -49,7 +49,49 @@
 </head>
 
 <body>
+    
 <div class="wrapper">
+        <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="{{url('/logout')}}" class="dropdown-toggle">
+                                    <i class="material-icons">exit_to_app</i>
+                                    <p class="hidden-lg hidden-md">exit_to_app</p>
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="material-icons">notifications</i>
+                                    <span class="notification">5</span>
+                                    <p class="hidden-lg hidden-md">Notifications</p>
+                                </a>
+                                
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">Mike John responded to your email</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">You have 5 new tasks</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">You're now friend with Andrew</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Another Notification</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Another One</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="material-icons">person</i>
+                                    <p class="hidden-lg hidden-md">Profile</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
     <div class="sidebar" data-color="blue" data-image="../assets/img/sidebar-1.jpg">
         <!--
     Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
@@ -99,6 +141,28 @@
                         <p>Time Deposit List</p>
                     </a>
                  </li>
+                
+                 <li class="@yield('aktif-mtimedeplist')">
+                    <a href="{{route('td.tab')}}">
+                        <i class="material-icons">view_list</i>
+                        <p>Tab </p>
+                    </a>
+                 </li>
+                
+                 <!-- <li class="@yield('aktif-mtimedeplist')">
+                    <a href="{{route('timedeposit.create')}}">
+                        <i class="material-icons">view_list</i>
+                        <p>Registrasi </p>
+                    </a>
+                 </li> -->
+
+                 <li class="@yield('aktif-mtimedeplistFinish')">
+                    <a href="{{route('td.indexFinish')}}">
+                        <i class="material-icons">view_list</i>
+                        <p>Time Deposit List Finish</p>
+                    </a>
+                 </li>
+
 
                  <?php
                     if(session('job')=='S0309'){
@@ -115,13 +179,6 @@
                     <a href="{{route('special-rate.index')}}">
                         <i class="material-icons">dns</i>
                         <p>Master Special Rate</p>
-                    </a>
-                 </li>
-                 
-                 <li class="">
-                    <a href="{{url('/logout')}}">
-                        <i class="material-icons">assignment</i>
-                        <p>Logout</p>
                     </a>
                  </li>
               <!--<li class="@yield('aktif-timeline')">

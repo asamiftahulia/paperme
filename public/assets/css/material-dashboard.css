@@ -5425,7 +5425,7 @@ footer .btn {
 }
 
 .nav-tabs {
-    background: #9c27b0;
+    background: transparent;
     border: 0;
     border-radius: 3px;
     padding: 0 15px;

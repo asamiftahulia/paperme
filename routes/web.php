@@ -56,6 +56,15 @@ Route::patch('/InsertCol',[
     'uses' => 'TDController@storeCol'
 ]);
 
+Route::get('/td-finish',[
+    'as' => 'td.indexFinish',
+    'uses' => 'TDController@indexFinish'
+]);
+
+Route::get('/tab-menu',[
+    'as' => 'td.tab',
+    'uses' => 'TDController@tabMenu'
+]);
 
 Route::post('td/revisi/{id}','TDController@revisi');
 Route::get('td/renew/{id}','TDController@renew');
