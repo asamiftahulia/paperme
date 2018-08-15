@@ -60,7 +60,7 @@
                                                         {{'NEW'}}
                                                     @endif 
                                                 </td> -->
-                                                <td>{{number_format($datas['amount'],2)}} ({{$datas['currency']}})</td>
+                                                <td>{{number_format($datas['amount'],2,',','.')}} ({{$datas['currency']}})</td>
                                                  <td>{{$datas['date_rollover']}} </td>
                                                 <td>{{$datas['expired_date']}} </td>
                                                 <td>{{$datas['period']}} Bln</td>

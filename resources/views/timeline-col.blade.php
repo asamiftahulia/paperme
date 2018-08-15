@@ -52,7 +52,7 @@
 				?>
 			<?php
 				if($rejected==0){ ?>
-					<p id="act-bm">This Special Rate Has Been<font color="green"> Approved </font>By Branch Manager</p>
+					<p id="act-bm">Waiting an action from Branch Manager</p>
 		<?php	}else if($rejected == 1){
 		?>
 					<p id="act-bm">This Special Rate Has Been<font color="red"> Rejected </font>By Branch Manager</p>
@@ -96,7 +96,7 @@
 				?>
 			<?php
 				if($rejected==0){ ?>
-					<p id="act-am">This Special Rate Has Been<font color="green"> Approved </font>By Area Manager</p>
+					<p id="act-am">Waiting an action from Area Manager</p>
 		<?php	}else if($rejected == 1){
 		?>
 					<p id="act-am">This Special Rate Has Been<font color="red"> Rejected </font>By Area Manager</p>

@@ -249,13 +249,13 @@ class TDController extends Controller
         foreach($data as $datas){
             if($datas['currency'] == 'IDR'){
                 if($datas['period'] == 1 || $datas['period'] == 3){
-                    if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
+                    if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '6.25'){
                         // echo'AM';
                         $dataApprover = array('approver'=>'Area Manager');
-                    }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.25'){
+                    }else if($datas['special_rate'] == '6.25' || $datas['special_rate'] <= '6.50'){
                         $dataApprover = array('approver'=>'Area Manager','Regional Head');
-                    }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] > '6.25'){
-                        $dataApprover = array('approver'=>'Area Manager','Regional Head','Director');
+                    }else if($datas['special_rate'] == '6.25' || $datas['special_rate'] < '6.75'){
+                        $dataApprover = array('approver'=>'Area Manager','Regional Head');
                     }else{
                         echo 'Approver Not Found';
                     }
