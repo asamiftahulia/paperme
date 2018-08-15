@@ -37,9 +37,15 @@ class LoginApiController extends Controller
         $email = Input::get('email');
         $password = Input::get('password');
 
+<<<<<<< HEAD
     //    try{
     //     $response = $client->post('http://los.ccbi.co.id/login', ['json'=>['username'=>$email,'password'=>$password]]);
     //     $data = $response->getBody();
+=======
+       try{
+        $response = $client->post('http://los.ccbi.co.id/login', ['json'=>['username'=>$email,'password'=>$password]]);
+        $data = $response->getBody();
+>>>>>>> 9a962737c642e45e5d76cf3987cd822276b75b22
 
     //    $data = json_decode($data);
     //  $statuscode = $response->getStatusCode();

@@ -68,6 +68,7 @@
                                 
                                 <ul class="dropdown-menu">
                                     <li>
+<<<<<<< HEAD
                                         <a href="#">Mike John responded to your email</a>
                                     </li>
                                     <li>
@@ -77,6 +78,11 @@
                                         <a href="#">You're now friend with Andrew</a>
                                     </li>
                                     <li>
+=======
+                                        <a href="#">You have 5 new tasks</a>
+                                    </li>
+                                    <li>
+>>>>>>> 9a962737c642e45e5d76cf3987cd822276b75b22
                                         <a href="#">Another Notification</a>
                                     </li>
                                     <li>
