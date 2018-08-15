@@ -835,7 +835,7 @@ class TDController extends Controller
                         $dataApprover = array('approver'=>'AM','Regional Head');
                         $apr = 3;
                         $period = "1 & 3";
-                    }else if($datas['special_rate'] == '6.25' || $datas['special_rate'] > '6.75'){
+                    }else if($datas['special_rate'] == '6.25' || $datas['special_rate'] <= '6.75'){
                         $dataApprover = array('approver'=>'AM','Regional Head');
                         $apr = 3;
                         $period = "1 & 3";
