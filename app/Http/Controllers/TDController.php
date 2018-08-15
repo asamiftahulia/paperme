@@ -36,11 +36,13 @@ class TDController extends Controller
         $lengkap = DB::table('time-deposit')
             ->select('*')
             ->join('td_user', 'time-deposit.id', '=', 'td_user.id_td')
+            ->where('time-deposit.status','!=','FINISH')
             ->orderBy('time-deposit.created_at','desc')
             ->get();
         $lengkapForBM = DB::table('time-deposit')
             ->select('*')
             ->join('td_user', 'time-deposit.id', '=', 'td_user.id_td')
+            ->where('time-deposit.status','!=','FINISH')
             ->orderBy('time-deposit.created_at','asc')
             ->get();
 
@@ -50,6 +52,31 @@ class TDController extends Controller
         return view('list-td',compact('data','trx','tdUser','lengkap','lengkapForBM','dataLengkapForBM'));
         //  dd($lengkapForBM);
         
+    }
+
+    public function indexFinish()
+    {
+        //
+        $dataFinish = DB::table('time-deposit')->where('status', 'FINISH')->get();
+        return view('list-td-finish',compact('dataFinish'));
+        //  dd($lengkapForBM);
+        
+    }
+
+    public function tabMenu(){
+          $lengkapForBMSingle = DB::table('time-deposit')
+              ->select('*')
+              ->join('td_user', 'time-deposit.id', '=', 'td_user.id_td')
+              ->where('time-deposit.status','!=','FINISH')
+              ->whereNull('col')
+              ->orderBy('time-deposit.created_at','asc')
+              ->get();
+        
+           $lengkapForBMCol=TD::distinct('id_memmo')->get(['id_memmo']);
+
+           $dataDetailCol = TD::where('id_memmo','=','2');
+        return view('tab-menu-',compact('lengkapForBMSingle','lengkapForBMCol'));
+        dd($dataDetailCol);
     }
 
     /**
@@ -899,10 +926,16 @@ class TDController extends Controller
         ->pluck('approver')->first();
         // dd($checkApproved);
         // dd($approver);
-        
+
+        $trxDetail =DB::table('trx-time-deposit')
+        ->select('*')
+        ->where('id_td','=',$id_td)
+        ->get();
+        // dd($trxDetail);
         return view('timeline-td',compact('data',$data))->with('apr',$dataApprover)
         ->with('user',$user)
         ->with('rev',$rev)
+        ->with('trxDetail',$trxDetail)
         ->with('valButton',$valButton)
         ->with('trx',$trx)
         ->with('jumlahApr',$apr)

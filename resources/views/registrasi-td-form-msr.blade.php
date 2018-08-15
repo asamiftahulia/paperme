@@ -40,7 +40,7 @@
                             </div>
                             <div class="col-md-4">
                                 <b>Amount</b>
-                                <input type="text" class="form-control" name="amount" id="amount" require>
+                                <input type="text" class="form-control" placeholder="e.g: Rp. 99,000" id="amount" name="amount" required>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -57,7 +57,7 @@
                              <div class="col-md-4">
                                 <div class="form-group label-floating">
                                       <b>Special Rate (%)</b>
-                                    <input type="number" step="0.01" class="form-control" id="special_rate" placeholder="e.g: 5.00" name="special_rate" required onblur="myFunction()">
+                                    <input type="number" step="0.01" class="form-control" id="special_rate" placeholder="e.g: 5.00" name="special_rate" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -141,53 +141,8 @@
 <p id="demo" hidden></p>
   <p id="apr" hidden></p>
     </form>
-<script>
-function myFunction() {
- 
-    var oneM = Number("1000000000");
-    var period = document.getElementById('period').value;
-    var amount = document.getElementById("amount").value;
-    var sr = document.getElementById("special_rate").value;
-    var parsAmount = parseFloat(amount.replace(/,/g, ''));
-   
-    if(period == 1){
-        if(parsAmount > 100000000 && parsAmount <= 1000000000){
-             if(sr > 6.50){
-                alert("Maksimal Special Rate 6.50, Nominal Anda  : " + amount);
-                document.getElementById('special_rate').value = 6.50;
-                document.getElementById('normal_rate').value = 5.5;
-            }
-        }else{
-            alert("Maksimal Special Rate 6.75, Nominal Anda  : " + amount);
-            document.getElementById('special_rate').value = 6.75;
-            document.getElementById('normal_rate').value = 5.5;
-        }
-    }else if(period == 3 || period == 6){
-        if(parsAmount > 100000000){
-            if(sr > 6.75){
-                alert("Maksimal Special Rate 6.75, Nominal Anda  : " + amount );
-                document.getElementById('special_rate').value = 6.75;
-                document.getElementById('normal_rate').value = 5.75;
-            }
-        }
-    }else if(period == 12){
-        if(parsAmount > 100000000){
-            if(sr > 6.75){
-                alert("Maksimal Special Rate 6.75, Nominal Anda  : " + amount );
-                document.getElementById('special_rate').value = 6.75;
-                document.getElementById('normal_rate').value = 6;
-            }
-        }
-    }
-
-}
-</script>
 
 <script type="text/javascript">
-function updateInput(ish){
-    var amount = document.getElementById('amount').value;
-    document.getElementById('amount').value = ish;
-}
   function autoFillByCurrency() {
     var specialRate = document.getElementById('special_rate').value;
     var normalRate = document.getElementById('normal_rate').value;
@@ -197,14 +152,13 @@ function updateInput(ish){
 
   function autoFill() {
     var specialRate = document.getElementById('special_rate').value;
-    var amount = document.getElementById('amount').value;
     var normalRate = document.getElementById('normal_rate').value;
     var period = document.getElementById('period').value;
     var currency = document.getElementById('currency').value;
     if(specialRate=='' || specialRate!= ''){
-        if(period == 1){
-            if(amount == 3000){
-                document.getElementById('normal_rate').value = 1.11;
+        if(period == 1 || period == 3){
+            if(currency == 'IDR'){
+            document.getElementById('normal_rate').value = 5.25;
             }else{
                 document.getElementById('normal_rate').value = 0.50;
             }

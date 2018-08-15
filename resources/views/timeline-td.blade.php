@@ -37,9 +37,9 @@
                               <td> <?php echo number_format($datas->amount,2); ?> {{$datas->currency}}</td>
                             </tr>
                             <tr>
-                              <td>Special Rate</td>
+                              <td>Status Pengajuan  </td>
                               <td> : </td>
-                              <td> {{$datas->special_rate}} %</td>
+                              <td>NEW</td>
                             </tr>
                             <tr>
                               <td>Period</td>
@@ -51,11 +51,19 @@
                               <td> : </td>
                               <td><a data-toggle="modal" data-target="#defaultModal">Bukti Sumber Dana</a></td>
                             </tr>
+                            <tr>
+                              <td>History</td>
+                              <td>:</td>
+                              <td>
+                                <input type="button" id="btn-revisi-bm1" data-toggle="modal" data-target="#modalDetailHistory" class="btn btn-info btn-sm" value="Detail">
+                              </td>
+                            </tr>
                             <!-- <tr>
                               <td>Jumlah Approver</td>
                               <td> : </td>
                               <td> {{$datas->approver}}</td>
                             </tr> -->
+
               <div class="row" align="right">
                 <a align="center" href="{{route('td.index')}}"><input type="button" id="btn-submit" class="btn btn-warning" value="Back To List Time Deposit"></a>
                   <?php
@@ -188,6 +196,7 @@
                       
                   </div>
                 </div>
+                
                 <!-- Approve -->
                 <div class="modal fade" id="modalAprBM" tabindex="-1" role="dialog">
                   <div class="modal-dialog modal-lg" role="document">
@@ -1474,9 +1483,50 @@
             @endforeach
           
         </div>
-      </div>
-          
+      </div>   
   </div>
+  <div class="modal fade" id="modalDetailHistory" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title" id="defaultModalLabel">History</h4>
+                              <div class="modal-header">Detail History Aksi
+                            </div>
+                          </div>
+                          <div class="modal-body">
+                            <!-- <form action="{{url('td/revisi',$datas->id)}}" method="post"> -->
+                            <form action="{{url('trx/revisi',$datas->id)}}" method="post">
+                            {{ csrf_field() }}
+                            <table class="table">
+                              <tr>
+                                <th>No</th>
+                                <th>Special Rate</th>
+                                <th>Role</th>
+                                <th>Aksi</th>
+                                <th>Created By</th>
+                                <th>Created At</th>
+                              </tr>
+                              <?php $no = 1;?>
+                              @foreach($trxDetail as $trx)
+                              <tr>
+                                  <td>{{$no++}}</td>
+                                  <td>{{$trx->special_rate}}</td>
+                                  <td>{{$trx->role}}</td>
+                                  <td>{{$trx->aksi}}</td>
+                                  <td>{{$trx->created_by}}</td>
+                                  <td>{{$trx->created_at}}</td>
+                              </tr>
+                              @endforeach
+                            </table>
+                            <button type="submit" class="btn btn-info">aaa</button>
+                         </form>
+                          </div>
+                          
+                      </div>
+                      
+                  </div>
+                </div>
 <script type="text/javascript">
 var today = new Date();
 var dd = today.getDate();

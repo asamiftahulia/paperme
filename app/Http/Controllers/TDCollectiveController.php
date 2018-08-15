@@ -293,7 +293,10 @@ class TDCollectiveController extends Controller
             ->where('time-deposit.id_memmo',$id_memmo)
             ->where('time-deposit.approver',$maksApprover)
             ->get();
-        // dd($allData);
+
+            $statusAksiBM = DB::table('trx-time-deposit')->where('id_td', $id)->where('role','Branch Manager')->pluck('aksi')->all();
+
+            
 
         $statusPengajuanBM = DB::table('trx-time-deposit')
         ->select('*')
@@ -302,6 +305,7 @@ class TDCollectiveController extends Controller
         ->where('role','Branch Manager')
         ->pluck('aksi');
         
+        // dd($statusPengajuanBM);
        
         if($statusPengajuanBM!=$string){
             $tempStatusBM = $statusPengajuanBM;
@@ -322,6 +326,21 @@ class TDCollectiveController extends Controller
         }else{
             $tempStatusAM = '';
         }
+
+        $statusPengajuanRH= DB::table('trx-time-deposit')
+        ->select('*')
+        ->join('time-deposit', 'trx-time-deposit.id_td', '=', 'time-deposit.id')
+        ->where('time-deposit.id_memmo',$id_memmo)
+        ->where('role','Regional Head')
+        ->pluck('aksi');
+        // dd($statusPengajuanAM);
+        if($statusPengajuanRH!=$string){
+            $tempStatusRH = $statusPengajuanRH;
+        }else{
+            $tempStatusRH = '';
+        }
+
+
             if($cekIdTdDiUser==$string){
                 $td_user = new TD_USER();
                 $td_user->id_td = $id;
@@ -338,10 +357,14 @@ class TDCollectiveController extends Controller
                 $td->save();
 
                 
-                return view('timeline-col',compact('data',$data,'allData',$allData,'maksApprover',$maksApprover,'tempStatusBM',$tempStatusBM,'tempStatusBM',$tempStatusBM));
+                return view('timeline-col',compact('data',$data,'allData',$allData,
+                'maksApprover',$maksApprover,'tempStatusBM',$tempStatusBM,'tempStatusBM',$tempStatusBM,
+                'tempStatusBM',$tempStatusBM,'tempStatusAM',$tempStatusAM,'tempStatusRH',$tempStatusRH));
             }else{
                
-                return view('timeline-col',compact('data',$data,'allData',$allData,'maksApprover',$maksApprover,'tempStatusBM',$tempStatusBM,'tempStatusAM',$tempStatusAM));
+                return view('timeline-col',compact('data',$data,'allData',$allData,
+                'maksApprover',$maksApprover,'tempStatusBM',$tempStatusBM,'tempStatusAM',$tempStatusAM,
+                'tempStatusBM',$tempStatusBM,'tempStatusAM',$tempStatusAM,'tempStatusRH',$tempStatusRH));
             }
         
         

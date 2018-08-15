@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class SpecialRate extends Model
 {
-    protected $table = 'm-special-rates';
+    protected $table = 'm_sr';
 }

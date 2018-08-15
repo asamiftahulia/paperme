@@ -14,7 +14,8 @@
                 <div class="card-header" data-background-color="blue">
                   <h4 class="title">TIMELINE </br>Time Deposit Special Rate</h4>
 
-                </div></br><font align="center">THIS DATA IS COLLECTIVE <?php echo $maksApprover;?></font></br></br>
+                </div></br>
+				<!-- <font align="center">THIS DATA IS COLLECTIVE <?php echo $maksApprover;?></font></br></br> -->
                 <!-- ini mulai BM -->
  <?php
 	$rm = '';
@@ -41,7 +42,26 @@
 			</br>
 		</div>
 		<div class="desc">
-			<p id="act-bm">Waiting An Action From Branch Manager</p>
+			<?php 
+				$rejected = 0;
+				foreach($tempStatusBM as $aksiBM){
+					if($aksiBM == 'Reject'){
+						$rejected = 1;
+					}
+				}
+				?>
+			<?php
+				if($rejected==0){ ?>
+					<p id="act-bm">This Special Rate Has Been<font color="green"> Approved </font>By Branch Manager</p>
+		<?php	}else if($rejected == 1){
+		?>
+					<p id="act-bm">This Special Rate Has Been<font color="red"> Rejected </font>By Branch Manager</p>
+		<?php	
+				}else{
+		?>
+				<p id="act-bm">Waiting an action from Branch Manager</p>
+		<?php		}
+			?>
 			<br>
 			<?php 
 				if(session('username')==$bm){
@@ -66,8 +86,26 @@
 			</br>
 		</div>
 		<div class="desc">
-			<p id="act-am">Waiting An Action From Area Manager</p>
-			
+		<?php 
+				$rejected = 0;
+				foreach($tempStatusAM as $aksiAM){
+					if($aksiAM == 'Reject'){
+						$rejected = 1;
+					}
+				}
+				?>
+			<?php
+				if($rejected==0){ ?>
+					<p id="act-am">This Special Rate Has Been<font color="green"> Approved </font>By Area Manager</p>
+		<?php	}else if($rejected == 1){
+		?>
+					<p id="act-am">This Special Rate Has Been<font color="red"> Rejected </font>By Area Manager</p>
+		<?php	
+				}else{
+		?>
+				<p id="act-am">Waiting an action from Area Manager</p>
+		<?php		}
+			?>
 			<br>
 			<?php
 				if(session('username')==$am){
@@ -92,7 +130,26 @@
 			</br>
 		</div>
 		<div class="desc">
-			<p id="act-rh">Waiting An Action From Regional Head</p>
+		<?php 
+				$rejected = 0;
+				foreach($tempStatusRH as $aksiRH){
+					if($aksiRH == 'Reject'){
+						$rejected = 1;
+					}
+				}
+				?>
+			<?php
+				if($rejected==0){ ?>
+					<p id="act-rh">This Special Rate Has Been<font color="green"> Approved </font>By Regional Head</p>
+		<?php	}else if($rejected == 1){
+		?>
+					<p id="act-rh">This Special Rate Has Been<font color="red"> Rejected </font>By Regional Head</p>
+		<?php	
+				}else{
+		?>
+				<p id="act-rh">Waiting an action from Regional Head</p>
+		<?php		}
+			?>
 			<br>
 			<?php
 				if(session('username')==$rh){
@@ -168,9 +225,7 @@
 										$arr[$counter] = $datas->id;
 										?>
 									<tr>
-										<td>{{$datas->full_name}}
-										
-																						
+										<td>{{$datas->full_name}}								
 											<input type='hidden' name='id_td<?php echo $counter;?>' value='{{$datas->id}}' /> 
 											<input type='hidden' name='name<?php echo $counter;?>' value='{{$datas->full_name}}'/>
 										</td>
@@ -178,17 +233,24 @@
 											<input type='text' name='special_rate<?php echo $counter;?>' value='{{$datas->special_rate}}' id='special_rate' class='form-control'/>
 										</td>
 										<td>
-                                            <input type='radio' name='aksi<?php echo $counter;?>' value='Approve'/>Approve
+                                            <input type='radio' name='aksi<?php echo $counter;?>' id='aksiApprove<?php echo $counter;?>' value='Approve'/>Approve
                                             <input type='hidden' name='role<?php echo $counter;?>' value='Branch Manager'/>
-					</div>
-					<div><input type='radio' name='aksi<?php echo $counter;?>' value='Reject'/>Reject</div>
-					</td>
+									</div>
+									<div><input type='radio' name='aksi<?php echo $counter;?>' id='aksiReject<?php echo $counter;?>'value='Reject'/>Reject</div>
+									</td>
 					<!-- <td class="text-primary">$36,738</td> -->
-					</tr>
+									</tr>
 					<?php 
 						$i=$i+1;
 					?>
-					@endforeach
+					@endforeach	
+									<tr>
+										<td>
+										Approve: <input type="checkbox" id="checkApproveAll">
+										Reject: <input type="checkbox" id="checkRejectAll">
+										<input type="radio" value="Approve" name="aksiApprove" id="aksiReject">Reject
+										</td>
+									</tr>
 					<div><input type='hidden' name='counter' value='<?php echo $counter;?>'/></div>
 					</tbody>
 					</table>
@@ -246,14 +308,21 @@
 											<input type='text' name='special_rate<?php echo $counter;?>' value='{{$datas->special_rate}}' id='special_rate' class='form-control'/>
 										</td>
 										<td>
-                                            <input type='radio' name='aksi<?php echo $counter;?>' value='Approve'/>Approve
+                                            <input type='radio' name='aksi<?php echo $counter;?>' id='aksiApproveAM<?php echo $counter;?>' value='Approve'/>Approve
                                             <input type='hidden' name='role<?php echo $counter;?>' value='Area Manager'/>
 					</div>
-					<div><input type='radio' name='aksi<?php echo $counter;?>' value='Reject'/>Reject</div>
+					<div><input type='radio' name='aksi<?php echo $counter;?>' id='aksiRejectAM<?php echo $counter;?>' value='Reject'/>Reject</div>
 					</td>
 					<!-- <td class="text-primary">$36,738</td> -->
 					</tr>
 					@endforeach
+					<tr>
+										<td>
+										Approve: <input type="checkbox" id="checkApproveAllAM">
+										Reject: <input type="checkbox" id="checkRejectAllAM">
+										<input type="radio" value="Approve" name="aksiApprove" id="aksiReject">Reject
+										</td>
+									</tr>
                     <input type='hidden' name='counter' value='<?php echo $counter;?>'/>
                   
 					</tbody>
@@ -312,14 +381,21 @@
 											<input type='text' name='special_rate<?php echo $counter;?>' value='{{$datas->special_rate}}' id='special_rate' class='form-control'/>
 										</td>
 										<td>
-                                            <input type='radio' name='aksi<?php echo $counter;?>' value='Approve'/>Approve
+                                            <input type='radio' name='aksi<?php echo $counter;?>' id='aksiApproveRH<?php echo $counter;?>' value='Approve'/>Approve
                                             <input type='hidden' name='role<?php echo $counter;?>' value='Regional Head'/>
-					</div>
-					<div><input type='radio' name='aksi<?php echo $counter;?>' value='Reject'/>Reject</div>
-					</td>
-					<!-- <td class="text-primary">$36,738</td> -->
-					</tr>
-					@endforeach
+										</div>
+										<div><input type='radio' name='aksi<?php echo $counter;?>' id='aksiRejectRH<?php echo $counter;?>' value='Reject'/>Reject</div>
+										</td>
+										<!-- <td class="text-primary">$36,738</td> -->
+										</tr>
+										@endforeach
+									<tr>
+										<td>
+										Approve: <input type="checkbox" id="checkApproveAllRH">
+										Reject: <input type="checkbox" id="checkRejectAllRH">
+										<input type="radio" value="Approve" name="aksiApprove" id="aksiReject">Reject
+										</td>
+									</tr>
 					<div><input type='hidden' name='counter' value='<?php echo $counter;?>'/></div>
 					</tbody>
 					</table>
@@ -379,14 +455,20 @@
 											<input type='text' name='special_rate<?php echo $counter;?>' value='{{$datas->special_rate}}' id='special_rate' class='form-control'/>
 										</td>
 										<td>
-                                            <input type='radio' name='aksi<?php echo $counter;?>' value='Approve'/>Approve
+                                            <input type='radio' name='aksi<?php echo $counter;?>' id='aksiApproveDR<?php echo $counter;?>' value='Approve'/>Approve
                                             <input type='hidden' name='role<?php echo $counter;?>' value='Director'/>
 					</div>
-					<div><input type='radio' name='aksi<?php echo $counter;?>' value='Reject'/>Reject</div>
+					<div><input type='radio' name='aksi<?php echo $counter;?>' id='aksiRejectDR<?php echo $counter;?>' value='Reject'/>Reject</div>
 					</td>
 					<!-- <td class="text-primary">$36,738</td> -->
 					</tr>
 					@endforeach
+							<tr>
+								<td>Approve: <input type="checkbox" id="checkApproveAllDR">
+									Reject: <input type="checkbox" id="checkRejectAllDR">
+									<input type="radio" value="Approve" name="aksiApprove" id="aksiReject">Reject
+								</td>
+							</tr>
 					<div><input type='hidden' name='counter' value='<?php echo $counter;?>'/></div>
 					</tbody>
 					</table>
@@ -426,7 +508,145 @@ border: 1px solid black;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
 <script>
 $(document).ready(function(){
-	var today = new Date();
+
+var counterr = '<?php echo $counter;?>';
+const checkboxApprove = document.getElementById('checkApproveAll')
+const checkboxReject = document.getElementById('checkRejectAll')
+
+checkboxApprove.addEventListener('change', (event) => {
+  if (event.target.checked) {
+    console.log('checked')
+	console.log(counterr)
+	for(i = 1; i<=counterr;i++){
+	document.getElementById('aksiApprove'+i).checked = true;
+	}
+  } else {
+    console.log('not checked')
+	for(i = 1; i<=counterr;i++){
+	document.getElementById('aksiApprove'+i).checked = false;
+	}
+	
+  }
+});
+
+checkboxReject.addEventListener('change', (event) => {
+  if (event.target.checked) {
+    console.log('checked')
+	for(i = 1; i<=2;i++){
+	document.getElementById('aksiReject'+i).checked = true;
+	}
+  } else {
+    console.log('not checked')
+	for(i = 1; i<=2;i++){
+	document.getElementById('aksiReject'+i).checked = false;
+	}
+	
+  }
+});
+
+const checkboxApproveAM = document.getElementById('checkApproveAllAM')
+const checkboxRejectAM = document.getElementById('checkRejectAllAM')
+
+checkboxApproveAM.addEventListener('change', (event) => {
+  if (event.target.checked) {
+    console.log('checked')
+	console.log(counterr)
+	for(i = 1; i<=counterr;i++){
+	document.getElementById('aksiApproveAM'+i).checked = true;
+	}
+  } else {
+    console.log('not checked')
+	for(i = 1; i<=counterr;i++){
+	document.getElementById('aksiApproveAM'+i).checked = false;
+	}
+	
+  }
+});
+
+checkboxRejectAM.addEventListener('change', (event) => {
+  if (event.target.checked) {
+    console.log('checked')
+	for(i = 1; i<=2;i++){
+	document.getElementById('aksiRejectAM'+i).checked = true;
+	}
+  } else {
+    console.log('not checked')
+	for(i = 1; i<=2;i++){
+	document.getElementById('aksiRejectAM'+i).checked = false;
+	}
+	
+  }
+});
+
+const checkboxApproveRH = document.getElementById('checkApproveAllRH')
+const checkboxRejectRH = document.getElementById('checkRejectAllRH')
+
+checkboxApproveRH.addEventListener('change', (event) => {
+  if (event.target.checked) {
+    console.log('checked')
+	console.log(counterr)
+	for(i = 1; i<=counterr;i++){
+	document.getElementById('aksiApproveRH'+i).checked = true;
+	}
+  } else {
+    console.log('not checked')
+	for(i = 1; i<=counterr;i++){
+	document.getElementById('aksiApproveRH'+i).checked = false;
+	}
+	
+  }
+});
+
+checkboxRejectRH.addEventListener('change', (event) => {
+  if (event.target.checked) {
+    console.log('checked')
+	for(i = 1; i<=2;i++){
+	document.getElementById('aksiRejectRH'+i).checked = true;
+	}
+  } else {
+    console.log('not checked')
+	for(i = 1; i<=2;i++){
+	document.getElementById('aksiRejectRH'+i).checked = false;
+	}
+	
+  }
+});
+
+
+const checkboxApproveDR = document.getElementById('checkApproveAllDR')
+const checkboxRejectDR = document.getElementById('checkRejectAllDR')
+
+checkboxApproveDR.addEventListener('change', (event) => {
+  if (event.target.checked) {
+    console.log('checked')
+	console.log(counterr)
+	for(i = 1; i<=counterr;i++){
+	document.getElementById('aksiApproveDR'+i).checked = true;
+	}
+  } else {
+    console.log('not checked')
+	for(i = 1; i<=counterr;i++){
+	document.getElementById('aksiApproveDR'+i).checked = false;
+	}
+	
+  }
+});
+
+checkboxRejectDR.addEventListener('change', (event) => {
+  if (event.target.checked) {
+    console.log('checked')
+	for(i = 1; i<=2;i++){
+	document.getElementById('aksiRejectDR'+i).checked = true;
+	}
+  } else {
+    console.log('not checked')
+	for(i = 1; i<=2;i++){
+	document.getElementById('aksiRejectDR'+i).checked = false;
+	}
+	
+  }
+});
+var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth()+1; //January is 0!
 var yyyy = today.getFullYear();
@@ -447,12 +667,28 @@ today = dd + '-' + mm + '-' + yyyy;
   }
 });
     $('#userForm').submit(function(){
-
+		checkboxApprove.addEventListener('change', (event) => {
+		if (event.target.checked) {
+			console.log('checked')
+			for(i = 1; i<=2;i++){
+			document.getElementById('aksiApprove'+i).checked = true;
+			}
+		} else {
+			console.log('not checked')
+			for(i = 1; i<=2;i++){
+			document.getElementById('aksiApprove'+i).checked = false;
+			}
+			
+		}
+		});
     // show that something is loading
     $('#response').html("<b>Loading response...</b>");
 
+
+
+
     // Call ajax for pass data to other place
-    var id = 12; 
+	
     $.ajax({
     type: 'POST',
     url: 'getRequest',
@@ -461,7 +697,6 @@ today = dd + '-' + mm + '-' + yyyy;
     .done(function(data){ // if getting done then call.
 
     // show the response
-     // show the response
      $('#response').html(data);
 	 document.getElementById("act-bm").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Branch Manager";
 	 document.getElementById("time-bm").innerHTML = today;	

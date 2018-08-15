@@ -42,12 +42,12 @@
                                             <tr>
                                                 <td>{{$no++}}</td>
                                                 {{--<td>{{$datas->id}}</td>--}}
-                                                <td>{{$datas->term}}</td>
+                                                <td>{{$datas->term}} Month</td>
                                                 <td>{{$datas->currency}}</td>
-                                                <td>{{$datas->counter_rate}}</td>
+                                                <td>{{$datas->counter}}</td>
                                                 <td>{{$datas->area_manager}}</td>
                                                 <td>{{$datas->regional_head}}</td>
-                                                <td>{{$datas->director}}</td>
+                                                <td>{{$datas->nominal}}</td>
                                             </tr>
                                               @endforeach
                                     </tbody>
