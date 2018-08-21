@@ -105,7 +105,7 @@
                             <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <b>Notes</b>
-                                        <textarea class="form-control" name="notes" rows="5"></textarea>
+                                        <textarea class="form-control" name="notes" rows="5" id="notes"></textarea>
                                     </div>
                             </div>
                         </div>
@@ -153,106 +153,46 @@ function myFunction() {
     if(period == 1){
         if(parsAmount > 100000000 && parsAmount <= 1000000000){
              if(sr > 6.50){
-                alert("Maksimal Special Rate 6.50, Nominal Anda  : " + amount);
-                document.getElementById('special_rate').value = 6.50;
-                document.getElementById('normal_rate').value = 5.5;
+                alert("Maksimal Special Rate 6.50 untuk nominal <= 1 bio, Nominal Anda  : " + amount);
+                document.getElementById('notes').value = 'Maksimal Special Rate 6.50 untuk nominal <= 1 bio, Nominal Anda  : ' + amount;
+                document.getElementById('normal_rate').value = 5.50;
+            }else{
+                document.getElementById('normal_rate').value = 5.50;
+                document.getElementById('notes').value = '';
             }
-        }else{
-            alert("Maksimal Special Rate 6.75, Nominal Anda  : " + amount);
-            document.getElementById('special_rate').value = 6.75;
-            document.getElementById('normal_rate').value = 5.5;
+        }else if(parsAmount > 1000000000){
+            if(sr > 6.75){
+                alert("Maksimal Special Rate 6.75 untuk nominal > 1 bio, Nominal Anda  : " + amount);
+                document.getElementById('notes').value = 'Maksimal Special Rate 6.75 untuk nominal > 1 bio, Nominal Anda  : ' + amount
+                document.getElementById('normal_rate').value = 5.50;
+            }else{
+                document.getElementById('normal_rate').value = 5.50;
+                document.getElementById('notes').value = '';
+            }
         }
     }else if(period == 3 || period == 6){
         if(parsAmount > 100000000){
             if(sr > 6.75){
                 alert("Maksimal Special Rate 6.75, Nominal Anda  : " + amount );
-                document.getElementById('special_rate').value = 6.75;
+                document.getElementById('notes').value = 'Maksimal Special Rate 6.75, Nominal Anda  : ' + amount ;
+            }else{
                 document.getElementById('normal_rate').value = 5.75;
+                document.getElementById('notes').value = '';
             }
         }
     }else if(period == 12){
         if(parsAmount > 100000000){
             if(sr > 6.75){
                 alert("Maksimal Special Rate 6.75, Nominal Anda  : " + amount );
-                document.getElementById('special_rate').value = 6.75;
-                document.getElementById('normal_rate').value = 6;
+                document.getElementById('notes').value = 'Maksimal Special Rate 6.75, Nominal Anda  : ' + amount ;
+                document.getElementById('normal_rate').value = 6.00;
+            }else{
+                document.getElementById('normal_rate').value = 6.00;
+                document.getElementById('notes').value = '';
             }
         }
     }
 
 }
 </script>
-
-<script type="text/javascript">
-function updateInput(ish){
-    var amount = document.getElementById('amount').value;
-    document.getElementById('amount').value = ish;
-}
-  function autoFillByCurrency() {
-    var specialRate = document.getElementById('special_rate').value;
-    var normalRate = document.getElementById('normal_rate').value;
-    var currency = document.getElementById('currency').value;
-      document.getElementById('normal_rate').value = 0.50;
-    }
-
-  function autoFill() {
-    var specialRate = document.getElementById('special_rate').value;
-    var amount = document.getElementById('amount').value;
-    var normalRate = document.getElementById('normal_rate').value;
-    var period = document.getElementById('period').value;
-    var currency = document.getElementById('currency').value;
-    if(specialRate=='' || specialRate!= ''){
-        if(period == 1){
-            if(amount == 3000){
-                document.getElementById('normal_rate').value = 1.11;
-            }else{
-                document.getElementById('normal_rate').value = 0.50;
-            }
-        }
-        else if(period == 6 || period == 12){
-            if(currency == 'IDR'){
-                document.getElementById('normal_rate').value = 5.5;
-            }else{
-                document.getElementById('normal_rate').value = 0.50;
-            }
-        }
-    }
-   
-    // var specialRate = document.getElementById('special_rate').value;
-    // if(specialRate!='' ){    
-       
-    // var period = document.getElementById('period').value;
-    // var pausecontent = new Array();
-    // <?php foreach($data as $datas){ ?>
-    //     pausecontent.push('<?php echo $datas; ?>');
-    // <?php } ?> 
-    // var data ;
-    // for(var i = 0; i<pausecontent.length;i++){
-    //         pausecontent[i] = JSON.parse(pausecontent[i]);
-    //        if(period == pausecontent[i].term){
-    //            data = pausecontent[i];
-    //            break;
-    //        }
-    // }
-    // //  document.getElementById("demo").innerHTML = data.term;
-    //  document.getElementById("demo").innerHTML = data.term + ", " + data.counter_rate + ", " + data.area_manager + ", " + data.regional_head + ", " + data.director;
-    
-    //  if(specialRate >= data.counter_rate && specialRate <= data.area_manager){
-    //     document.getElementById('nr').value = data.counter_rate;
-    //     document.getElementById("apr").innerHTML = 'BRANCH MANAGER';
-    //  }else if(specialRate >= data.area_manager && specialRate <= data.regional_head){
-    //     document.getElementById('nr').value = data.counter_rate;
-    //     document.getElementById("apr").innerHTML = 'AREA MANAGER';
-    //  }else if(specialRate >= data.regional_head && specialRate <= data.director){
-    //     document.getElementById('nr').value = data.counter_rate;
-    //     document.getElementById("apr").innerHTML = 'REGIONAL HEAD';
-    //  }else if(specialRate > data.director){
-    //      document.getElementById('nr').value = data.counter_rate;
-    //     document.getElementById("apr").innerHTML = 'DIRECTOR';
-    //  }
-    // }
-  }
-
-</script>
-
 @endsection

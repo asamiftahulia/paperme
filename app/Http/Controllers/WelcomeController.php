@@ -66,6 +66,16 @@ class WelcomeController extends Controller
           }
     }
 
+    public function getIdMemmo(int $idMemmo){
+        $dataDede = DB::table('time-deposit')
+            ->select('*')
+            ->where('id_memmo','=',$idMemmo)
+            ->get();
+        $count = 2;
+        return response()->json($dataDede);
+
+    }
+
     public function insertKeTRXTD(Request $request){
         $data = new transaction_td();
         $count = 0;

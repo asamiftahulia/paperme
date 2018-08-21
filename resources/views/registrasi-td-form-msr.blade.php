@@ -11,12 +11,12 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header" data-background-color="blue">
-                    <h4 class="title">Registration Time Deposit</h4>
+                    <h4 class="title">Registration Time Deposit MSR</h4>
                     <p class="category"><font color="red">New</font> Time Deposit</p>
                 </div>
 
                 <div class="card-content">
-                    <form action="{{route('td.store')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('timedeposit.store')}}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="row">
                             <div class="col-md-12">
@@ -40,7 +40,7 @@
                             </div>
                             <div class="col-md-4">
                                 <b>Amount</b>
-                                <input type="text" class="form-control" placeholder="e.g: Rp. 99,000" id="amount" name="amount" required>
+                                <input type="text" class="form-control" name="amount" id="amount" require>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -57,7 +57,7 @@
                              <div class="col-md-4">
                                 <div class="form-group label-floating">
                                       <b>Special Rate (%)</b>
-                                    <input type="number" step="0.01" class="form-control" id="special_rate" placeholder="e.g: 5.00" name="special_rate" required>
+                                    <input type="number" step="0.01" class="form-control" id="special_rate" placeholder="e.g: 5.00" name="special_rate" required onblur="myFunction()">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -105,7 +105,7 @@
                             <div class="col-md-12">
                                     <div class="form-group label-floating">
                                         <b>Notes</b>
-                                        <textarea class="form-control" name="notes" rows="5"></textarea>
+                                        <textarea class="form-control" name="notes" rows="5" id="notes"></textarea>
                                     </div>
                             </div>
                         </div>
@@ -141,72 +141,47 @@
 <p id="demo" hidden></p>
   <p id="apr" hidden></p>
     </form>
-
-<script type="text/javascript">
-  function autoFillByCurrency() {
-    var specialRate = document.getElementById('special_rate').value;
-    var normalRate = document.getElementById('normal_rate').value;
-    var currency = document.getElementById('currency').value;
-      document.getElementById('normal_rate').value = 0.50;
-    }
-
-  function autoFill() {
-    var specialRate = document.getElementById('special_rate').value;
-    var normalRate = document.getElementById('normal_rate').value;
+<script>
+function myFunction() {
+ 
+    var oneM = Number("1000000000");
     var period = document.getElementById('period').value;
-    var currency = document.getElementById('currency').value;
-    if(specialRate=='' || specialRate!= ''){
-        if(period == 1 || period == 3){
-            if(currency == 'IDR'){
-            document.getElementById('normal_rate').value = 5.25;
-            }else{
-                document.getElementById('normal_rate').value = 0.50;
+    var amount = document.getElementById("amount").value;
+    var sr = document.getElementById("special_rate").value;
+    var parsAmount = parseFloat(amount.replace(/,/g, ''));
+   
+    if(period == 1){
+        if(parsAmount > 100000000 && parsAmount <= 1000000000){
+             if(sr > 6.50){
+                alert("Maksimal Special Rate 6.50 untuk nominal <= 1 bio, Nominal Anda  : " + amount);
+                document.getElementById('normal_rate').value = 5.5;
+                document.getElementById('notes').value = 'Maksimal Special Rate 6.50 untuk nominal <= 1 bio, Nominal Anda  : ' + amount;
+            }
+        }else if(parsAmount > 1000000000){
+            if(sr > 6.75){
+                alert("Maksimal Special Rate 6.75 untuk nominal > 1 bio, Nominal Anda  : " + amount);
+                document.getElementById('normal_rate').value = 5.5;
+                document.getElementById('notes').value = 'Maksimal Special Rate 6.75 untuk nominal > 1 bio, Nominal Anda  : ' + amount
             }
         }
-        else if(period == 6 || period == 12){
-            if(currency == 'IDR'){
-                document.getElementById('normal_rate').value = 5.5;
-            }else{
-                document.getElementById('normal_rate').value = 0.50;
+    }else if(period == 3 || period == 6){
+        if(parsAmount > 100000000){
+            if(sr > 6.75){
+                alert("Maksimal Special Rate 6.75, Nominal Anda  : " + amount );
+                document.getElementById('normal_rate').value = 5.75;
+
+            }
+        }
+    }else if(period == 12){
+        if(parsAmount > 100000000){
+            if(sr > 6.75){
+                alert("Maksimal Special Rate 6.75, Nominal Anda  : " + amount );
+                document.getElementById('special_rate').value = 6.75;
+                document.getElementById('normal_rate').value = 6;
             }
         }
     }
-   
-    // var specialRate = document.getElementById('special_rate').value;
-    // if(specialRate!='' ){    
-       
-    // var period = document.getElementById('period').value;
-    // var pausecontent = new Array();
-    // <?php foreach($data as $datas){ ?>
-    //     pausecontent.push('<?php echo $datas; ?>');
-    // <?php } ?> 
-    // var data ;
-    // for(var i = 0; i<pausecontent.length;i++){
-    //         pausecontent[i] = JSON.parse(pausecontent[i]);
-    //        if(period == pausecontent[i].term){
-    //            data = pausecontent[i];
-    //            break;
-    //        }
-    // }
-    // //  document.getElementById("demo").innerHTML = data.term;
-    //  document.getElementById("demo").innerHTML = data.term + ", " + data.counter_rate + ", " + data.area_manager + ", " + data.regional_head + ", " + data.director;
-    
-    //  if(specialRate >= data.counter_rate && specialRate <= data.area_manager){
-    //     document.getElementById('nr').value = data.counter_rate;
-    //     document.getElementById("apr").innerHTML = 'BRANCH MANAGER';
-    //  }else if(specialRate >= data.area_manager && specialRate <= data.regional_head){
-    //     document.getElementById('nr').value = data.counter_rate;
-    //     document.getElementById("apr").innerHTML = 'AREA MANAGER';
-    //  }else if(specialRate >= data.regional_head && specialRate <= data.director){
-    //     document.getElementById('nr').value = data.counter_rate;
-    //     document.getElementById("apr").innerHTML = 'REGIONAL HEAD';
-    //  }else if(specialRate > data.director){
-    //      document.getElementById('nr').value = data.counter_rate;
-    //     document.getElementById("apr").innerHTML = 'DIRECTOR';
-    //  }
-    // }
-  }
 
+}
 </script>
-
 @endsection

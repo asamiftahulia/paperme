@@ -39,6 +39,7 @@ Route::post('/uploadfile','UploadFileController@showUploadFile');
 Route::resource('td','TDController');
 Route::resource('ajax','WelcomeController');
 Route::post('{id}/getRequest','WelcomeController@getRequest');
+Route::post('/getIdMemmo/{id}','WelcomeController@getIdMemmo');
 Route::resource('tdc','TDCollectiveController');
 Route::resource('trx','TransactionTimeDepositController');
 Route::get('/summary','TDController@show')->name('summary');

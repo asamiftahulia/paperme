@@ -51,6 +51,10 @@
                               <td> : </td>
                               <td><a data-toggle="modal" data-target="#defaultModal">Bukti Sumber Dana</a></td>
                             </tr>
+                            <td>Notes</td>
+                              <td> : </td>
+                              <td><a data-toggle="modal" data-target="#modalNotes">Notes</a></td>
+                            </tr>
                             <tr>
                               <td>History</td>
                               <td>:</td>
@@ -78,8 +82,22 @@
                     <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                              <h4 class="modal-title" id="defaultModalLabel">Bukti Sumber Dana</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" id="defaultModalLabel">Bukti Sumber Dana</h4>
+                          </div>
+                          <div class="modal-body">
+                            {{csrf_field()}}
+                            <img src="{{asset('/images/'.$datas->image)}}" />
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                 <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" id="defaultModalLabel">Bukti Sumber Dana</h4>
                           </div>
                           <div class="modal-body">
                             {{csrf_field()}}
@@ -180,7 +198,7 @@
                               <tr>
                                 <td>{{$datas->full_name}} </td>
                                 <td>
-                                  <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10px" />
+                                  <!-- <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10px" /> -->
                                 </td>
                                 <input type="hidden" enable="false" name="role" value="Branch Manager">
                                 <td>{{number_format($datas->amount)}}</td>
@@ -212,7 +230,7 @@
                                <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
-                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
                              <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                              <button type="submit" onclick="autoDisable();" class="btn btn-success">Approve</button>
                           </form>
@@ -235,7 +253,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
-                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
                               <div align="right">
                              <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-danger">Reject</button>
@@ -294,7 +312,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                   <input type="hidden" enable="false" name="role" value="Area Manager">
-                                  <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" />
+                                  <!-- <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" /> -->
                                 </td>
                                 <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -321,7 +339,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
-                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
                               <div align="right">
                              <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
@@ -345,7 +363,7 @@
                                 Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                                 <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                                 <input type="hidden" enable="false" name="role" value="Area Manager">
-                                <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
+                                <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
@@ -408,7 +426,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Branch Manager"/>
-                                  <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" />
+                                  <!-- <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" /> -->
                                 </td>
                                 <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -436,7 +454,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
-                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-success">Approve</button>
@@ -461,7 +479,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
-                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
                               <div align="right">
                                   <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                   <button type="submit" class="btn btn-danger">Reject</button>
@@ -522,7 +540,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Area Manager"/>
-                                <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" />
+                                <!-- <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" /> -->
                                 </td>
                                 <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -551,7 +569,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
-                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
                               <div align="right">
                                   <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                   <button type="submit" class="btn btn-success">Approve</button>
@@ -576,7 +594,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
-                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
                               <div align="right">
                                 <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
@@ -636,7 +654,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Regional Head"/>
-                                <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                <!-- <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="3" /> -->
                                 </td>
                                 <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -664,7 +682,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <p><input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
-                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
                               <div align="right">
                                   <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                   <button type="submit" class="btn btn-success">Approve</button>
@@ -689,7 +707,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
-                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
@@ -751,7 +769,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Branch Manager"/>
-                                  <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                  <!-- <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" /> -->
                                 </td>
                                 <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -779,7 +797,7 @@
                               Atas Nama <b>{{$datas->full_name}}</b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
-                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
                             <div align="right">
                              <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
@@ -804,7 +822,7 @@
                               Atas Nama <b> {{$datas->full_name}}</b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
-                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
@@ -866,7 +884,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Area Manager"/>
-                                  <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" />
+                                  <!-- <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" /> -->
                                 </td>
                                 <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -894,7 +912,7 @@
                               Atas Nama <b> {{$datas->full_name}}</b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
-                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-success">Approve</button>
@@ -919,7 +937,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
-                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
@@ -978,7 +996,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Regional Head"/>
-                                <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                <!-- <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="3" /> -->
                                 </td>
                                 <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -1006,7 +1024,7 @@
                               Atas Nama <b>{{$datas->full_name}} </b>? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
-                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-success">Approve</button>
@@ -1031,7 +1049,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                              <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                              <input type="hidden" enable="false" name="role" value="Regional Head">
-                             <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
+                             <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
                              <div align="right">
                                 <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
@@ -1091,7 +1109,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Director"/>
-                                  <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                  <!-- <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="3" /> -->
                                   
                                 </td>
                                 <td>{{number_format($datas->amount)}}</td>
@@ -1119,7 +1137,7 @@
                             <p>Apakah Benar Anda Akan <font color="green"><b>Menyetujui</b></font> Pengajuan Special Rate <br>
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
-                              <input type="hidden" name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden" name="special_rate" value="{{$datas->special_rate}}"> -->
                               <input type="hidden" name="role" value="Director">
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
@@ -1145,7 +1163,7 @@
                               Atas Nama <b> {{$datas->full_name}}</b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Director">
-                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
@@ -1175,7 +1193,7 @@
                     <?php
                         if((session('username')==$orang->rh || session('username')==$orang->am || session('username')==$orang->bm)&& $approverAM!= 0 && $revisiRH != 0 && $tandaRevisiMenghilangkan != 0){
                     ?>
-                     <div class="desc"><p id="act-revisi-rh3-telah"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font>
+                     <!-- <div class="desc"><p id="act-revisi-rh3-telah"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font> -->
                      <p><input type="button" id="btnrev-revisi-rh3"  data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
                       <input type="button" id="btnrev-approve-rh3"  data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
                       <input type="button" id="btnrev-reject-rh3"   data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject"></p>
@@ -1200,7 +1218,7 @@
                     <?php
                         }else{
                           ?>
-                      <div class="desc"><p id="act-revisi-rh3-telah"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font>
+                      <!-- <div class="desc"><p id="act-revisi-rh3-telah"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font> -->
                       <div class="desc"><p id="act-revisi-rh3"></br> 
                       <p><span>{{$orang->rh}}</span></br></p>
                       <input type="button" disabled="true" id="btnrev-revisi-rh3" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
@@ -1248,7 +1266,7 @@
                     <?php
                         }else{
                           ?>
-                      <div class="desc"><p id="act-revisi-rh3-telah"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font>
+                      <!-- <div class="desc"><p id="act-revisi-rh3-telah"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font> -->
                       <div class="desc"><p id="act-revisi-rh3"></br> 
                       <p><span>{{$orang->rh}}</span></br></p>
                       <input type="button" disabled="true" id="btnrev-revisi-rh3" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
@@ -1270,7 +1288,7 @@
                     </div>
                     <?php
                       if(session('username') == $orang->dr && $approverRH!=0 && $tandaRevisiMenghilangkan != 0){   ?>
-                      <div class="desc"><p id="act-dr33"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font>
+                      <!-- <div class="desc"><p id="act-dr33"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font> -->
                       <!-- <span>Director : {{$orang->dr}}</span></br> -->
                       <?php
                         if($approverDR!=0)
@@ -1328,7 +1346,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Regional Head"/>
-                                <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                <!-- <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" /> -->
                                 </td>
                                 <td>{{$datas->amount}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -1356,7 +1374,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <p><input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
-                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-success">Approve</button>
@@ -1381,7 +1399,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
-                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
@@ -1416,7 +1434,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Director"/>
-                                  <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
+                                  <!-- <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" /> -->
                                   
                                 </td>
                                 <td>{{$datas->amount}}</td>
@@ -1444,7 +1462,7 @@
                             <p>Apakah Benar Anda Akan <font color="green"><b>Menyetujui</b></font> Pengajuan Special Rate <br>
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
-                              <input type="hidden" name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden" name="special_rate" value="{{$datas->special_rate}}"> -->
                               <input type="hidden" name="role" value="Director">
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
@@ -1470,7 +1488,7 @@
                               Atas Nama <b> {{$datas->full_name}}</b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Director">
-                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
+                              <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
@@ -1485,15 +1503,29 @@
         </div>
       </div>   
   </div>
-  <div class="modal fade" id="modalDetailHistory" tabindex="-1" role="dialog">
+              <div class="modal fade" id="modalNotes" tabindex="-1" role="dialog">
                   <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title" id="defaultModalLabel">Notes</h4>
+                      </div>
+                          <div class="modal-body">
+                           <p>{{$datas->notes}}</p>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="modal fade" id="modalDetailHistory" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title" id="defaultModalLabel">History</h4>
                               <div class="modal-header">Detail History Aksi
-                            </div>
                           </div>
+                      </div>
                           <div class="modal-body">
                             <!-- <form action="{{url('td/revisi',$datas->id)}}" method="post"> -->
                             <form action="{{url('trx/revisi',$datas->id)}}" method="post">
@@ -1511,7 +1543,7 @@
                               @foreach($trxDetail as $trx)
                               <tr>
                                   <td>{{$no++}}</td>
-                                  <td>{{$trx->special_rate}}</td>
+                                  <!-- <td>{{$trx->special_rate}}</td> -->
                                   <td>{{$trx->role}}</td>
                                   <td>{{$trx->aksi}}</td>
                                   <td>{{$trx->created_by}}</td>

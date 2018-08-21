@@ -115,6 +115,7 @@
 .nav-tabs.tab-col-white > li > a:before {
   border-bottom: 2px solid #ffffff; }
 </style>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Example Tab -->
 <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -166,33 +167,32 @@
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="profile">
                                     <b>Collective Data</b>
+                                   
                                     <p>
+                                    <form id='formMemo' method='post'>
+                                    {{csrf_field()}}
                                     <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                         <thead>
                                             <th>No</th>
                                             <th>Id Memmo</th>
-                                            <th>Full Name</th>
-                                            <th>Action</th>
+                                            <th>Status</th>
                                         </thead>
                                         <tbody>
                                           <?php $no = 0; ?>
-                                          @foreach($lengkapForBMCol as $data)
+                                          @foreach($idMemmo as $data)
                                           <?php $no = $no + 1; ?>
                                             <tr>
                                                 <td>{{$no}}</td>
-                                                <td><a href='a'>CCBI/SR/{{$data->id_memmo}}</a></td>
-                                                <td>Multivalue</td>
-                                                <td>
-                                                  <button>aa</button>
-                                                </td>
+                                                <td><a href="#" id="{{$data->id_memmo}}" data-toggle="modal" data-target="#defaultModal" onclick="getMyID(this.id);" >CCBI/SR/0{{$data->id_memmo}}</a></td>
+                                                <td>{{$data->status}}</td>
                                             </tr>
                                           @endforeach
                                         </tbody>
-                                        </tbody>
+                                      </form>
                                     </table>
                                     </p>
                                 </div>
-                                <div role="tabpanel" class="tab-pane fade" id="messages">
+                                <!-- <div role="tabpanel" class="tab-pane fade" id="messages">
                                     <b>Message Content</b>
                                     <p>
                                       <table class="table table-bordered table-striped table-hover dataTable js-exportable">
@@ -224,7 +224,7 @@
                                       </tbody>
                                       </table>
                                     </p>
-                                </div>
+                                </div> -->
                                 <div role="tabpanel" class="tab-pane fade" id="settings">
                                     <b>Settings Content</b>
                                     <p>
@@ -240,12 +240,104 @@
                 </div>
             </div>
             <!-- #END# Example Tab -->
+            <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" id="defaultModalLabel">Collective Data</h4>
+                          </div>
+                          <div class="modal-body">
+                            <div id='btn-action'></div>
+                          <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                        <thead>
+                                            <th>No</th>
+                                            <th>Full Name</th>
+                                            <th>Amount</th>
+                                            <th>Special Rate</th>
+                                            <th>Period</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </thead>
+                                        <tbody>
+                                          <?php 
+                                          for ($x = 0; $x < 2; $x++) {
+                                              echo "<tr>";
+                                              echo "<td><p id='no".$x."'></p></td>";
+                                              echo "<td><p id='fullname".$x."'></p></td>";
+                                              echo "<td><p id='amount".$x."'></p></td>";
+                                              echo "<td><p id='special_rate".$x."'></p></td>";
+                                              echo "<td><p id='period".$x."'></p></td>";
+                                              echo "<td><p id='status".$x."'></p></td>";
+                                              echo "<td><div id='response".$x."'></div></td>";
+                                              echo "</tr>";
+                                          } 
+                                          ?>
+                                         
+                                        </tbody>
+                                    </table>
+                          </div>
+                      </div>
+                  </div>
+                </div>
             
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
 <script type="text/javascript">
+  function getMyID(inputId)
+  {
+       
+    
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
 
- $(".button-collapse").sideNav();
-$(document).ready(function(){
-     Materialize.toast('Ready', 4000) 
-});
+      // alert(inputId);
+        var idMemmo = inputId;
+        console.log('idMemmo'+idMemmo)
+       
+
+
+      $.ajax({
+        type: 'POST',
+        url: 'getIdMemmo/'+idMemmo,
+        data:$(this).serialize()// getting filed value in serialize form
+        })
+        .done(function(data){
+          // show the response
+          // $('#response').html('aaaaa');
+          
+        // document.getElementById("asacantik").innerHTML = idMemmo;
+        
+        var dataDetail = JSON.stringify(data);
+        var no = 1;
+        $('#btn-action').html(
+          '<a href="#" class="material-icons"  rel="tooltip" title="Generate PDF">assignment_returned</a>'+
+          '<b>asasasa'+idMemmo+'</b>'+
+          '<a href="{{action("TDCollectiveController@timelineCollective",17)}}" class="material-icons" rel="tooltip" >swap_vertical_circle</a>'
+          
+          );
+        for(var i=0; i<data.length;i++){
+          document.getElementById("no"+i).innerHTML = no;
+          document.getElementById("fullname"+i).innerHTML = data[i].full_name;
+          document.getElementById("amount"+i).innerHTML = data[i].amount;
+          document.getElementById("special_rate"+i).innerHTML = data[i].special_rate+" %";
+          document.getElementById("period"+i).innerHTML = data[i].period+" Bulan";
+          document.getElementById("status"+i).innerHTML = data[i].status;
+          $('#response'+i).html(
+            '<a href="javascript: void(0)" class="material-icons" rel="tooltip" title="Can Not Edit">mode_edit</a>'
+          );
+          
+          no++;	
+        }
+             })
+          .fail(function() { // if fail then getting message
+
+          // just in case posting your form failed
+          alert('failed');
+
+          });
+  }
 </script>

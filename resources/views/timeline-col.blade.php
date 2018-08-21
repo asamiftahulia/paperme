@@ -686,9 +686,6 @@ today = dd + '-' + mm + '-' + yyyy;
     // show that something is loading
     $('#response').html("<b>Loading response...</b>");
 
-
-
-
     // Call ajax for pass data to other place
 	
     $.ajax({
