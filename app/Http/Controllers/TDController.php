@@ -937,6 +937,12 @@ class TDController extends Controller
         // dd($checkApproved);
         // dd($approver);
 
+        if($checkApproved == $approver){
+            $td = TD::find($id_td);
+            $td->status = $strStatus;
+            $td->save();
+        }
+
         $trxDetail =DB::table('trx-time-deposit')
         ->select('*')
         ->where('id_td','=',$id_td)
