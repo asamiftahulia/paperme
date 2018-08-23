@@ -216,8 +216,11 @@
                                                 <?php
                                                     }
                                                 ?>
-                                                
-                                                <a href="{{action('TDController@timeline',$dataBM->id_td)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
+                                                    @if($dataBM->col =='col')
+                                                        <a href="{{action('TDCollectiveController@timelineCollective',$dataBM->id_memmo)}}" class="material-icons" rel="tooltip" title="Timeline Collective">swap_vertical_circle</a>  
+                                                    @else
+                                                        <a href="{{action('TDController@timeline',$dataBM->id_td)}}" class="material-icons" rel="tooltip" title="Timeline">swap_vertical_circle</a>  
+                                                    @endif  
                                             </td>
                                     </tr> 
                                     <?php

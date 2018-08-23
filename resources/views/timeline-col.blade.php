@@ -217,6 +217,12 @@
 									<!-- <th>Status</th> -->
 								</thead>
 								<tbody>
+									<tr align='right'>
+										<td colspan='3'>
+										Approve All: <input type="checkbox" id="checkApproveAll"><font color='white'>.....</font>
+										Reject All: <input type="checkbox" id="checkRejectAll">
+										</td>
+									</tr>
 									<?php 
 										$counter = 0; 
 										$i = 0; 
@@ -246,13 +252,7 @@
 						$i=$i+1;
 					?>
 					@endforeach	
-									<tr>
-										<td>
-										Approve: <input type="checkbox" id="checkApproveAll">
-										Reject: <input type="checkbox" id="checkRejectAll">
-										<input type="radio" value="Approve" name="aksiApprove" id="aksiReject">Reject
-										</td>
-									</tr>
+									
 					<div><input type='hidden' name='counter' value='<?php echo $counter;?>'/></div>
 					</tbody>
 					</table>
@@ -293,6 +293,12 @@
 									<!-- <th>Status</th> -->
 								</thead>
 								<tbody>
+									<tr align='right'>
+										<td colspan='3'>
+										Approve All: <input type="checkbox" id="checkApproveAllAM"><font color='white'>.....</font>
+										Reject All: <input type="checkbox" id="checkRejectAllAM">
+										</td>
+									</tr>
 									<?php 
 										$counter = 0; 
 										$arr = [];
@@ -318,19 +324,14 @@
 					<!-- <td class="text-primary">$36,738</td> -->
 					</tr>
 					@endforeach
-					<tr>
-										<td>
-										Approve: <input type="checkbox" id="checkApproveAllAM">
-										Reject: <input type="checkbox" id="checkRejectAllAM">
-										<input type="radio" value="Approve" name="aksiApprove" id="aksiReject">Reject
-										</td>
-									</tr>
+		
                     <input type='hidden' name='counter' value='<?php echo $counter;?>'/>
                   
 					</tbody>
 					</table>
-					<button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
 					<input type='submit' value='Submit' class="btn btn-success" />
+		
 					</form>
 				</div>
 			</div>
@@ -366,6 +367,12 @@
 									<!-- <th>Status</th> -->
 								</thead>
 								<tbody>
+									<tr align='right'>
+										<td colspan='3'>
+										Approve All: <input type="checkbox" id="checkApproveAllRH"><font color='white'>.....</font>
+										Reject All: <input type="checkbox" id="checkRejectAllRH">
+										</td>
+									</tr>
 									<?php 
 										$counter = 0; 
 										$arr = [];
@@ -391,17 +398,10 @@
 										<!-- <td class="text-primary">$36,738</td> -->
 										</tr>
 										@endforeach
-									<tr>
-										<td>
-										Approve: <input type="checkbox" id="checkApproveAllRH">
-										Reject: <input type="checkbox" id="checkRejectAllRH">
-										<input type="radio" value="Approve" name="aksiApprove" id="aksiReject">Reject
-										</td>
-									</tr>
 					<div><input type='hidden' name='counter' value='<?php echo $counter;?>'/></div>
 					</tbody>
 					</table>
-					<button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
 					<input type='submit' value='Submit' class="btn btn-success" />
 					</form>
 				</div>
@@ -440,6 +440,12 @@
 									<!-- <th>Status</th> -->
 								</thead>
 								<tbody>
+									<tr align='right'>
+										<td colspan='3'>
+										Approve All: <input type="checkbox" id="checkApproveAllDR"><font color='white'>.....</font>
+										Reject All: <input type="checkbox" id="checkRejectAllDR">
+										</td>
+									</tr>
 									<?php 
 										$counter = 0; 
 										$arr = [];
@@ -465,16 +471,11 @@
 					<!-- <td class="text-primary">$36,738</td> -->
 					</tr>
 					@endforeach
-							<tr>
-								<td>Approve: <input type="checkbox" id="checkApproveAllDR">
-									Reject: <input type="checkbox" id="checkRejectAllDR">
-									<input type="radio" value="Approve" name="aksiApprove" id="aksiReject">Reject
-								</td>
-							</tr>
+							
 					<div><input type='hidden' name='counter' value='<?php echo $counter;?>'/></div>
 					</tbody>
 					</table>
-					<button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
 					<input type='submit' value='Submit' class="btn btn-success" />
 					</form>
 				</div>
