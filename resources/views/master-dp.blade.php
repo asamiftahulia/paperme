@@ -60,14 +60,14 @@
                                 </a>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="material-icons">notifications</i>
-                                    <span class="notification">5</span>
-                                    <p class="hidden-lg hidden-md">Notifications</p>
-                                </a>
+                                <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown"> -->
+                                    <!-- <i class="material-icons">notifications</i> -->
+                                    <!-- <span class="notification">5</span> -->
+                                    <!-- <p class="hidden-lg hidden-md">Notifications</p> -->
+                                <!-- </a> -->
                                 
                                 <ul class="dropdown-menu">
-                                    <li>
+                                    <!-- <li>
                                         <a href="#">You have 5 new tasks</a>
                                     </li>
                                     <li>
@@ -78,7 +78,7 @@
                                     </li>
                                     <li>
                                         <a href="#">Another One</a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </li>
                             <li>
@@ -139,12 +139,12 @@
                     </a>
                  </li>
                 
-                 <li class="@yield('aktif-mtimedeplist')">
+                 <!-- <li class="@yield('aktif-mtimedeplist')">
                     <a href="{{route('td.tab')}}">
                         <i class="material-icons">view_list</i>
                         <p>Tab </p>
                     </a>
-                 </li>
+                 </li> -->
                 
                  <!-- <li class="@yield('aktif-mtimedeplist')">
                     <a href="{{route('timedeposit.create')}}">
@@ -155,7 +155,7 @@
 
                  <li class="@yield('aktif-mtimedeplistFinish')">
                     <a href="{{route('td.indexFinish')}}">
-                        <i class="material-icons">view_list</i>
+                        <i class="material-icons">done_outline</i>
                         <p>Time Deposit List Finish</p>
                     </a>
                  </li>

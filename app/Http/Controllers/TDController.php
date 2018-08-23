@@ -349,6 +349,7 @@ class TDController extends Controller
                     }
                 }
             }
+          
         Mail::to('harsyami@gmail.com')->send(new PostSubscribtion($data));
         return view('summary',compact('data', $data))->with('apr',$dataApprover);
     }
