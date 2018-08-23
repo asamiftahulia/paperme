@@ -1714,9 +1714,9 @@ $("input").click(function(e){
       document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Director";
 
     document.getElementById("approved-date-by-dr3").innerHTML = today;
-    document.getElementById("btn-approve-dr3").disabled = true;
-    document.getElementById("btn-revisi-dr3").disabled = true;
-    document.getElementById("btn-reject-dr3").disabled = true;
+    document.getElementById("btn-approve-dr3").style.visibility = 'hidden';
+    document.getElementById("btn-revisi-dr3").style.visibility = 'hidden';
+    document.getElementById("btn-reject-dr3").style.visibility = 'hidden';
     
     
    }
