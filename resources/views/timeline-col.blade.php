@@ -482,9 +482,10 @@
 			<div id="response4"></div>
 		</div>
 	</div>
+	</div>
 </div>
 </div>
-		<div class="row" align="right">
+		<div class="row" align="center">
                 <a align="center" href="{{route('td.index')}}"><input type="button" id="btn-submit" class="btn btn-warning" value="Back To List Time Deposit"></a>
 				<?php
 				if(session('username')!=$rm){
@@ -494,8 +495,6 @@
 				}
 				?>
         </div>
-</div>
-</div>
 @endsection
 
 <style type="text/css">

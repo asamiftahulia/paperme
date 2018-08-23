@@ -59,7 +59,7 @@
                               <td>History</td>
                               <td>:</td>
                               <td>
-                                <input type="button" id="btn-revisi-bm1" data-toggle="modal" data-target="#modalDetailHistory" class="btn btn-info btn-sm" value="Detail">
+                                <input type="button" data-toggle="modal" data-target="#modalDetailHistory" class="btn btn-info btn-sm" value="Detail">
                               </td>
                             </tr>
                             <!-- <tr>
@@ -67,17 +67,7 @@
                               <td> : </td>
                               <td> {{$datas->approver}}</td>
                             </tr> -->
-
-              <div class="row" align="right">
-                <a align="center" href="{{route('td.index')}}"><input type="button" id="btn-submit" class="btn btn-warning" value="Back To List Time Deposit"></a>
-                  <?php
-                    if($checkApproved == $approver){ ?>
-                      <a align="center" href="{{url('td/updateStatus',$datas->id)}}"><input type="button"  id="btn-finish"  class="btn btn-info" value="FINISH"></a>
-                  <?php
-                    }
-                    ?>
-            </div>
-            </div>
+                
                   <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
@@ -147,6 +137,8 @@
                             </table>  -->
                         </h5>
                     </div>
+                    
+                
                     <div class="body">
           <!-- Item 1 -->
               @if($c == 1)
@@ -198,7 +190,7 @@
                               <tr>
                                 <td>{{$datas->full_name}} </td>
                                 <td>
-                                  <!-- <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10px" /> -->
+                                  <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10px" />
                                 </td>
                                 <input type="hidden" enable="false" name="role" value="Branch Manager">
                                 <td>{{number_format($datas->amount)}}</td>
@@ -230,9 +222,11 @@
                                <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
-                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
-                             <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
+                              <div align="right">
+                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                              <button type="submit" onclick="autoDisable();" class="btn btn-success">Approve</button>
+                      </div>
                           </form>
                           </div>
                       </div>
@@ -253,7 +247,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
-                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
                               <div align="right">
                              <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-danger">Reject</button>
@@ -281,8 +275,7 @@
                       <button type="button" id="btn-approve-am1" data-toggle="modal" data-target="#modalAprAM"class="btn btn-success btn-sm">Approve</button>
                       <button type="button" id="btn-reject-am1" data-toggle="modal" data-target="#modalRejAM"class="btn btn-danger btn-sm">Reject</button>
                       <?php
-                      }
-                        ?>
+                      }?>
                       
                     </div>
                     
@@ -312,7 +305,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                   <input type="hidden" enable="false" name="role" value="Area Manager">
-                                  <!-- <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" /> -->
+                                  <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" />
                                 </td>
                                 <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -339,7 +332,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
-                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
                               <div align="right">
                              <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
@@ -363,7 +356,7 @@
                                 Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                                 <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                                 <input type="hidden" enable="false" name="role" value="Area Manager">
-                                <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
+                                <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
@@ -393,9 +386,9 @@
                       <input type="button" id="btn-reject-bm2" data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm" value="Reject">
                     <?php
                         }else{ ?>
-                          <input type="button" disabled="true" id="btn-revisi-bm2"  data-toggle="modal" data-target="#modal2BMDet"class="btn btn-info btn-sm" value="Detail">
-                          <input type="button" disabled="true" id="btn-approve-bm2" data-toggle="modal" id="btn-approve-bm" data-target="#modal2BMApr"class="btn btn-success btn-sm" value="Approve">
-                          <input type="button" disabled="true" id="btn-reject-bm2" data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm" value="Reject">
+                          <input type="hidden" disabled="true" id="btn-revisi-bm2"  data-toggle="modal" data-target="#modal2BMDet"class="btn btn-info btn-sm" value="Detail">
+                          <input type="hidden" disabled="true" id="btn-approve-bm2" data-toggle="modal" id="btn-approve-bm" data-target="#modal2BMApr"class="btn btn-success btn-sm" value="Approve">
+                          <input type="hidden" disabled="true" id="btn-reject-bm2" data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm" value="Reject">
                   
                     <?php
                       }  
@@ -426,7 +419,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Branch Manager"/>
-                                  <!-- <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" /> -->
+                                  <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" />
                                 </td>
                                 <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -454,7 +447,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
-                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-success">Approve</button>
@@ -479,7 +472,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
-                              <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
                               <div align="right">
                                   <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                   <button type="submit" class="btn btn-danger">Reject</button>
@@ -508,9 +501,9 @@
                     <?php
                       }else{
                         ?>
-                      <input type="button" disabled="true" id ="btn-revisi-am2" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm" value="Detail">
-                      <input type="button" disabled="true" id ="btn-approve-am2" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm" value="Approve">
-                      <input type="button" disabled="true" id ="btn-reject-am2" data-toggle="modal" data-target="#modal2AMRej"class="btn btn-danger btn-sm" value="Reject">
+                      <input type="hidden" disabled="true" id ="btn-revisi-am2" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="hidden" disabled="true" id ="btn-approve-am2" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="hidden" disabled="true" id ="btn-reject-am2" data-toggle="modal" data-target="#modal2AMRej"class="btn btn-danger btn-sm" value="Reject">
                     <?php
                       }
                     ?>
@@ -540,7 +533,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Area Manager"/>
-                                <!-- <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" /> -->
+                                <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" />
                                 </td>
                                 <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -569,7 +562,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
-                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
                               <div align="right">
                                   <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                   <button type="submit" class="btn btn-success">Approve</button>
@@ -594,9 +587,9 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
-                              <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
                               <div align="right">
-                                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
                               </div>
                           </form>
@@ -623,9 +616,9 @@
                     <?php
                       }else{
                         ?>
-                      <input type="button" disabled="true" id="btn-revisi-rh2" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
-                      <input type="button" disabled="true" id ="btn-approve-rh2" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
-                      <input type="button" disabled="true" id ="btn-reject-rh2" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject">
+                      <input type="hidden" disabled="true" id="btn-revisi-rh2" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="hidden" disabled="true" id ="btn-approve-rh2" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="hidden" disabled="true" id ="btn-reject-rh2" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject">
                         <?php
                       }
                       ?>
@@ -654,7 +647,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Regional Head"/>
-                                <!-- <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="3" /> -->
+                                <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="3" />
                                 </td>
                                 <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -682,7 +675,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <p><input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
-                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
                               <div align="right">
                                   <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                   <button type="submit" class="btn btn-success">Approve</button>
@@ -707,7 +700,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
-                              <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
@@ -739,9 +732,9 @@
                     <?php
                         }else{
                     ?>
-                     <input type="button" disabled="true" id="btn-revisi-bm3" data-toggle="modal" data-target="#modal2BMDet"class="btn btn-info btn-sm" value="Detail">
-                      <input type="button" disabled="true" id="btn-approve-bm3"data-toggle="modal" id="btn-approve-bm" data-target="#modal2BMApr"class="btn btn-success btn-sm" value="Approve">
-                      <input type="button" disabled="true" id="btn-reject-bm3"data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm" value="Reject">
+                     <input type="hidden" disabled="true" id="btn-revisi-bm3" data-toggle="modal" data-target="#modal2BMDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="hidden" disabled="true" id="btn-approve-bm3"data-toggle="modal" id="btn-approve-bm" data-target="#modal2BMApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="hidden" disabled="true" id="btn-reject-bm3"data-toggle="modal" data-target="#modal2BMRej"class="btn btn-danger btn-sm" value="Reject">
                     <?php  }
                     ?>
                     </div>
@@ -769,7 +762,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Branch Manager"/>
-                                  <!-- <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" /> -->
+                                  <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
                                 </td>
                                 <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -797,7 +790,7 @@
                               Atas Nama <b>{{$datas->full_name}}</b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
-                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
                             <div align="right">
                              <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                              <button type="submit" class="btn btn-success">Approve</button>
@@ -822,7 +815,7 @@
                               Atas Nama <b> {{$datas->full_name}}</b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Branch Manager">
-                              <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
@@ -852,9 +845,9 @@
                         }else{
                     ?>
                     
-                      <input type="button" disabled="true" id="btn-revisi-am3" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm" value="Detail">
-                      <input type="button" disabled="true" id="btn-approve-am3" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm" value="Approve">
-                      <input type="button" disabled="true" id="btn-reject-am3" data-toggle="modal" data-target="#modal2AMRej"class="btn btn-danger btn-sm" value="Reject">
+                      <input type="hidden" disabled="true" id="btn-revisi-am3" data-toggle="modal" data-target="#modal2AMDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="hidden" disabled="true" id="btn-approve-am3" data-toggle="modal" data-target="#modal2AMApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="hidden" disabled="true" id="btn-reject-am3" data-toggle="modal" data-target="#modal2AMRej"class="btn btn-danger btn-sm" value="Reject">
                     <?php   
                       }
                     ?>
@@ -884,7 +877,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Area Manager"/>
-                                  <!-- <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" /> -->
+                                  <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="10" />
                                 </td>
                                 <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -912,7 +905,7 @@
                               Atas Nama <b> {{$datas->full_name}}</b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
-                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-success">Approve</button>
@@ -937,7 +930,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Area Manager">
-                              <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
@@ -966,9 +959,9 @@
                     <?php
                         }else{
                           ?>
-                      <input type="button" disabled="true" id="btn-revisi-rh3" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
-                      <input type="button" disabled="true" id="btn-approve-rh3" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
-                      <input type="button" disabled="true" id="btn-reject-rh3" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject">
+                      <input type="hidden" disabled="true" id="btn-revisi-rh3" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
+                      <input type="hidden" disabled="true" id="btn-approve-rh3" data-toggle="modal" data-target="#modal2RHApr"class="btn btn-success btn-sm" value="Approve">
+                      <input type="hidden" disabled="true" id="btn-reject-rh3" data-toggle="modal" data-target="#modal2RHRej"class="btn btn-danger btn-sm" value="Reject">
                           <?php
                         }
                         ?>
@@ -996,7 +989,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Regional Head"/>
-                                <!-- <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="3" /> -->
+                                <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="3" />
                                 </td>
                                 <td>{{number_format($datas->amount)}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -1024,7 +1017,7 @@
                               Atas Nama <b>{{$datas->full_name}} </b>? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
-                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-success">Approve</button>
@@ -1049,9 +1042,9 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                              <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                              <input type="hidden" enable="false" name="role" value="Regional Head">
-                             <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
+                             <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
                              <div align="right">
-                                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
                               </div>
                           </form>
@@ -1077,9 +1070,9 @@
                       <input type="button" id="btn-reject-dr3" data-toggle="modal" data-target="#modal2DirRej" class="btn btn-sm btn-danger" value="Reject">
                     <?php
                     }else{?>
-                      <input type="button" disabled="true" id="btn-revisi-dr3" data-toggle="modal" data-target="#modal2DirDet" class="btn btn-sm btn-info" value="Detail">
-                      <input type="button" disabled="true" id="btn-approve-dr3" data-toggle="modal" data-target="#modal2DirApr" class="btn btn-sm btn-success" value="Approve">
-                      <input type="button" disabled="true" id="btn-reject-dr3" data-toggle="modal" data-target="#modal2DirRej" class="btn btn-sm btn-danger" value="Reject">
+                      <input type="hidden" disabled="true" id="btn-revisi-dr3" data-toggle="modal" data-target="#modal2DirDet" class="btn btn-sm btn-info" value="Detail">
+                      <input type="hidden" disabled="true" id="btn-approve-dr3" data-toggle="modal" data-target="#modal2DirApr" class="btn btn-sm btn-success" value="Approve">
+                      <input type="hidden" disabled="true" id="btn-reject-dr3" data-toggle="modal" data-target="#modal2DirRej" class="btn btn-sm btn-danger" value="Reject">
                     <?php
                       }
                     ?>
@@ -1109,7 +1102,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Director"/>
-                                  <!-- <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="3" /> -->
+                                  <input type="text" name="special_rate" id="special_rate" value="{{$datas->special_rate}}" size="3" />
                                   
                                 </td>
                                 <td>{{number_format($datas->amount)}}</td>
@@ -1137,7 +1130,7 @@
                             <p>Apakah Benar Anda Akan <font color="green"><b>Menyetujui</b></font> Pengajuan Special Rate <br>
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
-                              <!-- <input type="hidden" name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden" name="special_rate" value="{{$datas->special_rate}}">
                               <input type="hidden" name="role" value="Director">
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
@@ -1163,7 +1156,7 @@
                               Atas Nama <b> {{$datas->full_name}}</b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Director">
-                              <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
@@ -1346,7 +1339,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Regional Head"/>
-                                <!-- <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" /> -->
+                                <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
                                 </td>
                                 <td>{{$datas->amount}}</td>
                                 <td>{{$datas->expired_date}}</td>
@@ -1374,7 +1367,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <p><input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
-                              <!-- <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden" enable="false" name="special_rate" value="{{$datas->special_rate}}">
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-success">Approve</button>
@@ -1399,7 +1392,7 @@
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Regional Head">
-                              <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
@@ -1434,7 +1427,7 @@
                                 <td><input type="text" name="" value="{{$datas->full_name}}" class="form-control" disabled></td>
                                 <td>
                                 <input type="hidden" name="role" value="Director"/>
-                                  <!-- <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" /> -->
+                                  <input type="text" name="special_rate" value="{{$datas->special_rate}}" size="3" />
                                   
                                 </td>
                                 <td>{{$datas->amount}}</td>
@@ -1462,7 +1455,7 @@
                             <p>Apakah Benar Anda Akan <font color="green"><b>Menyetujui</b></font> Pengajuan Special Rate <br>
                               Atas Nama <b> {{$datas->full_name}} </b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
-                              <!-- <input type="hidden" name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden" name="special_rate" value="{{$datas->special_rate}}">
                               <input type="hidden" name="role" value="Director">
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
@@ -1488,7 +1481,7 @@
                               Atas Nama <b> {{$datas->full_name}}</b> ? </p>
                               <input type="hidden" enable="false" name="id_td" value="{{$datas->id}}">
                               <input type="hidden" enable="false" name="role" value="Director">
-                              <!-- <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}"> -->
+                              <input type="hidden"  name="special_rate" value="{{$datas->special_rate}}">
                               <div align="right">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-danger">Reject</button>
@@ -1543,7 +1536,7 @@
                               @foreach($trxDetail as $trx)
                               <tr>
                                   <td>{{$no++}}</td>
-                                  <!-- <td>{{$trx->special_rate}}</td> -->
+                                  <td>{{$trx->special_rate}}</td>
                                   <td>{{$trx->role}}</td>
                                   <td>{{$trx->aksi}}</td>
                                   <td>{{$trx->created_by}}</td>
@@ -1551,7 +1544,7 @@
                               </tr>
                               @endforeach
                             </table>
-                            <button type="submit" class="btn btn-info">aaa</button>
+                            
                          </form>
                           </div>
                           
@@ -1559,6 +1552,16 @@
                       
                   </div>
                 </div>
+            </div>
+                <div class="row" align="center">
+                    <a  href="{{route('td.index')}}"><input type="button" id="btn-submit" class="btn btn-warning" value="Back To List Time Deposit"></a>
+                      <?php
+                        if($checkApproved == $approver){ ?>
+                          <a align="center" href="{{url('td/updateStatus',$datas->id)}}"><input type="button"  id="btn-finish"  class="btn btn-info" value="FINISH"></a>
+                      <?php
+                        }
+                        ?>
+                  </div>               
 <script type="text/javascript">
 var today = new Date();
 var dd = today.getDate();
@@ -1615,14 +1618,20 @@ $("input").click(function(e){
 });
 
   function autoDisableBM1() {   
-    if(rejectbm == 0)
+    if(rejectbm == 0){
       document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='Green'>Approved</font>  by Branch Manager";
-    else
+      document.getElementById("time-bm").innerHTML = today;
+      document.getElementById('btn-approve-bm1').style.visibility = 'hidden';
+      document.getElementById("btn-revisi-bm1").style.visibility = 'hidden';
+      document.getElementById("btn-reject-bm1").style.visibility = 'hidden';
+    
+    }else{
     document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
     document.getElementById('btn-approve-bm1').style.visibility = 'hidden';
     document.getElementById("btn-revisi-bm1").style.visibility = 'hidden';
     document.getElementById("btn-reject-bm1").style.visibility = 'hidden';
     document.getElementById("time-bm").innerHTML = today;
+    }
   }
 
   function autoDisableAM1() {
@@ -1718,21 +1727,35 @@ $("input").click(function(e){
    }
 
   if(jumlahApr == 2){
+    if(rejectam == 1){
+        document.getElementById("time-bm").innerHTML = today;
+        document.getElementById("time-am-1").innerHTML = today;
+        document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Area Manager";
+        document.getElementById('actionAM1').innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b> </font> by Area Manager";
+        document.getElementById('btn-approve-am1').style.visibility = 'hidden';
+        document.getElementById("btn-revisi-am1").style.visibility = 'hidden';
+        document.getElementById("btn-reject-am1").style.visibility = 'hidden';
+        document.getElementById('btn-approve-bm1').style.visibility = 'hidden';
+        document.getElementById("btn-revisi-bm1").style.visibility = 'hidden';
+        document.getElementById("btn-reject-bm1").style.visibility = 'hidden';
+      }
     if(am != 0){
       this.autoDisableAM1();
     }
     if(bm != 0){
       this.autoDisableBM1();
     }
+   
     if(rejectbm == 1){
         document.getElementById("time-bm").innerHTML = today;
         document.getElementById("time-am-1").innerHTML = today;
-        document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
-        document.getElementById('actionAM1').innerHTML = "This Special Rate Has Been <font color='red'>Rejected </font>by Branch Manager";
+        document.getElementById("actionBM1").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Branch Manager";
+        document.getElementById('actionAM1').innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b> </font>by Branch Manager";
         document.getElementById('btn-approve-bm1').style.visibility = 'hidden';
-    document.getElementById("btn-revisi-bm1").style.visibility = 'hidden';
-    document.getElementById("btn-reject-bm1").style.visibility = 'hidden';
-      }
+        document.getElementById("btn-revisi-bm1").style.visibility = 'hidden';
+        document.getElementById("btn-reject-bm1").style.visibility = 'hidden';
+    }
+    
   }else if(jumlahApr==3){
     if(bm != 0){
        this.autoDisableBM2();
@@ -1752,54 +1775,54 @@ $("input").click(function(e){
         document.getElementById("approved-date-by-am2").innerHTML = today;
         document.getElementById("approved-date-by-rh2").innerHTML = today;
 
-        document.getElementById("btn-approve-bm2").disabled = true;
-        document.getElementById("btn-revisi-bm2").disabled = true;
-        document.getElementById("btn-reject-bm2").disabled = true;
+        document.getElementById("btn-approve-bm2").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-bm2").style.visibility = 'hidden';
+        document.getElementById("btn-reject-bm2").style.visibility = 'hidden';
 
-        document.getElementById("btn-approve-am2").disabled = true;
-        document.getElementById("btn-revisi-am2").disabled = true;
-        document.getElementById("btn-reject-am2").disabled = true;
+        document.getElementById("btn-approve-am2").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-am2").style.visibility = 'hidden';
+        document.getElementById("btn-reject-am2").style.visibility = 'hidden';
 
-        document.getElementById("btn-approve-rh2").disabled = true;
-        document.getElementById("btn-revisi-rh2").disabled = true;
-        document.getElementById("btn-reject-rh2").disabled = true;
+        document.getElementById("btn-approve-rh2").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-rh2").style.visibility = 'hidden';
+        document.getElementById("btn-reject-rh2").style.visibility = 'hidden';
 
 
-        document.getElementById("act-bm2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
-        document.getElementById("act-am2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
-        document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+        document.getElementById("act-bm2").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Branch Manager";
+        document.getElementById("act-am2").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Branch Manager";
+        document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Branch Manager";
         
       }
       if(rejectam != 0){
         document.getElementById("approved-date-by-am2").innerHTML = today;
         document.getElementById("approved-date-by-rh2").innerHTML = today;
-        document.getElementById("btn-approve-am2").disabled = true;
-        document.getElementById("btn-revisi-am2").disabled = true;
-        document.getElementById("btn-reject-am2").disabled = true;
+        document.getElementById("btn-approve-am2").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-am2").style.visibility = 'hidden';
+        document.getElementById("btn-reject-am2").style.visibility = 'hidden';
         
-        document.getElementById("act-bm2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
-        document.getElementById("act-am2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
-        document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
-        document.getElementById("act-dr2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
+        document.getElementById("act-bm2").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Area Manager";
+        document.getElementById("act-am2").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Area Manager";
+        document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Area Manager";
+        document.getElementById("act-dr2").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Area Manager";
       }
     if(rejectrh != 0){
         document.getElementById("approved-date-by-rh2").innerHTML = today;
-        document.getElementById("btn-approve-bm2").disabled = true;
-        document.getElementById("btn-revisi-bm2").disabled = true;
-        document.getElementById("btn-reject-bm2").disabled = true;
+        document.getElementById("btn-approve-bm2").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-bm2").style.visibility = 'hidden';
+        document.getElementById("btn-reject-bm2").style.visibility = 'hidden';
 
-        document.getElementById("btn-approve-am2").disabled = true;
-        document.getElementById("btn-revisi-am2").disabled = true;
-        document.getElementById("btn-reject-am2").disabled = true;
+        document.getElementById("btn-approve-am2").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-am2").style.visibility = 'hidden';
+        document.getElementById("btn-reject-am2").style.visibility = 'hidden';
 
-        document.getElementById("btn-approve-rh2").disabled = true;
-        document.getElementById("btn-revisi-rh2").disabled = true;
-        document.getElementById("btn-reject-rh2").disabled = true;
+        document.getElementById("btn-approve-rh2").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-rh2").style.visibility = 'hidden';
+        document.getElementById("btn-reject-rh2").style.visibility = 'hidden';
 
-        document.getElementById("act-bm2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
-        document.getElementById("act-am2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
-        document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
-        document.getElementById("act-dr2").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
+        document.getElementById("act-bm2").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Regional Head";
+        document.getElementById("act-am2").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Regional Head";
+        document.getElementById("act-rh2").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Regional Head";
+        document.getElementById("act-dr2").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Regional Head";
       }
       
       // REVISI
@@ -1824,26 +1847,26 @@ $("input").click(function(e){
         document.getElementById("approved-date-by-rh3").innerHTML = today;
         document.getElementById("approved-date-by-dr3").innerHTML = today;
 
-        document.getElementById("btn-approve-bm3").disabled = true;
-        document.getElementById("btn-revisi-bm3").disabled = true;
-        document.getElementById("btn-reject-bm3").disabled = true;
+        document.getElementById("btn-approve-bm3").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-bm3").style.visibility = 'hidden';
+        document.getElementById("btn-reject-bm3").style.visibility = 'hidden';
 
-        document.getElementById("btn-approve-am3").disabled = true;
-        document.getElementById("btn-revisi-am3").disabled = true;
-        document.getElementById("btn-reject-am3").disabled = true;
+        document.getElementById("btn-approve-am3").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-am3").style.visibility = 'hidden';
+        document.getElementById("btn-reject-am3").style.visibility = 'hidden';
 
-        document.getElementById("btn-approve-rh3").disabled = true;
-        document.getElementById("btn-revisi-rh3").disabled = true;
-        document.getElementById("btn-reject-rh3").disabled = true;
+        document.getElementById("btn-approve-rh3").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-rh3").style.visibility = 'hidden';
+        document.getElementById("btn-reject-rh3").style.visibility = 'hidden';
 
-        document.getElementById("btn-approve-dr3").disabled = true;
-        document.getElementById("btn-revisi-dr3").disabled = true;
-        document.getElementById("btn-reject-dr3").disabled = true;
+        document.getElementById("btn-approve-dr3").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-dr3").style.visibility = 'hidden';
+        document.getElementById("btn-reject-dr3").style.visibility = 'hidden';
 
-        document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
-        document.getElementById("act-am3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
-        document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
-        document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Branch Manager";
+        document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Branch Manager";
+        document.getElementById("act-am3").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Branch Manager";
+        document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Branch Manager";
+        document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Branch Manager";
       }
       if(rejectam == 1){
         document.getElementById("approved-date-by-bm3").innerHTML = today;
@@ -1851,72 +1874,76 @@ $("input").click(function(e){
         document.getElementById("approved-date-by-rh3").innerHTML = today;
         document.getElementById("approved-date-by-dr3").innerHTML = today;
 
-        document.getElementById("btn-approve-bm3").disabled = true;
-        document.getElementById("btn-revisi-bm3").disabled = true;
-        document.getElementById("btn-reject-bm3").disabled = true;
+        document.getElementById("btn-approve-bm3").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-bm3").style.visibility = 'hidden';
+        document.getElementById("btn-reject-bm3").style.visibility = 'hidden';
 
-        document.getElementById("btn-approve-am3").disabled = true;
-        document.getElementById("btn-revisi-am3").disabled = true;
-        document.getElementById("btn-reject-am3").disabled = true;
+        document.getElementById("btn-approve-am3").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-am3").style.visibility = 'hidden';
+        document.getElementById("btn-reject-am3").style.visibility = 'hidden';
 
-        document.getElementById("btn-approve-rh3").disabled = true;
-        document.getElementById("btn-revisi-rh3").disabled = true;
-        document.getElementById("btn-reject-rh3").disabled = true;
+        document.getElementById("btn-approve-rh3").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-rh3").style.visibility = 'hidden';
+        document.getElementById("btn-reject-rh3").style.visibility = 'hidden';
 
-        document.getElementById("btn-approve-dr3").disabled = true;
-        document.getElementById("btn-revisi-dr3").disabled = true;
-        document.getElementById("btn-reject-dr3").disabled = true;
+        document.getElementById("btn-approve-dr3").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-dr3").style.visibility = 'hidden';
+        document.getElementById("btn-reject-dr3").style.visibility = 'hidden';
 
-        document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
-        document.getElementById("act-am3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
-        document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
-        document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Area Manager";
+        document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Area Manager";
+        document.getElementById("act-am3").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Area Manager";
+        document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Area Manager";
+        document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Area Manager";
       }
 
          if(rejectrh == 1){
-        document.getElementById("btn-approve-bm3").disabled = true;
-        document.getElementById("btn-revisi-bm3").disabled = true;
-        document.getElementById("btn-reject-bm3").disabled = true;
+          document.getElementById("approved-date-by-bm3").innerHTML = today;
+        document.getElementById("approved-date-by-am3").innerHTML = today;
+        document.getElementById("approved-date-by-rh3").innerHTML = today;
+        document.getElementById("approved-date-by-dr3").innerHTML = today;
+        document.getElementById("btn-approve-bm3").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-bm3").style.visibility = 'hidden';
+        document.getElementById("btn-reject-bm3").style.visibility = 'hidden';
 
-        document.getElementById("btn-approve-am3").disabled = true;
-        document.getElementById("btn-revisi-am3").disabled = true;
-        document.getElementById("btn-reject-am3").disabled = true;
+        document.getElementById("btn-approve-am3").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-am3").style.visibility = 'hidden';
+        document.getElementById("btn-reject-am3").style.visibility = 'hidden';
 
-        document.getElementById("btn-approve-rh3").disabled = true;
-        document.getElementById("btn-revisi-rh3").disabled = true;
-        document.getElementById("btn-reject-rh3").disabled = true;
+        document.getElementById("btn-approve-rh3").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-rh3").style.visibility = 'hidden';
+        document.getElementById("btn-reject-rh3").style.visibility = 'hidden';
 
-        document.getElementById("btn-approve-dr3").disabled = true;
-        document.getElementById("btn-revisi-dr3").disabled = true;
-        document.getElementById("btn-reject-dr3").disabled = true;
+        document.getElementById("btn-approve-dr3").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-dr3").style.visibility = 'hidden';
+        document.getElementById("btn-reject-dr3").style.visibility = 'hidden';
 
-        document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
-        document.getElementById("act-am3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
-        document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
-        document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Regional Head";
+        document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Regional Head";
+        document.getElementById("act-am3").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Regional Head";
+        document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Regional Head";
+        document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Regional Head";
       }
     if(rejectdr == 1){
         document.getElementById("approved-date-by-dr3").innerHTML = today;
-        document.getElementById("btn-approve-bm3").disabled = true;
-        document.getElementById("btn-revisi-bm3").disabled = true;
-        document.getElementById("btn-reject-bm3").disabled = true;
+        document.getElementById("btn-approve-bm3").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-bm3").style.visibility = 'hidden';
+        document.getElementById("btn-reject-bm3").style.visibility = 'hidden';
 
-        document.getElementById("btn-approve-am3").disabled = true;
-        document.getElementById("btn-revisi-am3").disabled = true;
-        document.getElementById("btn-reject-am3").disabled = true;
+        document.getElementById("btn-approve-am3").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-am3").style.visibility = 'hidden';
+        document.getElementById("btn-reject-am3").style.visibility = 'hidden';
 
-        document.getElementById("btn-approve-rh3").disabled = true;
-        document.getElementById("btn-revisi-rh3").disabled = true;
-        document.getElementById("btn-reject-rh3").disabled = true;
+        document.getElementById("btn-approve-rh3").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-rh3").style.visibility = 'hidden';
+        document.getElementById("btn-reject-rh3").style.visibility = 'hidden';
 
-        document.getElementById("btn-approve-dr3").disabled = true;
-        document.getElementById("btn-revisi-dr3").disabled = true;
-        document.getElementById("btn-reject-dr3").disabled = true;
+        document.getElementById("btn-approve-dr3").style.visibility = 'hidden';
+        document.getElementById("btn-revisi-dr3").style.visibility = 'hidden';
+        document.getElementById("btn-reject-dr3").style.visibility = 'hidden';
 
-        document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Director";
-        document.getElementById("act-am3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Director";
-        document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Director";
-        document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'>Rejected</font> by Director";
+        document.getElementById("act-bm3").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Director";
+        document.getElementById("act-am3").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Director";
+        document.getElementById("act-rh3").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Director";
+        document.getElementById("act-dr3").innerHTML = "This Special Rate Has Been <font color='red'><b>Rejected</b></font> by Director";
         }
   }
 </script>

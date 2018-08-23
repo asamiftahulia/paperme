@@ -117,7 +117,15 @@
 </style>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Example Tab -->
-<div class="row">
+<div class="col-md-12">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                                <div class="card-header" data-background-color="blue">
+                                    <h4 class="title">Time Deposit Special Rate</h4>
+                                    <p class="category">Data Pengajuan Special Rate login : {{session('username')}}</p>
+                                </div></br>
+            <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
@@ -125,16 +133,13 @@
                         <div class="body">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs tab-nav-right" role="tablist">
-                                <li role="presentation" class="active"><a href="#home" data-toggle="tab">HOME</a></li>
-                                <li role="presentation"><a href="#profile" data-toggle="tab">PROFILE</a></li>
-                                <li role="presentation"><a href="#messages" data-toggle="tab">MESSAGES</a></li>
-                                <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
+                                <li role="presentation" class="active"><a href="#home" data-toggle="tab">Single Data</a></li>
+                                <li role="presentation"><a href="#profile" data-toggle="tab">Collective Data</a></li>
                             </ul>
 
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in active" id="home">
-                                    <b>Single Data</b>
                                     <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                         <thead>
                                             <th>No</th>
@@ -166,8 +171,6 @@
                                     </table>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="profile">
-                                    <b>Collective Data</b>
-                                   
                                     <p>
                                     <form id='formMemo' method='post'>
                                     {{csrf_field()}}
@@ -277,9 +280,13 @@
                                         </tbody>
                                     </table>
                           </div>
+                        </div>
                       </div>
+                    </div>
                   </div>
                 </div>
+              </div>
+            </div>
             
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
