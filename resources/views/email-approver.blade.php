@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>
-        You have a new application to preview {{$post->title}} 
+        You have a new application to preview 
     </h1>
 </body>
 </html>
