@@ -100,7 +100,8 @@
                                     <!-- <a href="{{URL::to('./td')}}" class="btn btn-info btn-round">back</a> -->
                                      <a href="{{route('td.edit',$datas->id)}}" class="btn btn-info btn-round">BACK</a>
                                      <!-- <a href="{{URL::to('td/create')}}" class="btn btn-info btn-round">Add Customer</a> -->
-                                     <a href="{{route("tdc.timeline", $tempIdMemo)}}" class="btn btn-info btn-round">GO TO TIMELINE</a>
+                                     <a href="{{route("tdc.timeline", $tempIdMemo)}}" class="btn btn-warning btn-round">PROCESS APPROVAL</a>
+                                     
                                     
                                     <a href="{{url('CollectiveNewTD',$datas->id)}}" class="btn btn-info btn-round">Add More</a>
                                
