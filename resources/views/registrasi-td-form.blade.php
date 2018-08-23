@@ -146,10 +146,12 @@ function myFunction() {
  
     var oneM = Number("1000000000");
     var period = document.getElementById('period').value;
+    var currency = document.getElementById('currency').value;
     var amount = document.getElementById("amount").value;
     var sr = document.getElementById("special_rate").value;
     var parsAmount = parseFloat(amount.replace(/,/g, ''));
    
+if(currency == 'IDR'){
     if(period == 1){
         if(parsAmount > 100000000 && parsAmount <= 1000000000){
              if(sr > 6.50){
@@ -175,6 +177,7 @@ function myFunction() {
             if(sr > 6.75){
                 alert("Maksimal Special Rate 6.75, Nominal Anda  : " + amount );
                 document.getElementById('notes').value = 'Maksimal Special Rate 6.75, Nominal Anda  : ' + amount ;
+                document.getElementById('normal_rate').value = 5.75;
             }else{
                 document.getElementById('normal_rate').value = 5.75;
                 document.getElementById('notes').value = '';
@@ -192,6 +195,7 @@ function myFunction() {
             }
         }
     }
+}
 
 }
 </script>

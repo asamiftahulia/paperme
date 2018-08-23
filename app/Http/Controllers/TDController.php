@@ -603,6 +603,86 @@ class TDController extends Controller
                                 $period = "1 & 3";
                             }
                         }
+                    }else if($datas['period'] == 3 || $datas['period']== 6){
+                        if($datas['amount'] > 100000000){
+                            if($datas['special_rate'] >= 5.75 && $datas['special_rate'] <= 6.50){
+                                $dataApprover = array('approver'=>'AM');
+                                $jumlah = 2;
+                                $period = "1 & 3";
+                            }else if($datas['special_rate'] >= 6.50 && $datas['special_rate'] <= 6.75){
+                                $dataApprover = array('approver'=>'AM','Regional Head');
+                                $jumlah = 3;
+                                $period = "1 & 3";
+                            }else if($datas['special_rate'] > 6.75){
+                                $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                $jumlah = 4;
+                                $period = "1 & 3";
+                            }
+                        }
+                    }else if($datas['period'] == 12){
+                        if($datas['amount'] > 100000000){
+                            if($datas['special_rate'] >= 6.00 && $datas['special_rate'] <= 6.50){
+                                $dataApprover = array('approver'=>'AM');
+                                $jumlah = 2;
+                                $period = "1 & 3";
+                            }else if($datas['special_rate'] >= 6.50 && $datas['special_rate'] <= 6.75){
+                                $dataApprover = array('approver'=>'AM','Regional Head');
+                                $jumlah = 3;
+                                $period = "1 & 3";
+                            }else if($datas['special_rate'] > 6.75){
+                                $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                $jumlah = 4;
+                                $period = "1 & 3";
+                            }
+                        }
+                    }
+                }else if($datas['currency'] == 'USD'){
+                    if($datas['period'] == 1 || $datas['period'] == 3 || $datas['period'] == 6 || $datas['period']==12){
+                        if($datas['special_rate'] >= 0.50 && $datas['special_rate'] <= 1.50){
+                            $dataApprover = array('approver'=>'AM');
+                            $jumlah = 2;
+                            $period = "1 & 3";
+                        }else if($datas['special_rate'] >= 1.50 && $datas['special_rate'] <= 1.75){
+                            $dataApprover = array('approver'=>'AM','Regional Head');
+                            $jumlah = 3;
+                            $period = "1 & 3";
+                        }else if($datas['special_rate'] > 1.75){
+                            $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                            $jumlah = 4;
+                            $period = "1 & 3";
+                        }
+                    }
+                }else if($datas['currency'] == 'SGD'){
+                    if($datas['period'] == 1 || $datas['period'] == 3 || $datas['period'] == 6 || $datas['period']==12){
+                        if($datas['special_rate'] >= 0.50 && $datas['special_rate'] <= 1.00){
+                            $dataApprover = array('approver'=>'AM');
+                            $jumlah = 2;
+                            $period = "1 & 3";
+                        }else if($datas['special_rate'] >= 1.00 && $datas['special_rate'] <= 1.25){
+                            $dataApprover = array('approver'=>'AM','Regional Head');
+                            $jumlah = 3;
+                            $period = "1 & 3";
+                        }else if($datas['special_rate'] > 1.25){
+                            $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                            $jumlah = 4;
+                            $period = "1 & 3";
+                        }
+                    }
+                }else if($datas['currency']=='CNY'){
+                    if($datas['period'] == 1 || $datas['period'] == 3 || $datas['period'] == 6 || $datas['period']==12){
+                        if($datas['special_rate'] >= 0.50 && $datas['special_rate'] <= 1.50){
+                            $dataApprover = array('approver'=>'AM');
+                            $jumlah = 2;
+                            $period = "1 & 3";
+                        }else if($datas['special_rate'] >= 1.50 && $datas['special_rate'] <= 2.00){
+                            $dataApprover = array('approver'=>'AM','Regional Head');
+                            $jumlah = 3;
+                            $period = "1 & 3";
+                        }else if($datas['special_rate'] > 2.00){
+                            $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                            $jumlah = 4;
+                            $period = "1 & 3";
+                        }
                     }
                 }
             }
