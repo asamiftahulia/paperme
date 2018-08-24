@@ -263,7 +263,7 @@ class TDController extends Controller
         $director = 0;
         $dataApprover = array(['Area Manager','Regional Head','Director']);
        
-            foreach($mSR as $sr){
+         
                 foreach($data as $datas){
                     $currency = $datas['currency'];
                     $specialRate = $datas['special_rate'];
@@ -348,9 +348,155 @@ class TDController extends Controller
                         }
                     }
                 }
-            }
-          
-        Mail::to('harsyami@gmail.com')->send(new PostSubscribtion($data));
+
+                // user bm
+                $IdBranch = TD::where('id', $id)->get(['id_branch']);
+                if($IdBranch!='NULL'){
+                 // echo "<script type='text/javascript'>alert('$IdBranch[0]');</script>";
+                 //get id branch
+                 $branch = explode(':',$IdBranch[0]);
+                 $cab =  substr( $branch[1], 1 );
+                 $cabang= rtrim($cab, '"}');
+                 // echo "<script type='text/javascript'>alert('$cabang');</script>";
+                }else{
+                 // echo "<script type='text/javascript'>alert('ga ada');</script>";
+                }
+                
+                //get flow cabang
+                $flow = FlowMapping::where('id',$cabang)->get();
+         
+                foreach($flow as $dataaa)
+                 {
+                     $cekJumlahApr = TD::where('id', $id)->get();
+                     foreach($cekJumlahApr as $datas){
+                         if($datas['currency'] == 'IDR'){
+                             if($datas['period'] == 1){
+                                 // > i bio
+                                 if($datas['amount'] > 1000000000){
+                                     if($datas['special_rate'] >= 5.50 && $data['special_rate'] <= 6.25){
+                                         $dataApprover = array('approver'=>'AM');
+                                         $jumlah = 2;
+                                         $period = "1 & 3";
+                                     }else if($datas['special_rate'] >= 6.25 && $datas['special_rate'] <= 6.75){
+                                         $dataApprover = array('approver'=>'AM','Regional Head');
+                                         $jumlah = 3;
+                                         $period = "1 & 3";
+                                     }else if($datas['special_rate'] > 6.75){
+                                         $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                         $jumlah = 4;
+                                         $period = "1 & 3";
+                                     }
+                                 }else if($datas['amount'] < 1000000000){
+                                     if($datas['special_rate'] >= 5.50 && $datas['special_rate'] <= 6.25){
+                                         $dataApprover = array('approver'=>'AM');
+                                         $jumlah = 2;
+                                         $period = "1 & 3";
+                                     }else if($datas['special_rate'] >= 6.25 && $datas['special_rate'] <= 6.50){
+                                         $dataApprover = array('approver'=>'AM','Regional Head');
+                                         $jumlah = 3;
+                                         $period = "1 & 3";
+                                     }else if($datas['special_rate'] > 6.50){
+                                         $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                         $jumlah = 4;
+                                         $period = "1 & 3";
+                                     }
+                                 }
+                             }else if($datas['period'] == 3 || $datas['period']== 6){
+                                 if($datas['amount'] > 100000000){
+                                     if($datas['special_rate'] >= 5.75 && $datas['special_rate'] <= 6.50){
+                                         $dataApprover = array('approver'=>'AM');
+                                         $jumlah = 2;
+                                         $period = "1 & 3";
+                                     }else if($datas['special_rate'] >= 6.50 && $datas['special_rate'] <= 6.75){
+                                         $dataApprover = array('approver'=>'AM','Regional Head');
+                                         $jumlah = 3;
+                                         $period = "1 & 3";
+                                     }else if($datas['special_rate'] > 6.75){
+                                         $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                         $jumlah = 4;
+                                         $period = "1 & 3";
+                                     }
+                                 }
+                             }else if($datas['period'] == 12){
+                                 if($datas['amount'] > 100000000){
+                                     if($datas['special_rate'] >= 6.00 && $datas['special_rate'] <= 6.50){
+                                         $dataApprover = array('approver'=>'AM');
+                                         $jumlah = 2;
+                                         $period = "1 & 3";
+                                     }else if($datas['special_rate'] >= 6.50 && $datas['special_rate'] <= 6.75){
+                                         $dataApprover = array('approver'=>'AM','Regional Head');
+                                         $jumlah = 3;
+                                         $period = "1 & 3";
+                                     }else if($datas['special_rate'] > 6.75){
+                                         $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                         $jumlah = 4;
+                                         $period = "1 & 3";
+                                     }
+                                 }
+                             }
+                         }else if($datas['currency'] == 'USD'){
+                             if($datas['period'] == 1 || $datas['period'] == 3 || $datas['period'] == 6 || $datas['period']==12){
+                                 if($datas['special_rate'] >= 0.50 && $datas['special_rate'] <= 1.50){
+                                     $dataApprover = array('approver'=>'AM');
+                                     $jumlah = 2;
+                                     $period = "1 & 3";
+                                 }else if($datas['special_rate'] >= 1.50 && $datas['special_rate'] <= 1.75){
+                                     $dataApprover = array('approver'=>'AM','Regional Head');
+                                     $jumlah = 3;
+                                     $period = "1 & 3";
+                                 }else if($datas['special_rate'] > 1.75){
+                                     $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                     $jumlah = 4;
+                                     $period = "1 & 3";
+                                 }
+                             }
+                         }else if($datas['currency'] == 'SGD'){
+                             if($datas['period'] == 1 || $datas['period'] == 3 || $datas['period'] == 6 || $datas['period']==12){
+                                 if($datas['special_rate'] >= 0.50 && $datas['special_rate'] <= 1.00){
+                                     $dataApprover = array('approver'=>'AM');
+                                     $jumlah = 2;
+                                     $period = "1 & 3";
+                                 }else if($datas['special_rate'] >= 1.00 && $datas['special_rate'] <= 1.25){
+                                     $dataApprover = array('approver'=>'AM','Regional Head');
+                                     $jumlah = 3;
+                                     $period = "1 & 3";
+                                 }else if($datas['special_rate'] > 1.25){
+                                     $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                     $jumlah = 4;
+                                     $period = "1 & 3";
+                                 }
+                             }
+                         }else if($datas['currency']=='CNY'){
+                             if($datas['period'] == 1 || $datas['period'] == 3 || $datas['period'] == 6 || $datas['period']==12){
+                                 if($datas['special_rate'] >= 0.50 && $datas['special_rate'] <= 1.50){
+                                     $dataApprover = array('approver'=>'AM');
+                                     $jumlah = 2;
+                                     $period = "1 & 3";
+                                 }else if($datas['special_rate'] >= 1.50 && $datas['special_rate'] <= 2.00){
+                                     $dataApprover = array('approver'=>'AM','Regional Head');
+                                     $jumlah = 3;
+                                     $period = "1 & 3";
+                                 }else if($datas['special_rate'] > 2.00){
+                                     $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                     $jumlah = 4;
+                                     $period = "1 & 3";
+                                 }
+                             }
+                         }
+                     }
+                         
+                     $path = explode(';',$dataaa->path);
+                     $countPath = count($path);
+                     $regional = $dataaa->regional;
+                   
+                         $userBM = UserJob::where('id_branch',$cabang)->where('id_jobs','S0362')->get();
+                         $bmm = $userBM[0]->username;
+                        // echo "<script type='text/javascript'>alert('".$bmm."');</script>";
+
+                 }
+                //bmm
+                //  echo "<script type='text/javascript'>alert('".$bmm."');</script>";
+        Mail::to('harsya.mifta@idn.ccb.com')->send(new PostSubscribtion($data));
         return view('summary',compact('data', $data))->with('apr',$dataApprover);
     }
 
@@ -709,7 +855,7 @@ class TDController extends Controller
                 }
             }
         }
-        $tandaRevisiMenghilangkan = 0;
+        
             $cekTdUser = DB::table('td_user')->where('id_td', $id_td)->count();
             if($cekTdUser!=0){
                 $cekRev = DB::table('trx-time-deposit')->where('id_td', $id_td)->where('aksi','Revisi')->count();
@@ -831,14 +977,20 @@ class TDController extends Controller
                         }
                         
                         $approverTd = $td->approver;
+                        
                         // echo "<script type='text/javascript'>alert($td->approver);</script>";
                         if(($jumlah < $approverTd) && ($approverTd == $ApproverKe) && (session('job')!='S0362')){
-                            // echo "<script type='text/javascript'>alert('gabole');</script>";
+                            echo "<script type='text/javascript'>alert('gabole');</script>";
+                            echo "<script type='text/javascript'>alert($td->approver);</script>";
+                            $apr = $td->approver;
                             $ganti = DB::table('td_user')->where('id_td', $id_td)->update(['jumlah' => $td->approver]);
-                            $tandaRevisiMenghilangkan = 1;
+                            $gantiTD = DB::table('time-deposit')->where('id', $id_td)->update(['approver' => $td->approver]);
+                            
+
                         }else{
-                            // echo "<script type='text/javascript'>alert($jumlah);</script>";
+                            echo "<script type='text/javascript'>alert($jumlah);</script>";
                             $ganti = DB::table('time-deposit')->where('id', $id_td)->update(['approver' => $jumlah]);
+                            $revisiRH = 0;
                             // echo "<script type='text/javascript'>alert($ganti);</script>";
                         }
                         // dd($ganti);
@@ -1019,6 +1171,8 @@ class TDController extends Controller
         // dd($checkApproved);
         // dd($approver);
 
+       
+        // echo "<script type='text/javascript'>alert(".$td->approver.");</script>"; 
         if($checkApproved == $approver){
             $td = TD::find($id_td);
             $td->status = $strStatus;
@@ -1030,6 +1184,13 @@ class TDController extends Controller
         ->where('id_td','=',$id_td)
         ->get();
         // dd($trxDetail);
+
+        if($revisiRH == 5){
+            echo "<script type='text/javascript'>alert('satu');</script>"; 
+            $apr = $td->approver;
+        }else{
+            echo "<script type='text/javascript'>alert('ga');</script>"; 
+        }
         return view('timeline-td',compact('data',$data))->with('apr',$dataApprover)
         ->with('user',$user)
         ->with('rev',$rev)
@@ -1046,7 +1207,6 @@ class TDController extends Controller
         ->with('rejectAM', $rejectAM)
         ->with('rejectRH', $rejectRH)
         ->with('rejectDR', $rejectDR)
-        ->with('tandaRevisiMenghilangkan',$tandaRevisiMenghilangkan)
         ->with('revisiRH', $revisiRH)
         ->with('revisiDR', $revisiDR)
         ->with('checkApproved', $checkApproved)
@@ -1076,81 +1236,117 @@ class TDController extends Controller
             $cekJumlahApr = TD::where('id', $id_td)->get();
             foreach($cekJumlahApr as $datas){
                 if($datas['currency'] == 'IDR'){
-                    if($datas['period'] == 1 || $datas['period'] == 3){
-                        if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.00'){
+                    if($datas['period'] == 1){
+                        // > i bio
+                        if($datas['amount'] > 1000000000){
+                            if($datas['special_rate'] >= 5.50 && $data['special_rate'] <= 6.25){
+                                $dataApprover = array('approver'=>'AM');
+                                $jumlah = 2;
+                                $period = "1 & 3";
+                            }else if($datas['special_rate'] >= 6.25 && $datas['special_rate'] <= 6.75){
+                                $dataApprover = array('approver'=>'AM','Regional Head');
+                                $jumlah = 3;
+                                $period = "1 & 3";
+                            }else if($datas['special_rate'] > 6.75){
+                                $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                $jumlah = 4;
+                                $period = "1 & 3";
+                            }
+                        }else if($datas['amount'] < 1000000000){
+                            if($datas['special_rate'] >= 5.50 && $datas['special_rate'] <= 6.25){
+                                $dataApprover = array('approver'=>'AM');
+                                $jumlah = 2;
+                                $period = "1 & 3";
+                            }else if($datas['special_rate'] >= 6.25 && $datas['special_rate'] <= 6.50){
+                                $dataApprover = array('approver'=>'AM','Regional Head');
+                                $jumlah = 3;
+                                $period = "1 & 3";
+                            }else if($datas['special_rate'] > 6.50){
+                                $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                $jumlah = 4;
+                                $period = "1 & 3";
+                            }
+                        }
+                    }else if($datas['period'] == 3 || $datas['period']== 6){
+                        if($datas['amount'] > 100000000){
+                            if($datas['special_rate'] >= 5.75 && $datas['special_rate'] <= 6.50){
+                                $dataApprover = array('approver'=>'AM');
+                                $jumlah = 2;
+                                $period = "1 & 3";
+                            }else if($datas['special_rate'] >= 6.50 && $datas['special_rate'] <= 6.75){
+                                $dataApprover = array('approver'=>'AM','Regional Head');
+                                $jumlah = 3;
+                                $period = "1 & 3";
+                            }else if($datas['special_rate'] > 6.75){
+                                $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                $jumlah = 4;
+                                $period = "1 & 3";
+                            }
+                        }
+                    }else if($datas['period'] == 12){
+                        if($datas['amount'] > 100000000){
+                            if($datas['special_rate'] >= 6.00 && $datas['special_rate'] <= 6.50){
+                                $dataApprover = array('approver'=>'AM');
+                                $jumlah = 2;
+                                $period = "1 & 3";
+                            }else if($datas['special_rate'] >= 6.50 && $datas['special_rate'] <= 6.75){
+                                $dataApprover = array('approver'=>'AM','Regional Head');
+                                $jumlah = 3;
+                                $period = "1 & 3";
+                            }else if($datas['special_rate'] > 6.75){
+                                $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                                $jumlah = 4;
+                                $period = "1 & 3";
+                            }
+                        }
+                    }
+                }else if($datas['currency'] == 'USD'){
+                    if($datas['period'] == 1 || $datas['period'] == 3 || $datas['period'] == 6 || $datas['period']==12){
+                        if($datas['special_rate'] >= 0.50 && $datas['special_rate'] <= 1.50){
                             $dataApprover = array('approver'=>'AM');
                             $jumlah = 2;
                             $period = "1 & 3";
-                        }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] <= '6.25'){
+                        }else if($datas['special_rate'] >= 1.50 && $datas['special_rate'] <= 1.75){
                             $dataApprover = array('approver'=>'AM','Regional Head');
                             $jumlah = 3;
                             $period = "1 & 3";
-                        }else if($datas['special_rate'] == '5.25' || $datas['special_rate'] > '6.25'){
+                        }else if($datas['special_rate'] > 1.75){
                             $dataApprover = array('approver'=>'AM','Regional Head','Director');
                             $jumlah = 4;
                             $period = "1 & 3";
-                        }else{
-                            echo 'Approver Not Found';
                         }
-                    }else if($datas['period'] == 6 || $datas['period'] == 12){
-                        if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '5.75'){
+                    }
+                }else if($datas['currency'] == 'SGD'){
+                    if($datas['period'] == 1 || $datas['period'] == 3 || $datas['period'] == 6 || $datas['period']==12){
+                        if($datas['special_rate'] >= 0.50 && $datas['special_rate'] <= 1.00){
                             $dataApprover = array('approver'=>'AM');
                             $jumlah = 2;
-                            $period = "6 & 12";
-                        }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] <= '6.00'){
+                            $period = "1 & 3";
+                        }else if($datas['special_rate'] >= 1.00 && $datas['special_rate'] <= 1.25){
                             $dataApprover = array('approver'=>'AM','Regional Head');
                             $jumlah = 3;
-                            $period = "6 & 12";
-                        }else if($datas['special_rate'] == '5.50' || $datas['special_rate'] > '6.00'){
+                            $period = "1 & 3";
+                        }else if($datas['special_rate'] > 1.25){
                             $dataApprover = array('approver'=>'AM','Regional Head','Director');
                             $jumlah = 4;
-                            $period = "6 & 12";
-                        }else{
-                            echo 'Approver Not Found';
+                            $period = "1 & 3";
                         }
                     }
-                }elseif($datas['currency']=='USD'){
-                     $period = "All Period";
-                    if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '1.00'){
-                        $dataApprover = array('approver'=>'AM');
-                        $jumlah = 2;
-                       
-                    }else if($datas['special_rate'] == '1.00' || $datas['special_rate'] <= '1.25'){
-                        $dataApprover = array('approver'=>'AM','Regional Head');
-                        $jumlah = 3;
-                    }else if($datas['special_rate'] > '1.25'){
-                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
-                        $jumlah = 4;
-                    }else{
-                        echo 'Approver Not Found';
-                    }
-                }elseif($datas['currency']=='SGD'){
-                    $period = "All Period";
-                    if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '0.75'){
-                        $dataApprover = array('approver'=>'AM');
-                        $jumlah = 2;
-                    }else if($datas['special_rate'] == '0.75' || $datas['special_rate'] <= '1.00'){
-                        $dataApprover = array('approver'=>'AM','Regional Head');
-                        $jumlah = 3;
-                    }else if($datas['special_rate'] > '1.00'){
-                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
-                        $jumlah = 4;
-                    }else{
-                        echo 'Approver Not Found';
-                    }
-                }elseif($datas['currency']=='CNY'){
-                    $period = "All Period";
-                    if($datas['special_rate'] == '0.50' || $datas['special_rate'] <= '1.25'){
-                        $dataApprover = array('approver'=>'AM');
-                        $jumlah = 2;
-                    }else if($datas['special_rate'] == '1.25' || $datas['special_rate'] <= '1.50'){
-                        $dataApprover = array('approver'=>'AM','Regional Head');
-                        $jumlah = 3;
-                    }else if($datas['special_rate'] > '1.50'){
-                        $dataApprover = array('approver'=>'AM','Regional Head','Director');
-                        $jumlah = 4;
-                    }else{
-                        echo 'Approver Not Found';
+                }else if($datas['currency']=='CNY'){
+                    if($datas['period'] == 1 || $datas['period'] == 3 || $datas['period'] == 6 || $datas['period']==12){
+                        if($datas['special_rate'] >= 0.50 && $datas['special_rate'] <= 1.50){
+                            $dataApprover = array('approver'=>'AM');
+                            $jumlah = 2;
+                            $period = "1 & 3";
+                        }else if($datas['special_rate'] >= 1.50 && $datas['special_rate'] <= 2.00){
+                            $dataApprover = array('approver'=>'AM','Regional Head');
+                            $jumlah = 3;
+                            $period = "1 & 3";
+                        }else if($datas['special_rate'] > 2.00){
+                            $dataApprover = array('approver'=>'AM','Regional Head','Director');
+                            $jumlah = 4;
+                            $period = "1 & 3";
+                        }
                     }
                 }
             }

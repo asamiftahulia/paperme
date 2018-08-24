@@ -15,7 +15,7 @@
                   <h4 class="title">TIMELINE </br>Time Deposit Special Rate</h4>
 
                 </div></br>
-				<!-- <font align="center">THIS DATA IS COLLECTIVE <?php echo $maksApprover;?></font></br></br> -->
+				<!-- <font align="center">THIS DATA IS COLLECTIVE </font></br></br> -->
                 <!-- ini mulai BM -->
  <?php
 	$rm = '';
@@ -37,7 +37,7 @@
 	<div class="direction-r">
 		<div class="flag-wrapper">
 			<span class="hexa"></span>
-			<span class="flag">Branch Manager</span>
+			<span class="flag">Branch Manager </span>
 			<span class="time-wrapper"><span class="time" id="time-bm">-</span></span>
 			</br>
 		</div>
@@ -52,7 +52,7 @@
 				?>
 			<?php
 				if($rejected==0){ ?>
-					<p id="act-bm">Waiting an action from Branch Manager</p>
+					<p id="act-bm">Waiting An Action From Branch Manager</p>
 		<?php	}else if($rejected == 1){
 		?>
 					<p id="act-bm">This Special Rate Has Been<font color="red"> Rejected </font>By Branch Manager</p>
@@ -63,6 +63,7 @@
 		<?php		}
 			?>
 			<br>
+			<span>{{$orang->bm}}</span></br>
 			<?php 
 				if(session('username')==$bm){
 			?>
@@ -97,7 +98,7 @@
 			<?php
 				if($rejected==0){ ?>
 
-					<p id="act-am">Waiting an action from Area Manager</p>
+					<p id="act-am">Waiting An Action From Area Manager</p>
 
 		<?php	}else if($rejected == 1){
 		?>
@@ -109,6 +110,7 @@
 		<?php		}
 			?>
 			<br>
+			<span>{{$orang->am}}</span></br>
 			<?php
 				if(session('username')==$am){
 			?>
@@ -134,25 +136,27 @@
 		<div class="desc">
 		<?php 
 				$rejected = 0;
+				$approve = 0;
 				foreach($tempStatusRH as $aksiRH){
 					if($aksiRH == 'Reject'){
 						$rejected = 1;
+					}else if($aksiRH == 'Approve'){
+						$approve = 1;
 					}
 				}
 				?>
-			<?php
-				if($rejected==0){ ?>
-					<p id="act-rh">Waiting an action from Regional Head</p>
-		<?php	}else if($rejected == 1){
+				<p id="act-rh">Waiting An Action From Regional Head</p>
+		<?php	if($rejected == 1){
 		?>
-					<p id="act-rh">This Special Rate Has Been<font color="red"> Rejected </font>By Regional Head</p>
+				<p id="act-rh">This Special Rate Has Been<font color="red"> Rejected </font>By Regional Head</p>
 		<?php	
-				}else{
+				}else if($approve == 1){
 		?>
-				<p id="act-rh">Waiting an action from Regional Head</p>
-		<?php		}
+				<p id="act-rh">Approve</p>
+		<?php	}
 			?>
 			<br>
+			<span>{{$orang->rh}}</span></br>
 			<?php
 				if(session('username')==$rh){
 			?>
@@ -164,7 +168,7 @@
 	</div>
 </li>
 <?php
-}if($maksApprover >= 4 ){
+}if($maksApprover == 4 ){
 	?>
 <li>
 	<div class="direction-l">
@@ -177,6 +181,7 @@
 		<div class="desc">
 			<p id="act-dr">Waiting An Action From Director</p>
 			<br>
+			<span>{{$orang->dr}}</span></br>
 			<?php
 				if(session('username')==$dr){
 			?>
@@ -204,7 +209,7 @@
 				<div class="card">
 					<div class="card-header" data-background-color="blue">
 						<h4 class="title">List Data Collective</h4>
-						<p class="category">Created By </p>
+						<p class="category"> </p>
 					</div>
 					<div class="card-content table-responsive">
 						<form id='userForm' method='post'>
@@ -534,12 +539,12 @@ checkboxApprove.addEventListener('change', (event) => {
 checkboxReject.addEventListener('change', (event) => {
   if (event.target.checked) {
     console.log('checked')
-	for(i = 1; i<=2;i++){
+	for(i = 1; i<=counterr;i++){
 	document.getElementById('aksiReject'+i).checked = true;
 	}
   } else {
     console.log('not checked')
-	for(i = 1; i<=2;i++){
+	for(i = 1; i<=counterr;i++){
 	document.getElementById('aksiReject'+i).checked = false;
 	}
 	

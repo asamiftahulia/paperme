@@ -8,6 +8,7 @@ use App\transaction_td;
 use App\TD;
 use App\TD_USER;
 use App\Mail\PostSubscribtion;
+use App\Mail\EmailApprover;
 use Mail;
 use DB;
 use Illuminate\Support\Facades\Input;
@@ -63,8 +64,26 @@ class TransactionTimeDepositController extends Controller
         $td->action = 1;
         $td->save();
 
+      //ambil email selanjutnya
+        
+        
+        if($request->role == 'Branch Manager'){
+            $td_user = DB::table('td_user')
+            ->select('*')->where('id_td',$request->id_td)->pluck('am');
+        }else if($request->role == 'Area Manager'){
+            $td_user = DB::table('td_user')
+            ->select('*')->where('id_td',$request->id_td)->pluck('rh');
+        }else if($request->role == 'Regional Head'){
+            $td_user = DB::table('td_user')
+            ->select('*')->where('id_td',$request->id_td)->pluck('dr');
+        }else if($request->role == 'Director'){
+            $td_user[0] = 'harsya.mifta@idn.ccb.com';
+        }
+        
+
         if($result==1){
             echo "success";
+            echo $td_user[0];
             $act = 0;
             $notification = array(
                 'message' => 'Approved Successfull & Email Has Been Sent',
@@ -79,10 +98,14 @@ class TransactionTimeDepositController extends Controller
                 'alert-type' => 'error'
             );
         }
+        
+        //tduser nya emailnya
+        // $td_user[0]
 
-    //    Mail::to('AreaManager@gmail.com')->send(new PostSubscribtion($data));
+        Mail::to('Harsyami@gmail.com')->send(new EmailApprover($data));
+        
          return redirect('timeline/'.$data->id_td)->with($notification);
-        //return redirect()->back()->with($notification);
+        
     }
 
     public function storeCol(Request $request){

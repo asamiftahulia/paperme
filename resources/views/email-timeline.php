@@ -10,6 +10,6 @@
     <h1>
         You have a new application to preview 
     </h1>
-        <b>Application Created By : </b>
+        <b>Application Created By : {{$data['asa']}} </b>
 </body>
 </html>
