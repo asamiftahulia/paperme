@@ -30,8 +30,8 @@ class EmailApprover extends Mailable
      */
     public function build()
     {
+
         $subject = 'Application waiting for your action';
-        $asa = 'ali';
-        return $this->subject($subject)->view('email-timeline')->with(['data',$asa]);
+        return $this->subject($subject)->view('email-timeline')->with(['data',$this->data]);
     }
 }

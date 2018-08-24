@@ -102,7 +102,9 @@ class TransactionTimeDepositController extends Controller
         //tduser nya emailnya
         // $td_user[0]
 
-        Mail::to('Harsyami@gmail.com')->send(new EmailApprover($data));
+        $td = TD::where('id',$request->id_td)->get();
+        
+        Mail::to('Harsyami@gmail.com')->send(new EmailApprover($td));
         
          return redirect('timeline/'.$data->id_td)->with($notification);
         

@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'no.reply@idn.ccb.com'),
-        'name' => env('MAIL_FROM_NAME', 'donotreply'),
+        'name' => env('MAIL_FROM_NAME', 'bima.ccbi.co.id'),
     ],
 
     /*
