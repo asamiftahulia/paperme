@@ -14,7 +14,107 @@
                 <div class="card-header" data-background-color="blue">
                   <h4 class="title">TIMELINE </br>Time Deposit Special Rate</h4>
 
-                </div></br>
+				</div></br>
+				<div class='row'>
+							<tr>
+								<td><h4><font color='white'>..........</font>Data Detail </h4></td>
+</tr>
+							<tr>
+                              <td><font color='white'>.....</font>Data Collective</td>
+                              <td>:</td>
+                              <td>
+                                <input type="button" data-toggle="modal" data-target="#modalDetailList" class="btn btn-info btn-sm" value="Detail">
+                              </td>
+							</tr>
+							<tr></br>
+                              <td><font color='white'>.....</font>History</td>
+                              <td>:</td>
+                              <td>
+                                <input type="button" data-toggle="modal" data-target="#modalDetailHistory" class="btn btn-info btn-sm" value="History">
+                              </td>
+							</tr>
+				</div>
+				<div class="modal fade" id="modalDetailList" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title" id="defaultModalLabel">Detail Data Collective</h4>
+                              <div class="modal-header">
+                          </div>
+                      </div>
+                          <div class="modal-body">
+                            <table class="table">
+                              <tr>
+								<th>No</th>
+								<th>Full Name</th>
+								<th>Amount</th>
+                                <th>Special Rate</th>
+                                <th>Period</th>
+                                <th>Date Rollover</th>
+                                <th>Notes</th>
+                              </tr>
+                              <?php $no = 1;?>
+                              @foreach($data as $datas)
+                              <tr>
+                                  <td>{{$no++}}</td>
+								  <td>{{$datas->full_name}}</td>
+								  <td>{{$datas->amount}} {{$datas->currency}}</td>
+								  <td>{{$datas->special_rate}}</td>
+								  <td>{{$datas->period}} Bulan</td>
+								  <td>{{$datas->date_rollover}}</td>
+								  <td>{{$datas->notes}}</td>
+                              </tr>
+                              @endforeach
+                            </table>
+                            
+                         </form>
+                          </div>
+                          
+                      </div>
+                      
+                  </div>
+				</div>
+				
+				<div class="modal fade" id="modalDetailHistory" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title" id="defaultModalLabel">Detail Data Collective</h4>
+                              <div class="modal-header">
+                          </div>
+                      </div>
+                          <div class="modal-body">
+                            <table class="table">
+                              <tr>
+								<th>No</th>
+                                <th>Special Rate</th>
+                                <th>Role</th>
+                                <th>Aksi</th>
+                                <th>Created By</th>
+                              </tr>
+                              <?php $no = 1;?>
+                              @foreach($trxCol as $datas)
+                              <tr>
+                                  <td>{{$no++}}</td>
+								  <td>{{$datas->special_rate}}</td>
+								  <td>{{$datas->role}}</td>
+								  <td>{{$datas->aksi}}</td>
+								  <td>{{$datas->created_by}}</td>
+                              </tr>
+                              @endforeach
+                            </table>
+                            
+                         </form>
+                          </div>
+                          
+                      </div>
+                      
+                  </div>
+                </div>
+                            
+                         
 				<!-- <font align="center">THIS DATA IS COLLECTIVE </font></br></br> -->
                 <!-- ini mulai BM -->
  <?php

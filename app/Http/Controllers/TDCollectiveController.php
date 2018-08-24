@@ -149,6 +149,16 @@ class TDCollectiveController extends Controller
 
     public function timelineCollective($id_memmo){
         $data = TD::where('id_memmo',$id_memmo)->get();
+        
+        $jumlahCol = TD::where('id_memmo',$id_memmo)->count();
+
+
+       
+        $trxCol = DB::table('trx-time-deposit')
+        ->select('*')
+        ->join('time-deposit', 'trx-time-deposit.id_td','=','time-deposit.id')
+        ->where('time-deposit.id_memmo',$id_memmo)->get();
+        
         //ambil approvernya aja
       
         // for()
@@ -392,14 +402,13 @@ class TDCollectiveController extends Controller
                 $td->approver = $td_user->jumlah;
                 $td->save();
 
-                return view('timeline-col',compact('data',$data,'allData',$allData,
+                return view('timeline-col',compact('data',$data,'allData',$allData,'jumlahCol',$jumlahCol,
                 'maksApprover',$maksApprover,'tempStatusBM',$tempStatusBM,'tempStatusBM',$tempStatusBM,
-                'tempStatusBM',$tempStatusBM,'tempStatusAM',$tempStatusAM,'tempStatusRH',$tempStatusRH));
+                'tempStatusBM',$tempStatusBM,'tempStatusAM',$tempStatusAM,'tempStatusRH',$tempStatusRH,'trxCol',$trxCol));
             }else{
-                
-                return view('timeline-col',compact('data',$data,'allData',$allData,
+                return view('timeline-col',compact('data',$data,'allData',$allData,'jumlahCol',$jumlahCol,
                 'maksApprover',$maksApprover,'tempStatusBM',$tempStatusBM,'tempStatusAM',$tempStatusAM,
-                'tempStatusBM',$tempStatusBM,'tempStatusAM',$tempStatusAM,'tempStatusRH',$tempStatusRH));
+                'tempStatusBM',$tempStatusBM,'tempStatusAM',$tempStatusAM,'tempStatusRH',$tempStatusRH,'trxCol',$trxCol));
             }
         
         
