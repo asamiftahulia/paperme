@@ -962,16 +962,16 @@ class TDController extends Controller
                         $login = session('username');
                         foreach($cekApproverKeBerapa as $a){
                             if($a->bm == $login){
-                                echo "bm";
+                                // echo "bm";
                                 $ApproverKe = 1;
                             }elseif($a->am == $login){
-                                echo "am";
+                                // echo "am";
                                 $ApproverKe = 2;
                             }elseif($a->rh == $login){
-                                echo "rh";
+                                // echo "rh";
                                 $ApproverKe = 3;
                             }else{
-                                echo "dr";
+                                // echo "dr";
                                 $ApproverKe = 4;
                             }
                         }
@@ -980,8 +980,8 @@ class TDController extends Controller
                         
                         // echo "<script type='text/javascript'>alert($td->approver);</script>";
                         if(($jumlah < $approverTd) && ($approverTd == $ApproverKe) && (session('job')!='S0362')){
-                            echo "<script type='text/javascript'>alert('gabole');</script>";
-                            echo "<script type='text/javascript'>alert($td->approver);</script>";
+                            // echo "<script type='text/javascript'>alert('gabole');</script>";
+                            // echo "<script type='text/javascript'>alert($td->approver);</script>";
                             $apr = $td->approver;
                             $ganti = DB::table('td_user')->where('id_td', $id_td)->update(['jumlah' => $td->approver]);
                             $gantiTD = DB::table('time-deposit')->where('id', $id_td)->update(['approver' => $td->approver]);
@@ -1186,10 +1186,10 @@ class TDController extends Controller
         // dd($trxDetail);
 
         if($revisiRH == 5){
-            echo "<script type='text/javascript'>alert('satu');</script>"; 
+            // echo "<script type='text/javascript'>alert('satu');</script>"; 
             $apr = $td->approver;
         }else{
-            echo "<script type='text/javascript'>alert('ga');</script>"; 
+            // echo "<script type='text/javascript'>alert('ga');</script>"; 
         }
         return view('timeline-td',compact('data',$data))->with('apr',$dataApprover)
         ->with('user',$user)

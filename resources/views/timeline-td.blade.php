@@ -1214,7 +1214,7 @@
                     <?php
                         }else{
                           ?>
-                      <div class="desc"><p id="act-revisi-rh3-telah"><font color='orange'>Telah Merevisi aaaSpecial Rate Menjadi {{$data->special_rate}} % </br> </font>
+                      <div class="desc"><p id="act-revisi-rh3-telah"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font>
                       <div class="desc"><p id="act-revisi-rh3"></br> 
                       <p><span>{{$orang->rh}}</span></br></p>
                       <input type="button" disabled="true" id="btnrev-revisi-rh3" data-toggle="modal" data-target="#modal2RHDet"class="btn btn-info btn-sm" value="Detail">
@@ -1241,7 +1241,7 @@
                     <?php
                         if(session('username')=='setiawati.samahita@idn.ccb.com' && $approverRH!= 0 && $revisiDR != 0){
                     ?>
-                     <div class="desc"><p id="act-revisi-rh3-telah"><font color='orange'>Telah Merevisi eeeeSpecial Rate Menjadi {{$data->special_rate}} % </br> </font>
+                     <div class="desc"><p id="act-revisi-rh3-telah"><font color='orange'>Telah Merevisi Special Rate Menjadi {{$data->special_rate}} % </br> </font>
                     <?php
                         if($approverRH!=0)
                         {
