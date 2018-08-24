@@ -988,7 +988,7 @@ class TDController extends Controller
                             
 
                         }else{
-                            echo "<script type='text/javascript'>alert($jumlah);</script>";
+                            // echo "<script type='text/javascript'>alert($jumlah);</script>";
                             $ganti = DB::table('time-deposit')->where('id', $id_td)->update(['approver' => $jumlah]);
                             $revisiRH = 0;
                             // echo "<script type='text/javascript'>alert($ganti);</script>";

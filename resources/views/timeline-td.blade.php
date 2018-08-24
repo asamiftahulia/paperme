@@ -1724,7 +1724,7 @@ $("input").click(function(e){
    }
 
   if(jumlahApr == 2){
-    alert('ini 2');
+    // alert('ini 2');
     if(rejectam == 1){
         document.getElementById("time-bm").innerHTML = today;
         document.getElementById("time-am-1").innerHTML = today;
@@ -1757,7 +1757,7 @@ $("input").click(function(e){
     
     
   }else if(jumlahApr==3){
-    alert('ini 3');
+    // alert('ini 3');
 
     if(bm != 0){
        this.autoDisableBM2();
