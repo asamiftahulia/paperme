@@ -73,7 +73,8 @@
                                 </tbody>
                             </table>
                             <table border='1'>
-                                <thead>User BM {{session('bm')}}
+                                <thead>User BM 
+                                        <!-- </br>aasasasa {{$userBM}} -->
                                 <tr>
                                     <th>Username</th>
                                     <th>job</th>
@@ -91,7 +92,7 @@
                                 </tbody>
                             </table>
                             <table border='1'>
-                                <thead>User AM {{session('am')}}
+                                <thead>User AM 
                                 <tr>
                                     <th>Username</th>
                                     <th>job</th>
@@ -110,7 +111,7 @@
                             </table>
 
                              <table border='1'>
-                                <thead>User Regional Head {{session('rh')}}
+                                <thead>User Regional Head 
                                 <tr>
                                     <th>Username</th>
                                     <th>job</th>
@@ -129,7 +130,7 @@
                             </table>
 
                             <table border='1'>
-                                <thead>User Director {{session('dr')}}
+                                <thead>User Director 
                                 <tr>
                                     <th>Username</th>
                                     <th>job</th>

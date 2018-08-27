@@ -1,5 +1,7 @@
 LOGIN
 http://10.110.113.62/login
+
+http://los.ccbi.co.id/login
 <?php
 
 namespace App\Http\Controllers;

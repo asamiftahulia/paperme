@@ -78,9 +78,8 @@
                                                             @if($datalengkap->action == 1 || $datalengkap->status == 'Rejected')
                                                                         <a href="javascript: void(0)" class="material-icons" rel="tooltip" title="Can Not Edit">mode_edit</a>
                                                             @elseif($datalengkap->action== 0)
-                                                                    <a href="{{route("td.edit",$datalengkap->id)}}" class="material-icons" rel="tooltip" title="Edit Data">mode_edit</a>
+                                                                    <a href="{{route("td.edit",$datalengkap->id_td)}}" class="material-icons" rel="tooltip" title="Edit Data">mode_edit</a>
                                                             @endif
-
                                                     </td>
                                                 </tr> 
                                    <?php    }
@@ -88,7 +87,7 @@
                                         }
                                         
                                         // area head / am
-                                        else if(session('username')=='rahman.fianto@idn.ccb.com' || session('username')=='sherly.marthalena@idn.ccb.com'){
+                                        else if(session('job')=='S0465' || session('username') == 'yulia.asnita@idn.ccb.com' || session('username')=='rahman.fianto@idn.ccb.com' || session('username')=='sherly.marthalena@idn.ccb.com'){
                                             $login = session('username'); 
                                         ?>
                                             @foreach($lengkapForBM as $dataBM)
@@ -161,7 +160,7 @@
                                 <?php   
                                         }
                                 //    rh / regional head
-                                        else if(session('job') == 'S0301'){
+                                        else if(session('job') == 'S0301' ){
                                             $login = session('username'); ?>
                                             @foreach($lengkapForBM as $dataBM)
                                         

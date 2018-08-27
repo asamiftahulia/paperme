@@ -490,7 +490,11 @@ class TDController extends Controller
                      $regional = $dataaa->regional;
                    
                          $userBM = UserJob::where('id_branch',$cabang)->where('id_jobs','S0362')->get();
+                         if($cabang=='ID0010037'){
+                            $bmm = 'yulia.asnita@idn.ccb.com';
+                         }else{
                          $bmm = $userBM[0]->username;
+                         }
                         // echo "<script type='text/javascript'>alert('".$bmm."');</script>";
 
                  }
