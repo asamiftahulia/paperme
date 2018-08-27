@@ -28,8 +28,8 @@
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="{{asset('assets/css/demo.css')}}" rel="stylesheet" />
     <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+    <!-- <link href="{{asset('assets/css/font-awesome.min.css}}" rel="stylesheet"> -->
+    <!-- <link href="{{asset('assets/css/material-icon.css}}" rel="stylesheet"> -->
     <!-- Styles -->
         <style>
             html, body {

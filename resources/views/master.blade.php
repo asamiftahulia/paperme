@@ -18,8 +18,10 @@
     <link href="{{asset('assets/css/demo.css')}}" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" -->
+    <link href="{{asset('assets/css/font-awesome.min.css}}" rel="stylesheet">
+    <!-- <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'> -->
+    <link href="{{asset('assets/css/material-icon.css}}" rel="stylesheet">
     <!-- JQuery DataTable Css -->
     <link href="{{asset('/assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" rel="stylesheet">
 
@@ -190,7 +192,7 @@
 <!--  Notifications Plugin    -->
 <script src="{{asset('/assets/js/bootstrap-notify.js')}}"></script>
 <!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
 <!-- Material Dashboard javascript methods -->
 <script src="{{asset('/assets/js/material-dashboard.js?v=1.2.0')}}"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->

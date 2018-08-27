@@ -9,18 +9,19 @@
     <title>@yield('page-title')</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    <link href="{{asset('/assets/js/jquery.min.js')}}" rel="stylesheet" type='aplication/javascript' />
+    <link href="{{asset('/assets/js/toastr.min.js')}}" rel="stylesheet" type='aplication/javascript'/>
 
     <!-- Bootstrap core CSS     -->
-    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('/assets/css/bootstrap.min.css')}}" rel="stylesheet" />
     <!--  Material Dashboard CSS    -->
-    <link href="{{asset('assets/css/material-dashboard.css?v=1.2.0')}}" rel="stylesheet" />
+    <link href="{{asset('/assets/css/material-dashboard.css?v=1.2.0')}}" rel="stylesheet" />
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="{{asset('assets/css/demo.css')}}" rel="stylesheet" />
-
+    <link href="{{asset('/assets/css/demo.css')}}" rel="stylesheet" />
+    
     <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+    <link href="{{asset('/assets/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{asset('/assets/css/material-iconcss.css')}}" rel='stylesheet' type='text/css'>
     <!-- JQuery DataTable Css -->
     <link href="{{asset('/assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/style-timeline.css')}}" media="all" />
@@ -28,22 +29,24 @@
     <!-- selectpicker -->
 
     <!-- datepicker -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+    <link href="{{asset('/assets/css/bootstrap-datepicker.css')}}" rel="stylesheet">
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="{{asset('/assets/js/jquery.js')}}"></script>
+    <script src="{{asset('/assets/js/bootstrap-datepicker.js')}}"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+
+    
 
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+        <link rel="stylesheet" href="{{asset('/assets/css/bootstrap-select.min.css')}}">
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<script src="{{asset('/assets/js/bootstrap-select.min.js')}}"></script>
 
 <!-- (Optional) Latest compiled and minified JavaScript translation files -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script> -->
 
 
 </head>
@@ -174,7 +177,7 @@
                     } ?>
                     <li class="@yield('aktif-m-sr')">
                     <a href="{{route('special-rate.index')}}">
-                        <i class="material-icons">dns</i>
+                    <i class="material-icons">dns</i>
                         <p>Master Special Rate</p>
                     </a>
                  </li>
@@ -229,8 +232,8 @@
 <!--   Core JS Files   -->
 
 <!-- toastr -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+<!-- <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> -->
 <!-- end toastr -->
 <script src="{{asset('/assets/js/admin.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/js/jquery-3.2.1.min.js')}}" type="text/javascript"></script>
@@ -245,8 +248,6 @@
 </script>
 <!--  Notifications Plugin    -->
 <script src="{{asset('/assets/js/bootstrap-notify.js')}}"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Material Dashboard javascript methods -->
 <script src="{{asset('/assets/js/material-dashboard.js?v=1.2.0')}}"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
@@ -264,7 +265,7 @@
 <script src="{{asset('/assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
 <script src="{{asset('/assets/plugins/jquery.masknumber.js')}}" type="text/javascript"></script>
 <script src="{{asset('/assets/plugins/jquery.maskedinput.js')}}" type="text/javascript"></script>
-<script src="js/dataTables.bootstrap.min.js"></script>
+<!-- <script src="{{asset('/assets/js/dataTables.bootstrap.min.js')}}"></script> -->
 <script src="{{asset('/assets/js/bootstrap-datepicker.js')}}" type="text/javascript"></script>
 
 <script>

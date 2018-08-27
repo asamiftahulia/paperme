@@ -37,49 +37,49 @@ class LoginApiController extends Controller
         $email = Input::get('email');
         $password = Input::get('password');
 
-       try{
-        $response = $client->post('http://los.ccbi.co.id/login', ['json'=>['username'=>$email,'password'=>$password]]);
-        $data = $response->getBody();
+    //    try{
+    //     $response = $client->post('http://los.ccbi.co.id/login', ['json'=>['username'=>$email,'password'=>$password]]);
+    //     $data = $response->getBody();
 
-       $data = json_decode($data);
-     $statuscode = $response->getStatusCode();
+    //    $data = json_decode($data);
+    //  $statuscode = $response->getStatusCode();
      
-       if($data!=""){
-    //    asli
-    //berapa job nya
-    $jumlahJobUser = count($data->userJobs);
-    // dd($jumlahJobUser);
-    for($i = 0; $i<$jumlahJobUser; $i++){
-        // echo "<script type='text/javascript'>alert($i);</script>";
+    //    if($data!=""){
+    // //    asli
+    // //berapa job nya
+    // $jumlahJobUser = count($data->userJobs);
+    // // dd($jumlahJobUser);
+    // for($i = 0; $i<$jumlahJobUser; $i++){
+    //     // echo "<script type='text/javascript'>alert($i);</script>";
     
-        session(['token' => $data->token,
-        'username'=> $data->username,
-        'nik' => $data->employee->nik,
-        'nama'=> $data->employee->nama,
-        'branch'=> $data->userJobs[$jumlahJobUser-1]->userJobPK->idBranch,
-        'job'=> $data->userJobs[$jumlahJobUser-1]->userJobPK->idJobs]);
-        $nik = session('nik');
-        // echo "<script type='text/javascript'>alert(".$jumlahJobUser.");</script>";
-        // dd(session('job'));
-    }
+    //     session(['token' => $data->token,
+    //     'username'=> $data->username,
+    //     'nik' => $data->employee->nik,
+    //     'nama'=> $data->employee->nama,
+    //     'branch'=> $data->userJobs[$jumlahJobUser-1]->userJobPK->idBranch,
+    //     'job'=> $data->userJobs[$jumlahJobUser-1]->userJobPK->idJobs]);
+    //     $nik = session('nik');
+    //     // echo "<script type='text/javascript'>alert(".$jumlahJobUser.");</script>";
+    //     // dd(session('job'));
+    // }
     
-    // echo "<script type='text/javascript'>alert(".$nik.");</script>";
-        //palsu
+    // // echo "<script type='text/javascript'>alert(".$nik.");</script>";
+    //     //palsu
         
-        // session(['token' => '1234567',
-        // 'username'=> $username,
-        // 'nik' => '09 0859',
-        // 'nama'=> 'Agus',
-        // 'branch'=> 'ID0010006',
-        // 'job'=> 'S0301']);
+    //     // session(['token' => '1234567',
+    //     // 'username'=> $username,
+    //     // 'nik' => '09 0859',
+    //     // 'nama'=> 'Agus',
+    //     // 'branch'=> 'ID0010006',
+    //     // 'job'=> 'S0301']);
 
-        // jalan
-        //  session(['token' => '1234567',
-        //  'username'=> 'anisentus.yoseph@idn.ccb.com',
-        //  'nik' => '17 3694',
-        //  'nama'=> 'Lim ',
-        //  'branch'=> 'ID0010028',
-        //  'job'=> 'S0309']);
+    //     // jalan
+         session(['token' => '1234567',
+         'username'=> 'anisentus.yoseph@idn.ccb.com',
+         'nik' => '17 3694',
+         'nama'=> 'Lim ',
+         'branch'=> 'ID0010028',
+         'job'=> 'S0309']);
 
         // session(['token' => '1234567',
         //  'username'=> 'tien.muntiara@idn.ccb.com',
@@ -88,72 +88,72 @@ class LoginApiController extends Controller
         //  'branch'=> 'ID0010028',
         //  'job'=> 'S0362']);
 
-            // session(['token' => '1234567',
-            // 'username'=> 'rahman.fianto@idn.ccb.com',
-            // 'nik' => '17 3694',
-            // 'nama'=> 'Lim ',
-            // 'branch'=> 'ID0010028',
-            // 'job'=> 'S0465']);
+    //         // session(['token' => '1234567',
+    //         // 'username'=> 'rahman.fianto@idn.ccb.com',
+    //         // 'nik' => '17 3694',
+    //         // 'nama'=> 'Lim ',
+    //         // 'branch'=> 'ID0010028',
+    //         // 'job'=> 'S0465']);
 
-            // session(['token' => '1234567',
-            // 'username'=> 'agus.setiawan@idn.ccb.com',
-            // 'nik' => '17 3694',
-            // 'nama'=> 'Lim ',
-            // 'branch'=> 'ID0010028',
-            // 'job'=> 'S0301']);
+    //         // session(['token' => '1234567',
+    //         // 'username'=> 'agus.setiawan@idn.ccb.com',
+    //         // 'nik' => '17 3694',
+    //         // 'nama'=> 'Lim ',
+    //         // 'branch'=> 'ID0010028',
+    //         // 'job'=> 'S0301']);
 
-            //    session(['token' => '1234567',
-            // 'username'=> 'setiawati.samahita@idn.ccb.com',
-            // 'nik' => '17 3694',
-            // 'nama'=> 'Lim ',
-            // 'branch'=> 'ID0010028',
-            // 'job'=> 'S9']);
+    //         //    session(['token' => '1234567',
+    //         // 'username'=> 'setiawati.samahita@idn.ccb.com',
+    //         // 'nik' => '17 3694',
+    //         // 'nama'=> 'Lim ',
+    //         // 'branch'=> 'ID0010028',
+    //         // 'job'=> 'S9']);
 
          
-        // session(['token' => '1234567',
-        //  'username'=> $email,
-        //  'nik' => $password,
-        //  'nama'=> 'Lim ',
-        //  'branch'=> 'ID0010028',
-        //  'job'=> 'S0148']);
+    //     // session(['token' => '1234567',
+    //     //  'username'=> $email,
+    //     //  'nik' => $password,
+    //     //  'nama'=> 'Lim ',
+    //     //  'branch'=> 'ID0010028',
+    //     //  'job'=> 'S0148']);
         
-        //  09 0859
-       // dd(session('username'),session('token'), session('nik'), session('nama'), session('branch'), session('job'));
-       // dd(session('job'));
-       // dd($data);
-       $id_branch = session('branch');
-    //    dd($id_branch);
-       $flow = FlowMapping::where('id',$id_branch)->get();
-        foreach($flow as $data)
-        {
-            $path = explode(';',$data->path);
-            $countPath = count($path);
-            for($i = 0; $i<$countPath;$i++){
-                if($id_branch == 'ID0010001'){
-                    $userBM = UserJob::where('id_branch',$id_branch)->where('id_jobs','S0362')->get();
-                    $userAM = UserJob::where('id_branch',$path[0])->where('id_jobs','S0465')->get();
-                    $userRH = UserJob::where('id_branch',$path[0])->where('id_jobs','S0301')->get();
-                    $userDR = 'setiawati.samahita@idn.ccb.com';
-                    // echo "<script> alert('asaaa')</script>";
-                }else{
-                    if($countPath==4){
-                        //cocok eko
-                        $userBM = UserJob::where('id_branch',$id_branch)->where('id_jobs','S0362')->get();
-                        $userAM = UserJob::where('id_branch',$path[1])->where('id_jobs','S0465')->get();
-                        $userRH = UserJob::where('id_branch',$path[2])->where('id_jobs','S0301')->get();
-                        $userDR = 'setiawati.samahita@idn.ccb.com';
-                    }else{
-                        //cocok buat eko
-                        $userBM = UserJob::where('id_branch',$id_branch)->where('id_jobs','S0465')->get();
-                        $userAM = UserJob::where('id_branch',$id_branch)->where('id_jobs','S0465')->get();
-                        $userRH = UserJob::where('id_branch',$path[1])->where('id_jobs','S0301')->get();
-                        $userDR = 'setiawati.samahita@idn.ccb.com';
-                        // echo "<script type='text/javascript'>alert('Non Jabodetabek');</script>";
-                    }
-                }
-            }
+    //     //  09 0859
+    //    // dd(session('username'),session('token'), session('nik'), session('nama'), session('branch'), session('job'));
+    //    // dd(session('job'));
+    //    // dd($data);
+    //    $id_branch = session('branch');
+    // //    dd($id_branch);
+    //    $flow = FlowMapping::where('id',$id_branch)->get();
+    //     foreach($flow as $data)
+    //     {
+    //         $path = explode(';',$data->path);
+    //         $countPath = count($path);
+    //         for($i = 0; $i<$countPath;$i++){
+    //             if($id_branch == 'ID0010001'){
+    //                 $userBM = UserJob::where('id_branch',$id_branch)->where('id_jobs','S0362')->get();
+    //                 $userAM = UserJob::where('id_branch',$path[0])->where('id_jobs','S0465')->get();
+    //                 $userRH = UserJob::where('id_branch',$path[0])->where('id_jobs','S0301')->get();
+    //                 $userDR = 'setiawati.samahita@idn.ccb.com';
+    //                 // echo "<script> alert('asaaa')</script>";
+    //             }else{
+    //                 if($countPath==4){
+    //                     //cocok eko
+    //                     $userBM = UserJob::where('id_branch',$id_branch)->where('id_jobs','S0362')->get();
+    //                     $userAM = UserJob::where('id_branch',$path[1])->where('id_jobs','S0465')->get();
+    //                     $userRH = UserJob::where('id_branch',$path[2])->where('id_jobs','S0301')->get();
+    //                     $userDR = 'setiawati.samahita@idn.ccb.com';
+    //                 }else{
+    //                     //cocok buat eko
+    //                     $userBM = UserJob::where('id_branch',$id_branch)->where('id_jobs','S0465')->get();
+    //                     $userAM = UserJob::where('id_branch',$id_branch)->where('id_jobs','S0465')->get();
+    //                     $userRH = UserJob::where('id_branch',$path[1])->where('id_jobs','S0301')->get();
+    //                     $userDR = 'setiawati.samahita@idn.ccb.com';
+    //                     // echo "<script type='text/javascript'>alert('Non Jabodetabek');</script>";
+    //                 }
+    //             }
+    //         }
             
-        }
+    //     }
 
        
     //    $userBM = UserJob::where('id_branch',$id_branch)->get();
@@ -188,20 +188,20 @@ class LoginApiController extends Controller
     //   return view('list-td',compact('data','trx','tdUser','lengkap'));
         Session::flash('flash_message','-');
       return redirect('td')->with(compact('data','trx','tdUser','lengkap'));
-    }else{
-        dd('aaa');
-    }
+    // }else{
+    //     dd('aaa');
+    // }
 
-       }catch(ClientException $e){
-            echo "Your Password Or Username Is Invalid";
-            $notification = array(
-                'message' => 'Logout Failed',
-                'alert-type' => 'error'
-            );
+    //    }catch(ClientException $e){
+    //         echo "Your Password Or Username Is Invalid";
+    //         $notification = array(
+    //             'message' => 'Logout Failed',
+    //             'alert-type' => 'error'
+    //         );
         
-            return view('login')->with($notification);
+    //         return view('login')->with($notification);
      
-    }
+    // }
 }
 
     public function logout(){
