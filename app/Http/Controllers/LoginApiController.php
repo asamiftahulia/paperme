@@ -166,15 +166,15 @@ class LoginApiController extends Controller
     //    'rh'=>$userRH[0]->username,
     //    'dr'=>$userDR]);
 
-       return View('user-mapping-test',compact('token',
-       'username',
-       'nik',
-       'nama',
-       'branch',
-       'job',
-       'flow',
-       'userBM','userAM','userRH','userDR','bm','am','rh','dr'
-    ));
+    //    return View('user-mapping-test',compact('token',
+    //    'username',
+    //    'nik',
+    //    'nama',
+    //    'branch',
+    //    'job',
+    //    'flow',
+    //    'userBM','userAM','userRH','userDR','bm','am','rh','dr'
+    // ));
         
     $data = TD::All();
     //  return view('time-deposit-list', compact('data'));
@@ -187,7 +187,7 @@ class LoginApiController extends Controller
       // dd($lengkap);
     //   return view('list-td',compact('data','trx','tdUser','lengkap'));
         Session::flash('flash_message','-');
-    //   return redirect('td')->with(compact('data','trx','tdUser','lengkap'));
+      return redirect('td')->with(compact('data','trx','tdUser','lengkap'));
     }else{
         dd('aaa');
     }
