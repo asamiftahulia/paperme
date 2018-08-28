@@ -22,7 +22,6 @@
                         
                     ?>
 
-                    
                     <form action="{{route('tdc.store')}}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="row">

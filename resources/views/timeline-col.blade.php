@@ -150,18 +150,10 @@
 					}
 				}
 				?>
-			<?php
-				if($rejected==0){ ?>
-					<p id="act-bm">Waiting An Action From Branch Manager</p>
-		<?php	}else if($rejected == 1){
-		?>
-					<p id="act-bm">This Special Rate Has Been<font color="red"> Rejected </font>By Branch Manager</p>
-		<?php	
-				}else{
-		?>
-				<p id="act-bm">Waiting an action from Branch Manager</p>
-		<?php		}
-			?>
+			@if($approverBM == 0)
+				<p id="act-bm">Waiting An Action From Branch Manager</p>
+			@endif
+			<p id="act-bm"></p>
 			<br>
 			<span>{{$orang->bm}}</span></br>
 			<?php 
@@ -347,7 +339,8 @@
 										</td>
 										<td>
                                             <input type='radio' name='aksi<?php echo $counter;?>' id='aksiApprove<?php echo $counter;?>' value='Approve'/>Approve
-                                            <input type='hidden' name='role<?php echo $counter;?>' value='Branch Manager'/>
+											<input type='hidden' name='role<?php echo $counter;?>' value='Branch Manager'/>
+											<input type='hidden' name='user<?php echo $counter;?>' value='{{session('username')}}'/>
 									</div>
 									<div><input type='radio' name='aksi<?php echo $counter;?>' id='aksiReject<?php echo $counter;?>'value='Reject'/>Reject</div>
 									</td>
@@ -422,7 +415,8 @@
 										</td>
 										<td>
                                             <input type='radio' name='aksi<?php echo $counter;?>' id='aksiApproveAM<?php echo $counter;?>' value='Approve'/>Approve
-                                            <input type='hidden' name='role<?php echo $counter;?>' value='Area Manager'/>
+											<input type='hidden' name='role<?php echo $counter;?>' value='Area Manager'/>
+											<input type='hidden' name='user<?php echo $counter;?>' value='{{session('username')}}'/>
 					</div>
 					<div><input type='radio' name='aksi<?php echo $counter;?>' id='aksiRejectAM<?php echo $counter;?>' value='Reject'/>Reject</div>
 					</td>
@@ -496,7 +490,8 @@
 										</td>
 										<td>
                                             <input type='radio' name='aksi<?php echo $counter;?>' id='aksiApproveRH<?php echo $counter;?>' value='Approve'/>Approve
-                                            <input type='hidden' name='role<?php echo $counter;?>' value='Regional Head'/>
+											<input type='hidden' name='role<?php echo $counter;?>' value='Regional Head'/>
+											<input type='hidden' name='user<?php echo $counter;?>' value='{{session('username')}}'/>
 										</div>
 										<div><input type='radio' name='aksi<?php echo $counter;?>' id='aksiRejectRH<?php echo $counter;?>' value='Reject'/>Reject</div>
 										</td>
@@ -569,7 +564,8 @@
 										</td>
 										<td>
                                             <input type='radio' name='aksi<?php echo $counter;?>' id='aksiApproveDR<?php echo $counter;?>' value='Approve'/>Approve
-                                            <input type='hidden' name='role<?php echo $counter;?>' value='Director'/>
+											<input type='hidden' name='role<?php echo $counter;?>' value='Director'/>
+											<input type='hidden' name='user<?php echo $counter;?>' value='{{session('username')}}'/>
 					</div>
 					<div><input type='radio' name='aksi<?php echo $counter;?>' id='aksiRejectDR<?php echo $counter;?>' value='Reject'/>Reject</div>
 					</td>
@@ -614,8 +610,32 @@ border: 1px solid black;
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
 <script>
-$(document).ready(function(){
 
+$(document).ready(function(){
+var jumlahApr = '<?php echo $jumlah; ?>'
+var bm = '<?php echo $approverBM; ?>'
+var am = '<?php echo $approverAM; ?>'
+var rh = '<?php echo $approverRH; ?>'
+var dr= '<?php echo $approverDR; ?>'
+
+console.log('jumlah Approver: ',jumlahApr);
+console.log('approverBM: ',bm);
+console.log('approverAM: ',am);
+console.log('approverRH: ',rh);
+console.log('approverDR: ',dr);
+
+if(bm != 0){
+	document.getElementById("act-bm").innerHTML = "This Special Rate Has Been <font color='green'><b>Approved</b></font> by Branch Manager";
+}
+if(am != 0){
+	document.getElementById("act-am").innerHTML = "This Special Rate Has Been <font color='green'><b>Approved</b></font> by Area Manager";
+}
+if(rh != 0){
+	document.getElementById("act-rh").innerHTML = "This Special Rate Has Been <font color='green'><b>Approved</b></font> by Regional Head";
+}
+if(dr != 0){
+	document.getElementById("act-dr").innerHTML = "This Special Rate Has Been <font color='green'><b>Approved</b></font> by Director";
+}
 var counterr = '<?php echo $counter;?>';
 const checkboxApprove = document.getElementById('checkApproveAll')
 const checkboxReject = document.getElementById('checkRejectAll')
@@ -801,10 +821,9 @@ today = dd + '-' + mm + '-' + yyyy;
     .done(function(data){ // if getting done then call.
 
     // show the response
-     $('#response').html(data);
-	 document.getElementById("act-bm").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Branch Manager";
-	 document.getElementById("time-bm").innerHTML = today;	
-
+	 setTimeout(function(){
+       location.reload();
+   },1000);
     })
     .fail(function() { // if fail then getting message
 
@@ -837,6 +856,9 @@ today = dd + '-' + mm + '-' + yyyy;
         $('#response').html(data);
 		document.getElementById("act-am").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Area Manager";
 		document.getElementById("time-am").innerHTML = today;	
+		setTimeout(function(){
+       location.reload();
+   },1000);
         })
         .fail(function() { // if fail then getting message
 
@@ -868,6 +890,10 @@ today = dd + '-' + mm + '-' + yyyy;
         $('#response3').html(data);
 		document.getElementById("act-rh").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Regional Head";
 		document.getElementById("time-rh").innerHTML = today;	
+
+		 setTimeout(function(){
+       location.reload();
+   },1000);
         })
         .fail(function() { // if fail then getting message
 
@@ -899,6 +925,10 @@ today = dd + '-' + mm + '-' + yyyy;
 		$('#response4').html(data);
 		var actDr = document.getElementById("act-dr").innerHTML = "This Special Rate Has Been <font color='green'>Approved</font> by Director";
 		document.getElementById("time-dr").innerHTML = today;	
+
+		 setTimeout(function(){
+       location.reload();
+   },1000);
 		})
 		.fail(function() { // if fail then getting message
 
@@ -912,7 +942,8 @@ today = dd + '-' + mm + '-' + yyyy;
 
 		});
 });
-</script>
 
+
+</script>
 </body>
 </html>

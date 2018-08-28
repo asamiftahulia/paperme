@@ -143,7 +143,8 @@ class TDCollectiveController extends Controller
         // dd($fileName);
         $data->image = $fileName;
         $data->save();
-        Mail::to('harsyami@gmail.com')->send(new PostSubscribtion($data));
+        $tdd = TD::where('id_memmo',$request->id_memmo)->get();
+        Mail::to('harsyami@gmail.com')->send(new PostSubscribtion($tdd));
         return redirect('tdc/summaryCol')->with('id',$data->id_memmo);
     }
 
@@ -385,8 +386,39 @@ class TDCollectiveController extends Controller
         }else{
             $tempStatusRH = '';
         }
+       
+        //cek brpa bnyak yg nge approve
+        $approverBM = DB::table('trx-time-deposit')
+        ->select('*')
+        ->join('time-deposit', 'trx-time-deposit.id_td', '=', 'time-deposit.id')
+        ->where('time-deposit.id_memmo',$id_memmo)
+        ->where('role','Branch Manager')
+        ->where('aksi','Approve')
+        ->count();
 
+        $approverAM = DB::table('trx-time-deposit')
+        ->select('*')
+        ->join('time-deposit', 'trx-time-deposit.id_td', '=', 'time-deposit.id')
+        ->where('time-deposit.id_memmo',$id_memmo)
+        ->where('role','Area Manager')
+        ->where('aksi','Approve')
+        ->count();
+        
+        $approverRH = DB::table('trx-time-deposit')
+        ->select('*')
+        ->join('time-deposit', 'trx-time-deposit.id_td', '=', 'time-deposit.id')
+        ->where('time-deposit.id_memmo',$id_memmo)
+        ->where('role','Regional Head')
+        ->where('aksi','Approve')
+        ->count();
 
+        $approverDR = DB::table('trx-time-deposit')
+        ->select('*')
+        ->join('time-deposit', 'trx-time-deposit.id_td', '=', 'time-deposit.id')
+        ->where('time-deposit.id_memmo',$id_memmo)
+        ->where('role','Director')
+        ->where('aksi','Approve')
+        ->count();
             if($cekIdTdDiUser==$string){
                 $td_user = new TD_USER();
                 $td_user->id_td = $id;
@@ -401,14 +433,25 @@ class TDCollectiveController extends Controller
                 $td = TD::find($id);
                 $td->approver = $td_user->jumlah;
                 $td->save();
-
+                // echo '<script>alert("'.$jumlah.'")</script>';
                 return view('timeline-col',compact('data',$data,'allData',$allData,'jumlahCol',$jumlahCol,
                 'maksApprover',$maksApprover,'tempStatusBM',$tempStatusBM,'tempStatusBM',$tempStatusBM,
-                'tempStatusBM',$tempStatusBM,'tempStatusAM',$tempStatusAM,'tempStatusRH',$tempStatusRH,'trxCol',$trxCol));
+                'tempStatusBM',$tempStatusBM,'tempStatusAM',$tempStatusAM,'tempStatusRH',$tempStatusRH,'trxCol',$trxCol))->with(
+            'approverBM',$approverBM)
+            ->with('approverAM',$approverAM)
+            ->with('approverRH',$approverRH)
+            ->with('approverDR',$approverDR)
+            ->with('jumlah',$jumlah);
             }else{
+                // echo '<script>alert("'.$jumlah.'")</script>';
                 return view('timeline-col',compact('data',$data,'allData',$allData,'jumlahCol',$jumlahCol,
-                'maksApprover',$maksApprover,'tempStatusBM',$tempStatusBM,'tempStatusAM',$tempStatusAM,
-                'tempStatusBM',$tempStatusBM,'tempStatusAM',$tempStatusAM,'tempStatusRH',$tempStatusRH,'trxCol',$trxCol));
+                'maksApprover',$maksApprover,'tempStatusBM',$tempStatusBM,'tempStatusBM',$tempStatusBM,
+                'tempStatusBM',$tempStatusBM,'tempStatusAM',$tempStatusAM,'tempStatusRH',$tempStatusRH,'trxCol',$trxCol))->with(
+            'approverBM',$approverBM)
+            ->with('approverAM',$approverAM)
+            ->with('approverRH',$approverRH)
+            ->with('approverDR',$approverDR)
+            ->with('jumlah',$jumlah);
             }
         
         

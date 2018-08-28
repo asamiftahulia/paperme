@@ -214,7 +214,7 @@ class LoginApiController extends Controller
          'nama'=> '',
          'branch'=> '',
          'job'=> '']);
-        $response = $client->DELETE('http://los.ccbi.co.id/loginn', ['json'=>['username'=>'harsya.mifta@idn.ccb.com','password'=>'asaasaasa']]);
+        $response = $client->DELETE('http://los.ccbi.co.id/login', ['json'=>['username'=>'harsya.mifta@idn.ccb.com','password'=>'asaasaasa']]);
  
          $data = $response->getBody();
          $data = json_decode($data);

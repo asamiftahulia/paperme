@@ -31,17 +31,20 @@ class WelcomeController extends Controller
                 $dataSR = 'special_rate'.$i;
                 $dataAksi = 'aksi'.$i;
                 $dataRole = 'role'.$i;
+                $dataUser = 'user'.$i;
                 //masukin ke array
                 $datasID[$i] = $request->$dataID;
                 $datasName[$i] = $request->$dataName;
                 $datasSR[$i] = $request->$dataSR;
                 $datasAksi[$i] = $request->$dataAksi;
                 $datasRole[$i] = $request->$dataRole;
+                $datasUser[$i] = $request->$dataUser;
 
                 echo $datasName[$i].' ';
                 echo $datasSR[$i].' ';
                 echo $datasAksi[$i].' ';
                 echo $datasRole[$i].' ';
+                echo $datasUser[$i].' ';
                 echo "</br>";
                 //insert ke trx TD
                 $data = new transaction_td();
@@ -50,8 +53,8 @@ class WelcomeController extends Controller
                 $data->aksi=$datasAksi[$i];
                 $data->special_rate=$datasSR[$i];
                 $data->role=$datasRole[$i];
-                $data->created_by = 'tien.muntiara@idn.ccb.com';
-                $data->approved_by = 'tien.muntiara@idn.ccb.com';
+                $data->created_by = $datasUser[$i];
+                $data->approved_by = $datasUser[$i];
                 $today = date("Y-m-d");
                 $data->approved_at = $today;
                 $result = $data->save();
@@ -61,11 +64,13 @@ class WelcomeController extends Controller
                 $td->action = 1;
                 $td->save();
             }
+            return dd(response()->json(['status' => 'success']));
           }else{
             return dd(response()->json(['status' => 'error']));
           }
     }
 
+  
     public function getIdMemmo(int $idMemmo){
         $dataDede = DB::table('time-deposit')
             ->select('*')
