@@ -21,7 +21,8 @@
     
     <!--     Fonts and icons     -->
     <link href="{{asset('/assets/css/font-awesome.min.css')}}" rel="stylesheet">
-    <link href="{{asset('/assets/css/material-iconcss.css')}}" rel='stylesheet' type='text/css'>
+    <!-- <link href="{{asset('/assets/css/material-iconcss.css')}}" rel='stylesheet' type='text/css'> -->
+    <link href="{{asset('/css/material-icon.css')}}" rel='stylesheet' type='text/css'>
     <!-- JQuery DataTable Css -->
     <link href="{{asset('/assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/style-timeline.css')}}" media="all" />
