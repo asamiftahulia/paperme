@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-content">
                      @foreach($data as $datas)
-                    <form action="{{route('td.update', $datas->id) }}" method="post">
+                    <form action="{{route('td.update', $datas->id) }}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
                         {{method_field('PUT')}}
                         <div class="row">
@@ -88,7 +88,12 @@
                                 @endforeach                                           
                                 </select>
                             </div>
+                            <div class="col-md-6">
+                                    <b>Sumber Dana</b>
+                                    <input type="file" name="image">
+                                    <p>Note: If Bank Is Not CCB</p>
                             </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group label-floating">

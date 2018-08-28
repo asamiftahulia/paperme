@@ -500,7 +500,8 @@ class TDController extends Controller
                  }
                 //bmm
                 //  echo "<script type='text/javascript'>alert('".$bmm."');</script>";
-        Mail::to('harsya.mifta@idn.ccb.com')->send(new PostSubscribtion($data));
+                $tdd = TD::where('id',$id)->get();
+        Mail::to('harsya.mifta@idn.ccb.com')->send(new PostSubscribtion($tdd));
         return view('summary',compact('data', $data))->with('apr',$dataApprover);
     }
 
@@ -563,8 +564,22 @@ class TDController extends Controller
         $data->date_rollover = $request->date_rollover;
         $data->period = $request->period;
         $data->notes = $request->notes;
+        //image
+        if($request->hasfile('image')){
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $fileName = $file->getClientOriginalName();
+            $img = $request->image->move(public_path('images'), $fileName);
+            // echo 'adaa';
+        }else{
+            $fileName = 'No Photo';
+            // echo 'ga ada';
+        }
+        
+        // dd($fileName);
+        $data->image = $fileName;
         $data->save();
-
+        
         return redirect('td/summary')->with('id',$data->id);
     }
 

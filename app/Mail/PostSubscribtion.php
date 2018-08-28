@@ -11,16 +11,16 @@ class PostSubscribtion extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $post;
+    public $data;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($post)
+    public function __construct($data)
     {
         //
-        $this->post = $post;
+        $this->data = $data;
     }
 
     /**
@@ -31,6 +31,6 @@ class PostSubscribtion extends Mailable
     public function build()
     {
         $subject = 'Application was added to timeline';
-        return $this->subject($subject)->view('email-approver');
+        return $this->subject($subject)->view('email-approver')->with(['data',$this->data]);
     }
 }
